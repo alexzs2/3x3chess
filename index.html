@@ -955,6 +955,7 @@
 
       const [puzzleDatabase, setPuzzleDatabase] = useState([]);
       const [currentFen, setCurrentFen] = useState('');
+      const [currentBestMove, setCurrentBestMove] = useState(null);
       const [board, setBoard] = useState(Array(3).fill(Array(3).fill(null)));
       const [currentTurn, setCurrentTurn] = useState('w');
       const [isComputerThinking, setIsComputerThinking] = useState(false);
@@ -1075,9 +1076,15 @@
 
       const loadRandomPuzzle = (db = puzzleDatabase) => {
         if(db.length === 0) return;
-        const fen = db[Math.floor(Math.random() * db.length)];
-        setCurrentFen(fen);
-        parseFenToBoard(fen);
+        const puzzle = db[Math.floor(Math.random() * db.length)];
+        
+        // Aceita tanto JSON antigo (string) quanto o novo gerado pelo Node (objeto com bestMove)
+        const fenString = typeof puzzle === 'string' ? puzzle : puzzle.fen;
+        const best = typeof puzzle === 'string' ? null : puzzle.bestMove;
+        
+        setCurrentFen(fenString);
+        setCurrentBestMove(best);
+        parseFenToBoard(fenString);
       };
 
       const parseFenToBoard = (fen) => {
@@ -1172,12 +1179,8 @@
           const movingPiece = board[fromR][fromC];
 
           if (isMoveLegal(board, movingPiece, fromR, fromC, r, c)) {
-            if (movingPiece.type === 'p' && r === 0) {
-              playGameSound('select', soundEnabled, soundVolume);
-              setPendingPromotion({ startR: fromR, startC: fromC, endR: r, endC: c });
-            } else {
-              executeMove(fromR, fromC, r, c, 'q');
-            }
+            // Se for peão chegando no topo, já executa o movimento promovendo para Rainha ('q') automático!
+            executeMove(fromR, fromC, r, c, 'q');
             return;
           } else {
             if (piece && piece.color === 'w') {
@@ -1198,25 +1201,43 @@
       };
 
       const handleHint = () => {
-        playGameSound('select', soundEnabled, soundVolume);
-        const whiteMoves = getAllLegalMovesForPlayer(board, 'w');
-        for (const m of whiteMoves) {
-          const simBoard = simulateMoveOnBoard(board, m.startR, m.startC, m.endR, m.endC, 'q');
-          if (isKingInCheck(simBoard, 'b') && getAllLegalMovesForPlayer(simBoard, 'b').length === 0) {
-            const fromSq = `${String.fromCharCode(97 + m.startC)}${3 - m.startR}`;
-            const toSq = `${String.fromCharCode(97 + m.endC)}${3 - m.endR}`;
-            setSelectedSquare([m.startR, m.startC]); setValidMoves([[m.endR, m.endC]]);
-            setShowHint(true); setHintDetails(t.hintWinningMove(fromSq, toSq));
-            return;
-          }
-        }
-        if (whiteMoves.length > 0) {
-          const sample = whiteMoves[0];
-          const piece = board[sample.startR][sample.startC];
-          setSelectedSquare([sample.startR, sample.startC]); setValidMoves(getLegalTargetsForPiece(sample.startR, sample.startC, piece));
-          setShowHint(true); setHintDetails(t.hintGeneral);
-        }
-      };
+  playGameSound('select', soundEnabled, soundVolume);
+  
+  // Se o Node.js já nos deu o lance perfeito mastigado ("a1b2"), apenas acendemos a tela instantaneamente!
+  if (currentBestMove) {
+    const cLetters = {'a':0, 'b':1, 'c':2};
+    const rNumbers = {'3':0, '2':1, '1':2};
+    const startC = cLetters[currentBestMove[0]];
+    const startR = rNumbers[currentBestMove[1]];
+    const endC = cLetters[currentBestMove[2]];
+    const endR = rNumbers[currentBestMove[3]];
+    
+    setSelectedSquare([startR, startC]); 
+    setValidMoves([[endR, endC]]);
+    setShowHint(true); 
+    setHintDetails(t.hintWinningMove(currentBestMove.substring(0,2), currentBestMove.substring(2,4)));
+    return;
+  }
+
+  // Plano B (Fallback): Caso esteja carregando um JSON antigo sem solução, tenta o cálculo raso antigo
+  const whiteMoves = getAllLegalMovesForPlayer(board, 'w');
+  for (const m of whiteMoves) {
+    const simBoard = simulateMoveOnBoard(board, m.startR, m.startC, m.endR, m.endC, 'q');
+    if (isKingInCheck(simBoard, 'b') && getAllLegalMovesForPlayer(simBoard, 'b').length === 0) {
+      const fromSq = `${String.fromCharCode(97 + m.startC)}${3 - m.startR}`;
+      const toSq = `${String.fromCharCode(97 + m.endC)}${3 - m.endR}`;
+      setSelectedSquare([m.startR, m.startC]); setValidMoves([[m.endR, m.endC]]);
+      setShowHint(true); setHintDetails(t.hintWinningMove(fromSq, toSq));
+      return;
+    }
+  }
+  if (whiteMoves.length > 0) {
+    const sample = whiteMoves[0];
+    const piece = board[sample.startR][sample.startC];
+    setSelectedSquare([sample.startR, sample.startC]); setValidMoves(getLegalTargetsForPiece(sample.startR, sample.startC, piece));
+    setShowHint(true); setHintDetails(t.hintGeneral);
+  }
+};
 
       const formatTime = (totalSec) => {
         const m = Math.floor(totalSec / 60).toString().padStart(2, '0');
@@ -1435,35 +1456,7 @@
             </div>
           </footer>
 
-          {/* MODAL DE PROMOÇÃO DO PEÃO */}
-          {pendingPromotion && (
-            <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm">
-              <div className="relative wood-texture rounded-3xl p-6 sm:p-8 border-4 border-amber-400 shadow-2xl text-center flex flex-col items-center animate-bounce-short">
-                <div className="absolute -top-6 bg-amber-500 text-amber-950 font-black text-sm px-4 py-1.5 rounded-full border-2 border-amber-950 uppercase tracking-widest shadow-md">
-                  {t.promoteTitle}
-                </div>
-                <h3 className="font-fredoka text-xl text-amber-100 mb-6 mt-4">{t.selectedPawnPrompt(`${String.fromCharCode(97 + pendingPromotion.endC)}${3 - pendingPromotion.endR}`)}</h3>
-                <div className="flex items-center gap-3 sm:gap-5">
-                  {['q', 'n', 'r', 'b'].map(pType => (
-                    <button 
-                      key={pType} 
-                      onClick={() => {
-                        playGameSound('select', soundEnabled, soundVolume);
-                        executeMove(pendingPromotion.startR, pendingPromotion.startC, pendingPromotion.endR, pendingPromotion.endC, pType);
-                        setPendingPromotion(null);
-                      }}
-                      className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-[#2c190c] to-[#1c0d04] hover:from-amber-600 hover:to-amber-700 rounded-2xl flex items-center justify-center border-2 border-amber-500 shadow-xl transition-all cursor-pointer group"
-                    >
-                      <div className="group-hover:scale-125 transition-transform drop-shadow-lg">
-                        <ChessPieceIcon type={pType} color="w" size="90%" />
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-
+          
           {/* SPLASH SCREEN */}
           {showSplashModal && (
             <div onClick={handleDismissSplash} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md cursor-pointer">
