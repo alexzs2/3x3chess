@@ -79,7 +79,7 @@
     const { useState, useEffect, useRef } = React;
 
     // ========================================================
-    // CONFIGURAÇÃO MESTRE DO GOOGLE ADSENSE E PUBLICIDADE PRÓPRIA
+    // CONFIGURAÇÃO MESTRE DO GOOGLE ADSENSE
     // ========================================================
     const ADSENSE_CONFIG = {
       enabled: false, 
@@ -109,8 +109,6 @@
       } catch (e) {}
     };
 
-    // Detecta automaticamente o idioma do país/navegador do visitante na 1ª visita.
-    // Se não for PT, ES, FR, DE ou RU, inicia sempre em Inglês ('EN') como padrão!
     const detectBrowserLanguage = () => {
       try {
         const langs = navigator.languages || [navigator.language || navigator.userLanguage || 'en'];
@@ -147,7 +145,6 @@
       if (!enabled || volumePct <= 0) return;
       const ctx = getAudioCtx();
       if (!ctx) return;
-
       const vol = (volumePct / 100) * 0.45;
       const now = ctx.currentTime;
 
@@ -159,10 +156,8 @@
         osc.frequency.exponentialRampToValueAtTime(680, now + 0.045);
         gain.gain.setValueAtTime(vol * 0.4, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.045);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(now);
-        osc.stop(now + 0.05);
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(now); osc.stop(now + 0.05);
       } else if (type === 'move') {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
@@ -171,10 +166,8 @@
         osc.frequency.exponentialRampToValueAtTime(55, now + 0.075);
         gain.gain.setValueAtTime(vol, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.075);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(now);
-        osc.stop(now + 0.08);
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(now); osc.stop(now + 0.08);
       } else if (type === 'capture') {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
@@ -183,10 +176,8 @@
         osc.frequency.exponentialRampToValueAtTime(42, now + 0.12);
         gain.gain.setValueAtTime(vol * 1.15, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(now);
-        osc.stop(now + 0.13);
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(now); osc.stop(now + 0.13);
       } else if (type === 'check') {
         [587.33, 880].forEach((freq, idx) => {
           const osc = ctx.createOscillator();
@@ -195,10 +186,8 @@
           osc.frequency.setValueAtTime(freq, now + idx * 0.09);
           gain.gain.setValueAtTime(vol * 0.7, now + idx * 0.09);
           gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.09 + 0.16);
-          osc.connect(gain);
-          gain.connect(ctx.destination);
-          osc.start(now + idx * 0.09);
-          osc.stop(now + idx * 0.09 + 0.17);
+          osc.connect(gain); gain.connect(ctx.destination);
+          osc.start(now + idx * 0.09); osc.stop(now + idx * 0.09 + 0.17);
         });
       } else if (type === 'win') {
         const notes = [523.25, 659.25, 783.99, 1046.50];
@@ -210,10 +199,8 @@
           osc.frequency.setValueAtTime(freq, start);
           gain.gain.setValueAtTime(vol * 0.85, start);
           gain.gain.exponentialRampToValueAtTime(0.001, start + 0.38);
-          osc.connect(gain);
-          gain.connect(ctx.destination);
-          osc.start(start);
-          osc.stop(start + 0.4);
+          osc.connect(gain); gain.connect(ctx.destination);
+          osc.start(start); osc.stop(start + 0.4);
         });
       }
     };
@@ -225,11 +212,10 @@
     };
 
     // ========================================================
-    // DICIONÁRIO MULTILÍNGUE COMPLETO (EN, PT, ES, FR, DE, RU)
+    // DICIONÁRIO MULTILÍNGUE (COM TRADUÇÃO DE PROMOÇÃO)
     // ========================================================
     const TRANSLATIONS = {
       EN: {
-        // Splash Screen
         splashBadge: "3x3CHESS STUDIO • ENDGAME CHALLENGE",
         splashTitle: "Only 9 Squares — 54 Million Possibilities",
         splashSubtitle: "Deceptively Simple. Brutally Tactical!",
@@ -241,11 +227,10 @@
         splashStat3Lbl: "Forced Checkmates",
         splashHowTitle: "🎯 How to Play:",
         splashRule1: "You play with the White pieces and always make the first move.",
-        splashRule2: "Standard FIDE chess piece movements apply. White pawns (▲) move UP toward rank 3 to promote into a Queen.",
+        splashRule2: "Standard FIDE chess piece movements apply. White pawns (▲) move UP toward rank 3 to promote.",
         splashRule3: "Corner the Black King and deliver Checkmate in the exact number of moves! Think it's easy because the board is tiny? Most players fail by Mate in 4!",
         splashAcceptBtn: "🔥 I Accept the Challenge!",
         splashDismissHint: "Or tap anywhere outside this box to jump straight into the board",
-        // Main UI
         studioSubtitle: "Tactical Studio & Clean Woodcraft",
         timer: "Timer",
         difficulty: "Difficulty:",
@@ -264,6 +249,7 @@
         restartBtn: "Restart Game",
         newGameBtn: "New Game",
         helpBtn: "Help / Hint",
+        promoteTitle: "Pawn Promotion",
         merchTitle: "Get the Physical 3x3 Wooden Board",
         merchSubtitle: "Handcrafted Walnut & Maple Set • Limited Batch",
         shopBtn: "Shop",
@@ -318,15 +304,15 @@
         seoCard1Title: "♟️ What is 3x3 Chess?",
         seoCard1Text: "3x3 Chess is a condensed, high-intensity chess variant played on a 9-square grid (files a, b, c and ranks 1, 2, 3). Despite the small board size, it preserves the deep tactical geometry of classical chess. Every move carries immediate weight, making it an exceptional training tool for calculation, pattern recognition, and endgame precision.",
         seoCard2Title: "📜 Official Rules & Mechanics",
-        seoCard2Text: "All pieces move and capture exactly as in standard FIDE chess: Kings move one square in any direction, Rooks control lines, Bishops control diagonals, Knights jump in an L-shape, and Queens combine Rook and Bishop power. White pawns (▲) advance upward toward rank 3, where they immediately promote to a Queen. Castling and double pawn pushes do not exist on a 3x3 grid.",
+        seoCard2Text: "All pieces move and capture exactly as in standard FIDE chess. White pawns (▲) advance upward toward rank 3, where they promote. Castling and double pawn pushes do not exist on a 3x3 grid.",
         seoCard3Title: "🧮 Strongly Solved: Mate in 16",
-        seoCard3Text: "Mathematicians and computer chess researchers (including Kirill Kryukov) have strongly solved 3x3 chess, analyzing all 54,687,564 unique legal positions. Remarkably, the longest forced checkmate on a 3x3 board requires 16 full moves! Our database lets you practice verified positions ranging from quick Mate in 1 warmups to grandmaster-level Mate in 15 challenges.",
+        seoCard3Text: "Mathematicians and computer chess researchers (including Kirill Kryukov) have strongly solved 3x3 chess, analyzing all 54,687,564 unique legal positions. Remarkably, the longest forced checkmate on a 3x3 board requires 16 full moves!",
         footerLegalLink: "Privacy Policy, Cookies & Terms of Use",
         legalModalTitle: "Privacy Policy & Terms of Use",
         legalPrivacyTitle: "1. Privacy & Google AdSense Cookies",
-        legalPrivacyText: "This website uses cookies to store your game preferences (such as language, sound settings, and puzzle level) locally in your browser. We also partner with third-party advertising networks, including Google AdSense, which use cookies (such as the DoubleClick DART cookie) to serve ads based on your visit to this and other websites on the internet. You may opt out of personalized advertising by visiting Google Ads Settings.",
+        legalPrivacyText: "This website uses cookies to store your game preferences locally. We also partner with third-party advertising networks, including Google AdSense, which use cookies (such as the DoubleClick DART cookie) to serve ads based on your visit to this and other websites.",
         legalTermsTitle: "2. Terms of Use & Intellectual Property",
-        legalTermsText: "3x3Chess Studio is provided free of charge for personal entertainment and tactical chess training. The 3x3 endgame position database is based on public domain tablebase research (CC0). The custom vector artwork, interface design, and audio synthesizer are protected by copyright.",
+        legalTermsText: "3x3Chess Studio is provided free of charge for personal entertainment. The endgame position database is based on public domain tablebase research (CC0). The visual design and audio are protected by copyright.",
         legalContactTitle: "3. Contact & Support",
         legalContactText: "For questions regarding privacy, advertising partnerships, or orders of the physical wooden 3x3 chess set, please reach out through our official studio channels."
       },
@@ -342,7 +328,7 @@
         splashStat3Lbl: "Mates Forçados",
         splashHowTitle: "🎯 Como Jogar:",
         splashRule1: "Você joga com as peças Brancas e sempre faz o primeiro lance.",
-        splashRule2: "Valem os movimentos oficiais do xadrez (FIDE). Peões brancos (▲) avançam para CIMA (rumo à linha 3) para virar Rainha.",
+        splashRule2: "Valem os movimentos oficiais do xadrez (FIDE). Peões brancos (▲) avançam para CIMA (rumo à linha 3) para promover.",
         splashRule3: "Encurrale o Rei Preto e dê Xeque-Mate no número exato de lances! Acha fácil porque só tem 9 casas? A maioria trava antes do Mate em 4!",
         splashAcceptBtn: "🔥 Aceito o Desafio!",
         splashDismissHint: "Ou clique em qualquer lugar fora desta janela para ir direto ao jogo",
@@ -364,6 +350,7 @@
         restartBtn: "Reiniciar Jogo",
         newGameBtn: "Novo Jogo",
         helpBtn: "Ajuda / Dica",
+        promoteTitle: "Promoção de Peão",
         merchTitle: "Compre o Tabuleiro Físico 3x3 em Madeira",
         merchSubtitle: "Feito à mão em Nogueira e Bordo • Lote Limitado",
         shopBtn: "Comprar",
@@ -377,7 +364,7 @@
         proTip1Title: "👑 Domínio de Corredor",
         proTip1Desc: "Em um tabuleiro compacto 3x3, peças fortes como Rainhas e Torres controlam colunas e fileiras inteiras. Cada casa é decisiva!",
         proTip2Title: "♟️ Direção do Peão (▲ / ▼)",
-        proTip2Desc: "Peões brancos (▲) sempre sobem rumo à fileira 3 para virar Rainha. Peões pretos (▼) sempre descem rumo à fileira 1!",
+        proTip2Desc: "Peões brancos (▲) sempre sobem rumo à fileira 3 para promover. Peões pretos (▼) sempre descem rumo à fileira 1!",
         gotItBtn: "Entendi!",
         puzzleSolvedBadge: "Desafio Resolvido!",
         victoryTitle: "Xeque-Mate! Vitória! 🎉",
@@ -414,21 +401,21 @@
         rotateBoardTitle: "Girar Tabuleiro",
         rotateBoardDesc: "Inverter visão do tabuleiro",
         autoSavedFooter: "3x3Chess v1.6 • Salvo automaticamente",
-        seoMainTitle: "Sobre o Mini-Xadrez 3x3 e Desafios Táticos de Xeque-Mate",
+        seoMainTitle: "Sobre o Mini-Xadrez 3x3 e Desafios Táticos",
         seoCard1Title: "♟️ O que é o Xadrez 3x3?",
-        seoCard1Text: "O Xadrez 3x3 é uma variante dinâmica e condensada do xadrez clássico, disputada em um tabuleiro de 9 casas (colunas a, b, c e fileiras 1, 2, 3). Apesar do espaço reduzido, ele preserva toda a riqueza geométrica e tática do xadrez oficial. Cada lance exige precisão absoluta, tornando-o excelente para treinar cálculo rápido, visão de finais e raciocínio lógico.",
+        seoCard1Text: "O Xadrez 3x3 é uma variante dinâmica e condensada do xadrez clássico, disputada em um tabuleiro de 9 casas. Apesar do espaço reduzido, ele preserva toda a riqueza geométrica e tática do xadrez oficial.",
         seoCard2Title: "📜 Regras Oficiais e Movimentos",
-        seoCard2Text: "As peças se movem exatamente como no xadrez tradicional da FIDE: o Rei anda uma casa em qualquer direção (sem nunca entrar em xeque), Torres dominam linhas retas, Bispos atuam nas diagonais, Cavalos saltam em 'L' e a Rainha combina os movimentos de Torre e Bispo. Os peões brancos (▲) avançam sempre para cima rumo à fileira 3, onde promovem automaticamente para Rainha.",
-        seoCard3Title: "🧮 Matemática do Jogo: Mate em até 16 Lances",
-        seoCard3Text: "O Xadrez 3x3 foi matematicamente resolvido por pesquisadores de computação (como Kirill Kryukov), que mapearam todas as 54.687.564 posições legais únicas possíveis. Surpreendentemente, o xeque-mate forçado mais longo em um tabuleiro 3x3 exige exatos 16 lances! Nossa plataforma reúne milhares de problemas selecionados, desde o aquecimento de Mate em 1 até desafios de Mate em 15.",
+        seoCard2Text: "As peças se movem exatamente como no xadrez tradicional da FIDE. Os peões brancos (▲) avançam sempre para cima rumo à fileira 3, onde promovem. Roque e salto duplo de peão não existem no 3x3.",
+        seoCard3Title: "🧮 Matemática do Jogo: Mate em até 16",
+        seoCard3Text: "O Xadrez 3x3 foi matematicamente resolvido por pesquisadores de computação, que mapearam todas as 54.687.564 posições legais únicas possíveis. O xeque-mate forçado mais longo exige 16 lances!",
         footerLegalLink: "Política de Privacidade, Cookies & Termos de Uso",
         legalModalTitle: "Política de Privacidade e Termos de Uso",
         legalPrivacyTitle: "1. Privacidade e Cookies do Google AdSense",
-        legalPrivacyText: "Este site utiliza armazenamento local (localStorage) e cookies para salvar suas preferências de idioma, áudio e nível de jogo. Também exibimos anúncios fornecidos por redes de publicidade de terceiros, incluindo o Google AdSense, que utilizam cookies (como o cookie DoubleClick DART) para veicular anúncios relevantes com base em suas visitas a este e a outros sites na internet. Você pode desativar os anúncios personalizados acessando as Configurações de Anúncios do Google.",
+        legalPrivacyText: "Este site utiliza armazenamento local (localStorage) para salvar suas preferências. Também exibimos anúncios fornecidos por redes de publicidade, incluindo o Google AdSense, que utilizam cookies (como o DoubleClick DART).",
         legalTermsTitle: "2. Termos de Uso e Propriedade Intelectual",
-        legalTermsText: "O 3x3Chess Studio é oferecido gratuitamente para entretenimento e treinamento tático. A base matemática de posições utiliza estudos de domínio público (CC0). O design visual, peças vetoriais e motor de áudio sintetizado são protegidos por direitos autorais.",
+        legalTermsText: "O 3x3Chess Studio é oferecido gratuitamente para entretenimento. A base matemática de posições utiliza estudos de domínio público (CC0). O design visual é protegido por direitos autorais.",
         legalContactTitle: "3. Contato e Suporte",
-        legalContactText: "Para dúvidas sobre privacidade, parcerias de publicidade direta ou encomendas do tabuleiro físico 3x3 em madeira, entre em contato através dos canais oficiais do nosso estúdio."
+        legalContactText: "Para dúvidas sobre privacidade, parcerias ou encomendas do tabuleiro físico 3x3 em madeira, entre em contato através dos nossos canais oficiais."
       },
       ES: {
         splashBadge: "3x3CHESS STUDIO • DESAFÍO TÁCTICO",
@@ -442,7 +429,7 @@
         splashStat3Lbl: "Mates Forzados",
         splashHowTitle: "🎯 Cómo Jugar:",
         splashRule1: "Juegas con las piezas Blancas y siempre haces el primer movimiento.",
-        splashRule2: "Aplican los movimientos oficiales FIDE. Los peones blancos (▲) suben hacia la fila 3 para coronar en Dama.",
+        splashRule2: "Aplican los movimientos oficiales FIDE. Los peones blancos (▲) suben hacia la fila 3 para coronar.",
         splashRule3: "¡Acorrala al Rey Negro y da Jaque Mate en el número exacto de jugadas! ¿Crees que es fácil por tener 9 casillas? ¡La mayoría falla antes del Mate en 4!",
         splashAcceptBtn: "🔥 ¡Acepto el Desafío!",
         splashDismissHint: "O toca en cualquier lugar fuera de este cuadro para ir directo al juego",
@@ -464,6 +451,7 @@
         restartBtn: "Reiniciar Juego",
         newGameBtn: "Nuevo Juego",
         helpBtn: "Ayuda / Pista",
+        promoteTitle: "Promoción de Peón",
         merchTitle: "Consigue el Tablero Físico 3x3 de Madera",
         merchSubtitle: "Hecho a mano en Nogal y Arce • Edición Limitada",
         shopBtn: "Tienda",
@@ -514,21 +502,21 @@
         rotateBoardTitle: "Girar Tablero",
         rotateBoardDesc: "Invertir orientación",
         autoSavedFooter: "3x3Chess v1.6 • Guardado automático",
-        seoMainTitle: "Sobre el Mini-Ajedrez 3x3 y Problemas Tácticos",
+        seoMainTitle: "Sobre el Mini-Ajedrez 3x3",
         seoCard1Title: "♟️ ¿Qué es el Ajedrez 3x3?",
-        seoCard1Text: "El Ajedrez 3x3 es una variante táctica jugada en una cuadrícula de 9 casillas. A pesar de su tamaño compacto, conserva toda la profundidad del cálculo de finales del ajedrez clásico.",
+        seoCard1Text: "El Ajedrez 3x3 es una variante jugada en una cuadrícula de 9 casillas. Conserva toda la profundidad del cálculo de ajedrez clásico.",
         seoCard2Title: "📜 Reglas Oficiales",
-        seoCard2Text: "Todas las piezas se mueven según las reglas de la FIDE. Los peones blancos (▲) avanzan hacia la fila 3 para coronar en Dama. No existe el enroque ni el paso doble de peón.",
+        seoCard2Text: "Todas las piezas se mueven según las reglas de la FIDE. Los peones blancos (▲) avanzan hacia la fila 3 para coronar.",
         seoCard3Title: "🧮 Resuelto Matemáticamente",
-        seoCard3Text: "Con 54.687.564 posiciones legales únicas analizadas, el jaque mate forzado más largo en un tablero 3x3 requiere hasta 16 jugadas. Practica desde Mate en 1 hasta Mate en 15.",
-        footerLegalLink: "Política de Privacidad, Cookies y Términos",
+        seoCard3Text: "Con 54.687.564 posiciones legales únicas analizadas, el jaque mate forzado más largo en un tablero 3x3 requiere hasta 16 jugadas.",
+        footerLegalLink: "Política de Privacidad y Términos",
         legalModalTitle: "Política de Privacidad y Términos de Uso",
         legalPrivacyTitle: "1. Privacidad y Cookies de Google AdSense",
-        legalPrivacyText: "Este sitio utiliza cookies y almacenamiento local para guardar sus preferencias y mostrar anuncios relevantes a través de Google AdSense (cookie DART).",
+        legalPrivacyText: "Este sitio utiliza cookies para guardar sus preferencias y mostrar anuncios relevantes a través de Google AdSense.",
         legalTermsTitle: "2. Términos de Uso",
-        legalTermsText: "3x3Chess Studio es una plataforma gratuita de entrenamiento táctico. La base de posiciones pertenece al dominio público (CC0).",
+        legalTermsText: "3x3Chess Studio es una plataforma gratuita. La base de posiciones pertenece al dominio público (CC0).",
         legalContactTitle: "3. Contacto",
-        legalContactText: "Para consultas sobre publicidad o pedidos del tablero físico de madera, contáctenos a través de nuestros canales oficiales."
+        legalContactText: "Para consultas o pedidos del tablero físico, contáctenos a través de nuestros canales oficiales."
       },
       FR: {
         splashBadge: "3x3CHESS STUDIO • DÉFI TACTIQUE",
@@ -542,7 +530,7 @@
         splashStat3Lbl: "Mats Forcés",
         splashHowTitle: "🎯 Comment Jouer :",
         splashRule1: "Vous jouez avec les Blancs et faites toujours le premier coup.",
-        splashRule2: "Les règles FIDE s'appliquent. Les pions blancs (▲) montent vers la 3e rangée pour être promus en Dame.",
+        splashRule2: "Les règles FIDE s'appliquent. Les pions blancs (▲) montent vers la 3e rangée pour être promus.",
         splashRule3: "Coincez le Roi Noir et faites Échec et Mat dans le nombre exact de coups ! Vous pensez que c'est facile sur 9 cases ? La plupart échouent dès le Mat en 4 !",
         splashAcceptBtn: "🔥 J'accepte le Défi !",
         splashDismissHint: "Ou cliquez n'importe où en dehors de cette fenêtre pour jouer",
@@ -564,6 +552,7 @@
         restartBtn: "Recommencer",
         newGameBtn: "Nouveau Jeu",
         helpBtn: "Aide / Indice",
+        promoteTitle: "Promotion du Pion",
         merchTitle: "Obtenez l'Échiquier Physique 3x3 en Bois",
         merchSubtitle: "Fait main en Noyer et Érable • Série Limitée",
         shopBtn: "Boutique",
@@ -577,7 +566,7 @@
         proTip1Title: "👑 Domination des Couloirs",
         proTip1Desc: "Sur un plateau 3x3, Dames et Tours contrôlent des lignes entières. Chaque case est décisive !",
         proTip2Title: "♟️ Direction des Pions (▲ / ▼)",
-        proTip2Desc: "Les pions blancs (▲) montent vers la rangée 3 pour être promus en Dame. Les pions noirs (▼) descendent vers la rangée 1 !",
+        proTip2Desc: "Les pions blancs (▲) montent vers la rangée 3 pour être promus. Les pions noirs (▼) descendent vers la rangée 1 !",
         gotItBtn: "Compris !",
         puzzleSolvedBadge: "Problème Résolu !",
         victoryTitle: "Échec et Mat ! Victoire ! 🎉",
@@ -590,7 +579,7 @@
         merchModalTitle: "Coffret Officiel 3x3Chess en Bois",
         merchModalSubtitle: "Fabriqué en Noyer Européen et Bouleau",
         merchItemTitle: "Échiquier de Poche 3x3 Studio Edition",
-        merchBullet1: "9 Pièces Magnétiques Tournées à la Main",
+        merchBullet1: "9 Pièces Magnéticas Tournées à la Main",
         merchBullet2: "Pochette Velours + 50 Cartes de Défis",
         preOrderBtn: "Commander le Coffret",
         closeBtn: "Fermer",
@@ -614,21 +603,21 @@
         rotateBoardTitle: "Tourner le Plateau",
         rotateBoardDesc: "Inverser l'orientation",
         autoSavedFooter: "3x3Chess v1.6 • Sauvegarde auto",
-        seoMainTitle: "À propos des Mini-Échecs 3x3 et Problèmes Tactiques",
+        seoMainTitle: "À propos des Mini-Échecs 3x3",
         seoCard1Title: "♟️ Qu'est-ce que les Échecs 3x3 ?",
-        seoCard1Text: "Les échecs 3x3 sont une variante condensée disputée sur une grille de 9 cases. Malgré sa petite taille, ce format conserve toute la richesse tactique du jeu d'échecs traditionnel.",
+        seoCard1Text: "Les échecs 3x3 sont une variante condensée disputée sur une grille de 9 cases. Ce format conserve la richesse tactique du jeu traditionnel.",
         seoCard2Title: "📜 Règles Officielles",
-        seoCard2Text: "Les pièces se déplacent selon les règles FIDE. Les pions blancs (▲) montent vers la 3e rangée pour être promus en Dame. Le roque n'existe pas.",
+        seoCard2Text: "Les pièces se déplacent selon les règles FIDE. Les pions blancs (▲) montent vers la 3e rangée pour être promus.",
         seoCard3Title: "🧮 Résolu Mathématiquement",
-        seoCard3Text: "Avec 54 687 564 positions légales uniques analysées, le mat forcé le plus long sur un échiquier 3x3 nécessite 16 coups ! Entraînez-vous du Mat en 1 au Mat en 15.",
-        footerLegalLink: "Politique de Confidentialité, Cookies & Conditions",
-        legalModalTitle: "Politique de Confidentialité et Conditions d'Utilisation",
-        legalPrivacyTitle: "1. Confidentialité et Cookies Google AdSense",
-        legalPrivacyText: "Ce site utilise le stockage local et des cookies tiers (notamment via Google AdSense) pour diffuser des annonces adaptées à vos visites.",
+        seoCard3Text: "Avec 54 687 564 positions légales uniques analysées, le mat forcé le plus long sur un échiquier 3x3 nécessite 16 coups !",
+        footerLegalLink: "Confidentialité, Cookies & Conditions",
+        legalModalTitle: "Politique de Confidentialité et Conditions",
+        legalPrivacyTitle: "1. Confidentialité et Cookies",
+        legalPrivacyText: "Ce site utilise le stockage local et des cookies tiers (Google AdSense) pour diffuser des annonces adaptées.",
         legalTermsTitle: "2. Conditions d'Utilisation",
-        legalTermsText: "3x3Chess Studio est un jeu gratuit d'entraînement tactique. La base de données de positions relève du domaine public (CC0).",
+        legalTermsText: "3x3Chess Studio est un jeu gratuit. La base de données relève du domaine public (CC0).",
         legalContactTitle: "3. Contact",
-        legalContactText: "Pour toute question concernant la confidentialité ou la commande de l'échiquier physique en bois, contactez notre studio."
+        legalContactText: "Pour toute question, contactez notre studio."
       },
       DE: {
         splashBadge: "3x3CHESS STUDIO • TAKTIK-HERAUSFORDERUNG",
@@ -642,8 +631,8 @@
         splashStat3Lbl: "Erzwungene Matts",
         splashHowTitle: "🎯 Spielanleitung:",
         splashRule1: "Du spielst mit den weißen Figuren und machst immer den ersten Zug.",
-        splashRule2: "Es gelten die offiziellen FIDE-Figurenzüge. Weiße Bauern (▲) ziehen nach OBEN (Reihe 3) und werden sofort zur Dame.",
-        splashRule3: "Dränge den schwarzen König in die Ecke und setze in der genauen Zuganzahl Schachmatt! Du denkst, 9 Felder sind leicht? Die meisten scheitern schon bei Matt in 4!",
+        splashRule2: "Es gelten die FIDE-Figurenzüge. Weiße Bauern (▲) ziehen nach OBEN (Reihe 3) und wandeln sich um.",
+        splashRule3: "Dränge den schwarzen König in die Ecke und setze Schachmatt! Du denkst, 9 Felder sind leicht? Die meisten scheitern bei Matt in 4!",
         splashAcceptBtn: "🔥 Ich nehme die Herausforderung an!",
         splashDismissHint: "Oder tippe einfach außerhalb dieses Fensters, um direkt zu starten",
         studioSubtitle: "Taktik-Studio & Edles Holzhandwerk",
@@ -664,6 +653,7 @@
         restartBtn: "Neustart",
         newGameBtn: "Neues Spiel",
         helpBtn: "Hilfe / Tipp",
+        promoteTitle: "Bauernumwandlung",
         merchTitle: "Hol dir das physische 3x3-Holzschachbrett",
         merchSubtitle: "Handgefertigt aus Walnuss & Ahorn • Limitierte Auflage",
         shopBtn: "Shop",
@@ -677,7 +667,7 @@
         proTip1Title: "👑 Linien-Dominanz",
         proTip1Desc: "Auf dem 3x3-Brett kontrollieren Damen und Türme ganze Reihen und Linien. Jedes Feld zählt!",
         proTip2Title: "♟️ Bauern-Richtung (▲ / ▼)",
-        proTip2Desc: "Weiße Bauern (▲) ziehen immer nach OBEN (Reihe 3) zur Damenumwandlung. Schwarze Bauern (▼) ziehen nach UNTEN (Reihe 1)!",
+        proTip2Desc: "Weiße Bauern (▲) ziehen immer nach OBEN (Reihe 3) zur Umwandlung. Schwarze Bauern (▼) ziehen nach UNTEN (Reihe 1)!",
         gotItBtn: "Verstanden!",
         puzzleSolvedBadge: "Rätsel Gelöst!",
         victoryTitle: "Schachmatt! Sieg! 🎉",
@@ -714,21 +704,21 @@
         rotateBoardTitle: "Brett drehen",
         rotateBoardDesc: "Ansicht umdrehen",
         autoSavedFooter: "3x3Chess v1.6 • Automatisch gespeichert",
-        seoMainTitle: "Über 3x3 Mini-Schach & Taktische Endspiel-Rätsel",
+        seoMainTitle: "Über 3x3 Mini-Schach",
         seoCard1Title: "♟️ Was ist 3x3-Schach?",
-        seoCard1Text: "3x3-Schach ist eine kompakte Schachvariante auf 9 Feldern. Trotz der geringen Größe bietet sie faszinierende taktische Endspiel-Berechnungen.",
+        seoCard1Text: "3x3-Schach ist eine kompakte Schachvariante auf 9 Feldern. Sie bietet faszinierende taktische Endspiel-Berechnungen.",
         seoCard2Title: "📜 Offizielle Regeln",
-        seoCard2Text: "Alle Figuren ziehen nach den FIDE-Regeln. Weiße Bauern (▲) ziehen nach oben zur 3. Reihe und wandeln sich sofort in eine Dame um.",
+        seoCard2Text: "Alle Figuren ziehen nach FIDE-Regeln. Weiße Bauern (▲) ziehen nach oben zur 3. Reihe und wandeln sich um.",
         seoCard3Title: "🧮 Vollständig Gelöst: Matt in 16",
-        seoCard3Text: "Mit 54.687.564 analysierten legalen Stellungen erfordert das längste erzwungene Matt auf dem 3x3-Brett 16 Züge! Trainiere von Matt in 1 bis Matt in 15.",
+        seoCard3Text: "Mit 54.687.564 analysierten legalen Stellungen erfordert das längste erzwungene Matt auf dem 3x3-Brett 16 Züge!",
         footerLegalLink: "Datenschutz, Cookies & Nutzungsbedingungen",
         legalModalTitle: "Datenschutzerklärung & Nutzungsbedingungen",
-        legalPrivacyTitle: "1. Datenschutz & Google AdSense Cookies",
-        legalPrivacyText: "Diese Website verwendet lokalen Speicher für Ihre Einstellungen sowie Drittanbieter-Cookies (Google AdSense), um relevante Werbeanzeigen einzublenden.",
+        legalPrivacyTitle: "1. Datenschutz & Cookies",
+        legalPrivacyText: "Diese Website verwendet lokalen Speicher sowie Drittanbieter-Cookies (Google AdSense), um relevante Werbeanzeigen einzublenden.",
         legalTermsTitle: "2. Nutzungsbedingungen",
         legalTermsText: "3x3Chess Studio ist ein kostenloses Trainingsprogramm. Die Endspiel-Datenbank ist gemeinfrei (CC0).",
         legalContactTitle: "3. Kontakt",
-        legalContactText: "Bei Fragen zum Datenschutz oder zu Bestellungen des physischen Holzschachbretts kontaktieren Sie uns bitte."
+        legalContactText: "Bei Fragen kontaktieren Sie uns bitte."
       },
       RU: {
         splashBadge: "3x3CHESS STUDIO • ТАКТИЧЕСКИЙ ВЫЗОВ",
@@ -742,7 +732,7 @@
         splashStat3Lbl: "Форсированный мат",
         splashHowTitle: "🎯 Как играть:",
         splashRule1: "Вы играете белыми фигурами и всегда делаете первый ход.",
-        splashRule2: "Действуют классические правила ФИДЕ. Белые пешки (▲) идут ВВЕРХ к 3-й горизонтали и превращаются в Ферзя.",
+        splashRule2: "Действуют правила ФИДЕ. Белые пешки (▲) идут ВВЕРХ к 3-й горизонтали и превращаются в другую фигуру.",
         splashRule3: "Загоните чёрного короля в угол и поставьте мат за точное число ходов! Думаете, на 9 клетках всё просто? Большинство не решает уже Мат в 4!",
         splashAcceptBtn: "🔥 Принимаю вызов!",
         splashDismissHint: "Или нажмите в любом месте вне этого окна, чтобы сразу начать игру",
@@ -764,6 +754,7 @@
         restartBtn: "Заново",
         newGameBtn: "Новая игра",
         helpBtn: "Подсказка",
+        promoteTitle: "Превращение пешки",
         merchTitle: "Деревянный набор 3x3Chess ручной работы",
         merchSubtitle: "Орех и клён • Лимитированная серия",
         shopBtn: "Купить",
@@ -777,7 +768,7 @@
         proTip1Title: "👑 Контроль линий",
         proTip1Desc: "На тесной доске 3x3 ферзи и ладьи простреливают целые вертикали и горизонтали. Каждая клетка на счету!",
         proTip2Title: "♟️ Направление пешек (▲ / ▼)",
-        proTip2Desc: "Белые пешки (▲) всегда идут ВВЕРХ к 3-й горизонтали, превращаясь в Ферзя. Чёрные пешки (▼) идут ВНИЗ к 1-й горизонтали!",
+        proTip2Desc: "Белые пешки (▲) всегда идут ВВЕРХ к 3-й горизонтали, превращаясь в Ферзя или Коня. Чёрные пешки (▼) идут ВНИЗ!",
         gotItBtn: "Понятно!",
         puzzleSolvedBadge: "Задача решена!",
         victoryTitle: "Шах и мат! Победа! 🎉",
@@ -814,33 +805,31 @@
         rotateBoardTitle: "Повернуть доску",
         rotateBoardDesc: "Перевернуть обзор на 180°",
         autoSavedFooter: "3x3Chess v1.6 • Автосохранение",
-        seoMainTitle: "О мини-шахматах 3x3 и тактических задачах",
+        seoMainTitle: "О мини-шахматах 3x3",
         seoCard1Title: "♟️ Что такое шахматы 3x3?",
-        seoCard1Text: "Шахматы 3x3 — это динамичный и концентрированный вариант классических шахмат на доске из 9 клеток (вертикали a, b, c и горизонтали 1, 2, 3). Несмотря на миниатюрный размер, игра сохраняет глубокую геометрию и тактику эндшпиля.",
+        seoCard1Text: "Шахматы 3x3 — это динамичный вариант классических шахмат на доске из 9 клеток. Игра сохраняет глубокую тактику эндшпиля.",
         seoCard2Title: "📜 Официальные правила",
-        seoCard2Text: "Все фигуры ходят строго по правилам ФИДЕ. Белые пешки (▲) двигаются вверх к 3-й горизонтали, где сразу превращаются в Ферзя. Рокировки и хода пешкой на две клетки нет.",
-        seoCard3Title: "🧮 Математический расчёт: Мат в 16 ходов",
-        seoCard3Text: "Исследователи компьютерных шахмат (включая Кирилла Крюкова) полностью просчитали шахматы 3x3, выявив 54 687 564 уникальные легальные позиции. Самый длинный форсированный мат на доске 3x3 требует 16 ходов! Тренируйтесь от Мата в 1 ход до сложнейшего Мата в 15 ходов.",
-        footerLegalLink: "Конфиденциальность, Cookies и Условия",
+        seoCard2Text: "Все фигуры ходят строго по правилам ФИДЕ. Белые пешки (▲) двигаются вверх к 3-й горизонтали, где превращаются в другую фигуру.",
+        seoCard3Title: "🧮 Математический расчёт",
+        seoCard3Text: "Исследователи полностью просчитали шахматы 3x3, выявив 54 687 564 легальные позиции. Самый длинный мат требует 16 ходов!",
+        footerLegalLink: "Конфиденциальность и Условия",
         legalModalTitle: "Политика конфиденциальности и Условия",
-        legalPrivacyTitle: "1. Конфиденциальность и файлы Cookie Google AdSense",
-        legalPrivacyText: "Этот сайт использует локальное хранилище (localStorage) и файлы cookie для сохранения ваших настроек, а также рекламные технологии Google AdSense (cookie DoubleClick DART) для показа релевантных объявлений.",
+        legalPrivacyTitle: "1. Конфиденциальность и файлы Cookie",
+        legalPrivacyText: "Этот сайт использует файлы cookie для сохранения ваших настроек, а также рекламные технологии Google AdSense.",
         legalTermsTitle: "2. Условия использования",
-        legalTermsText: "3x3Chess Studio предоставляется бесплатно для тренировок и развлечения. База эндшпильных позиций основана на открытых исследованиях (CC0).",
+        legalTermsText: "3x3Chess Studio предоставляется бесплатно. База позиций основана на открытых исследованиях (CC0).",
         legalContactTitle: "3. Контакты",
-        legalContactText: "По вопросам сотрудничества, рекламы или заказа деревянного набора 3x3 свяжитесь с нашей студией."
+        legalContactText: "По вопросам сотрудничества свяжитесь с нашей студией."
       }
     };
 
     // ========================================================
-    // COMPONENTE INTELIGENTE DE ANÚNCIO (ADSENSE / HOUSE AD)
+    // COMPONENTE INTELIGENTE DE ANÚNCIO
     // ========================================================
     function AdSlot({ slotKey, format = "auto", children }) {
       useEffect(() => {
         if (ADSENSE_CONFIG.enabled && window.adsbygoogle) {
-          try {
-            (window.adsbygoogle = window.adsbygoogle || []).push({});
-          } catch (e) {}
+          try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
         }
       }, []);
 
@@ -1020,22 +1009,20 @@
         for (let c = 0; c < 3; c++) {
           const p = boardState[r][c];
           if (p && p.color === enemyColor) {
-            if (isPseudoLegalMove(boardState, p, r, c, kingR, kingC)) {
-              return true;
-            }
+            if (isPseudoLegalMove(boardState, p, r, c, kingR, kingC)) return true;
           }
         }
       }
       return false;
     };
 
-    // 3. Simula um movimento e retorna o novo tabuleiro
-    const simulateMoveOnBoard = (boardState, startR, startC, endR, endC) => {
+    // 3. Simula um movimento (com suporte a sub-promoção)
+    const simulateMoveOnBoard = (boardState, startR, startC, endR, endC, promoteTo = 'q') => {
       const nextBoard = boardState.map(row => [...row]);
       let movingPiece = { ...nextBoard[startR][startC] };
       if (movingPiece.type === 'p') {
-        if (movingPiece.color === 'w' && endR === 0) movingPiece.type = 'q';
-        if (movingPiece.color === 'b' && endR === 2) movingPiece.type = 'q';
+        if (movingPiece.color === 'w' && endR === 0) movingPiece.type = promoteTo;
+        if (movingPiece.color === 'b' && endR === 2) movingPiece.type = promoteTo;
       }
       nextBoard[endR][endC] = movingPiece;
       nextBoard[startR][startC] = null;
@@ -1045,11 +1032,11 @@
     // 4. Validação Completa de Xadrez
     const isMoveLegal = (boardState, piece, startR, startC, endR, endC) => {
       if (!isPseudoLegalMove(boardState, piece, startR, startC, endR, endC)) return false;
-      const simulatedBoard = simulateMoveOnBoard(boardState, startR, startC, endR, endC);
+      const simulatedBoard = simulateMoveOnBoard(boardState, startR, startC, endR, endC, 'q');
       return !isKingInCheck(simulatedBoard, piece.color);
     };
 
-    // 5. Retorna todos os movimentos legais possíveis para um jogador
+    // 5. Retorna todos os movimentos legais possíveis
     const getAllLegalMovesForPlayer = (boardState, color) => {
       const allMoves = [];
       for (let r = 0; r < 3; r++) {
@@ -1078,19 +1065,21 @@
       const [currentTurn, setCurrentTurn] = useState('w');
       const [isComputerThinking, setIsComputerThinking] = useState(false);
       
-      // Inicializa Nível e Idioma (Detecta navegador na 1ª visita ou usa o salvo)
       const [selectedLevel, setSelectedLevel] = useState(saved?.selectedLevel || 1);
       const [language, setLanguage] = useState(saved?.language || detectBrowserLanguage());
 
       const [selectedSquare, setSelectedSquare] = useState(null); 
       const [validMoves, setValidMoves] = useState([]);
+      
+      // ESTADO NOVO: Controle da Janela de Promoção de Peão
+      const [pendingPromotion, setPendingPromotion] = useState(null);
+      
       const [seconds, setSeconds] = useState(0);
       const [timerRunning, setTimerRunning] = useState(false);
       const [isWon, setIsWon] = useState(false);
       const [showHint, setShowHint] = useState(false);
       const [hintDetails, setHintDetails] = useState('');
       
-      // Splash Screen aparece automaticamente apenas na primeira visita ao site!
       const [showSplashModal, setShowSplashModal] = useState(() => {
         try { return !localStorage.getItem(WELCOMED_KEY); } catch (e) { return true; }
       });
@@ -1100,7 +1089,6 @@
       const [showSettingsModal, setShowSettingsModal] = useState(false);
       const [showLegalModal, setShowLegalModal] = useState(false);
 
-      // Estados das Configurações
       const [soundEnabled, setSoundEnabled] = useState(saved?.soundEnabled ?? true);
       const [soundVolume, setSoundVolume] = useState(saved?.soundVolume ?? 75);
       const [hapticsEnabled, setHapticsEnabled] = useState(saved?.hapticsEnabled ?? false);
@@ -1116,54 +1104,30 @@
         setShowSplashModal(false);
       };
 
-      // Salva preferências no localStorage
       useEffect(() => {
-        savePrefsToStorage({
-          selectedLevel,
-          language,
-          soundEnabled,
-          soundVolume,
-          hapticsEnabled,
-          showTimerUI,
-          showMovesUI,
-          rotateBoardUI
-        });
+        savePrefsToStorage({ selectedLevel, language, soundEnabled, soundVolume, hapticsEnabled, showTimerUI, showMovesUI, rotateBoardUI });
       }, [selectedLevel, language, soundEnabled, soundVolume, hapticsEnabled, showTimerUI, showMovesUI, rotateBoardUI]);
 
       const handleResetSettings = () => {
-        setSoundEnabled(true);
-        setSoundVolume(75);
-        setHapticsEnabled(false);
-        setShowTimerUI(true);
-        setShowMovesUI(true);
-        setRotateBoardUI(false);
+        setSoundEnabled(true); setSoundVolume(75); setHapticsEnabled(false);
+        setShowTimerUI(true); setShowMovesUI(true); setRotateBoardUI(false);
         playGameSound('select', true, 75);
       };
 
-      // Carregar os JSONs com FILTRO AUTOMÁTICO para apenas Brancas ('w')
       useEffect(() => {
         const fetchPuzzles = async () => {
           try {
             const levelStr = selectedLevel.toString().padStart(2, '0');
             const res = await fetch(`./puzzles/matein${levelStr}.json`);
-            
             if(res.ok) {
               const data = await res.json();
-              const whiteOnlyPuzzles = Array.isArray(data) 
-                ? data.filter(fen => typeof fen === 'string' && fen.trim().length === 10 && fen.trim().startsWith('w')).map(f => f.trim())
-                : [];
-              
+              const whiteOnlyPuzzles = Array.isArray(data) ? data.filter(fen => typeof fen === 'string' && fen.trim().length === 10 && fen.trim().startsWith('w')).map(f => f.trim()) : [];
               if (whiteOnlyPuzzles.length > 0) {
                 setPuzzleDatabase(whiteOnlyPuzzles);
                 loadRandomPuzzle(whiteOnlyPuzzles);
-              } else {
-                throw new Error("No valid White-to-move ('w') puzzles found in JSON.");
-              }
-            } else {
-              throw new Error(`File matein${levelStr}.json not found`);
-            }
+              } else throw new Error("No valid 'w' puzzles");
+            } else throw new Error(`File not found`);
           } catch (e) {
-            console.warn(`Fallback to demo puzzles. Level ${selectedLevel}:`, e);
             const demoDB = ["wK.k..NqRn", "w..k.r.K..", "w..r.K..q."];
             setPuzzleDatabase(demoDB);
             loadRandomPuzzle(demoDB);
@@ -1172,16 +1136,15 @@
         fetchPuzzles();
       }, [selectedLevel]);
 
-      // Pausa a contagem do cronômetro enquanto a Splash Screen estiver aberta
       useEffect(() => {
         let interval = null;
-        if (timerRunning && !isWon && !showSplashModal) {
+        if (timerRunning && !isWon && !showSplashModal && !pendingPromotion) {
           interval = setInterval(() => { setSeconds(prev => prev + 1); }, 1000);
         } else {
           clearInterval(interval);
         }
         return () => clearInterval(interval);
-      }, [timerRunning, isWon, showSplashModal]);
+      }, [timerRunning, isWon, showSplashModal, pendingPromotion]);
 
       useEffect(() => {
         if (isWon && window.confetti) {
@@ -1189,43 +1152,35 @@
         }
       }, [isWon]);
 
-      // Inteligência Artificial das Pretas
       useEffect(() => {
-        if (currentTurn === 'b' && !isWon && timerRunning) {
+        if (currentTurn === 'b' && !isWon && timerRunning && !pendingPromotion) {
           setIsComputerThinking(true);
           const timer = setTimeout(() => {
             const legalMoves = getAllLegalMovesForPlayer(board, 'b');
-            
             if (legalMoves.length > 0) {
               let safeMoves = legalMoves.filter(m => {
-                const nextB = simulateMoveOnBoard(board, m.startR, m.startC, m.endR, m.endC);
+                const nextB = simulateMoveOnBoard(board, m.startR, m.startC, m.endR, m.endC, 'q');
                 const whiteMoves = getAllLegalMovesForPlayer(nextB, 'w');
-                const canWhiteMateNext = whiteMoves.some(wm => {
-                  const afterWhiteB = simulateMoveOnBoard(nextB, wm.startR, wm.startC, wm.endR, wm.endC);
+                return !whiteMoves.some(wm => {
+                  const afterWhiteB = simulateMoveOnBoard(nextB, wm.startR, wm.startC, wm.endR, wm.endC, 'q');
                   return isKingInCheck(afterWhiteB, 'b') && getAllLegalMovesForPlayer(afterWhiteB, 'b').length === 0;
                 });
-                return !canWhiteMateNext;
               });
-
               const pool = safeMoves.length > 0 ? safeMoves : legalMoves;
-              const chosenMove = pool[Math.floor(Math.random() * pool.length)];
-              executeMove(chosenMove.startR, chosenMove.startC, chosenMove.endR, chosenMove.endC);
+              const chosen = pool[Math.floor(Math.random() * pool.length)];
+              executeMove(chosen.startR, chosen.startC, chosen.endR, chosen.endC, 'q');
             } else {
               if (isKingInCheck(board, 'b')) {
-                playGameSound('win', soundEnabled, soundVolume);
-                setIsWon(true);
-                setTimerRunning(false);
+                playGameSound('win', soundEnabled, soundVolume); setIsWon(true); setTimerRunning(false);
               } else {
-                setShowHint(true);
-                setHintDetails(t.msgStalemate);
-                setTimerRunning(false);
+                setShowHint(true); setHintDetails(t.msgStalemate); setTimerRunning(false);
               }
             }
             setIsComputerThinking(false);
           }, 550);
           return () => clearTimeout(timer);
         }
-      }, [currentTurn, board, isWon, timerRunning, language]);
+      }, [currentTurn, board, isWon, timerRunning, pendingPromotion, language]);
 
       const loadRandomPuzzle = (db = puzzleDatabase) => {
         if(db.length === 0) return;
@@ -1241,54 +1196,27 @@
         for (let r = 0; r < 3; r++) {
           for (let c = 0; c < 3; c++) {
             const char = boardStr[idx++];
-            if (char !== '.') {
-              newBoard[r][c] = { color: char === char.toUpperCase() ? 'w' : 'b', type: char.toLowerCase() };
-            }
+            if (char !== '.') newBoard[r][c] = { color: char === char.toUpperCase() ? 'w' : 'b', type: char.toLowerCase() };
           }
         }
-        setBoard(newBoard);
-        setCurrentTurn('w');
-        setSelectedSquare(null);
-        setValidMoves([]);
-        setSeconds(0);
-        setTimerRunning(true);
-        setIsWon(false);
-        setShowHint(false);
-        setIsComputerThinking(false);
+        setBoard(newBoard); setCurrentTurn('w'); setSelectedSquare(null); setValidMoves([]);
+        setSeconds(0); setTimerRunning(true); setIsWon(false); setShowHint(false); setIsComputerThinking(false); setPendingPromotion(null);
       };
 
-      const handleRestart = () => {
-        playGameSound('select', soundEnabled, soundVolume);
-        if(currentFen) parseFenToBoard(currentFen);
-      };
+      const handleRestart = () => { playGameSound('select', soundEnabled, soundVolume); if(currentFen) parseFenToBoard(currentFen); };
 
-      // Salva estado e recarrega a página para contabilizar novo Pageview de AdSense
       const handleAnotherChallengeReload = () => {
         try { localStorage.setItem(WELCOMED_KEY, 'true'); } catch (e) {}
-        savePrefsToStorage({
-          selectedLevel,
-          language,
-          soundEnabled,
-          soundVolume,
-          hapticsEnabled,
-          showTimerUI,
-          showMovesUI,
-          rotateBoardUI
-        });
+        savePrefsToStorage({ selectedLevel, language, soundEnabled, soundVolume, hapticsEnabled, showTimerUI, showMovesUI, rotateBoardUI });
         window.location.reload();
       };
 
-      const handleNewGame = () => {
-        playGameSound('select', soundEnabled, soundVolume);
-        handleAnotherChallengeReload();
-      };
+      const handleNewGame = () => { playGameSound('select', soundEnabled, soundVolume); handleAnotherChallengeReload(); };
 
       const handleLanguageChange = (newLang) => {
         playGameSound('select', soundEnabled, soundVolume);
         setLanguage(newLang);
-        if (!showSplashModal) {
-          loadRandomPuzzle();
-        }
+        if (!showSplashModal) loadRandomPuzzle();
       };
 
       const getLegalTargetsForPiece = (r, c, piece) => {
@@ -1301,15 +1229,12 @@
         return moves;
       };
 
-      const executeMove = (startR, startC, endR, endC) => {
+      const executeMove = (startR, startC, endR, endC, promoteTo = 'q') => {
         const movingPiece = board[startR][startC];
         const targetPiece = board[endR][endC];
-        const newBoard = simulateMoveOnBoard(board, startR, startC, endR, endC);
+        const newBoard = simulateMoveOnBoard(board, startR, startC, endR, endC, promoteTo);
 
-        setBoard(newBoard);
-        setSelectedSquare(null);
-        setValidMoves([]);
-        setShowHint(false);
+        setBoard(newBoard); setSelectedSquare(null); setValidMoves([]); setShowHint(false);
         triggerHaptic(hapticsEnabled, 20);
 
         const nextTurn = movingPiece.color === 'w' ? 'b' : 'w';
@@ -1319,44 +1244,29 @@
         if (opponentLegalMoves.length === 0) {
           if (opponentInCheck) {
             if (movingPiece.color === 'w') {
-              playGameSound('win', soundEnabled, soundVolume);
-              triggerHaptic(hapticsEnabled, [40, 60, 80]);
-              setIsWon(true);
-              setTimerRunning(false);
+              playGameSound('win', soundEnabled, soundVolume); triggerHaptic(hapticsEnabled, [40, 60, 80]); setIsWon(true); setTimerRunning(false);
             } else {
-              playGameSound('check', soundEnabled, soundVolume);
-              setShowHint(true);
-              setHintDetails(t.msgComputerWon);
-              setTimerRunning(false);
+              playGameSound('check', soundEnabled, soundVolume); setShowHint(true); setHintDetails(t.msgComputerWon); setTimerRunning(false);
             }
           } else {
-            playGameSound('move', soundEnabled, soundVolume);
-            setShowHint(true);
-            setHintDetails(t.msgStalemate);
-            setTimerRunning(false);
+            playGameSound('move', soundEnabled, soundVolume); setShowHint(true); setHintDetails(t.msgStalemate); setTimerRunning(false);
           }
           return;
         }
 
-        if (opponentInCheck) {
-          playGameSound('check', soundEnabled, soundVolume);
-        } else if (targetPiece) {
-          playGameSound('capture', soundEnabled, soundVolume);
-        } else {
-          playGameSound('move', soundEnabled, soundVolume);
-        }
+        if (opponentInCheck) playGameSound('check', soundEnabled, soundVolume);
+        else if (targetPiece) playGameSound('capture', soundEnabled, soundVolume);
+        else playGameSound('move', soundEnabled, soundVolume);
 
         setCurrentTurn(nextTurn);
       };
 
       const handleSquareClick = (r, c) => {
-        if (isWon || currentTurn !== 'w' || isComputerThinking || !timerRunning) return;
+        if (isWon || currentTurn !== 'w' || isComputerThinking || !timerRunning || pendingPromotion) return;
         const piece = board[r][c];
 
         if (selectedSquare && selectedSquare[0] === r && selectedSquare[1] === c) {
-          setSelectedSquare(null);
-          setValidMoves([]);
-          return;
+          setSelectedSquare(null); setValidMoves([]); return;
         }
 
         if (selectedSquare) {
@@ -1364,33 +1274,28 @@
           const movingPiece = board[fromR][fromC];
 
           if (isMoveLegal(board, movingPiece, fromR, fromC, r, c)) {
-            executeMove(fromR, fromC, r, c);
+            // VERIFICA SE O PEÃO CHEGOU NO TOPO
+            if (movingPiece.type === 'p' && r === 0) {
+              playGameSound('select', soundEnabled, soundVolume);
+              setPendingPromotion({ startR: fromR, startC: fromC, endR: r, endC: c });
+            } else {
+              executeMove(fromR, fromC, r, c, 'q');
+            }
             return;
           } else {
             if (piece && piece.color === 'w') {
               playGameSound('select', soundEnabled, soundVolume);
               const targets = getLegalTargetsForPiece(r, c, piece);
-              setSelectedSquare([r, c]);
-              setValidMoves(targets);
-              if (piece.type === 'p' && targets.length === 0) {
-                setShowHint(true);
-                setHintDetails(t.hintBlockedPawn);
-              }
-            } else {
-              setSelectedSquare(null);
-              setValidMoves([]);
-            }
+              setSelectedSquare([r, c]); setValidMoves(targets);
+              if (piece.type === 'p' && targets.length === 0) { setShowHint(true); setHintDetails(t.hintBlockedPawn); }
+            } else { setSelectedSquare(null); setValidMoves([]); }
           }
         } else {
           if (piece && piece.color === 'w') {
             playGameSound('select', soundEnabled, soundVolume);
             const targets = getLegalTargetsForPiece(r, c, piece);
-            setSelectedSquare([r, c]);
-            setValidMoves(targets);
-            if (piece.type === 'p' && targets.length === 0) {
-              setShowHint(true);
-              setHintDetails(t.hintBlockedPawn);
-            }
+            setSelectedSquare([r, c]); setValidMoves(targets);
+            if (piece.type === 'p' && targets.length === 0) { setShowHint(true); setHintDetails(t.hintBlockedPawn); }
           }
         }
       };
@@ -1399,25 +1304,20 @@
         playGameSound('select', soundEnabled, soundVolume);
         const whiteMoves = getAllLegalMovesForPlayer(board, 'w');
         for (const m of whiteMoves) {
-          const simBoard = simulateMoveOnBoard(board, m.startR, m.startC, m.endR, m.endC);
+          const simBoard = simulateMoveOnBoard(board, m.startR, m.startC, m.endR, m.endC, 'q');
           if (isKingInCheck(simBoard, 'b') && getAllLegalMovesForPlayer(simBoard, 'b').length === 0) {
             const fromSq = `${String.fromCharCode(97 + m.startC)}${3 - m.startR}`;
             const toSq = `${String.fromCharCode(97 + m.endC)}${3 - m.endR}`;
-            setSelectedSquare([m.startR, m.startC]);
-            setValidMoves([[m.endR, m.endC]]);
-            setShowHint(true);
-            setHintDetails(t.hintWinningMove(fromSq, toSq));
+            setSelectedSquare([m.startR, m.startC]); setValidMoves([[m.endR, m.endC]]);
+            setShowHint(true); setHintDetails(t.hintWinningMove(fromSq, toSq));
             return;
           }
         }
-
         if (whiteMoves.length > 0) {
           const sample = whiteMoves[0];
           const piece = board[sample.startR][sample.startC];
-          setSelectedSquare([sample.startR, sample.startC]);
-          setValidMoves(getLegalTargetsForPiece(sample.startR, sample.startC, piece));
-          setShowHint(true);
-          setHintDetails(t.hintGeneral);
+          setSelectedSquare([sample.startR, sample.startC]); setValidMoves(getLegalTargetsForPiece(sample.startR, sample.startC, piece));
+          setShowHint(true); setHintDetails(t.hintGeneral);
         }
       };
 
@@ -1438,36 +1338,21 @@
       return (
         <div className="flex flex-col min-h-screen text-amber-50">
           
-          {/* TOP HORIZONTAL BANNER (FINO E ELEGANTE: 320x50 MOBILE / 728x90 DESKTOP & TABLET) */}
           <header className="w-full bg-[#180a03] border-b-2 border-amber-950 py-1.5 sm:py-2 px-3 sm:px-4 z-20">
             <div className="max-w-7xl mx-auto">
               <AdSlot slotKey="topBanner" format="horizontal">
-                <div 
-                  onClick={() => setShowMerchModal(true)}
-                  className="ad-pattern border border-dashed border-amber-500/70 hover:border-amber-400 bg-gradient-to-r from-amber-950/60 via-[#2f1606]/80 to-amber-950/60 rounded-xl transition-all group cursor-pointer shadow-inner relative overflow-hidden"
-                >
-                  {/* VERSÃO CELULAR (Compacta 320x50) */}
+                <div onClick={() => setShowMerchModal(true)} className="ad-pattern border border-dashed border-amber-500/70 hover:border-amber-400 bg-gradient-to-r from-amber-950/60 via-[#2f1606]/80 to-amber-950/60 rounded-xl transition-all group cursor-pointer shadow-inner relative overflow-hidden">
                   <div className="flex md:hidden items-center justify-between px-3 py-1.5 gap-2">
                     <div className="flex items-center gap-2 min-w-0">
-                      <span className="bg-amber-500 text-amber-950 text-[9px] font-black px-1.5 py-0.5 rounded uppercase shrink-0">
-                        Ad
-                      </span>
-                      <span className="text-xs font-fredoka font-bold text-amber-100 truncate">
-                        🪵 {t.merchTitle}
-                      </span>
+                      <span className="bg-amber-500 text-amber-950 text-[9px] font-black px-1.5 py-0.5 rounded uppercase shrink-0">Ad</span>
+                      <span className="text-xs font-fredoka font-bold text-amber-100 truncate">🪵 {t.merchTitle}</span>
                     </div>
-                    <span className="bg-amber-500 text-amber-950 font-fredoka font-black text-[11px] px-2.5 py-1 rounded-lg shrink-0 shadow">
-                      {t.shopBtn} ➔
-                    </span>
+                    <span className="bg-amber-500 text-amber-950 font-fredoka font-black text-[11px] px-2.5 py-1 rounded-lg shrink-0 shadow">{t.shopBtn} ➔</span>
                   </div>
-
-                  {/* VERSÃO PC & TABLET (Leaderboard Clássico 728x90) */}
                   <div className="hidden md:flex min-h-[72px] max-h-[88px] px-5 py-2.5 flex-row items-center justify-between text-left relative">
                     <div className="absolute right-8 -bottom-6 text-6xl opacity-5 pointer-events-none font-serif">♚</div>
                     <div className="flex items-center gap-3.5 z-10">
-                      <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-xl shrink-0">
-                        🪵
-                      </div>
+                      <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-xl shrink-0">🪵</div>
                       <div>
                         <div className="flex items-center gap-2">
                           <span className="bg-amber-500 text-amber-950 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider shadow">3x3Chess Official</span>
@@ -1489,7 +1374,6 @@
             </div>
           </header>
 
-          {/* MAIN NAVIGATION BAR */}
           <nav className="wood-texture border-b-4 border-[#331707] shadow-xl px-4 py-2.5 sticky top-0 z-30">
             <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center gap-3 cursor-pointer" onClick={() => setShowSplashModal(true)}>
@@ -1507,17 +1391,15 @@
               </div>
               <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
                 <div className="flex items-center gap-2 bg-[#241104]/90 border-2 border-[#4b260c] rounded-2xl p-1.5 px-2.5 shadow-inner">
-                  
                   {showTimerUI && (
                     <div className="flex items-center gap-2 px-2.5 py-1 bg-[#1a0b02] rounded-xl border border-amber-900/80">
-                      <span className={`w-2.5 h-2.5 rounded-full ${timerRunning && !showSplashModal ? 'bg-emerald-400 animate-pulse' : 'bg-red-500'}`}></span>
+                      <span className={`w-2.5 h-2.5 rounded-full ${timerRunning && !showSplashModal && !pendingPromotion ? 'bg-emerald-400 animate-pulse' : 'bg-red-500'}`}></span>
                       <div className="flex flex-col">
                         <span className="text-[10px] uppercase font-bold text-amber-400/70 tracking-wider">{t.timer}</span>
                         <span className="font-mono font-black text-base sm:text-lg text-emerald-300 tracking-wider leading-none">{formatTime(seconds)}</span>
                       </div>
                     </div>
                   )}
-
                   <div className="flex items-center gap-1.5 pl-1">
                     <span className="text-xs font-bold text-amber-300/90 hidden sm:inline">{t.difficulty}</span>
                     <select 
@@ -1525,11 +1407,7 @@
                       onChange={(e) => { playGameSound('select', soundEnabled, soundVolume); setSelectedLevel(Number(e.target.value)); }}
                       className="bg-[#1b0d03] text-amber-200 border-2 border-amber-600/60 rounded-xl text-xs sm:text-sm font-bold py-1.5 px-2.5 sm:px-3 cursor-pointer focus:outline-none focus:border-amber-400 hover:border-amber-400 transition-colors shadow-sm"
                     >
-                      {[...Array(15)].map((_, i) => (
-                        <option key={i + 1} value={i + 1}>
-                          {t.mateIn(i + 1)}
-                        </option>
-                      ))}
+                      {[...Array(15)].map((_, i) => ( <option key={i + 1} value={i + 1}>{t.mateIn(i + 1)}</option> ))}
                     </select>
                   </div>
                 </div>
@@ -1539,22 +1417,9 @@
                   <span className="tracking-wide hidden sm:inline">{t.proTipBtn}</span>
                 </button>
 
-                {/* BOTÃO PARA REABRIR A SPLASH SCREEN DE BOAS-VINDAS */}
-                <button
-                  onClick={() => { playGameSound('select', soundEnabled, soundVolume); setShowSplashModal(true); }}
-                  title="Info / Challenge"
-                  className="btn-chunky bg-[#241104] hover:bg-[#341907] text-amber-300 hover:text-amber-100 w-9 h-9 rounded-xl border-2 border-amber-800/80 hover:border-amber-500 transition-colors flex items-center justify-center font-fredoka font-black text-base shadow-md cursor-pointer"
-                >
-                  ?
-                </button>
+                <button onClick={() => { playGameSound('select', soundEnabled, soundVolume); setShowSplashModal(true); }} title="Info / Challenge" className="btn-chunky bg-[#241104] hover:bg-[#341907] text-amber-300 hover:text-amber-100 w-9 h-9 rounded-xl border-2 border-amber-800/80 hover:border-amber-500 transition-colors flex items-center justify-center font-fredoka font-black text-base shadow-md cursor-pointer">?</button>
 
-                {/* BOTÃO DE CONFIGURAÇÕES (SETTINGS ⚙️) */}
-                <button
-                  onClick={() => { playGameSound('select', soundEnabled, soundVolume); setShowSettingsModal(true); }}
-                  aria-label={t.settingsHeader}
-                  title={t.settingsHeader}
-                  className="btn-chunky bg-[#241104] hover:bg-[#341907] text-amber-200 hover:text-amber-100 p-2 rounded-xl border-2 border-amber-800/80 hover:border-amber-500 transition-colors flex items-center justify-center shadow-md cursor-pointer"
-                >
+                <button onClick={() => { playGameSound('select', soundEnabled, soundVolume); setShowSettingsModal(true); }} aria-label={t.settingsHeader} title={t.settingsHeader} className="btn-chunky bg-[#241104] hover:bg-[#341907] text-amber-200 hover:text-amber-100 p-2 rounded-xl border-2 border-amber-800/80 hover:border-amber-500 transition-colors flex items-center justify-center shadow-md cursor-pointer">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -1562,18 +1427,13 @@
                 </button>
 
                 <select value={language} onChange={(e) => handleLanguageChange(e.target.value)} className="bg-[#241104] text-amber-100 font-bold text-xs py-2 px-2.5 rounded-xl border-2 border-amber-800/80 hover:border-amber-500 focus:outline-none cursor-pointer uppercase tracking-wider">
-                  <option value="EN">🇺🇸 EN</option>
-                  <option value="PT">🇧🇷 PT</option>
-                  <option value="ES">🇪🇸 ES</option>
-                  <option value="FR">🇫🇷 FR</option>
-                  <option value="DE">🇩🇪 DE</option>
-                  <option value="RU">🇷🇺 RU</option>
+                  <option value="EN">🇺🇸 EN</option><option value="PT">🇧🇷 PT</option><option value="ES">🇪🇸 ES</option>
+                  <option value="FR">🇫🇷 FR</option><option value="DE">🇩🇪 DE</option><option value="RU">🇷🇺 RU</option>
                 </select>
               </div>
             </div>
           </nav>
 
-          {/* STUDIO WORKSPACE */}
           <div className="flex-1 max-w-[1500px] w-full mx-auto px-3 sm:px-6 py-4 sm:py-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             <main className="lg:col-span-8 xl:col-span-9 flex flex-col items-center">
               
@@ -1598,15 +1458,12 @@
                 <div className="w-full max-w-xl mb-3 bg-amber-900/90 border-2 border-amber-500 rounded-2xl p-3 flex items-start justify-between gap-3 shadow-lg">
                   <div className="flex items-start gap-2">
                     <span className="text-lg">💡</span>
-                    <p className="text-xs sm:text-sm font-medium text-amber-100 leading-snug">
-                      <strong className="text-amber-300 font-bold">{t.noticeLabel} </strong> {hintDetails}
-                    </p>
+                    <p className="text-xs sm:text-sm font-medium text-amber-100 leading-snug"><strong className="text-amber-300 font-bold">{t.noticeLabel} </strong> {hintDetails}</p>
                   </div>
                   <button onClick={() => setShowHint(false)} className="text-amber-300 hover:text-white p-1 rounded-lg">✕</button>
                 </div>
               )}
 
-              {/* CHESS BOARD (OTIMIZADO PARA CELULAR, TABLET E PC) */}
               <div className="w-full flex flex-col items-center justify-center my-1">
                 <div className="w-full max-w-[88vw] sm:max-w-[450px] md:max-w-[460px] lg:max-w-[465px] aspect-square relative touch-manipulation">
                   <div className="w-full h-full p-4 sm:p-5 wood-texture rounded-3xl sm:rounded-[36px] border-4 sm:border-[6px] border-[#291002] shadow-chunky-wood flex flex-col relative">
@@ -1654,28 +1511,21 @@
                   </div>
                 </div>
                 <p className="text-xs font-medium text-amber-200/80 mt-2.5 text-center">
-                  {selectedSquare 
-                    ? (selectedPieceObj && selectedPieceObj.type === 'p' 
-                        ? t.selectedPawnPrompt(selectedSqStr)
-                        : t.selectedPiecePrompt(selectedSqStr))
-                    : t.tapWhitePrompt}
+                  {selectedSquare ? (selectedPieceObj && selectedPieceObj.type === 'p' ? t.selectedPawnPrompt(selectedSqStr) : t.selectedPiecePrompt(selectedSqStr)) : t.tapWhitePrompt}
                 </p>
               </div>
 
-              {/* CHUNKY BUTTONS */}
               <div className="w-full max-w-xl mt-3 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 touch-manipulation">
-                <button onClick={handleRestart} className="btn-chunky btn-chunky-amber flex-1 min-w-[120px] bg-gradient-to-b from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-amber-950 font-fredoka font-bold text-sm sm:text-base py-3 px-3 rounded-2xl border-2 border-amber-950 shadow-chunky-btn-amber flex items-center justify-center gap-2 cursor-pointer">
+                <button onClick={handleRestart} className="btn-chunky btn-chunky-amber flex-1 min-w-[120px] bg-gradient-to-b from-amber-500 to-amber-600 hover:from-amber-400 text-amber-950 font-fredoka font-bold text-sm sm:text-base py-3 px-3 rounded-2xl border-2 border-amber-950 shadow-chunky-btn-amber flex items-center justify-center gap-2 cursor-pointer">
                   <svg className="w-4 h-4 text-amber-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
                   <span>{t.restartBtn}</span>
                 </button>
-                <button onClick={handleNewGame} className="btn-chunky btn-chunky-blue flex-1 min-w-[120px] bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white font-fredoka font-bold text-sm sm:text-base py-3 px-3 rounded-2xl border-2 border-blue-950 shadow-chunky-btn-blue flex items-center justify-center gap-2 cursor-pointer">
+                <button onClick={handleNewGame} className="btn-chunky btn-chunky-blue flex-1 min-w-[120px] bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 text-white font-fredoka font-bold text-sm sm:text-base py-3 px-3 rounded-2xl border-2 border-blue-950 shadow-chunky-btn-blue flex items-center justify-center gap-2 cursor-pointer">
                   <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                   <span>{t.newGameBtn}</span>
                 </button>
-                <button onClick={handleHint} className="btn-chunky btn-chunky-green flex-1 min-w-[120px] bg-gradient-to-b from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-fredoka font-bold text-sm sm:text-base py-3 px-3 rounded-2xl border-2 border-emerald-950 shadow-chunky-btn-green flex items-center justify-center gap-2 cursor-pointer">
-                  <svg className="w-4 h-4 text-yellow-200 fill-yellow-200" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
+                <button onClick={handleHint} className="btn-chunky btn-chunky-green flex-1 min-w-[120px] bg-gradient-to-b from-emerald-500 to-emerald-600 hover:from-emerald-400 text-white font-fredoka font-bold text-sm sm:text-base py-3 px-3 rounded-2xl border-2 border-emerald-950 shadow-chunky-btn-green flex items-center justify-center gap-2 cursor-pointer">
+                  <svg className="w-4 h-4 text-yellow-200 fill-yellow-200" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
                   <span>{t.helpBtn}</span>
                 </button>
               </div>
@@ -1690,504 +1540,235 @@
                     </div>
                   </div>
                   <div className="bg-amber-950 text-amber-300 text-xs font-bold px-3 py-1 rounded-xl uppercase tracking-wider flex items-center gap-1 group-hover:bg-amber-900">
-                    <span>{t.shopBtn}</span>
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                    <span>{t.shopBtn}</span><svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                   </div>
                 </button>
               </div>
             </main>
 
-            {/* LATERAL BANNER AREA (LADO A LADO EM TABLETS EM PÉ, COLUNA NO DESKTOP) */}
             <aside className="lg:col-span-4 xl:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:flex lg:flex-col gap-4 w-full">
-              
-              {/* Lateral Display Ad Unit 1 */}
               <AdSlot slotKey="rightSquare1" format="rectangle">
                 <div onClick={() => setShowMerchModal(true)} className="bg-[#241105] border-2 border-amber-900/80 rounded-2xl p-3.5 shadow-xl relative overflow-hidden group cursor-pointer">
                   <div className="flex items-center justify-between border-b border-amber-900/60 pb-2 mb-2.5">
-                    <span className="bg-amber-500/20 text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded border border-amber-500/40 uppercase tracking-widest">
-                      300x250 • Wood Set
-                    </span>
-                    <span className="text-[10px] text-amber-500/70 font-semibold flex items-center gap-1">
-                      Sponsored <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </span>
+                    <span className="bg-amber-500/20 text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded border border-amber-500/40 uppercase tracking-widest">300x250 • Wood Set</span>
+                    <span className="text-[10px] text-amber-500/70 font-semibold flex items-center gap-1">Sponsored <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></span>
                   </div>
-
                   <div className="ad-pattern border-2 border-dashed border-amber-600/50 group-hover:border-amber-400 rounded-xl p-3 bg-amber-950/40 text-center flex flex-col items-center justify-center min-h-[190px]">
-                    <div className="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-2xl mb-2">
-                      🪵
-                    </div>
-                    <h4 className="font-fredoka font-bold text-amber-100 text-sm mb-1 leading-snug">
-                      {t.merchItemTitle}
-                    </h4>
-                    <p className="text-[11px] text-amber-300/80 mb-3 px-2 leading-tight">
-                      {t.merchBullet1} • {t.merchBullet2}
-                    </p>
-                    <button className="bg-amber-500 hover:bg-amber-400 text-amber-950 font-bold text-xs py-1.5 px-4 rounded-lg shadow uppercase tracking-wider">
-                      {t.shopBtn}
-                    </button>
+                    <div className="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-2xl mb-2">🪵</div>
+                    <h4 className="font-fredoka font-bold text-amber-100 text-sm mb-1 leading-snug">{t.merchItemTitle}</h4>
+                    <p className="text-[11px] text-amber-300/80 mb-3 px-2 leading-tight">{t.merchBullet1} • {t.merchBullet2}</p>
+                    <button className="bg-amber-500 hover:bg-amber-400 text-amber-950 font-bold text-xs py-1.5 px-4 rounded-lg shadow uppercase tracking-wider">{t.shopBtn}</button>
                   </div>
                 </div>
               </AdSlot>
 
-              {/* Lateral Display Ad Unit 2 */}
               <AdSlot slotKey="rightSquare2" format="rectangle">
                 <div onClick={() => { const nextLvl = selectedLevel < 15 ? selectedLevel + 1 : 1; setSelectedLevel(nextLvl); }} className="bg-[#1a0c03] border-2 border-amber-900/80 rounded-2xl p-3.5 shadow-xl relative overflow-hidden group cursor-pointer">
                   <div className="flex items-center justify-between border-b border-amber-900/60 pb-2 mb-2.5">
-                    <span className="bg-amber-500/20 text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded border border-amber-500/40 uppercase tracking-widest">
-                      300x250 • Challenge
-                    </span>
-                    <span className="text-[10px] text-amber-500/70 font-semibold flex items-center gap-1">
-                      Featured <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </span>
+                    <span className="bg-amber-500/20 text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded border border-amber-500/40 uppercase tracking-widest">300x250 • Challenge</span>
+                    <span className="text-[10px] text-amber-500/70 font-semibold flex items-center gap-1">Featured <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></span>
                   </div>
-
                   <div className="ad-pattern border-2 border-dashed border-amber-600/50 group-hover:border-amber-400 rounded-xl p-3 bg-amber-950/40 text-center flex flex-col items-center justify-center min-h-[190px]">
-                    <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center text-2xl mb-2">
-                      ⚡
-                    </div>
-                    <h4 className="font-fredoka font-bold text-amber-100 text-sm mb-1 leading-snug">
-                      {t.mateIn(selectedLevel < 15 ? selectedLevel + 1 : 15)}
-                    </h4>
-                    <p className="text-[11px] text-amber-300/80 mb-3 px-2 leading-tight">
-                      {t.proTip1Desc}
-                    </p>
-                    <button className="bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-xs py-1.5 px-4 rounded-lg shadow uppercase tracking-wider">
-                      {t.newGameBtn}
-                    </button>
+                    <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center text-2xl mb-2">⚡</div>
+                    <h4 className="font-fredoka font-bold text-amber-100 text-sm mb-1 leading-snug">{t.mateIn(selectedLevel < 15 ? selectedLevel + 1 : 15)}</h4>
+                    <p className="text-[11px] text-amber-300/80 mb-3 px-2 leading-tight">{t.proTip1Desc}</p>
+                    <button className="bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-xs py-1.5 px-4 rounded-lg shadow uppercase tracking-wider">{t.newGameBtn}</button>
                   </div>
                 </div>
               </AdSlot>
-
             </aside>
           </div>
 
-          {/* ========================================================
-              SEÇÃO DE CONTEÚDO RICO E EDITORIAL (SEO & APROVAÇÃO ADSENSE)
-              ======================================================== */}
           <section className="max-w-7xl w-full mx-auto px-4 sm:px-6 py-8 border-t border-amber-900/40 mt-4">
-            <h2 className="font-fredoka text-xl sm:text-2xl font-bold text-amber-200 mb-4 text-center">
-              {t.seoMainTitle}
-            </h2>
+            <h2 className="font-fredoka text-xl sm:text-2xl font-bold text-amber-200 mb-4 text-center">{t.seoMainTitle}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs sm:text-sm text-amber-100/80 leading-relaxed">
-              <article className="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-5 shadow-md">
-                <h3 className="font-fredoka font-bold text-base text-amber-300 mb-2">{t.seoCard1Title}</h3>
-                <p>{t.seoCard1Text}</p>
-              </article>
-              <article className="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-5 shadow-md">
-                <h3 className="font-fredoka font-bold text-base text-amber-300 mb-2">{t.seoCard2Title}</h3>
-                <p>{t.seoCard2Text}</p>
-              </article>
-              <article className="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-5 shadow-md">
-                <h3 className="font-fredoka font-bold text-base text-amber-300 mb-2">{t.seoCard3Title}</h3>
-                <p>{t.seoCard3Text}</p>
-              </article>
+              <article className="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-5 shadow-md"><h3 className="font-fredoka font-bold text-base text-amber-300 mb-2">{t.seoCard1Title}</h3><p>{t.seoCard1Text}</p></article>
+              <article className="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-5 shadow-md"><h3 className="font-fredoka font-bold text-base text-amber-300 mb-2">{t.seoCard2Title}</h3><p>{t.seoCard2Text}</p></article>
+              <article className="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-5 shadow-md"><h3 className="font-fredoka font-bold text-base text-amber-300 mb-2">{t.seoCard3Title}</h3><p>{t.seoCard3Text}</p></article>
             </div>
           </section>
 
-          {/* BOTTOM ADSENSE BANNER & LEGAL FOOTER */}
           <footer className="w-full bg-[#140802] border-t border-amber-950/90 py-4 px-4 z-20 mt-auto">
             <div className="max-w-7xl mx-auto">
               <AdSlot slotKey="footerBanner" format="horizontal">
                 <div onClick={() => setShowMerchModal(true)} className="ad-pattern border-2 border-dashed border-amber-600/50 hover:border-amber-400 bg-amber-950/40 rounded-xl py-3 px-4 flex flex-col sm:flex-row items-center justify-between text-center transition-all group cursor-pointer shadow-inner">
                   <div className="flex items-center gap-3">
-                    <span className="bg-amber-600/30 text-amber-300 text-xs font-bold px-2.5 py-1 rounded-md border border-amber-500/50 uppercase tracking-widest">
-                      3x3Chess Studio
-                    </span>
-                    <span className="text-amber-200/90 text-sm font-medium hidden md:inline">
-                      ♟️ {t.merchTitle} — {t.merchSubtitle}
-                    </span>
+                    <span className="bg-amber-600/30 text-amber-300 text-xs font-bold px-2.5 py-1 rounded-md border border-amber-500/50 uppercase tracking-widest">3x3Chess Studio</span>
+                    <span className="text-amber-200/90 text-sm font-medium hidden md:inline">♟️ {t.merchTitle} — {t.merchSubtitle}</span>
                   </div>
                   <div className="flex items-center gap-2 mt-2 sm:mt-0 text-xs text-amber-400/80 group-hover:text-amber-300 font-semibold">
-                    <span>Sponsored (728x90 Footer Banner)</span>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                    <span>Sponsored (728x90 Footer)</span><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                   </div>
                 </div>
               </AdSlot>
-
               <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] text-amber-400/60 mt-3 gap-2 font-medium">
                 <span>© 2026 3x3Chess Studio Edition • All Rights Reserved</span>
-                <button 
-                  type="button"
-                  onClick={() => setShowLegalModal(true)}
-                  className="text-amber-300/80 hover:text-amber-200 underline cursor-pointer"
-                >
-                  {t.footerLegalLink}
-                </button>
+                <button type="button" onClick={() => setShowLegalModal(true)} className="text-amber-300/80 hover:text-amber-200 underline cursor-pointer">{t.footerLegalLink}</button>
               </div>
             </div>
           </footer>
 
           {/* ========================================================
-              SPLASH SCREEN DE BOAS-VINDAS & DESAFIO (CLICAR FORA FECHA!)
+              MODAL DE PROMOÇÃO DO PEÃO (SUB-PROMOÇÃO)
               ======================================================== */}
-          {showSplashModal && (
-            <div 
-              onClick={handleDismissSplash}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md cursor-pointer"
-            >
-              <div 
-                onClick={(e) => e.stopPropagation()}
-                className="relative w-full max-w-lg wood-texture rounded-3xl p-6 sm:p-8 border-4 border-amber-400 shadow-2xl text-amber-50 cursor-default max-h-[92vh] overflow-y-auto"
-              >
-                {/* Top Language Switcher inside Splash */}
-                <div className="flex items-center justify-between gap-2 mb-4">
-                  <span className="bg-amber-500/20 border border-amber-400/60 text-amber-300 text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-widest">
-                    ⚡ {t.splashBadge}
-                  </span>
-                  <select 
-                    value={language} 
-                    onChange={(e) => handleLanguageChange(e.target.value)} 
-                    className="bg-[#1b0c03] text-amber-100 font-bold text-xs py-1.5 px-2.5 rounded-xl border border-amber-600/80 focus:outline-none cursor-pointer uppercase"
-                  >
-                    <option value="EN">🇺🇸 EN</option>
-                    <option value="PT">🇧🇷 PT</option>
-                    <option value="ES">🇪🇸 ES</option>
-                    <option value="FR">🇫🇷 FR</option>
-                    <option value="DE">🇩🇪 DE</option>
-                    <option value="RU">🇷🇺 RU</option>
-                  </select>
+          {pendingPromotion && (
+            <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm">
+              <div className="relative wood-texture rounded-3xl p-6 sm:p-8 border-4 border-amber-400 shadow-2xl text-center flex flex-col items-center animate-bounce-short">
+                <div className="absolute -top-6 bg-amber-500 text-amber-950 font-black text-sm px-4 py-1.5 rounded-full border-2 border-amber-950 uppercase tracking-widest shadow-md">
+                  {t.promoteTitle}
                 </div>
-
-                {/* Main Headline */}
-                <div className="text-center mb-5">
-                  <div className="w-16 h-16 mx-auto mb-3 bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 rounded-2xl border-3 border-[#2b1203] shadow-lg flex items-center justify-center text-4xl">
-                    👑
-                  </div>
-                  <h2 className="font-fredoka text-2xl sm:text-3xl font-black text-amber-100 leading-tight drop-shadow">
-                    {t.splashTitle}
-                  </h2>
-                  <p className="text-sm sm:text-base text-amber-400 mt-1.5 font-fredoka font-bold tracking-wide uppercase">
-                    {t.splashSubtitle}
-                  </p>
+                <h3 className="font-fredoka text-xl text-amber-100 mb-6 mt-4">{t.selectedPawnPrompt(`${String.fromCharCode(97 + pendingPromotion.endC)}${3 - pendingPromotion.endR}`)}</h3>
+                <div className="flex items-center gap-3 sm:gap-5">
+                  {['q', 'n', 'r', 'b'].map(pType => (
+                    <button 
+                      key={pType} 
+                      onClick={() => {
+                        playGameSound('select', soundEnabled, soundVolume);
+                        executeMove(pendingPromotion.startR, pendingPromotion.startC, pendingPromotion.endR, pendingPromotion.endC, pType);
+                        setPendingPromotion(null);
+                      }}
+                      className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-[#2c190c] to-[#1c0d04] hover:from-amber-600 hover:to-amber-700 rounded-2xl flex items-center justify-center border-2 border-amber-500 shadow-xl transition-all cursor-pointer group"
+                    >
+                      <div className="group-hover:scale-125 transition-transform drop-shadow-lg">
+                        <ChessPieceIcon type={pType} color="w" size="90%" />
+                      </div>
+                    </button>
+                  ))}
                 </div>
-
-                {/* 3 Highlight Stats */}
-                <div className="grid grid-cols-3 gap-2 mb-5">
-                  <div className="bg-[#1c0d04]/90 border border-amber-700/60 rounded-2xl p-2.5 text-center shadow-inner">
-                    <div className="font-fredoka font-black text-sm sm:text-base text-amber-400">{t.splashStat1Val}</div>
-                    <div className="text-[10px] text-amber-200/70 font-semibold leading-tight mt-0.5">{t.splashStat1Lbl}</div>
-                  </div>
-                  <div className="bg-[#1c0d04]/90 border border-amber-500/80 rounded-2xl p-2.5 text-center shadow-inner">
-                    <div className="font-fredoka font-black text-sm sm:text-base text-emerald-400">{t.splashStat2Val}</div>
-                    <div className="text-[10px] text-amber-200/70 font-semibold leading-tight mt-0.5">{t.splashStat2Lbl}</div>
-                  </div>
-                  <div className="bg-[#1c0d04]/90 border border-amber-700/60 rounded-2xl p-2.5 text-center shadow-inner">
-                    <div className="font-fredoka font-black text-sm sm:text-base text-amber-400">{t.splashStat3Val}</div>
-                    <div className="text-[10px] text-amber-200/70 font-semibold leading-tight mt-0.5">{t.splashStat3Lbl}</div>
-                  </div>
-                </div>
-
-                {/* Quick Rules Box */}
-                <div className="bg-[#1a0b03]/90 border-2 border-amber-800/80 rounded-2xl p-4 mb-5 text-xs sm:text-sm text-amber-100/90 space-y-2 leading-snug">
-                  <div className="font-fredoka font-bold text-amber-300 text-sm sm:text-base mb-1">
-                    {t.splashHowTitle}
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-amber-400 font-bold">1.</span>
-                    <span>{t.splashRule1}</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-amber-400 font-bold">2.</span>
-                    <span>{t.splashRule2}</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-amber-400 font-bold">3.</span>
-                    <span>{t.splashRule3}</span>
-                  </div>
-                </div>
-
-                {/* CTA Button: I Accept the Challenge */}
-                <button
-                  type="button"
-                  onClick={handleDismissSplash}
-                  className="btn-chunky btn-chunky-green w-full bg-gradient-to-b from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-fredoka font-black text-lg sm:text-xl py-3.5 px-6 rounded-2xl border-2 border-emerald-950 shadow-chunky-btn-green flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <span>{t.splashAcceptBtn}</span>
-                </button>
-
-                <p 
-                  onClick={handleDismissSplash}
-                  className="text-center text-[11px] text-amber-300/60 hover:text-amber-200 mt-3 cursor-pointer"
-                >
-                  {t.splashDismissHint}
-                </p>
               </div>
             </div>
           )}
 
-          {/* ========================================================
-              SETTINGS & CUSTOMIZATION MODAL
-              ======================================================== */}
+          {/* SPLASH SCREEN */}
+          {showSplashModal && (
+            <div onClick={handleDismissSplash} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md cursor-pointer">
+              <div onClick={(e) => e.stopPropagation()} className="relative w-full max-w-lg wood-texture rounded-3xl p-6 sm:p-8 border-4 border-amber-400 shadow-2xl text-amber-50 cursor-default max-h-[92vh] overflow-y-auto">
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <span className="bg-amber-500/20 border border-amber-400/60 text-amber-300 text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-widest">⚡ {t.splashBadge}</span>
+                  <select value={language} onChange={(e) => handleLanguageChange(e.target.value)} className="bg-[#1b0c03] text-amber-100 font-bold text-xs py-1.5 px-2.5 rounded-xl border border-amber-600/80 focus:outline-none cursor-pointer uppercase">
+                    <option value="EN">🇺🇸 EN</option><option value="PT">🇧🇷 PT</option><option value="ES">🇪🇸 ES</option>
+                    <option value="FR">🇫🇷 FR</option><option value="DE">🇩🇪 DE</option><option value="RU">🇷🇺 RU</option>
+                  </select>
+                </div>
+                <div className="text-center mb-5">
+                  <div className="w-16 h-16 mx-auto mb-3 bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 rounded-2xl border-3 border-[#2b1203] shadow-lg flex items-center justify-center text-4xl">👑</div>
+                  <h2 className="font-fredoka text-2xl sm:text-3xl font-black text-amber-100 leading-tight drop-shadow">{t.splashTitle}</h2>
+                  <p className="text-sm sm:text-base text-amber-400 mt-1.5 font-fredoka font-bold tracking-wide uppercase">{t.splashSubtitle}</p>
+                </div>
+                <div className="grid grid-cols-3 gap-2 mb-5">
+                  <div className="bg-[#1c0d04]/90 border border-amber-700/60 rounded-2xl p-2.5 text-center shadow-inner"><div className="font-fredoka font-black text-sm sm:text-base text-amber-400">{t.splashStat1Val}</div><div className="text-[10px] text-amber-200/70 font-semibold leading-tight mt-0.5">{t.splashStat1Lbl}</div></div>
+                  <div className="bg-[#1c0d04]/90 border border-amber-500/80 rounded-2xl p-2.5 text-center shadow-inner"><div className="font-fredoka font-black text-sm sm:text-base text-emerald-400">{t.splashStat2Val}</div><div className="text-[10px] text-amber-200/70 font-semibold leading-tight mt-0.5">{t.splashStat2Lbl}</div></div>
+                  <div className="bg-[#1c0d04]/90 border border-amber-700/60 rounded-2xl p-2.5 text-center shadow-inner"><div className="font-fredoka font-black text-sm sm:text-base text-amber-400">{t.splashStat3Val}</div><div className="text-[10px] text-amber-200/70 font-semibold leading-tight mt-0.5">{t.splashStat3Lbl}</div></div>
+                </div>
+                <div className="bg-[#1a0b03]/90 border-2 border-amber-800/80 rounded-2xl p-4 mb-5 text-xs sm:text-sm text-amber-100/90 space-y-2 leading-snug">
+                  <div className="font-fredoka font-bold text-amber-300 text-sm sm:text-base mb-1">{t.splashHowTitle}</div>
+                  <div className="flex items-start gap-2"><span className="text-amber-400 font-bold">1.</span><span>{t.splashRule1}</span></div>
+                  <div className="flex items-start gap-2"><span className="text-amber-400 font-bold">2.</span><span>{t.splashRule2}</span></div>
+                  <div className="flex items-start gap-2"><span className="text-amber-400 font-bold">3.</span><span>{t.splashRule3}</span></div>
+                </div>
+                <button type="button" onClick={handleDismissSplash} className="btn-chunky btn-chunky-green w-full bg-gradient-to-b from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-fredoka font-black text-lg sm:text-xl py-3.5 px-6 rounded-2xl border-2 border-emerald-950 shadow-chunky-btn-green flex items-center justify-center gap-2 cursor-pointer">
+                  <span>{t.splashAcceptBtn}</span>
+                </button>
+                <p onClick={handleDismissSplash} className="text-center text-[11px] text-amber-300/60 hover:text-amber-200 mt-3 cursor-pointer">{t.splashDismissHint}</p>
+              </div>
+            </div>
+          )}
+
+          {/* SETTINGS MODAL */}
           {showSettingsModal && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
               <div className="relative w-full max-w-2xl bg-[#22242a] rounded-2xl border-2 border-[#383b44] shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-12 text-gray-100">
-                
-                {/* Left Column */}
                 <div className="md:col-span-6 p-6 flex flex-col justify-between border-b md:border-b-0 md:border-r border-[#343741]">
                   <div>
-                    <span className="text-[11px] font-extrabold uppercase tracking-widest text-amber-500 block mb-0.5">
-                      {t.gameOptionsLabel}
-                    </span>
-                    <h2 className="font-fredoka text-2xl sm:text-3xl font-black text-amber-50 mb-5">
-                      {t.customizationTitle}
-                    </h2>
-
+                    <span className="text-[11px] font-extrabold uppercase tracking-widest text-amber-500 block mb-0.5">{t.gameOptionsLabel}</span>
+                    <h2 className="font-fredoka text-2xl sm:text-3xl font-black text-amber-50 mb-5">{t.customizationTitle}</h2>
                     <div className="mb-6">
-                      <label className="block text-[11px] font-extrabold uppercase tracking-wider text-gray-400 mb-2.5">
-                        {t.piecesStyleLabel}
-                      </label>
+                      <label className="block text-[11px] font-extrabold uppercase tracking-wider text-gray-400 mb-2.5">{t.piecesStyleLabel}</label>
                       <div className="w-36 p-3.5 rounded-xl bg-[#2c2823] border-2 border-amber-500 flex flex-col items-center justify-center gap-1.5 shadow-md">
-                        <span className="text-2xl drop-shadow">👑</span>
-                        <span className="text-xs font-bold text-amber-400 text-center">{t.studioWoodLabel}</span>
+                        <span className="text-2xl drop-shadow">👑</span><span className="text-xs font-bold text-amber-400 text-center">{t.studioWoodLabel}</span>
                       </div>
                     </div>
-
                     <div className="mb-6">
-                      <label className="block text-[11px] font-extrabold uppercase tracking-wider text-gray-400 mb-2.5">
-                        {t.soundVolumeLabel}
-                      </label>
+                      <label className="block text-[11px] font-extrabold uppercase tracking-wider text-gray-400 mb-2.5">{t.soundVolumeLabel}</label>
                       <div className="bg-[#191b20] border border-[#343741] rounded-xl px-3.5 py-3 flex items-center gap-3">
-                        <button
-                          type="button"
-                          onClick={() => {
-                            const nextState = !soundEnabled;
-                            setSoundEnabled(nextState);
-                            if (nextState) playGameSound('move', true, soundVolume);
-                          }}
-                          className="text-gray-300 hover:text-amber-400 focus:outline-none text-base"
-                        >
-                          {soundEnabled && soundVolume > 0 ? '🔊' : '🔇'}
-                        </button>
-                        <input
-                          type="range"
-                          min="0"
-                          max="100"
-                          value={soundEnabled ? soundVolume : 0}
-                          onChange={(e) => {
-                            const val = Number(e.target.value);
-                            setSoundVolume(val);
-                            if (val > 0 && !soundEnabled) setSoundEnabled(true);
-                            playGameSound('select', true, val);
-                          }}
-                          style={{
-                            background: `linear-gradient(to right, #f59e0b 0%, #f59e0b ${soundEnabled ? soundVolume : 0}%, #343741 ${soundEnabled ? soundVolume : 0}%, #343741 100%)`
-                          }}
-                          className="volume-slider flex-1 h-2 rounded-lg"
-                        />
-                        <span className="text-xs font-extrabold text-amber-400 w-9 text-right font-mono">
-                          {soundEnabled ? `${soundVolume}%` : '0%'}
-                        </span>
+                        <button type="button" onClick={() => { const next = !soundEnabled; setSoundEnabled(next); if (next) playGameSound('move', true, soundVolume); }} className="text-gray-300 hover:text-amber-400 focus:outline-none text-base">{soundEnabled && soundVolume > 0 ? '🔊' : '🔇'}</button>
+                        <input type="range" min="0" max="100" value={soundEnabled ? soundVolume : 0} onChange={(e) => { const val = Number(e.target.value); setSoundVolume(val); if (val > 0 && !soundEnabled) setSoundEnabled(true); playGameSound('select', true, val); }} style={{ background: `linear-gradient(to right, #f59e0b 0%, #f59e0b ${soundEnabled ? soundVolume : 0}%, #343741 ${soundEnabled ? soundVolume : 0}%, #343741 100%)` }} className="volume-slider flex-1 h-2 rounded-lg" />
+                        <span className="text-xs font-extrabold text-amber-400 w-9 text-right font-mono">{soundEnabled ? `${soundVolume}%` : '0%'}</span>
                       </div>
                     </div>
                   </div>
-
                   <div className="flex items-center gap-2.5 pt-2">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        playGameSound('move', soundEnabled, soundVolume);
-                        setShowSettingsModal(false);
-                      }}
-                      className="flex-1 bg-gradient-to-b from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-amber-950 font-fredoka font-black text-sm py-3 px-4 rounded-xl shadow-md transition-all cursor-pointer"
-                    >
-                      {t.applyPlayBtn}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={handleResetSettings}
-                      className="bg-[#2a2d35] hover:bg-[#343842] text-gray-300 font-bold text-xs py-3 px-4 rounded-xl border border-[#424652] transition-colors cursor-pointer"
-                    >
-                      {t.resetBtn}
-                    </button>
+                    <button type="button" onClick={() => { playGameSound('move', soundEnabled, soundVolume); setShowSettingsModal(false); }} className="flex-1 bg-gradient-to-b from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-amber-950 font-fredoka font-black text-sm py-3 px-4 rounded-xl shadow-md transition-all cursor-pointer">{t.applyPlayBtn}</button>
+                    <button type="button" onClick={handleResetSettings} className="bg-[#2a2d35] hover:bg-[#343842] text-gray-300 font-bold text-xs py-3 px-4 rounded-xl border border-[#424652] transition-colors cursor-pointer">{t.resetBtn}</button>
                   </div>
                 </div>
-
-                {/* Right Column */}
                 <div className="md:col-span-6 flex flex-col justify-between bg-[#1d1f24]">
                   <div>
                     <div className="flex items-center justify-between pl-6 pr-0 py-0 border-b border-[#343741]">
-                      <div className="flex items-center gap-2 py-4">
-                        <span className="text-gray-300 text-base">⚙️</span>
-                        <h3 className="font-fredoka font-bold text-lg text-white">{t.settingsHeader}</h3>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => setShowSettingsModal(false)}
-                        className="bg-red-600 hover:bg-red-500 text-white font-bold w-12 h-12 flex items-center justify-center text-lg transition-colors cursor-pointer self-stretch"
-                      >
-                        ✕
-                      </button>
+                      <div className="flex items-center gap-2 py-4"><span className="text-gray-300 text-base">⚙️</span><h3 className="font-fredoka font-bold text-lg text-white">{t.settingsHeader}</h3></div>
+                      <button type="button" onClick={() => setShowSettingsModal(false)} className="bg-red-600 hover:bg-red-500 text-white font-bold w-12 h-12 flex items-center justify-center text-lg transition-colors cursor-pointer self-stretch">✕</button>
                     </div>
-
                     <div className="px-6 py-2 divide-y divide-[#2e313a]">
-                      
                       <div className="py-3 flex items-center justify-between gap-3">
-                        <div>
-                          <div className="font-bold text-sm text-white leading-tight">{t.soundsTitle}</div>
-                          <div className="text-[11px] text-gray-400">{t.soundsDesc}</div>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            const next = !soundEnabled;
-                            setSoundEnabled(next);
-                            if (next) playGameSound('move', true, soundVolume);
-                          }}
-                          className={`w-11 h-6 rounded-full transition-colors p-0.5 flex items-center cursor-pointer ${soundEnabled ? 'bg-emerald-500 justify-end' : 'bg-gray-600 justify-start'}`}
-                        >
-                          <span className="w-5 h-5 rounded-full bg-white shadow-md block"></span>
-                        </button>
+                        <div><div className="font-bold text-sm text-white leading-tight">{t.soundsTitle}</div><div className="text-[11px] text-gray-400">{t.soundsDesc}</div></div>
+                        <button type="button" onClick={() => { const next = !soundEnabled; setSoundEnabled(next); if (next) playGameSound('move', true, soundVolume); }} className={`w-11 h-6 rounded-full transition-colors p-0.5 flex items-center cursor-pointer ${soundEnabled ? 'bg-emerald-500 justify-end' : 'bg-gray-600 justify-start'}`}><span className="w-5 h-5 rounded-full bg-white shadow-md block"></span></button>
                       </div>
-
                       <div className="py-3 flex items-center justify-between gap-3">
-                        <div>
-                          <div className="font-bold text-sm text-white leading-tight">{t.hapticsTitle}</div>
-                          <div className="text-[11px] text-gray-400">{t.hapticsDesc}</div>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            const next = !hapticsEnabled;
-                            setHapticsEnabled(next);
-                            if (next) triggerHaptic(true, 30);
-                            playGameSound('select', soundEnabled, soundVolume);
-                          }}
-                          className={`w-11 h-6 rounded-full transition-colors p-0.5 flex items-center cursor-pointer ${hapticsEnabled ? 'bg-emerald-500 justify-end' : 'bg-gray-600 justify-start'}`}
-                        >
-                          <span className="w-5 h-5 rounded-full bg-white shadow-md block"></span>
-                        </button>
+                        <div><div className="font-bold text-sm text-white leading-tight">{t.hapticsTitle}</div><div className="text-[11px] text-gray-400">{t.hapticsDesc}</div></div>
+                        <button type="button" onClick={() => { const next = !hapticsEnabled; setHapticsEnabled(next); if (next) triggerHaptic(true, 30); playGameSound('select', soundEnabled, soundVolume); }} className={`w-11 h-6 rounded-full transition-colors p-0.5 flex items-center cursor-pointer ${hapticsEnabled ? 'bg-emerald-500 justify-end' : 'bg-gray-600 justify-start'}`}><span className="w-5 h-5 rounded-full bg-white shadow-md block"></span></button>
                       </div>
-
                       <div className="py-3 flex items-center justify-between gap-3">
-                        <div>
-                          <div className="font-bold text-sm text-white leading-tight">{t.showTimerTitle}</div>
-                          <div className="text-[11px] text-gray-400">{t.showTimerDesc}</div>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setShowTimerUI(!showTimerUI);
-                            playGameSound('select', soundEnabled, soundVolume);
-                          }}
-                          className={`w-11 h-6 rounded-full transition-colors p-0.5 flex items-center cursor-pointer ${showTimerUI ? 'bg-emerald-500 justify-end' : 'bg-gray-600 justify-start'}`}
-                        >
-                          <span className="w-5 h-5 rounded-full bg-white shadow-md block"></span>
-                        </button>
+                        <div><div className="font-bold text-sm text-white leading-tight">{t.showTimerTitle}</div><div className="text-[11px] text-gray-400">{t.showTimerDesc}</div></div>
+                        <button type="button" onClick={() => { setShowTimerUI(!showTimerUI); playGameSound('select', soundEnabled, soundVolume); }} className={`w-11 h-6 rounded-full transition-colors p-0.5 flex items-center cursor-pointer ${showTimerUI ? 'bg-emerald-500 justify-end' : 'bg-gray-600 justify-start'}`}><span className="w-5 h-5 rounded-full bg-white shadow-md block"></span></button>
                       </div>
-
                       <div className="py-3 flex items-center justify-between gap-3">
-                        <div>
-                          <div className="font-bold text-sm text-white leading-tight">{t.showMovesTitle}</div>
-                          <div className="text-[11px] text-gray-400">{t.showMovesDesc}</div>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setShowMovesUI(!showMovesUI);
-                            playGameSound('select', soundEnabled, soundVolume);
-                          }}
-                          className={`w-11 h-6 rounded-full transition-colors p-0.5 flex items-center cursor-pointer ${showMovesUI ? 'bg-emerald-500 justify-end' : 'bg-gray-600 justify-start'}`}
-                        >
-                          <span className="w-5 h-5 rounded-full bg-white shadow-md block"></span>
-                        </button>
+                        <div><div className="font-bold text-sm text-white leading-tight">{t.showMovesTitle}</div><div className="text-[11px] text-gray-400">{t.showMovesDesc}</div></div>
+                        <button type="button" onClick={() => { setShowMovesUI(!showMovesUI); playGameSound('select', soundEnabled, soundVolume); }} className={`w-11 h-6 rounded-full transition-colors p-0.5 flex items-center cursor-pointer ${showMovesUI ? 'bg-emerald-500 justify-end' : 'bg-gray-600 justify-start'}`}><span className="w-5 h-5 rounded-full bg-white shadow-md block"></span></button>
                       </div>
-
                       <div className="py-3 flex items-center justify-between gap-3">
-                        <div>
-                          <div className="font-bold text-sm text-white leading-tight">{t.rotateBoardTitle}</div>
-                          <div className="text-[11px] text-gray-400">{t.rotateBoardDesc}</div>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setRotateBoardUI(!rotateBoardUI);
-                            playGameSound('select', soundEnabled, soundVolume);
-                          }}
-                          className={`w-11 h-6 rounded-full transition-colors p-0.5 flex items-center cursor-pointer ${rotateBoardUI ? 'bg-emerald-500 justify-end' : 'bg-gray-600 justify-start'}`}
-                        >
-                          <span className="w-5 h-5 rounded-full bg-white shadow-md block"></span>
-                        </button>
+                        <div><div className="font-bold text-sm text-white leading-tight">{t.rotateBoardTitle}</div><div className="text-[11px] text-gray-400">{t.rotateBoardDesc}</div></div>
+                        <button type="button" onClick={() => { setRotateBoardUI(!rotateBoardUI); playGameSound('select', soundEnabled, soundVolume); }} className={`w-11 h-6 rounded-full transition-colors p-0.5 flex items-center cursor-pointer ${rotateBoardUI ? 'bg-emerald-500 justify-end' : 'bg-gray-600 justify-start'}`}><span className="w-5 h-5 rounded-full bg-white shadow-md block"></span></button>
                       </div>
-
                     </div>
                   </div>
-
-                  <div className="px-6 py-3 border-t border-[#2e313a] text-center text-[11px] text-gray-400 font-medium">
-                    {t.autoSavedFooter}
-                  </div>
+                  <div className="px-6 py-3 border-t border-[#2e313a] text-center text-[11px] text-gray-400 font-medium">{t.autoSavedFooter}</div>
                 </div>
-
               </div>
             </div>
           )}
 
-          {/* PRIVACY POLICY & TERMS OF USE MODAL */}
+          {/* LEGAL MODAL */}
           {showLegalModal && (
-            <div 
-              onClick={() => setShowLegalModal(false)}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm cursor-pointer"
-            >
-              <div 
-                onClick={(e) => e.stopPropagation()}
-                className="relative w-full max-w-xl wood-texture rounded-3xl p-6 sm:p-7 border-4 border-amber-600 shadow-2xl text-amber-50 max-h-[85vh] flex flex-col cursor-default"
-              >
+            <div onClick={() => setShowLegalModal(false)} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm cursor-pointer">
+              <div onClick={(e) => e.stopPropagation()} className="relative w-full max-w-xl wood-texture rounded-3xl p-6 sm:p-7 border-4 border-amber-600 shadow-2xl text-amber-50 max-h-[85vh] flex flex-col cursor-default">
                 <button onClick={() => setShowLegalModal(false)} className="absolute top-4 right-4 text-amber-300 hover:text-white bg-amber-950/60 p-2 rounded-xl border border-amber-700/60">✕</button>
                 <h3 className="font-fredoka text-2xl font-bold text-amber-100 mb-3">{t.legalModalTitle}</h3>
                 <div className="bg-[#1f0e04] border-2 border-amber-800 rounded-2xl p-4 mb-4 text-xs sm:text-sm text-amber-200/90 leading-relaxed space-y-3 overflow-y-auto">
-                  <div>
-                    <strong className="text-amber-300 font-bold block mb-1">{t.legalPrivacyTitle}</strong>
-                    <p>{t.legalPrivacyText}</p>
-                  </div>
-                  <div>
-                    <strong className="text-amber-300 font-bold block mb-1">{t.legalTermsTitle}</strong>
-                    <p>{t.legalTermsText}</p>
-                  </div>
-                  <div>
-                    <strong className="text-amber-300 font-bold block mb-1">{t.legalContactTitle}</strong>
-                    <p>{t.legalContactText}</p>
-                  </div>
+                  <div><strong className="text-amber-300 font-bold block mb-1">{t.legalPrivacyTitle}</strong><p>{t.legalPrivacyText}</p></div>
+                  <div><strong className="text-amber-300 font-bold block mb-1">{t.legalTermsTitle}</strong><p>{t.legalTermsText}</p></div>
+                  <div><strong className="text-amber-300 font-bold block mb-1">{t.legalContactTitle}</strong><p>{t.legalContactText}</p></div>
                 </div>
-                <button onClick={() => setShowLegalModal(false)} className="btn-chunky btn-chunky-amber w-full bg-gradient-to-b from-amber-500 to-amber-600 text-amber-950 font-fredoka font-black text-sm py-3 rounded-2xl border-2 border-amber-950">
-                  {t.closeBtn}
-                </button>
+                <button onClick={() => setShowLegalModal(false)} className="btn-chunky btn-chunky-amber w-full bg-gradient-to-b from-amber-500 to-amber-600 text-amber-950 font-fredoka font-black text-sm py-3 rounded-2xl border-2 border-amber-950">{t.closeBtn}</button>
               </div>
             </div>
           )}
 
           {/* PRO TIP MODAL */}
           {showProTipModal && (
-            <div 
-              onClick={() => setShowProTipModal(false)}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm cursor-pointer"
-            >
-              <div 
-                onClick={(e) => e.stopPropagation()}
-                className="relative w-full max-w-md wood-texture rounded-3xl p-6 sm:p-7 border-4 border-amber-500 shadow-2xl text-amber-50 cursor-default"
-              >
+            <div onClick={() => setShowProTipModal(false)} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm cursor-pointer">
+              <div onClick={(e) => e.stopPropagation()} className="relative w-full max-w-md wood-texture rounded-3xl p-6 sm:p-7 border-4 border-amber-500 shadow-2xl text-amber-50 cursor-default">
                 <button onClick={() => setShowProTipModal(false)} className="absolute top-4 right-4 text-amber-300 hover:text-white bg-amber-950/60 p-2 rounded-xl border border-amber-700/60">✕</button>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-2xl bg-amber-500/20 border-2 border-amber-400 flex items-center justify-center text-2xl">💡</div>
-                  <div>
-                    <h3 className="font-fredoka text-2xl font-bold text-amber-100">{t.proTipTitle}</h3>
-                    <p className="text-xs text-amber-300/80 font-medium">{t.proTipSubtitle}</p>
-                  </div>
-                </div>
+                <div className="flex items-center gap-3 mb-4"><div className="w-12 h-12 rounded-2xl bg-amber-500/20 border-2 border-amber-400 flex items-center justify-center text-2xl">💡</div><div><h3 className="font-fredoka text-2xl font-bold text-amber-100">{t.proTipTitle}</h3><p className="text-xs text-amber-300/80 font-medium">{t.proTipSubtitle}</p></div></div>
                 <div className="bg-[#1f0e04] border-2 border-amber-800 rounded-2xl p-4 mb-5 text-sm text-amber-200/90 leading-relaxed space-y-2.5">
-                  <p>
-                    <strong className="text-amber-300 font-bold block mb-1">{t.proTip1Title}</strong>
-                    {t.proTip1Desc}
-                  </p>
-                  <p>
-                    <strong className="text-amber-300 font-bold block mb-1">{t.proTip2Title}</strong>
-                    {t.proTip2Desc}
-                  </p>
+                  <p><strong className="text-amber-300 font-bold block mb-1">{t.proTip1Title}</strong>{t.proTip1Desc}</p>
+                  <p><strong className="text-amber-300 font-bold block mb-1">{t.proTip2Title}</strong>{t.proTip2Desc}</p>
                 </div>
                 <button onClick={() => setShowProTipModal(false)} className="btn-chunky btn-chunky-amber w-full bg-gradient-to-b from-amber-500 to-amber-600 text-amber-950 font-fredoka font-black text-base py-3 rounded-2xl border-2 border-amber-950 shadow-chunky-btn-amber">{t.gotItBtn}</button>
               </div>
             </div>
           )}
 
-          {/* VICTORY MODAL OVERLAY */}
+          {/* VICTORY MODAL */}
           {isWon && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
               <div className="relative w-full max-w-md wood-texture rounded-3xl p-6 sm:p-8 border-4 border-amber-500 shadow-2xl text-center transform transition-all">
@@ -2195,63 +1776,30 @@
                 <span className="inline-block bg-amber-400/20 text-amber-300 border border-amber-400/40 text-xs font-extrabold uppercase px-3 py-1 rounded-full tracking-widest mb-2">{t.puzzleSolvedBadge}</span>
                 <h2 className="font-fredoka text-3xl sm:text-4xl font-black text-amber-100 drop-shadow-md">{t.victoryTitle}</h2>
                 <p className="text-amber-200/90 text-sm mt-1 font-medium">{t.victoryDesc}</p>
-                
                 <div className="bg-[#241104] border-2 border-amber-800 rounded-2xl p-4 my-5 flex items-center justify-around shadow-inner">
-                  <div className="flex flex-col items-center">
-                    <span className="text-[11px] uppercase font-bold text-amber-400/80">{t.timeTaken}</span>
-                    <span className="font-mono font-black text-2xl text-emerald-400">{formatTime(seconds)}</span>
-                  </div>
+                  <div className="flex flex-col items-center"><span className="text-[11px] uppercase font-bold text-amber-400/80">{t.timeTaken}</span><span className="font-mono font-black text-2xl text-emerald-400">{formatTime(seconds)}</span></div>
                   <div className="w-px h-8 bg-amber-800/80"></div>
-                  <div className="flex flex-col items-center">
-                    <span className="text-[11px] uppercase font-bold text-amber-400/80">{t.stars}</span>
-                    <div className="flex text-amber-400 text-lg">★★★</div>
-                  </div>
+                  <div className="flex flex-col items-center"><span className="text-[11px] uppercase font-bold text-amber-400/80">{t.stars}</span><div className="flex text-amber-400 text-lg">★★★</div></div>
                   <div className="w-px h-8 bg-amber-800/80"></div>
-                  <div className="flex flex-col items-center">
-                    <span className="text-[11px] uppercase font-bold text-amber-400/80">{t.challenge}</span>
-                    <span className="font-fredoka font-bold text-base text-amber-200">{t.mateIn(selectedLevel)}</span>
-                  </div>
+                  <div className="flex flex-col items-center"><span className="text-[11px] uppercase font-bold text-amber-400/80">{t.challenge}</span><span className="font-fredoka font-bold text-base text-amber-200">{t.mateIn(selectedLevel)}</span></div>
                 </div>
-
                 <div className="space-y-3">
-                  <button onClick={handleAnotherChallengeReload} className="btn-chunky btn-chunky-green w-full bg-gradient-to-b from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-fredoka font-black text-xl py-3.5 px-6 rounded-2xl border-3 border-emerald-950 shadow-chunky-btn-green flex items-center justify-center gap-3 cursor-pointer">
-                    <span>{t.anotherChallengeBtn}</span>
-                    <span className="text-2xl">➔</span>
-                  </button>
-                  <button onClick={() => setIsWon(false)} className="w-full text-amber-300 hover:text-white text-xs font-bold uppercase tracking-wider py-1.5 transition cursor-pointer">
-                    {t.reviewBoardBtn}
-                  </button>
+                  <button onClick={handleAnotherChallengeReload} className="btn-chunky btn-chunky-green w-full bg-gradient-to-b from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-fredoka font-black text-xl py-3.5 px-6 rounded-2xl border-3 border-emerald-950 shadow-chunky-btn-green flex items-center justify-center gap-3 cursor-pointer"><span>{t.anotherChallengeBtn}</span><span className="text-2xl">➔</span></button>
+                  <button onClick={() => setIsWon(false)} className="w-full text-amber-300 hover:text-white text-xs font-bold uppercase tracking-wider py-1.5 transition cursor-pointer">{t.reviewBoardBtn}</button>
                 </div>
               </div>
             </div>
           )}
 
-          {/* PHYSICAL BOARD MERCHANDISING MODAL */}
+          {/* MERCH MODAL */}
           {showMerchModal && (
-            <div 
-              onClick={() => setShowMerchModal(false)}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm cursor-pointer"
-            >
-              <div 
-                onClick={(e) => e.stopPropagation()}
-                className="relative w-full max-w-lg wood-texture rounded-3xl p-6 sm:p-7 border-4 border-amber-600 shadow-2xl text-amber-50 cursor-default"
-              >
+            <div onClick={() => setShowMerchModal(false)} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm cursor-pointer">
+              <div onClick={(e) => e.stopPropagation()} className="relative w-full max-w-lg wood-texture rounded-3xl p-6 sm:p-7 border-4 border-amber-600 shadow-2xl text-amber-50 cursor-default">
                 <button onClick={() => setShowMerchModal(false)} className="absolute top-4 right-4 text-amber-300 hover:text-white bg-amber-950/60 p-2 rounded-xl border border-amber-700/60">✕</button>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-2xl bg-amber-500/20 border-2 border-amber-400 flex items-center justify-center text-2xl">📦</div>
-                  <div>
-                    <h3 className="font-fredoka text-2xl font-bold text-amber-100">{t.merchModalTitle}</h3>
-                    <p className="text-xs text-amber-300/80 font-medium">{t.merchModalSubtitle}</p>
-                  </div>
-                </div>
+                <div className="flex items-center gap-3 mb-4"><div className="w-12 h-12 rounded-2xl bg-amber-500/20 border-2 border-amber-400 flex items-center justify-center text-2xl">📦</div><div><h3 className="font-fredoka text-2xl font-bold text-amber-100">{t.merchModalTitle}</h3><p className="text-xs text-amber-300/80 font-medium">{t.merchModalSubtitle}</p></div></div>
                 <div className="bg-[#1f0e04] border-2 border-amber-800 rounded-2xl p-4 mb-4 flex items-center gap-4">
                   <div className="w-24 h-24 rounded-xl bg-amber-950 border border-amber-700/80 flex items-center justify-center text-4xl shadow-inner">♟️🪵</div>
-                  <div className="flex-1 text-xs space-y-1">
-                    <div className="font-bold text-amber-200 text-sm">{t.merchItemTitle}</div>
-                    <div className="text-amber-400/90">{t.merchBullet1}</div>
-                    <div className="text-amber-400/90">{t.merchBullet2}</div>
-                    <div className="text-emerald-400 font-extrabold text-lg mt-1">$29.99 <span className="text-amber-300/60 line-through text-xs font-normal">$39.99</span></div>
-                  </div>
+                  <div className="flex-1 text-xs space-y-1"><div className="font-bold text-amber-200 text-sm">{t.merchItemTitle}</div><div className="text-amber-400/90">{t.merchBullet1}</div><div className="text-amber-400/90">{t.merchBullet2}</div><div className="text-emerald-400 font-extrabold text-lg mt-1">$29.99 <span className="text-amber-300/60 line-through text-xs font-normal">$39.99</span></div></div>
                 </div>
                 <div className="flex items-center gap-3">
                   <button onClick={() => { alert(t.checkoutAlert); setShowMerchModal(false); }} className="btn-chunky btn-chunky-amber flex-1 bg-gradient-to-b from-amber-500 to-amber-600 hover:from-amber-400 text-amber-950 font-fredoka font-black text-lg py-3 rounded-2xl border-2 border-amber-950 shadow-chunky-btn-amber">{t.preOrderBtn}</button>
