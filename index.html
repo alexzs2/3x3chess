@@ -71,7 +71,6 @@
     input[type=range].volume-slider::-webkit-slider-runnable-track { height: 8px; border-radius: 999px; }
     input[type=range].volume-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 18px; height: 18px; border-radius: 50%; background: #f59e0b; border: 2px solid #fff; margin-top: -5px; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
     
-    /* Novo estilo pro dropdown não trepar na seta */
     .custom-select {
         appearance: none;
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23fcd34d' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M5 7l5 5 5-5'/%3e%3c/svg%3e");
@@ -203,24 +202,24 @@
     };
 
     // ========================================================
-    // DICIONÁRIO MULTILÍNGUE
+    // DICIONÁRIO MULTILÍNGUE COM SEO COMPLETO RESTAURADO
     // ========================================================
     const TRANSLATIONS = {
       EN: {
         splashBadge: "3x3CHESS STUDIO • ENDGAME CHALLENGE",
         splashTitle: "Only 9 Squares — 54 Million Possibilities",
         splashSubtitle: "Deceptively Simple. Brutally Tactical!",
-        splashStat1Val: "9 Squares", splashStat1Lbl: "Ultra-Compact",
-        splashStat2Val: "54.6 Million", splashStat2Lbl: "Combinations",
-        splashStat3Val: "Up to 15 Moves", splashStat3Lbl: "Forced Mates",
+        splashStat1Val: "9 Squares", splashStat1Lbl: "Ultra-Compact Grid",
+        splashStat2Val: "54.6 Million", splashStat2Lbl: "Legal Combinations",
+        splashStat3Val: "Up to 15 Moves", splashStat3Lbl: "Forced Checkmates",
         splashHowTitle: "🎯 How to Play:",
         splashRule1: "You play with the White pieces and always make the first move.",
         splashRule2: "Standard FIDE chess piece movements apply. White pawns (▲) move UP toward rank 3 to promote.",
-        splashRule3: "Corner the Black King and deliver Checkmate in the exact number of moves! Most players fail by Mate in 4!",
+        splashRule3: "Corner the Black King and deliver Checkmate in the exact number of moves! Think it's easy because the board is tiny? Most players fail by Mate in 4!",
         splashAcceptBtn: "🔥 I Accept the Challenge!",
         splashDismissHint: "Or tap anywhere outside this box to jump straight into the board",
-        studioSubtitle: "Tactical Studio",
-        timer: "Time",
+        studioSubtitle: "Tactical Studio & Clean Woodcraft",
+        timer: "Timer",
         mateIn: (n) => `Mate in ${n}`,
         whiteToMove: "White to move",
         whitesTurn: "White's Turn",
@@ -229,77 +228,83 @@
         noticeLabel: "Notice:",
         pawnUpBadge: "▲ UP",
         pawnDownBadge: "▼ DN",
-        tapWhitePrompt: "Tap white piece to select",
-        selectedPiecePrompt: (sq) => `Selected piece at ${sq} — Tap destination`,
-        selectedPawnPrompt: (sq) => `White Pawn at ${sq} (▲ Moves UP to rank 3)`,
-        restartBtn: "Restart",
+        tapWhitePrompt: "Tap white piece to select and view legal moves",
+        selectedPiecePrompt: (sq) => `Selected piece at ${sq} — Tap destination square`,
+        selectedPawnPrompt: (sq) => `White Pawn at ${sq} (▲ Moves UP toward rank 3)`,
+        restartBtn: "Restart Game",
         newGameBtn: "New Game",
-        helpBtn: "Hint",
+        helpBtn: "Help / Hint",
         promoteTitle: "Pawn Promotion",
         merchTitle: "Get the Physical 3x3 Wooden Board",
-        merchSubtitle: "Handcrafted Walnut & Maple Set",
+        merchSubtitle: "Handcrafted Walnut & Maple Set • Limited Batch",
         shopBtn: "Shop",
-        hintBlockedPawn: "This White Pawn (▲) is blocked! It only moves UP toward rank 3.",
-        hintWinningMove: (from, to) => `Winning move found! Move from ${from} to ${to} for Checkmate!`,
-        hintGeneral: "Look for moves that cut off the Black King's escape squares!",
-        msgStalemate: "Stalemate (Draw)! Tap 'Restart' to try again!",
-        msgComputerWon: "Checkmate! The computer defeated you. Tap 'Restart'!",
+        hintBlockedPawn: "This White Pawn (▲) is blocked! White pawns only move UP toward rank 3 (a3, b3, c3) and cannot move or capture downward.",
+        hintWinningMove: (from, to) => `Winning move found! Move the highlighted piece from ${from} to ${to} for Checkmate!`,
+        hintGeneral: "Look for moves that cut off the Black King's escape squares without causing a stalemate!",
+        msgStalemate: "Stalemate (Draw)! The Black King has no legal moves, but is not in check. Tap 'Restart Game' to try again!",
+        msgComputerWon: "Checkmate! The computer defeated you. Tap 'Restart Game' to try again!",
         gotItBtn: "Got It!",
         puzzleSolvedBadge: "Puzzle Solved!",
         victoryTitle: "Checkmate! 🎉",
-        victoryDesc: "Brilliant tactical checkmate!",
-        timeTaken: "Time",
+        victoryDesc: "Brilliant tactical checkmate! You outsmarted the 3x3 mini-chess defense.",
+        timeTaken: "Time Taken",
         stars: "Stars",
         challenge: "Challenge",
-        anotherChallengeBtn: "Next Challenge ➔",
+        anotherChallengeBtn: "Another Challenge ➔",
         reviewBoardBtn: "Review Final Board",
-        merchModalTitle: "Official 3x3Chess Board",
-        merchModalSubtitle: "Crafted from European Walnut & Birch",
-        merchItemTitle: "3x3 Studio Edition Board",
-        merchBullet1: "9 Hand-Turned Magnetic Pieces",
-        merchBullet2: "Velvet Pouch + 50 Puzzle Cards",
+        merchModalTitle: "Official 3x3Chess Board Set",
+        merchModalSubtitle: "Crafted from sustainable European Walnut & Birch",
+        merchItemTitle: "3x3 Studio Edition Pocket Board",
+        merchBullet1: "9 Hand-Turned Magnetic Oak & Walnut Pieces",
+        merchBullet2: "Velvet Pouch + 50 Collector Puzzle Cards",
         preOrderBtn: "Pre-Order Physical Set",
         closeBtn: "Close",
-        checkoutAlert: "Opening checkout!",
+        checkoutAlert: "Opening checkout for the physical 3x3Chess Set!",
         gameOptionsLabel: "GAME OPTIONS",
-        customizationTitle: "Settings",
+        customizationTitle: "Customization",
         piecesStyleLabel: "PIECES STYLE",
         studioWoodLabel: "Studio Wood",
-        soundVolumeLabel: "SOUND FX",
+        soundVolumeLabel: "SOUND FX VOLUME",
         applyPlayBtn: "Apply & Play",
         resetBtn: "Reset",
         settingsHeader: "Settings",
         soundsTitle: "Sounds", soundsDesc: "Pieces clack & alerts",
-        hapticsTitle: "Haptics", hapticsDesc: "Vibrate on moves",
-        showTimerTitle: "Show Timer", showTimerDesc: "Track speed",
-        showMovesTitle: "Show Moves", showMovesDesc: "Highlight tiles",
-        rotateBoardTitle: "Rotate Board", rotateBoardDesc: "Flip orientation",
+        hapticsTitle: "Haptics", hapticsDesc: "Vibrate on legal moves",
+        showTimerTitle: "Show Timer", showTimerDesc: "Track thinking speed",
+        showMovesTitle: "Show Moves", showMovesDesc: "Highlight legal tiles",
+        rotateBoardTitle: "Rotate Board", rotateBoardDesc: "Flip board orientation",
         tutorialBtn: "Rules / Tutorial",
         autoSavedFooter: "3x3Chess v1.6 • Auto-saved",
-        seoMainTitle: "About 3x3 Mini-Chess",
-        seoCard1Title: "♟️ What is 3x3 Chess?", seoCard1Text: "3x3 Chess is a condensed chess variant played on a 9-square grid.",
-        seoCard2Title: "📜 Official Rules", seoCard2Text: "All pieces move as in standard FIDE chess.",
-        seoCard3Title: "🧮 Solved: Mate in 16", seoCard3Text: "Mathematicians have solved 3x3 chess, analyzing 54,687,564 positions.",
-        footerLegalLink: "Privacy & Terms",
-        legalModalTitle: "Privacy & Terms",
-        legalPrivacyTitle: "1. Privacy & Cookies", legalPrivacyText: "We use local storage and Google AdSense cookies.",
-        legalTermsTitle: "2. Terms of Use", legalTermsText: "Free for personal use. Positions CC0.",
-        legalContactTitle: "3. Contact", legalContactText: "Contact via official channels."
+        seoMainTitle: "About 3x3 Mini-Chess & Tactical Endgame Puzzles",
+        seoCard1Title: "♟️ What is 3x3 Chess?", 
+        seoCard1Text: "3x3 Chess is a condensed, high-intensity chess variant played on a 9-square grid (files a, b, c and ranks 1, 2, 3). Despite the small board size, it preserves the deep tactical geometry of classical chess. Every move carries immediate weight, making it an exceptional training tool for calculation, pattern recognition, and endgame precision.",
+        seoCard2Title: "📜 Official Rules & Mechanics", 
+        seoCard2Text: "All pieces move and capture exactly as in standard FIDE chess: Kings move one square in any direction, Rooks control lines, Bishops control diagonals, Knights jump in an L-shape, and Queens combine Rook and Bishop power. White pawns (▲) advance upward toward rank 3, where they immediately promote. Castling and double pawn pushes do not exist on a 3x3 grid.",
+        seoCard3Title: "🧮 Strongly Solved: Mate in 16", 
+        seoCard3Text: "Mathematicians and computer chess researchers (including Kirill Kryukov) have strongly solved 3x3 chess, analyzing all 54,687,564 unique legal positions. Remarkably, the longest forced checkmate on a 3x3 board requires 16 full moves! Our database lets you practice verified positions ranging from quick Mate in 1 warmups to grandmaster-level Mate in 15 challenges.",
+        footerLegalLink: "Privacy Policy, Cookies & Terms of Use",
+        legalModalTitle: "Privacy Policy & Terms of Use",
+        legalPrivacyTitle: "1. Privacy & Google AdSense Cookies", 
+        legalPrivacyText: "This website uses cookies to store your game preferences (such as language, sound settings, and puzzle level) locally in your browser. We also partner with third-party advertising networks, including Google AdSense, which use cookies (such as the DoubleClick DART cookie) to serve ads based on your visit to this and other websites on the internet. You may opt out of personalized advertising by visiting Google Ads Settings.",
+        legalTermsTitle: "2. Terms of Use & Intellectual Property", 
+        legalTermsText: "3x3Chess Studio is provided free of charge for personal entertainment and tactical chess training. The 3x3 endgame position database is based on public domain tablebase research (CC0). The custom vector artwork, interface design, and audio synthesizer are protected by copyright.",
+        legalContactTitle: "3. Contact & Support", 
+        legalContactText: "For questions regarding privacy, advertising partnerships, or orders of the physical wooden 3x3 chess set, please reach out through our official studio channels."
       },
       PT: {
         splashBadge: "3x3CHESS STUDIO • DESAFIO TÁTICO",
         splashTitle: "Apenas 9 Casas — 54 Milhões de Possibilidades",
         splashSubtitle: "Enganosamente Simples. Brutalmente Tático!",
         splashStat1Val: "9 Casas", splashStat1Lbl: "Tabuleiro Ultra-Compacto",
-        splashStat2Val: "54,6 Milhões", splashStat2Lbl: "Combinações",
+        splashStat2Val: "54,6 Milhões", splashStat2Lbl: "Combinações Legais",
         splashStat3Val: "Até 15 Lances", splashStat3Lbl: "Mates Forçados",
         splashHowTitle: "🎯 Como Jogar:",
         splashRule1: "Você joga com as peças Brancas e sempre faz o primeiro lance.",
-        splashRule2: "Valem os movimentos oficiais (FIDE). Peões brancos (▲) avançam para CIMA para promover.",
-        splashRule3: "Encurrale o Rei Preto e dê Xeque-Mate no número exato de lances! A maioria trava antes do Mate em 4!",
+        splashRule2: "Valem os movimentos oficiais do xadrez (FIDE). Peões brancos (▲) avançam para CIMA (rumo à linha 3) para promover.",
+        splashRule3: "Encurrale o Rei Preto e dê Xeque-Mate no número exato de lances! Acha fácil porque só tem 9 casas? A maioria trava antes do Mate em 4!",
         splashAcceptBtn: "🔥 Aceito o Desafio!",
-        splashDismissHint: "Ou clique em qualquer lugar fora desta janela para jogar",
-        studioSubtitle: "Estúdio Tático",
+        splashDismissHint: "Ou clique em qualquer lugar fora desta janela para ir direto ao jogo",
+        studioSubtitle: "Estúdio Tático & Marcenaria Fina",
         timer: "Tempo",
         mateIn: (n) => `Mate em ${n}`,
         whiteToMove: "Brancas jogam",
@@ -309,77 +314,83 @@
         noticeLabel: "Aviso:",
         pawnUpBadge: "▲ SOBE",
         pawnDownBadge: "▼ DESCE",
-        tapWhitePrompt: "Toque em uma peça branca",
-        selectedPiecePrompt: (sq) => `Peça em ${sq} — Toque no destino`,
-        selectedPawnPrompt: (sq) => `Peão em ${sq} (▲ Avança para CIMA)`,
-        restartBtn: "Reiniciar",
+        tapWhitePrompt: "Toque em uma peça branca para ver os lances",
+        selectedPiecePrompt: (sq) => `Peça selecionada em ${sq} — Toque na casa de destino`,
+        selectedPawnPrompt: (sq) => `Peão Branco em ${sq} (▲ Avança apenas para CIMA)`,
+        restartBtn: "Reiniciar Jogo",
         newGameBtn: "Novo Jogo",
-        helpBtn: "Dica",
+        helpBtn: "Ajuda / Dica",
         promoteTitle: "Promoção de Peão",
-        merchTitle: "Compre o Tabuleiro Físico em Madeira",
-        merchSubtitle: "Feito à mão em Nogueira e Bordo",
+        merchTitle: "Compre o Tabuleiro Físico 3x3 em Madeira",
+        merchSubtitle: "Feito à mão em Nogueira e Bordo • Lote Limitado",
         shopBtn: "Comprar",
-        hintBlockedPawn: "Este Peão Branco (▲) está bloqueado! Ele só avança para CIMA.",
-        hintWinningMove: (from, to) => `Lance vencedor! Mova de ${from} para ${to} para o Xeque-Mate!`,
-        hintGeneral: "Procure lances que cortem as fugas do Rei Preto!",
-        msgStalemate: "Afogamento (Empate)! Toque em 'Reiniciar' para tentar novamente!",
-        msgComputerWon: "Xeque-Mate! O computador venceu. Toque em 'Reiniciar'!",
+        hintBlockedPawn: "Este Peão Branco (▲) está bloqueado! Peões brancos só avançam para CIMA (rumo à fileira 3: a3, b3, c3) e nunca andam ou capturam para baixo.",
+        hintWinningMove: (from, to) => `Lance vencedor encontrado! Mova a peça destacada de ${from} para ${to} para dar Xeque-Mate!`,
+        hintGeneral: "Procure lances que cortem as casas de fuga do Rei Preto sem causar afogamento (empate)!",
+        msgStalemate: "Afogamento (Empate)! O Rei Preto não tem lances legais, mas não está em xeque. Toque em 'Reiniciar Jogo' para tentar novamente!",
+        msgComputerWon: "Xeque-Mate! O computador venceu. Toque em 'Reiniciar Jogo' para tentar novamente!",
         gotItBtn: "Entendi!",
-        puzzleSolvedBadge: "Resolvido!",
+        puzzleSolvedBadge: "Desafio Resolvido!",
         victoryTitle: "Xeque-Mate! 🎉",
-        victoryDesc: "Brilhante mate tático!",
+        victoryDesc: "Brilhante xeque-mate tático! Você superou a defesa do mini-xadrez 3x3.",
         timeTaken: "Tempo",
         stars: "Estrelas",
         challenge: "Desafio",
-        anotherChallengeBtn: "Próximo Desafio ➔",
+        anotherChallengeBtn: "Mais um Desafio ➔",
         reviewBoardBtn: "Rever Tabuleiro Final",
-        merchModalTitle: "Kit Oficial 3x3Chess",
-        merchModalSubtitle: "Nogueira Europeia e Bétula",
-        merchItemTitle: "Tabuleiro Studio Edition",
-        merchBullet1: "9 Peças Magnéticas Torneadas",
-        merchBullet2: "Bolsa de Veludo + 50 Cartas",
-        preOrderBtn: "Encomendar Físico",
+        merchModalTitle: "Kit Oficial Tabuleiro 3x3Chess",
+        merchModalSubtitle: "Produzido em Nogueira Europeia e Bétula Sustentáveis",
+        merchItemTitle: "Tabuleiro de Bolso 3x3 Studio Edition",
+        merchBullet1: "9 Peças Magnéticas Torneadas à Mão",
+        merchBullet2: "Bolsa de Veludo + 50 Cartas de Desafios",
+        preOrderBtn: "Encomendar Kit Físico",
         closeBtn: "Fechar",
-        checkoutAlert: "Abrindo página de compra!",
+        checkoutAlert: "Abrindo página de compra do Tabuleiro Físico 3x3Chess!",
         gameOptionsLabel: "OPÇÕES DE JOGO",
-        customizationTitle: "Configurações",
+        customizationTitle: "Personalização",
         piecesStyleLabel: "ESTILO DAS PEÇAS",
         studioWoodLabel: "Madeira Studio",
         soundVolumeLabel: "VOLUME DOS EFEITOS",
         applyPlayBtn: "Aplicar & Jogar",
         resetBtn: "Padrão",
-        settingsHeader: "Ajustes",
-        soundsTitle: "Sons", soundsDesc: "Toques e alertas",
-        hapticsTitle: "Vibração", hapticsDesc: "Vibrar ao mover",
-        showTimerTitle: "Mostrar Tempo", showTimerDesc: "Exibir cronômetro",
-        showMovesTitle: "Mostrar Lances", showMovesDesc: "Destacar casas",
-        rotateBoardTitle: "Girar Tabuleiro", rotateBoardDesc: "Inverter visão",
+        settingsHeader: "Configurações",
+        soundsTitle: "Sons", soundsDesc: "Toques de madeira e alertas",
+        hapticsTitle: "Vibração", hapticsDesc: "Vibrar ao mover peças",
+        showTimerTitle: "Mostrar Tempo", showTimerDesc: "Exibir cronômetro da partida",
+        showMovesTitle: "Mostrar Lances", showMovesDesc: "Destacar casas válidas",
+        rotateBoardTitle: "Girar Tabuleiro", rotateBoardDesc: "Inverter visão do tabuleiro",
         tutorialBtn: "Regras / Tutorial",
-        autoSavedFooter: "3x3Chess v1.6 • Salvo",
-        seoMainTitle: "Sobre o Mini-Xadrez 3x3",
-        seoCard1Title: "♟️ O que é?", seoCard1Text: "Variante condensada do xadrez clássico em 9 casas.",
-        seoCard2Title: "📜 Regras Oficiais", seoCard2Text: "As peças se movem como no xadrez tradicional.",
-        seoCard3Title: "🧮 Matemática", seoCard3Text: "Matematicamente resolvido com 54.687.564 posições.",
-        footerLegalLink: "Privacidade & Termos",
-        legalModalTitle: "Privacidade e Termos",
-        legalPrivacyTitle: "1. Privacidade e Cookies", legalPrivacyText: "Utilizamos localStorage e AdSense.",
-        legalTermsTitle: "2. Termos de Uso", legalTermsText: "Grátis. CC0. Design protegido.",
-        legalContactTitle: "3. Contato", legalContactText: "Contate nossos canais oficiais."
+        autoSavedFooter: "3x3Chess v1.6 • Salvo automaticamente",
+        seoMainTitle: "Sobre o Mini-Xadrez 3x3 e Desafios Táticos de Xeque-Mate",
+        seoCard1Title: "♟️ O que é o Xadrez 3x3?", 
+        seoCard1Text: "O Xadrez 3x3 é uma variante dinâmica e condensada do xadrez clássico, disputada em um tabuleiro de 9 casas (colunas a, b, c e fileiras 1, 2, 3). Apesar do espaço reduzido, ele preserva toda a riqueza geométrica e tática do xadrez oficial. Cada lance exige precisão absoluta, tornando-o excelente para treinar cálculo rápido, visão de finais e raciocínio lógico.",
+        seoCard2Title: "📜 Regras Oficiais e Movimentos", 
+        seoCard2Text: "As peças se movem exatamente como no xadrez tradicional da FIDE: o Rei anda uma casa em qualquer direção, Torres dominam linhas retas, Bispos atuam nas diagonais, Cavalos saltam em 'L' e a Rainha combina os movimentos de Torre e Bispo. Os peões brancos (▲) avançam sempre para cima rumo à fileira 3, onde promovem automaticamente. Roque e salto duplo de peão não existem no 3x3.",
+        seoCard3Title: "🧮 Matemática do Jogo: Mate em até 16 Lances", 
+        seoCard3Text: "O Xadrez 3x3 foi matematicamente resolvido por pesquisadores de computação (como Kirill Kryukov), que mapearam todas as 54.687.564 posições legais únicas possíveis. Surpreendentemente, o xeque-mate forçado mais longo em um tabuleiro 3x3 exige exatos 16 lances! Nossa plataforma reúne milhares de problemas selecionados, desde o aquecimento de Mate em 1 até desafios de Mate em 15.",
+        footerLegalLink: "Política de Privacidade, Cookies & Termos de Uso",
+        legalModalTitle: "Política de Privacidade e Termos de Uso",
+        legalPrivacyTitle: "1. Privacidade e Cookies do Google AdSense", 
+        legalPrivacyText: "Este site utiliza armazenamento local (localStorage) e cookies para salvar suas preferências de idioma, áudio e nível de jogo. Também exibimos anúncios fornecidos por redes de publicidade de terceiros, incluindo o Google AdSense, que utilizam cookies (como o cookie DoubleClick DART) para veicular anúncios relevantes com base em suas visitas a este e a outros sites na internet. Você pode desativar os anúncios personalizados acessando as Configurações de Anúncios do Google.",
+        legalTermsTitle: "2. Termos de Uso e Propriedade Intelectual", 
+        legalTermsText: "O 3x3Chess Studio é oferecido gratuitamente para entretenimento e treinamento tático. A base matemática de posições utiliza estudos de domínio público (CC0). O design visual, peças vetoriais e motor de áudio sintetizado são protegidos por direitos autorais.",
+        legalContactTitle: "3. Contato e Suporte", 
+        legalContactText: "Para dúvidas sobre privacidade, parcerias de publicidade direta ou encomendas do tabuleiro físico 3x3 em madeira, entre em contato através dos canais oficiais do nosso estúdio."
       },
       ES: {
         splashBadge: "3x3CHESS STUDIO • DESAFÍO TÁCTICO",
         splashTitle: "Solo 9 Casillas — 54 Millones de Posibilidades",
         splashSubtitle: "¡Engañosamente Simple. Brutalmente Táctico!",
-        splashStat1Val: "9 Casillas", splashStat1Lbl: "Ultra-Compacto",
-        splashStat2Val: "54,6 Millones", splashStat2Lbl: "Combinaciones",
+        splashStat1Val: "9 Casillas", splashStat1Lbl: "Tablero Ultra-Compacto",
+        splashStat2Val: "54,6 Millones", splashStat2Lbl: "Combinaciones Legales",
         splashStat3Val: "Hasta 15", splashStat3Lbl: "Mates Forzados",
         splashHowTitle: "🎯 Cómo Jugar:",
-        splashRule1: "Juegas con Blancas y haces el primer movimiento.",
-        splashRule2: "Movimientos oficiales FIDE. Peones blancos (▲) suben para coronar.",
-        splashRule3: "¡Da Jaque Mate en el número exacto de jugadas! ¡La mayoría falla en Mate en 4!",
+        splashRule1: "Juegas con las piezas Blancas y siempre haces el primer movimiento.",
+        splashRule2: "Aplican los movimientos oficiales FIDE. Los peones blancos (▲) suben hacia la fila 3 para coronar.",
+        splashRule3: "¡Acorrala al Rey Negro y da Jaque Mate en el número exacto de jugadas! ¿Crees que es fácil por tener 9 casillas? ¡La mayoría falla antes del Mate en 4!",
         splashAcceptBtn: "🔥 ¡Acepto el Desafío!",
-        splashDismissHint: "O toca fuera de este cuadro para ir al juego",
-        studioSubtitle: "Estudio Táctico",
+        splashDismissHint: "O toca en cualquier lugar fuera de este cuadro para ir directo al juego",
+        studioSubtitle: "Estudio Táctico y Ebanistería",
         timer: "Tiempo",
         mateIn: (n) => `Mate en ${n}`,
         whiteToMove: "Juegan Blancas",
@@ -389,77 +400,83 @@
         noticeLabel: "Aviso:",
         pawnUpBadge: "▲ SUBE",
         pawnDownBadge: "▼ BAJA",
-        tapWhitePrompt: "Toca una pieza blanca",
-        selectedPiecePrompt: (sq) => `Pieza en ${sq} — Toca el destino`,
-        selectedPawnPrompt: (sq) => `Peón en ${sq} (▲ Sube a fila 3)`,
-        restartBtn: "Reiniciar",
+        tapWhitePrompt: "Toca una pieza blanca para ver jugadas",
+        selectedPiecePrompt: (sq) => `Pieza seleccionada en ${sq} — Toca la casilla de destino`,
+        selectedPawnPrompt: (sq) => `Peón Blanco en ${sq} (▲ Avanza hacia ARRIBA)`,
+        restartBtn: "Reiniciar Juego",
         newGameBtn: "Nuevo Juego",
-        helpBtn: "Pista",
+        helpBtn: "Ayuda / Pista",
         promoteTitle: "Promoción de Peón",
-        merchTitle: "Tablero Físico 3x3 de Madera",
-        merchSubtitle: "Nogal y Arce",
+        merchTitle: "Consigue el Tablero Físico 3x3 de Madera",
+        merchSubtitle: "Hecho a mano en Nogal y Arce • Edición Limitada",
         shopBtn: "Tienda",
-        hintBlockedPawn: "¡Este Peón (▲) está bloqueado! Solo avanza hacia ARRIBA.",
-        hintWinningMove: (from, to) => `¡Jugada ganadora! Mueve de ${from} a ${to}`,
-        hintGeneral: "¡Busca jugadas que corten el escape del Rey!",
-        msgStalemate: "¡Rey Ahogado (Tablas)! ¡Toca 'Reiniciar'!",
-        msgComputerWon: "¡Jaque Mate! La computadora ganó. ¡Toca 'Reiniciar'!",
+        hintBlockedPawn: "¡Este Peón Blanco (▲) está bloqueado! Los peones blancos solo avanzan hacia ARRIBA (hacia la fila 3) y no pueden moverse ni capturar hacia abajo.",
+        hintWinningMove: (from, to) => `¡Jugada ganadora! Mueve la pieza resaltada de ${from} a ${to} para dar Jaque Mate.`,
+        hintGeneral: "¡Busca jugadas que corten el escape del Rey Negro sin causar ahogado!",
+        msgStalemate: "¡Rey Ahogado (Tablas)! El Rey Negro no tiene jugadas legales pero no está en jaque. ¡Toca 'Reiniciar Juego' para intentarlo de nuevo!",
+        msgComputerWon: "¡Jaque Mate! La computadora ganó. ¡Toca 'Reiniciar Juego' para intentarlo de nuevo!",
         gotItBtn: "¡Entendido!",
-        puzzleSolvedBadge: "¡Resuelto!",
+        puzzleSolvedBadge: "¡Problema Resuelto!",
         victoryTitle: "¡Jaque Mate! 🎉",
-        victoryDesc: "¡Brillante mate táctico!",
+        victoryDesc: "¡Brillante jaque mate táctico! Superaste la defensa del mini-ajedrez 3x3.",
         timeTaken: "Tiempo",
         stars: "Estrellas",
         challenge: "Desafío",
         anotherChallengeBtn: "Siguiente Desafío ➔",
         reviewBoardBtn: "Revisar Tablero Final",
-        merchModalTitle: "Set Oficial 3x3Chess",
-        merchModalSubtitle: "Nogal Europeo",
-        merchItemTitle: "Tablero Studio Edition",
-        merchBullet1: "9 Piezas Magnéticas",
-        merchBullet2: "Bolsa + 50 Cartas",
-        preOrderBtn: "Reservar Set",
+        merchModalTitle: "Set Oficial de Madera 3x3Chess",
+        merchModalSubtitle: "Fabricado en Nogal Europeo y Abedul Sostenible",
+        merchItemTitle: "Tablero de Bolsillo 3x3 Studio Edition",
+        merchBullet1: "9 Piezas Magnéticas Torneadas a Mano",
+        merchBullet2: "Bolsa de Terciopelo + 50 Cartas de Problemas",
+        preOrderBtn: "Reservar Set Físico",
         closeBtn: "Cerrar",
-        checkoutAlert: "¡Abriendo tienda!",
-        gameOptionsLabel: "OPCIONES",
-        customizationTitle: "Ajustes",
+        checkoutAlert: "¡Abriendo tienda para el Set Físico 3x3Chess!",
+        gameOptionsLabel: "OPCIONES DE JUEGO",
+        customizationTitle: "Personalización",
         piecesStyleLabel: "ESTILO DE PIEZAS",
         studioWoodLabel: "Madera Studio",
         soundVolumeLabel: "VOLUMEN DE EFECTOS",
         applyPlayBtn: "Aplicar y Jugar",
         resetBtn: "Restablecer",
         settingsHeader: "Ajustes",
-        soundsTitle: "Sonidos", soundsDesc: "Toques y alertas",
-        hapticsTitle: "Vibración", hapticsDesc: "Vibrar al mover",
-        showTimerTitle: "Tiempo", showTimerDesc: "Medir velocidad",
-        showMovesTitle: "Jugadas", showMovesDesc: "Resaltar casillas",
-        rotateBoardTitle: "Girar", rotateBoardDesc: "Invertir tablero",
+        soundsTitle: "Sonidos", soundsDesc: "Toques de piezas y alertas",
+        hapticsTitle: "Vibración", hapticsDesc: "Vibrar en jugadas legales",
+        showTimerTitle: "Mostrar Tiempo", showTimerDesc: "Medir velocidad de cálculo",
+        showMovesTitle: "Mostrar Jugadas", showMovesDesc: "Resaltar casillas legales",
+        rotateBoardTitle: "Girar Tabuleiro", rotateBoardDesc: "Invertir orientación",
         tutorialBtn: "Reglas / Tutorial",
-        autoSavedFooter: "3x3Chess v1.6 • Guardado",
-        seoMainTitle: "Sobre Mini-Ajedrez 3x3",
-        seoCard1Title: "♟️ ¿Qué es?", seoCard1Text: "Variante en 9 casillas.",
-        seoCard2Title: "📜 Reglas", seoCard2Text: "Reglas de la FIDE.",
-        seoCard3Title: "🧮 Resuelto", seoCard3Text: "54.687.564 posiciones.",
-        footerLegalLink: "Privacidad y Términos",
-        legalModalTitle: "Privacidad y Términos",
-        legalPrivacyTitle: "1. Privacidad", legalPrivacyText: "Usamos cookies de AdSense.",
-        legalTermsTitle: "2. Términos", legalTermsText: "Uso gratuito.",
-        legalContactTitle: "3. Contacto", legalContactText: "Contáctenos."
+        autoSavedFooter: "3x3Chess v1.6 • Guardado automático",
+        seoMainTitle: "Sobre el Mini-Ajedrez 3x3 y Problemas Tácticos",
+        seoCard1Title: "♟️ ¿Qué es el Ajedrez 3x3?", 
+        seoCard1Text: "El Ajedrez 3x3 es una variante táctica jugada en una cuadrícula de 9 casillas (columnas a, b, c y filas 1, 2, 3). A pesar de su tamaño compacto, conserva toda la profundidad del cálculo de finales del ajedrez clásico. Cada movimiento tiene un peso inmediato, haciéndolo una excelente herramienta de entrenamiento para el cálculo, reconocimiento de patrones y precisión en finales.",
+        seoCard2Title: "📜 Reglas Oficiales y Mecánicas", 
+        seoCard2Text: "Todas las piezas se mueven y capturan exactamente igual que en el ajedrez estándar de la FIDE: los Reyes se mueven una casilla en cualquier dirección, las Torres controlan líneas, los Alfiles controlan diagonales, los Caballos saltan en forma de L, y las Reinas combinan el poder de la Torre y el Alfil. Los peones blancos (▲) avanzan hacia arriba hacia la fila 3, donde se promocionan inmediatamente. El enroque y el doble empuje de peón no existen en una cuadrícula de 3x3.",
+        seoCard3Title: "🧮 Resuelto Matemáticamente: Mate en 16", 
+        seoCard3Text: "Matemáticos e investigadores de ajedrez por computadora (incluyendo a Kirill Kryukov) han resuelto fuertemente el ajedrez 3x3, analizando las 54,687,564 posiciones legales únicas posibles. Sorprendentemente, ¡el jaque mate forzado más largo en un tablero 3x3 requiere 16 movimientos completos! Nuestra base de datos te permite practicar posiciones verificadas que van desde calentamientos rápidos de Mate en 1 hasta desafíos de nivel de gran maestro de Mate en 15.",
+        footerLegalLink: "Política de Privacidad, Cookies y Términos",
+        legalModalTitle: "Política de Privacidad y Términos de Uso",
+        legalPrivacyTitle: "1. Privacidad y Cookies de Google AdSense", 
+        legalPrivacyText: "Este sitio web utiliza cookies para almacenar tus preferencias de juego (como idioma, configuración de sonido y nivel de rompecabezas) localmente en tu navegador. También nos asociamos con redes publicitarias de terceros, incluido Google AdSense, que utilizan cookies (como la cookie DART de DoubleClick) para mostrar anuncios basados en tu visita a este y otros sitios web en Internet. Puedes optar por no recibir publicidad personalizada visitando la Configuración de anuncios de Google.",
+        legalTermsTitle: "2. Términos de Uso y Propiedad Intelectual", 
+        legalTermsText: "3x3Chess Studio se proporciona de forma gratuita para entretenimiento personal y entrenamiento táctico de ajedrez. La base de datos de posiciones de finales de 3x3 se basa en investigaciones de bases de tablas de dominio público (CC0). El material gráfico vectorial personalizado, el diseño de la interfaz y el sintetizador de audio están protegidos por derechos de autor.",
+        legalContactTitle: "3. Contacto y Soporte", 
+        legalContactText: "Para preguntas sobre privacidad, asociaciones publicitarias o pedidos del juego de ajedrez físico de madera 3x3, comunícate a través de nuestros canales oficiales del estudio."
       },
       FR: {
         splashBadge: "3x3CHESS STUDIO • DÉFI TACTIQUE",
         splashTitle: "Seulement 9 Cases — 54 Millions de Possibilités",
         splashSubtitle: "Trompeusement Simple. Brutalement Tactique !",
-        splashStat1Val: "9 Cases", splashStat1Lbl: "Grille Compacte",
+        splashStat1Val: "9 Cases", splashStat1Lbl: "Grille Ultra-Compacte",
         splashStat2Val: "54,6 Millions", splashStat2Lbl: "Positions Légales",
         splashStat3Val: "Jusqu'à 15", splashStat3Lbl: "Mats Forcés",
         splashHowTitle: "🎯 Comment Jouer :",
-        splashRule1: "Vous jouez avec les Blancs (premier coup).",
-        splashRule2: "Règles FIDE. Les pions blancs (▲) montent pour la promotion.",
-        splashRule3: "Faites Mat dans le nombre exact de coups !",
+        splashRule1: "Vous jouez avec les Blancs et faites toujours le premier coup.",
+        splashRule2: "Règles FIDE. Les pions blancs (▲) montent vers la 3e rangée pour être promus.",
+        splashRule3: "Coincez le Roi Noir et faites Échec et Mat dans le nombre exact de coups ! La plupart échouent dès le Mat en 4 !",
         splashAcceptBtn: "🔥 J'accepte le Défi !",
-        splashDismissHint: "Ou cliquez en dehors pour jouer",
-        studioSubtitle: "Studio Tactique",
+        splashDismissHint: "Ou cliquez n'importe où en dehors de cette fenêtre pour jouer",
+        studioSubtitle: "Studio Tactique & Ébénisterie",
         timer: "Chrono",
         mateIn: (n) => `Mat en ${n}`,
         whiteToMove: "Les Blancs jouent",
@@ -469,222 +486,240 @@
         noticeLabel: "Info :",
         pawnUpBadge: "▲ HAUT",
         pawnDownBadge: "▼ BAS",
-        tapWhitePrompt: "Touchez une pièce blanche",
-        selectedPiecePrompt: (sq) => `Pièce en ${sq} — Touchez la cible`,
-        selectedPawnPrompt: (sq) => `Pion en ${sq} (▲ Avance vers le HAUT)`,
+        tapWhitePrompt: "Touchez une pièce blanche pour voir les coups",
+        selectedPiecePrompt: (sq) => `Pièce sélectionnée en ${sq} — Touchez la case cible`,
+        selectedPawnPrompt: (sq) => `Pion Blanc en ${sq} (▲ Avance vers le HAUT)`,
         restartBtn: "Recommencer",
         newGameBtn: "Nouveau Jeu",
-        helpBtn: "Indice",
-        promoteTitle: "Promotion",
-        merchTitle: "Échiquier Physique 3x3 en Bois",
-        merchSubtitle: "Noyer et Érable",
+        helpBtn: "Aide / Indice",
+        promoteTitle: "Promotion du Pion",
+        merchTitle: "Obtenez l'Échiquier Physique 3x3 en Bois",
+        merchSubtitle: "Fait main en Noyer et Érable • Série Limitée",
         shopBtn: "Boutique",
-        hintBlockedPawn: "Ce Pion (▲) est bloqué !",
-        hintWinningMove: (from, to) => `Coup gagnant ! De ${from} vers ${to}`,
-        hintGeneral: "Cherchez des coups qui bloquent le Roi Noir !",
-        msgStalemate: "Pat (Nulle) ! Cliquez sur 'Recommencer' !",
-        msgComputerWon: "Échec et Mat ! Cliquez sur 'Recommencer' !",
+        hintBlockedPawn: "Ce Pion Blanc (▲) est bloqué ! Les pions blancs avancent uniquement vers le HAUT (rangée 3) et ne peuvent jamais reculer.",
+        hintWinningMove: (from, to) => `Coup gagnant trouvé ! Déplacez la pièce de ${from} vers ${to} pour faire Échec et Mat !`,
+        hintGeneral: "Cherchez des coups qui réduisent les cases de fuite du Roi Noir sans faire pat !",
+        msgStalemate: "Pat (Nulle) ! Le Roi Noir n'a aucun coup légal mais n'est pas en échec. Cliquez sur 'Recommencer' pour réessayer !",
+        msgComputerWon: "Échec et Mat ! L'ordinateur a gagné. Cliquez sur 'Recommencer' pour réessayer !",
         gotItBtn: "Compris !",
-        puzzleSolvedBadge: "Résolu !",
-        victoryTitle: "Mat ! 🎉",
-        victoryDesc: "Brillant mat tactique !",
+        puzzleSolvedBadge: "Problème Résolu !",
+        victoryTitle: "Échec et Mat ! 🎉",
+        victoryDesc: "Brillant mat tactique ! Vous avez déjoué la défense 3x3.",
         timeTaken: "Temps",
         stars: "Étoiles",
         challenge: "Défi",
         anotherChallengeBtn: "Défi Suivant ➔",
         reviewBoardBtn: "Revoir le Plateau",
-        merchModalTitle: "Coffret Officiel",
-        merchModalSubtitle: "Noyer Européen",
-        merchItemTitle: "Échiquier Studio Edition",
-        merchBullet1: "9 Pièces Magnétiques",
-        merchBullet2: "Pochette + 50 Cartes",
-        preOrderBtn: "Commander",
+        merchModalTitle: "Coffret Officiel 3x3Chess en Bois",
+        merchModalSubtitle: "Fabriqué en Noyer Européen et Bouleau Sostenible",
+        merchItemTitle: "Échiquier de Poche 3x3 Studio Edition",
+        merchBullet1: "9 Pièces Magnétiques Tournées à la Main",
+        merchBullet2: "Pochette Velours + 50 Cartes de Défis",
+        preOrderBtn: "Commander le Coffret",
         closeBtn: "Fermer",
-        checkoutAlert: "Ouverture boutique !",
-        gameOptionsLabel: "OPTIONS",
-        customizationTitle: "Paramètres",
+        checkoutAlert: "Ouverture de la boutique pour le coffret 3x3Chess !",
+        gameOptionsLabel: "OPTIONS DE JEU",
+        customizationTitle: "Personnalisation",
         piecesStyleLabel: "STYLE DES PIÈCES",
         studioWoodLabel: "Bois Studio",
-        soundVolumeLabel: "VOLUME",
+        soundVolumeLabel: "VOLUME DES EFFETS",
         applyPlayBtn: "Appliquer & Jouer",
         resetBtn: "Réinitialiser",
         settingsHeader: "Paramètres",
-        soundsTitle: "Sons", soundsDesc: "Bruits et alertes",
-        hapticsTitle: "Vibrations", hapticsDesc: "Vibrer sur coups",
-        showTimerTitle: "Chrono", showTimerDesc: "Afficher le temps",
-        showMovesTitle: "Coups", showMovesDesc: "Surligner cases",
-        rotateBoardTitle: "Tourner", rotateBoardDesc: "Inverser plateau",
+        soundsTitle: "Sons", soundsDesc: "Bruits des pièces et alertes",
+        hapticsTitle: "Vibrations", hapticsDesc: "Vibrer sur les coups légaux",
+        showTimerTitle: "Afficher le Chrono", showTimerDesc: "Suivre la vitesse de réflexion",
+        showMovesTitle: "Afficher les Coups", showMovesDesc: "Surligner les cases légales",
+        rotateBoardTitle: "Tourner le Plateau", rotateBoardDesc: "Inverser l'orientation",
         tutorialBtn: "Règles / Tutoriel",
-        autoSavedFooter: "3x3Chess v1.6 • Sauvegarde",
-        seoMainTitle: "À propos des Mini-Échecs",
-        seoCard1Title: "♟️ Qu'est-ce ?", seoCard1Text: "Variante condensée sur 9 cases.",
-        seoCard2Title: "📜 Règles", seoCard2Text: "Règles FIDE.",
-        seoCard3Title: "🧮 Mathématiques", seoCard3Text: "54 687 564 positions.",
-        footerLegalLink: "Confidentialité & Conditions",
-        legalModalTitle: "Confidentialité",
-        legalPrivacyTitle: "1. Cookies", legalPrivacyText: "Cookies AdSense.",
-        legalTermsTitle: "2. Conditions", legalTermsText: "Jeu gratuit.",
-        legalContactTitle: "3. Contact", legalContactText: "Contactez-nous."
+        autoSavedFooter: "3x3Chess v1.6 • Sauvegarde auto",
+        seoMainTitle: "À propos des Mini-Échecs 3x3 et Problèmes Tactiques",
+        seoCard1Title: "♟️ Qu'est-ce que les Échecs 3x3 ?", 
+        seoCard1Text: "Les échecs 3x3 sont une variante condensée, à haute intensité, jouée sur une grille de 9 cases (colonnes a, b, c et rangées 1, 2, 3). Malgré sa petite taille, ce format conserve la géométrie tactique profonde des échecs classiques. Chaque coup a un poids immédiat, ce qui en fait un outil d'entraînement exceptionnel pour le calcul, la reconnaissance de motifs et la précision en fin de partie.",
+        seoCard2Title: "📜 Règles Officielles et Mécaniques", 
+        seoCard2Text: "Toutes les pièces se déplacent et capturent exactement comme dans les échecs FIDE standard : les Rois se déplacent d'une case dans n'importe quelle direction, les Tours contrôlent les lignes, les Fous contrôlent les diagonales, les Cavaliers sautent en forme de L, et les Dames combinent la puissance de la Tour et du Fou. Les pions blancs (▲) avancent vers le haut (rangée 3), où ils sont immédiatement promus. Le roque et le double pas de pion n'existent pas sur une grille 3x3.",
+        seoCard3Title: "🧮 Résolu Mathématiquement : Mat en 16", 
+        seoCard3Text: "Les mathématiciens et les chercheurs en échecs informatiques (dont Kirill Kryukov) ont fortement résolu les échecs 3x3, en analysant les 54 687 564 positions légales uniques possibles. Fait remarquable, l'échec et mat forcé le plus long sur un échiquier 3x3 nécessite 16 coups complets ! Notre base de données vous permet de vous entraîner sur des positions vérifiées, allant des échauffements rapides de Mat en 1 aux défis de niveau grand maître de Mat en 15.",
+        footerLegalLink: "Politique de Confidentialité, Cookies & Conditions",
+        legalModalTitle: "Politique de Confidentialité et Conditions d'Utilisation",
+        legalPrivacyTitle: "1. Confidentialité et Cookies Google AdSense", 
+        legalPrivacyText: "Ce site web utilise des cookies pour stocker vos préférences de jeu (telles que la langue, les paramètres sonores et le niveau du puzzle) localement dans votre navigateur. Nous travaillons également en partenariat avec des réseaux publicitaires tiers, dont Google AdSense, qui utilisent des cookies (comme le cookie DoubleClick DART) pour diffuser des annonces basées sur votre visite sur ce site et d'autres sites sur Internet. Vous pouvez désactiver la publicité personnalisée en visitant les paramètres d'annonces Google.",
+        legalTermsTitle: "2. Conditions d'Utilisation et Propriété Intellectuelle", 
+        legalTermsText: "3x3Chess Studio est fourni gratuitement pour le divertissement personnel et l'entraînement aux échecs tactiques. La base de données des positions de fin de partie 3x3 est basée sur des recherches de tables du domaine public (CC0). Les illustrations vectorielles personnalisées, la conception de l'interface et le synthétiseur audio sont protégés par le droit d'auteur.",
+        legalContactTitle: "3. Contact et Assistance", 
+        legalContactText: "Pour toute question concernant la confidentialité, les partenariats publicitaires ou les commandes du jeu d'échecs physique en bois 3x3, veuillez nous contacter via les canaux officiels de notre studio."
       },
       DE: {
-        splashBadge: "3x3CHESS STUDIO • TAKTIK",
+        splashBadge: "3x3CHESS STUDIO • TAKTIK-HERAUSFORDERUNG",
         splashTitle: "Nur 9 Felder — 54 Millionen Möglichkeiten",
         splashSubtitle: "Täuschend Einfach. Brutal Taktisch!",
-        splashStat1Val: "9 Felder", splashStat1Lbl: "Kompakt",
-        splashStat2Val: "54,6 Millionen", splashStat2Lbl: "Stellungen",
-        splashStat3Val: "Bis zu 15", splashStat3Lbl: "Matts",
+        splashStat1Val: "9 Felder", splashStat1Lbl: "Kompaktes Schachbrett",
+        splashStat2Val: "54,6 Millionen", splashStat2Lbl: "Legale Stellungen",
+        splashStat3Val: "Bis zu 15 Züge", splashStat3Lbl: "Erzwungene Matts",
         splashHowTitle: "🎯 Spielanleitung:",
-        splashRule1: "Du spielst mit Weiß (erster Zug).",
-        splashRule2: "FIDE-Regeln. Weiße Bauern (▲) ziehen nach OBEN.",
-        splashRule3: "Setze Schachmatt im genauen Zuglimit!",
-        splashAcceptBtn: "🔥 Herausforderung annehmen!",
-        splashDismissHint: "Oder außerhalb tippen zum Starten",
-        studioSubtitle: "Taktik-Studio",
+        splashRule1: "Du spielst mit den weißen Figuren und machst immer den ersten Zug.",
+        splashRule2: "Es gelten die FIDE-Figurenzüge. Weiße Bauern (▲) ziehen nach OBEN (Reihe 3) und wandeln sich um.",
+        splashRule3: "Dränge den schwarzen König in die Ecke und setze Schachmatt! Die meisten scheitern bei Matt in 4!",
+        splashAcceptBtn: "🔥 Ich nehme die Herausforderung an!",
+        splashDismissHint: "Oder tippe einfach außerhalb dieses Fensters, um direkt zu starten",
+        studioSubtitle: "Taktik-Studio & Edles Holzhandwerk",
         timer: "Zeit",
         mateIn: (n) => `Matt in ${n}`,
         whiteToMove: "Weiß am Zug",
         whitesTurn: "Weiß am Zug",
-        computerThinking: "Denkt...",
+        computerThinking: "Computer denkt...",
         checkAlert: "SCHACH!",
         noticeLabel: "Hinweis:",
         pawnUpBadge: "▲ HOCH",
         pawnDownBadge: "▼ RUNTER",
         tapWhitePrompt: "Tippe auf eine weiße Figur",
-        selectedPiecePrompt: (sq) => `Figur auf ${sq} — Tippe aufs Ziel`,
-        selectedPawnPrompt: (sq) => `Bauer auf ${sq} (▲ Zieht nach OBEN)`,
+        selectedPiecePrompt: (sq) => `Figur auf ${sq} gewählt — Tippe auf das Zielfeld`,
+        selectedPawnPrompt: (sq) => `Weißer Bauer auf ${sq} (▲ Zieht nur nach OBEN)`,
         restartBtn: "Neustart",
         newGameBtn: "Neues Spiel",
-        helpBtn: "Tipp",
-        promoteTitle: "Umwandlung",
-        merchTitle: "3x3-Holzschachbrett",
-        merchSubtitle: "Walnuss & Ahorn",
+        helpBtn: "Hilfe / Tipp",
+        promoteTitle: "Bauernumwandlung",
+        merchTitle: "Hol dir das physische 3x3-Holzschachbrett",
+        merchSubtitle: "Handgefertigt aus Walnuss & Ahorn • Limitierte Auflage",
         shopBtn: "Shop",
-        hintBlockedPawn: "Dieser Bauer (▲) ist blockiert!",
-        hintWinningMove: (from, to) => `Gewinnzug! Von ${from} nach ${to}`,
-        hintGeneral: "Nimm dem schwarzen König die Fluchtfelder!",
-        msgStalemate: "Patt (Unentschieden)! Tippe 'Neustart'!",
-        msgComputerWon: "Schachmatt! Tippe 'Neustart'!",
+        hintBlockedPawn: "Dieser weiße Bauer (▲) ist blockiert! Weiße Bauern ziehen nur nach OBEN (Richtung Reihe 3) und niemals rückwärts.",
+        hintWinningMove: (from, to) => `Gewinnzug gefunden! Ziehe die markierte Figur von ${from} nach ${to} für Schachmatt!`,
+        hintGeneral: "Suche nach Zügen, die dem schwarzen König die Fluchtfelder nehmen, ohne Patt zu setzen!",
+        msgStalemate: "Patt (Unentschieden)! Der schwarze König hat keine legalen Züge, steht aber nicht im Schach. Tippe auf 'Neustart'!",
+        msgComputerWon: "Schachmatt! Der Computer hat gewonnen. Tippe auf 'Neustart'!",
         gotItBtn: "Verstanden!",
-        puzzleSolvedBadge: "Gelöst!",
-        victoryTitle: "Matt! 🎉",
-        victoryDesc: "Brillantes Matt!",
+        puzzleSolvedBadge: "Rätsel Gelöst!",
+        victoryTitle: "Schachmatt! 🎉",
+        victoryDesc: "Brillantes taktisches Matt! Du hast die 3x3-Verteidigung geknackt.",
         timeTaken: "Zeit",
         stars: "Sterne",
         challenge: "Aufgabe",
         anotherChallengeBtn: "Nächste Aufgabe ➔",
         reviewBoardBtn: "Endstellung ansehen",
-        merchModalTitle: "Offizielles Set",
-        merchModalSubtitle: "Walnuss & Birke",
-        merchItemTitle: "Studio Edition",
-        merchBullet1: "9 Holzfiguren",
-        merchBullet2: "Beutel + 50 Karten",
-        preOrderBtn: "Vorbestellen",
+        merchModalTitle: "Offizielles 3x3Chess Holz-Set",
+        merchModalSubtitle: "Aus nachhaltigem Walnuss- & Birkenholz",
+        merchItemTitle: "3x3 Studio Edition Taschenschach",
+        merchBullet1: "9 handgedrechselte magnetische Holzfiguren",
+        merchBullet2: "Samtbeutel + 50 Rätselkarten",
+        preOrderBtn: "Holz-Set Vorbestellen",
         closeBtn: "Schließen",
-        checkoutAlert: "Shop öffnet!",
-        gameOptionsLabel: "OPTIONEN",
-        customizationTitle: "Einstellungen",
+        checkoutAlert: "Shop für das physische 3x3Chess-Set wird geöffnet!",
+        gameOptionsLabel: "SPIELOPTIONEN",
+        customizationTitle: "Anpassung",
         piecesStyleLabel: "FIGURENSTIL",
         studioWoodLabel: "Studio Holz",
-        soundVolumeLabel: "LAUTSTÄRKE",
-        applyPlayBtn: "Anwenden",
+        soundVolumeLabel: "EFFEKT-LAUTSTÄRKE",
+        applyPlayBtn: "Anwenden & Spielen",
         resetBtn: "Standard",
         settingsHeader: "Einstellungen",
-        soundsTitle: "Töne", soundsDesc: "Geräusche",
-        hapticsTitle: "Vibration", hapticsDesc: "Bei Zügen",
-        showTimerTitle: "Timer", showTimerDesc: "Denkzeit",
-        showMovesTitle: "Züge", showMovesDesc: "Markieren",
-        rotateBoardTitle: "Drehen", rotateBoardDesc: "Brett drehen",
+        soundsTitle: "Töne", soundsDesc: "Figurengeräusche & Alarme",
+        hapticsTitle: "Vibration", hapticsDesc: "Bei legalen Zügen vibrieren",
+        showTimerTitle: "Timer anzeigen", showTimerDesc: "Denkzeit verfolgen",
+        showMovesTitle: "Züge anzeigen", showMovesDesc: "Legale Felder markieren",
+        rotateBoardTitle: "Brett drehen", rotateBoardDesc: "Ansicht umdrehen",
         tutorialBtn: "Regeln / Tutorial",
-        autoSavedFooter: "3x3Chess v1.6 • Gespeichert",
-        seoMainTitle: "Über 3x3 Mini-Schach",
-        seoCard1Title: "♟️ Was ist es?", seoCard1Text: "Schachvariante auf 9 Feldern.",
-        seoCard2Title: "📜 Regeln", seoCard2Text: "FIDE-Regeln.",
-        seoCard3Title: "🧮 Gelöst", seoCard3Text: "54.687.564 Stellungen.",
-        footerLegalLink: "Datenschutz",
-        legalModalTitle: "Datenschutz & Nutzungsbedingungen",
-        legalPrivacyTitle: "1. Datenschutz", legalPrivacyText: "Wir verwenden AdSense.",
-        legalTermsTitle: "2. Bedingungen", legalTermsText: "Kostenlos.",
-        legalContactTitle: "3. Kontakt", legalContactText: "Kontaktieren Sie uns."
+        autoSavedFooter: "3x3Chess v1.6 • Automatisch gespeichert",
+        seoMainTitle: "Über 3x3 Mini-Schach & Taktische Endspiel-Rätsel",
+        seoCard1Title: "♟️ Was ist 3x3-Schach?", 
+        seoCard1Text: "3x3-Schach ist eine kompakte Schachvariante auf 9 Feldern (Linien a, b, c und Reihen 1, 2, 3). Trotz der geringen Größe bietet sie faszinierende taktische Endspiel-Berechnungen. Jeder Zug hat sofortiges Gewicht, was es zu einem außergewöhnlichen Trainingsinstrument für Berechnung, Mustererkennung und Endspielpräzision macht.",
+        seoCard2Title: "📜 Offizielle Regeln", 
+        seoCard2Text: "Alle Figuren ziehen nach den FIDE-Regeln: Könige ziehen ein Feld in jede Richtung, Türme kontrollieren Linien, Läufer kontrollieren Diagonalen, Springer springen in L-Form und Damen kombinieren Turm- und Läuferkraft. Weiße Bauern (▲) ziehen nach oben zur 3. Reihe und wandeln sich sofort um. Rochade und doppelter Bauernschritt existieren auf dem 3x3-Brett nicht.",
+        seoCard3Title: "🧮 Vollständig Gelöst: Matt in 16", 
+        seoCard3Text: "Mathematiker und Computerschachforscher (darunter Kirill Kryukov) haben 3x3-Schach stark gelöst, indem sie alle 54.687.564 möglichen legalen Stellungen analysiert haben. Bemerkenswert ist, dass das längste erzwungene Matt auf einem 3x3-Brett ganze 16 Züge erfordert! Mit unserer Datenbank kannst du überprüfte Stellungen üben, von schnellen Matt in 1-Aufwärmübungen bis hin zu großmeisterlichen Matt in 15-Herausforderungen.",
+        footerLegalLink: "Datenschutz, Cookies & Nutzungsbedingungen",
+        legalModalTitle: "Datenschutzerklärung & Nutzungsbedingungen",
+        legalPrivacyTitle: "1. Datenschutz & Google AdSense Cookies", 
+        legalPrivacyText: "Diese Website verwendet Cookies, um deine Spieleinstellungen (wie Sprache, Toneinstellungen und Rätselstufe) lokal in deinem Browser zu speichern. Wir arbeiten auch mit Drittanbieter-Werbenetzwerken zusammen, einschließlich Google AdSense, die Cookies (wie das DoubleClick DART-Cookie) verwenden, um Anzeigen basierend auf deinem Besuch auf dieser und anderen Websites im Internet zu schalten. Du kannst personalisierte Werbung deaktivieren, indem du die Google-Anzeigeneinstellungen besuchst.",
+        legalTermsTitle: "2. Nutzungsbedingungen & Geistiges Eigentum", 
+        legalTermsText: "3x3Chess Studio ist ein kostenloses Trainingsprogramm. Die Endspiel-Datenbank basiert auf gemeinfreier Tablebase-Forschung (CC0). Die benutzerdefinierten Vektorgrafiken, das Interface-Design und der Audiosynthesizer sind urheberrechtlich geschützt.",
+        legalContactTitle: "3. Kontakt", 
+        legalContactText: "Bei Fragen zum Datenschutz, zu Werbepartnerschaften oder zu Bestellungen des physischen Holzschachbretts kontaktiere uns bitte über unsere offiziellen Studio-Kanäle."
       },
       RU: {
-        splashBadge: "3x3CHESS STUDIO • ВЫЗОВ",
+        splashBadge: "3x3CHESS STUDIO • ТАКТИЧЕСКИЙ ВЫЗОВ",
         splashTitle: "Всего 9 клеток — 54 миллиона комбинаций",
         splashSubtitle: "Обманчиво просто. Брутально тактично!",
-        splashStat1Val: "9 Клеток", splashStat1Lbl: "Мини-доска",
-        splashStat2Val: "54,6 Млн", splashStat2Lbl: "Позиций",
-        splashStat3Val: "До 15", splashStat3Lbl: "Мат",
+        splashStat1Val: "9 Клеток", splashStat1Lbl: "Мини-доска 3x3",
+        splashStat2Val: "54,6 Млн", splashStat2Lbl: "Легальных позиций",
+        splashStat3Val: "До 15 Ходов", splashStat3Lbl: "Форсированный мат",
         splashHowTitle: "🎯 Как играть:",
-        splashRule1: "Вы играете белыми (первый ход).",
-        splashRule2: "Правила ФИДЕ. Белые пешки (▲) идут ВВЕРХ.",
-        splashRule3: "Поставьте мат за точное число ходов!",
+        splashRule1: "Вы играете белыми фигурами и всегда делаете первый ход.",
+        splashRule2: "Действуют правила ФИДЕ. Белые пешки (▲) идут ВВЕРХ к 3-й горизонтали и превращаются в другую фигуру.",
+        splashRule3: "Загоните чёрного короля в угол и поставьте мат за точное число ходов! Большинство не решает уже Мат в 4!",
         splashAcceptBtn: "🔥 Принимаю вызов!",
-        splashDismissHint: "Или нажмите вне окна",
-        studioSubtitle: "Тактическая студия",
+        splashDismissHint: "Или нажмите в любом месте вне этого окна, чтобы сразу начать игру",
+        studioSubtitle: "Тактическая студия и деревянный дизайн",
         timer: "Время",
         mateIn: (n) => `Мат в ${n}`,
-        whiteToMove: "Ход белых",
+        whiteToMove: "Белые начинают",
         whitesTurn: "Ход белых",
         computerThinking: "Думает...",
         checkAlert: "ШАХ!",
         noticeLabel: "Внимание:",
         pawnUpBadge: "▲ ВВЕРХ",
         pawnDownBadge: "▼ ВНИЗ",
-        tapWhitePrompt: "Нажмите на белую фигуру",
-        selectedPiecePrompt: (sq) => `Фигура на ${sq} — укажите цель`,
-        selectedPawnPrompt: (sq) => `Пешка на ${sq} (▲ Идет ВВЕРХ)`,
+        tapWhitePrompt: "Нажмите на белую фигуру, чтобы увидеть доступные ходы",
+        selectedPiecePrompt: (sq) => `Выбрана фигура на ${sq} — укажите клетку назначения`,
+        selectedPawnPrompt: (sq) => `Белая пешка на ${sq} (▲ Ходит только ВВЕРХ)`,
         restartBtn: "Заново",
         newGameBtn: "Новая игра",
         helpBtn: "Подсказка",
-        promoteTitle: "Превращение",
-        merchTitle: "Деревянный набор 3x3Chess",
-        merchSubtitle: "Орех и клён",
+        promoteTitle: "Превращение пешки",
+        merchTitle: "Деревянный набор 3x3Chess ручной работы",
+        merchSubtitle: "Орех и клён • Лимитированная серия",
         shopBtn: "Купить",
-        hintBlockedPawn: "Пешка (▲) заблокирована! Ходит только ВВЕРХ.",
-        hintWinningMove: (from, to) => `Победный ход! С ${from} на ${to}`,
-        hintGeneral: "Отрезайте пути королю!",
-        msgStalemate: "Пат (Ничья)! Нажмите «Заново»!",
-        msgComputerWon: "Шах и мат! Нажмите «Заново»!",
+        hintBlockedPawn: "Эта белая пешка (▲) заблокирована! Белые пешки ходят только ВВЕРХ (к линии 3: a3, b3, c3) и не могут ходить или бить назад.",
+        hintWinningMove: (from, to) => `Найден победный ход! Переместите выделенную фигуру с ${from} на ${to} для мата!`,
+        hintGeneral: "Ищите ходы, которые отрезают пути отступления чёрному королю, но не ставят пат!",
+        msgStalemate: "Пат (Ничья)! У чёрного короля нет легальных ходов, но шаха нет. Нажмите «Заново», чтобы попробовать ещё раз!",
+        msgComputerWon: "Шах и мат! Компьютер победил. Нажмите «Заново», чтобы попробовать ещё раз!",
         gotItBtn: "Понятно!",
-        puzzleSolvedBadge: "Решено!",
-        victoryTitle: "Мат! 🎉",
-        victoryDesc: "Блестящий мат!",
+        puzzleSolvedBadge: "Задача решена!",
+        victoryTitle: "Шах и мат! 🎉",
+        victoryDesc: "Блестящий тактический мат! Вы взломали оборону мини-шахмат 3x3.",
         timeTaken: "Время",
         stars: "Звёзды",
         challenge: "Задача",
         anotherChallengeBtn: "Ещё задачу ➔",
         reviewBoardBtn: "Посмотреть доску",
-        merchModalTitle: "Официальный набор",
-        merchModalSubtitle: "Европейский орех",
-        merchItemTitle: "Карманная доска",
-        merchBullet1: "9 деревянных фигур",
-        merchBullet2: "Мешочек + 50 карточек",
-        preOrderBtn: "Предзаказ",
+        merchModalTitle: "Официальный деревянный набор 3x3Chess",
+        merchModalSubtitle: "Европейский орех и карельская берёза",
+        merchItemTitle: "Карманная доска 3x3 Studio Edition",
+        merchBullet1: "9 магнитных точёных деревянных фигур",
+        merchBullet2: "Бархатный мешочек + 50 карточек с задачами",
+        preOrderBtn: "Предзаказ набора",
         closeBtn: "Закрыть",
-        checkoutAlert: "Переход к заказу!",
+        checkoutAlert: "Переход к оформлению заказа деревянного набора 3x3Chess!",
         gameOptionsLabel: "ПАРАМЕТРЫ ИГРЫ",
         customizationTitle: "Оформление",
         piecesStyleLabel: "СТИЛЬ ФИГУР",
         studioWoodLabel: "Дерево Studio",
-        soundVolumeLabel: "ГРОМКОСТЬ",
-        applyPlayBtn: "Применить",
+        soundVolumeLabel: "ГРОМКОСТЬ ЗВУКОВ",
+        applyPlayBtn: "Применить и играть",
         resetBtn: "Сброс",
         settingsHeader: "Настройки",
-        soundsTitle: "Звуки", soundsDesc: "Стук фигур",
-        hapticsTitle: "Вибрация", hapticsDesc: "Тактильный отклик",
-        showTimerTitle: "Таймер", showTimerDesc: "Показывать время",
-        showMovesTitle: "Подсказки", showMovesDesc: "Подсвечивать",
-        rotateBoardTitle: "Повернуть", rotateBoardDesc: "Перевернуть",
+        soundsTitle: "Звуки", soundsDesc: "Стук деревянных фигур и сигналы",
+        hapticsTitle: "Вибрация", hapticsDesc: "Тактильный отклик при ходе",
+        showTimerTitle: "Таймер", showTimerDesc: "Показывать время решения",
+        showMovesTitle: "Подсказки ходов", showMovesDesc: "Подсвечивать доступные клетки",
+        rotateBoardTitle: "Повернуть доску", rotateBoardDesc: "Перевернуть обзор на 180°",
         tutorialBtn: "Правила / Обучение",
         autoSavedFooter: "3x3Chess v1.6 • Автосохранение",
-        seoMainTitle: "О мини-шахматах 3x3",
-        seoCard1Title: "♟️ Что это?", seoCard1Text: "Шахматы на доске 9 клеток.",
-        seoCard2Title: "📜 Правила", seoCard2Text: "Правила ФИДЕ.",
-        seoCard3Title: "🧮 Расчёт", seoCard3Text: "54 687 564 позиций.",
-        footerLegalLink: "Конфиденциальность",
-        legalModalTitle: "Политика конфиденциальности",
-        legalPrivacyTitle: "1. Cookie", legalPrivacyText: "Сайт использует AdSense.",
-        legalTermsTitle: "2. Условия", legalTermsText: "Бесплатно. CC0.",
-        legalContactTitle: "3. Контакты", legalContactText: "Свяжитесь с нами."
+        seoMainTitle: "О мини-шахматах 3x3 и тактических задачах",
+        seoCard1Title: "♟️ Что такое шахматы 3x3?", 
+        seoCard1Text: "Шахматы 3x3 — это динамичный и концентрированный вариант классических шахмат на доске из 9 клеток (вертикали a, b, c и горизонтали 1, 2, 3). Несмотря на миниатюрный размер, игра сохраняет глубокую геометрию и тактику эндшпиля. Каждый ход имеет немедленный вес, что делает его исключительным инструментом для тренировки расчета и распознавания образов.",
+        seoCard2Title: "📜 Официальные правила", 
+        seoCard2Text: "Все фигуры ходят строго по правилам ФИДЕ: Короли ходят на одну клетку, Ладьи контролируют линии, Слоны — диагонали, Кони прыгают буквой Г, а Ферзи объединяют силу Ладьи и Слона. Белые пешки (▲) двигаются вверх к 3-й горизонтали, где сразу превращаются в другую фигуру. Рокировки и хода пешкой на две клетки нет.",
+        seoCard3Title: "🧮 Математический расчёт: Мат в 16 ходов", 
+        seoCard3Text: "Исследователи компьютерных шахмат (включая Кирилла Крюкова) полностью просчитали шахматы 3x3, выявив 54 687 564 уникальные легальные позиции. Самый длинный форсированный мат на доске 3x3 требует целых 16 ходов! Наша база данных позволяет практиковать проверенные позиции: от быстрых разминок Мат в 1 ход до сложнейших задач Мат в 15 ходов.",
+        footerLegalLink: "Конфиденциальность, Cookies и Условия",
+        legalModalTitle: "Политика конфиденциальности и Условия",
+        legalPrivacyTitle: "1. Конфиденциальность и файлы Cookie Google AdSense", 
+        legalPrivacyText: "Этот сайт использует файлы cookie для сохранения ваших игровых настроек (таких как язык, звук и уровень) локально в вашем браузере. Мы также сотрудничаем со сторонними рекламными сетями, включая Google AdSense, которые используют файлы cookie (например, DoubleClick DART) для показа релевантных объявлений на основе вашего посещения этого и других сайтов. Вы можете отказаться от персонализированной рекламы в Настройках рекламных предпочтений Google.",
+        legalTermsTitle: "2. Условия использования", 
+        legalTermsText: "3x3Chess Studio предоставляется бесплатно для тренировок и развлечения. База эндшпильных позиций 3x3 основана на открытых исследованиях (CC0). Пользовательская векторная графика, дизайн интерфейса и аудиосинтезатор защищены авторским правом.",
+        legalContactTitle: "3. Контакты", 
+        legalContactText: "По вопросам конфиденциальности, рекламного сотрудничества или заказа физического деревянного набора 3x3 свяжитесь с нами через официальные каналы нашей студии."
       }
     };
 
@@ -716,7 +751,9 @@
       return children;
     }
 
-    // SVG Chess Pieces
+    // ========================================================
+    // REDESIGN DOS SVGs DE PEÇAS DE XADREZ (GEOMÉTRICAS E PONTUDAS)
+    // ========================================================
     function ChessPieceIcon({ type, color = 'w', size = 60 }) {
       const isWhite = color === 'w';
       const mainFill = isWhite ? '#FFFFFF' : '#23232c';
@@ -730,12 +767,10 @@
             <svg width={size} height={size} viewBox="0 0 100 100" className="drop-shadow-md">
               <filter id={`shadow-k-${color}`}><feDropShadow dx="0" dy="3.5" stdDeviation="2.5" floodOpacity="0.35"/></filter>
               <g filter={`url(#shadow-k-${color})`}>
-                <path d="M 50 11 L 50 25 M 43 18 L 57 18" stroke={strokeColor} strokeWidth="5.5" strokeLinecap="round" />
-                <path d="M 28 36 C 26 26, 38 24, 42 30 C 46 22, 54 22, 58 30 C 62 24, 74 26, 72 36 C 70 46, 75 52, 73 60 C 68 70, 32 70, 27 60 C 25 52, 30 46, 28 36 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4.5" strokeLinejoin="round" />
-                <ellipse cx="50" cy="46" rx="7" ry="5" fill={accentGold} stroke={strokeColor} strokeWidth="2.5" />
-                <path d="M 33 58 C 44 63, 56 63, 67 58" fill="none" stroke={strokeColor} strokeWidth="3.5" strokeLinecap="round"/>
-                <path d="M 22 75 C 22 68, 78 68, 78 75 C 78 82, 72 86, 50 86 C 28 86, 22 82, 22 75 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4.5" />
-                <rect x="26" y="80" width="48" height="6" rx="3" fill={highlightFill} stroke={strokeColor} strokeWidth="2" />
+                <path d="M 22 80 L 78 80 L 68 65 L 32 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round"/>
+                <path d="M 32 65 C 10 40, 30 25, 50 35 C 70 25, 90 40, 68 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round"/>
+                <path d="M 40 65 C 40 45, 60 45, 60 65" fill="none" stroke={strokeColor} strokeWidth="5" strokeLinejoin="round"/>
+                <path d="M 50 35 L 50 10 M 40 18 L 60 18" stroke={strokeColor} strokeWidth="5" strokeLinecap="round"/>
               </g>
             </svg>
           );
@@ -744,14 +779,13 @@
             <svg width={size} height={size} viewBox="0 0 100 100" className="drop-shadow-md">
               <filter id={`shadow-q-${color}`}><feDropShadow dx="0" dy="3.5" stdDeviation="2.5" floodOpacity="0.35"/></filter>
               <g filter={`url(#shadow-q-${color})`}>
-                <circle cx="24" cy="25" r="4.5" fill={accentGold} stroke={strokeColor} strokeWidth="3" />
-                <circle cx="37" cy="18" r="4.5" fill={accentGold} stroke={strokeColor} strokeWidth="3" />
-                <circle cx="50" cy="14" r="5.5" fill="#EF4444" stroke={strokeColor} strokeWidth="3" />
-                <circle cx="63" cy="18" r="4.5" fill={accentGold} stroke={strokeColor} strokeWidth="3" />
-                <circle cx="76" cy="25" r="4.5" fill={accentGold} stroke={strokeColor} strokeWidth="3" />
-                <path d="M 25 32 L 32 58 L 44 30 L 50 56 L 56 30 L 68 58 L 75 32 C 78 48, 76 68, 74 72 C 67 76, 33 76, 26 72 C 24 68, 22 48, 25 32 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4.5" strokeLinejoin="round" />
-                <path d="M 34 60 Q 50 68 66 60" fill="none" stroke={accentGold} strokeWidth="4" strokeLinecap="round"/>
-                <path d="M 22 76 C 22 70, 78 70, 78 76 C 78 84, 70 88, 50 88 C 30 88, 22 84, 22 76 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4.5" />
+                <path d="M 22 80 L 78 80 L 68 65 L 32 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round"/>
+                <path d="M 32 65 L 18 30 L 38 45 L 50 15 L 62 45 L 82 30 L 68 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round"/>
+                <circle cx="18" cy="30" r="4" fill={accentGold} stroke={strokeColor} strokeWidth="3"/>
+                <circle cx="38" cy="45" r="4" fill={accentGold} stroke={strokeColor} strokeWidth="3"/>
+                <circle cx="50" cy="15" r="4" fill={accentGold} stroke={strokeColor} strokeWidth="3"/>
+                <circle cx="62" cy="45" r="4" fill={accentGold} stroke={strokeColor} strokeWidth="3"/>
+                <circle cx="82" cy="30" r="4" fill={accentGold} stroke={strokeColor} strokeWidth="3"/>
               </g>
             </svg>
           );
@@ -760,10 +794,8 @@
             <svg width={size} height={size} viewBox="0 0 100 100" className="drop-shadow-md">
               <filter id={`shadow-r-${color}`}><feDropShadow dx="0" dy="3.5" stdDeviation="2.5" floodOpacity="0.35"/></filter>
               <g filter={`url(#shadow-r-${color})`}>
-                <path d="M 28 24 L 36 24 L 36 32 L 45 32 L 45 24 L 55 24 L 55 32 L 64 32 L 64 24 L 72 24 L 70 42 L 30 42 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4.5" strokeLinejoin="round" />
-                <path d="M 33 42 C 34 56, 35 64, 31 72 L 69 72 C 65 64, 66 56, 67 42 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4.5" />
-                <rect x="47" y="48" width="6" height="12" rx="3" fill={strokeColor} />
-                <path d="M 23 74 C 23 68, 77 68, 77 74 C 77 82, 70 86, 50 86 C 30 86, 23 82, 23 74 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4.5" />
+                <path d="M 22 80 L 78 80 L 68 65 L 32 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round"/>
+                <path d="M 35 65 L 65 65 L 65 40 L 75 40 L 75 20 L 61 20 L 61 30 L 54 30 L 54 20 L 46 20 L 46 30 L 39 30 L 39 20 L 25 20 L 25 40 L 35 40 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round"/>
               </g>
             </svg>
           );
@@ -772,11 +804,10 @@
             <svg width={size} height={size} viewBox="0 0 100 100" className="drop-shadow-md">
               <filter id={`shadow-n-${color}`}><feDropShadow dx="0" dy="3.5" stdDeviation="2.5" floodOpacity="0.35"/></filter>
               <g filter={`url(#shadow-n-${color})`}>
-                <path d="M 32 74 C 30 65, 27 50, 31 40 C 35 30, 42 16, 54 18 C 58 18, 59 23, 62 23 C 67 23, 73 29, 74 36 C 75 42, 69 47, 63 47 C 62 47, 59 52, 65 61 C 70 69, 72 71, 72 74 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4.5" strokeLinejoin="round" />
-                <circle cx="58" cy="30" r="3.5" fill={strokeColor} />
-                <path d="M 48 18 L 47 28" stroke={strokeColor} strokeWidth="3.5" strokeLinecap="round" />
-                <path d="M 68 40 C 65 42, 62 43, 58 41" stroke={strokeColor} strokeWidth="3" strokeLinecap="round" />
-                <path d="M 24 75 C 24 69, 76 69, 76 75 C 76 83, 70 87, 50 87 C 30 87, 24 83, 24 75 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4.5" />
+                <path d="M 22 80 L 78 80 L 68 65 L 32 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round"/>
+                <path d="M 68 65 C 68 40, 55 20, 55 20 L 40 30 L 48 38 L 22 50 L 22 60 L 35 60 C 35 60, 35 65, 45 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round"/>
+                <path d="M 55 20 L 62 30 L 58 35 L 65 45 L 61 50 L 68 65" fill="none" stroke={strokeColor} strokeWidth="4" strokeLinejoin="round"/>
+                <circle cx="45" cy="35" r="2.5" fill={strokeColor}/>
               </g>
             </svg>
           );
@@ -785,10 +816,10 @@
             <svg width={size} height={size} viewBox="0 0 100 100" className="drop-shadow-md">
               <filter id={`shadow-b-${color}`}><feDropShadow dx="0" dy="3.5" stdDeviation="2.5" floodOpacity="0.35"/></filter>
               <g filter={`url(#shadow-b-${color})`}>
-                <circle cx="50" cy="18" r="4.5" fill={accentGold} stroke={strokeColor} strokeWidth="3" />
-                <path d="M 32 60 C 27 46, 36 26, 50 24 C 64 26, 73 46, 68 60 C 66 68, 62 72, 50 72 C 38 72, 34 68, 32 60 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4.5" strokeLinejoin="round" />
-                <path d="M 44 38 L 56 46 M 52 38 L 48 48" stroke={strokeColor} strokeWidth="3.5" strokeLinecap="round" />
-                <path d="M 25 74 C 25 68, 75 68, 75 74 C 75 82, 68 86, 50 86 C 32 86, 25 82, 25 74 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4.5" />
+                <path d="M 22 80 L 78 80 L 65 65 L 35 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round" />
+                <path d="M 38 65 C 30 40, 50 25, 50 25 C 50 25, 70 40, 62 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round" />
+                <circle cx="50" cy="18" r="5" fill={mainFill} stroke={strokeColor} strokeWidth="5" />
+                <path d="M 43 38 L 57 52" stroke={strokeColor} strokeWidth="5" strokeLinecap="round" />
               </g>
             </svg>
           );
@@ -798,15 +829,9 @@
             <svg width={size} height={size} viewBox="0 0 100 100" className="drop-shadow-md">
               <filter id={`shadow-p-${color}`}><feDropShadow dx="0" dy="3.5" stdDeviation="2.5" floodOpacity="0.35"/></filter>
               <g filter={`url(#shadow-p-${color})`}>
-                <circle cx="50" cy="30" r="15" fill={mainFill} stroke={strokeColor} strokeWidth="4.5" />
-                <path d="M 37 46 C 42 49, 58 49, 63 46" stroke={strokeColor} strokeWidth="4" strokeLinecap="round" fill="none"/>
-                <path d="M 36 49 C 39 60, 36 68, 33 72 L 67 72 C 64 68, 61 60, 64 49 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4.5" strokeLinejoin="round" />
-                {isWhite ? (
-                  <path d="M 50 53 L 57 65 L 43 65 Z" fill={accentGold} stroke={strokeColor} strokeWidth="2" strokeLinejoin="round" />
-                ) : (
-                  <path d="M 50 66 L 57 54 L 43 54 Z" fill={accentGold} stroke={strokeColor} strokeWidth="2" strokeLinejoin="round" />
-                )}
-                <path d="M 26 74 C 26 68, 74 68, 74 74 C 74 82, 68 86, 50 86 C 32 86, 26 82, 26 74 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4.5" />
+                <path d="M 25 80 L 75 80 L 65 65 L 35 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round" />
+                <path d="M 38 65 L 62 65 L 55 45 L 45 45 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round" />
+                <circle cx="50" cy="32" r="14" fill={mainFill} stroke={strokeColor} strokeWidth="5" />
               </g>
             </svg>
           );
@@ -1235,10 +1260,8 @@
             </div>
           </header>
 
-          {/* MAIN NAV EXTREMAMENTE COMPACTO */}
           <nav className="wood-texture border-b-2 border-[#331707] shadow-md px-2 py-2 sm:px-4 sticky top-0 z-30">
             <div className="max-w-7xl mx-auto flex items-center justify-between gap-1 sm:gap-3">
-              
               <div className="flex items-center gap-1.5 sm:gap-3 cursor-pointer" onClick={() => setShowSplashModal(true)}>
                 <div className="w-9 h-9 sm:w-11 sm:h-11 bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 rounded-xl border-2 border-[#2b1203] shadow-md flex items-center justify-center relative">
                   <span className="text-xl sm:text-2xl drop-shadow select-none">👑</span>
@@ -1282,11 +1305,9 @@
             </div>
           </nav>
 
-          {/* STUDIO WORKSPACE (Margens Diminuídas) */}
           <div className="flex-1 max-w-[1500px] w-full mx-auto px-2 sm:px-6 py-2 sm:py-4 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             <main className="lg:col-span-8 xl:col-span-9 flex flex-col items-center">
               
-              {/* INFO BAR: LINHA ÚNICA (SEM CAIXOTES GROSSOS) */}
               <div className="w-full max-w-xl flex items-center justify-center bg-black/40 border border-amber-900/40 backdrop-blur-sm rounded-xl px-3 py-1.5 mb-2 shadow-sm">
                 <span className="text-[11px] sm:text-xs font-fredoka font-bold uppercase tracking-widest text-amber-100 flex items-center justify-center flex-wrap gap-1.5">
                   <span className="text-amber-500 text-sm sm:text-base leading-none">⚡</span>
@@ -1438,9 +1459,7 @@
             </div>
           </footer>
 
-          {/* ========================================================
-              MODAL DE PROMOÇÃO DO PEÃO
-              ======================================================== */}
+          {/* MODAL DE PROMOÇÃO DO PEÃO */}
           {pendingPromotion && (
             <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm">
               <div className="relative wood-texture rounded-3xl p-6 sm:p-8 border-4 border-amber-400 shadow-2xl text-center flex flex-col items-center animate-bounce-short">
@@ -1528,7 +1547,7 @@
                     </div>
                   </div>
                   <div>
-                    {/* Botão do Tutorial dentro das Configurações */}
+                    {/* Botão do Tutorial */}
                     <button type="button" onClick={() => { setShowSettingsModal(false); setShowSplashModal(true); }} className="w-full bg-amber-900/40 hover:bg-amber-800/60 text-amber-200 text-xs font-bold py-3 px-4 rounded-xl border border-amber-700/50 flex items-center justify-center gap-2 mb-4 transition-colors cursor-pointer">
                       <span className="text-base">ℹ️</span> {t.tutorialBtn}
                     </button>
