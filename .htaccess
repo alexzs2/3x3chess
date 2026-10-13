@@ -1,4 +1,4 @@
-# 1. Impede listagem de diretórios (Protege a pasta /puzzles)
+# 1. Impede listagem de diretórios (Protege a pasta /puzzles e raiz)
 Options -Indexes
 
 # 2. Força HTTPS Seguro
@@ -6,23 +6,21 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# 3. Bloqueia acesso a arquivos ocultos (como a pasta .git do GitHub!)
+# 3. Bloqueia acesso a arquivos ocultos (como a pasta .git do GitHub)
 <FilesMatch "^\.">
     Order allow,deny
     Deny from all
 </FilesMatch>
 
-# 4. Compressão GZIP (Reduz o peso do HTML e dos JSONs em até 80%)
+# 4. Compressão GZIP (Reduz o peso do HTML e dos JSONs)
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
 </IfModule>
 
-# 5. Cache Inteligente (Faz o reload de AdSense ser instantâneo!)
+# 5. Cache Inteligente
 <IfModule mod_expires.c>
     ExpiresActive On
-    # Os JSONs de puzzles nunca mudam, então o celular guarda por 1 mês:
     ExpiresByType application/json "access plus 1 month"
-    # O HTML valida rápido para você poder atualizar o código quando quiser:
     ExpiresByType text/html "access plus 0 seconds"
 </IfModule>
 
