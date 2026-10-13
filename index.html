@@ -804,10 +804,12 @@
             <svg width={size} height={size} viewBox="0 0 100 100" className="drop-shadow-md">
               <filter id={`shadow-n-${color}`}><feDropShadow dx="0" dy="3.5" stdDeviation="2.5" floodOpacity="0.35"/></filter>
               <g filter={`url(#shadow-n-${color})`}>
+                {/* Base */}
                 <path d="M 22 80 L 78 80 L 68 65 L 32 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4" strokeLinejoin="round"/>
-                <path d="M 68 65 C 68 40, 55 20, 55 20 L 40 30 L 48 38 L 22 50 L 22 60 L 35 60 C 35 60, 35 65, 45 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4" strokeLinejoin="round"/>
-                <path d="M 55 20 L 62 30 L 58 35 L 65 45 L 61 50 L 68 65" fill="none" stroke={strokeColor} strokeWidth="3" strokeLinejoin="round"/>
-                <circle cx="45" cy="35" r="2.5" fill={strokeColor}/>
+                {/* Corpo do Cavalo Altivo e Elegante (Pescoço Maior, Orelha Menor) */}
+                <path d="M 68 65 L 62 40 L 58 22 L 52 14 L 45 22 L 25 38 L 22 50 L 27 58 L 42 52 L 36 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4" strokeLinejoin="round"/>
+                {/* Olho ajustado para a nova proporção da cabeça */}
+                <circle cx="43" cy="32" r="3" fill={strokeColor}/>
               </g>
             </svg>
           );
@@ -1547,7 +1549,6 @@
                     </div>
                   </div>
                   <div>
-                    {/* Botão do Tutorial */}
                     <button type="button" onClick={() => { setShowSettingsModal(false); setShowSplashModal(true); }} className="w-full bg-amber-900/40 hover:bg-amber-800/60 text-amber-200 text-xs font-bold py-3 px-4 rounded-xl border border-amber-700/50 flex items-center justify-center gap-2 mb-4 transition-colors cursor-pointer">
                       <span className="text-base">ℹ️</span> {t.tutorialBtn}
                     </button>
