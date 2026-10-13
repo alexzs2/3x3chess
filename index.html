@@ -756,9 +756,9 @@
     // ========================================================
     function ChessPieceIcon({ type, color = 'w', size = 60 }) {
       const isWhite = color === 'w';
-      const mainFill = isWhite ? '#FFFFFF' : '#23232c';
+      const mainFill = isWhite ? '#FFFFFF' : '#4a4a58';
       const strokeColor = isWhite ? '#361D0C' : '#0e0e14';
-      const highlightFill = isWhite ? '#FFF8E7' : '#3d3d4e';
+      const highlightFill = isWhite ? '#FFF8E7' : '#5a5a68';
       const accentGold = '#F59E0B';
 
       switch (type) {
@@ -767,10 +767,10 @@
             <svg width={size} height={size} viewBox="0 0 100 100" className="drop-shadow-md">
               <filter id={`shadow-k-${color}`}><feDropShadow dx="0" dy="3.5" stdDeviation="2.5" floodOpacity="0.35"/></filter>
               <g filter={`url(#shadow-k-${color})`}>
-                <path d="M 22 80 L 78 80 L 68 65 L 32 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round"/>
-                <path d="M 32 65 C 10 40, 30 25, 50 35 C 70 25, 90 40, 68 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round"/>
-                <path d="M 40 65 C 40 45, 60 45, 60 65" fill="none" stroke={strokeColor} strokeWidth="5" strokeLinejoin="round"/>
-                <path d="M 50 35 L 50 10 M 40 18 L 60 18" stroke={strokeColor} strokeWidth="5" strokeLinecap="round"/>
+                <path d="M 22 80 L 78 80 L 68 65 L 32 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4" strokeLinejoin="round"/>
+                <path d="M 32 65 C 10 40, 30 25, 50 35 C 70 25, 90 40, 68 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4" strokeLinejoin="round"/>
+                <path d="M 40 65 C 40 45, 60 45, 60 65" fill="none" stroke={strokeColor} strokeWidth="4" strokeLinejoin="round"/>
+                <path d="M 50 35 L 50 10 M 40 18 L 60 18" stroke={strokeColor} strokeWidth="4" strokeLinecap="round"/>
               </g>
             </svg>
           );
@@ -779,13 +779,13 @@
             <svg width={size} height={size} viewBox="0 0 100 100" className="drop-shadow-md">
               <filter id={`shadow-q-${color}`}><feDropShadow dx="0" dy="3.5" stdDeviation="2.5" floodOpacity="0.35"/></filter>
               <g filter={`url(#shadow-q-${color})`}>
-                <path d="M 22 80 L 78 80 L 68 65 L 32 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round"/>
-                <path d="M 32 65 L 18 30 L 38 45 L 50 15 L 62 45 L 82 30 L 68 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round"/>
-                <circle cx="18" cy="30" r="4" fill={accentGold} stroke={strokeColor} strokeWidth="3"/>
-                <circle cx="38" cy="45" r="4" fill={accentGold} stroke={strokeColor} strokeWidth="3"/>
-                <circle cx="50" cy="15" r="4" fill={accentGold} stroke={strokeColor} strokeWidth="3"/>
-                <circle cx="62" cy="45" r="4" fill={accentGold} stroke={strokeColor} strokeWidth="3"/>
-                <circle cx="82" cy="30" r="4" fill={accentGold} stroke={strokeColor} strokeWidth="3"/>
+                <path d="M 22 80 L 78 80 L 68 65 L 32 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4" strokeLinejoin="round"/>
+                <path d="M 32 65 L 18 30 L 38 45 L 50 15 L 62 45 L 82 30 L 68 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4" strokeLinejoin="round"/>
+                <circle cx="18" cy="30" r="4" fill={accentGold} stroke={strokeColor} strokeWidth="2.5"/>
+                <circle cx="38" cy="45" r="4" fill={accentGold} stroke={strokeColor} strokeWidth="2.5"/>
+                <circle cx="50" cy="15" r="4" fill={accentGold} stroke={strokeColor} strokeWidth="2.5"/>
+                <circle cx="62" cy="45" r="4" fill={accentGold} stroke={strokeColor} strokeWidth="2.5"/>
+                <circle cx="82" cy="30" r="4" fill={accentGold} stroke={strokeColor} strokeWidth="2.5"/>
               </g>
             </svg>
           );
@@ -794,8 +794,8 @@
             <svg width={size} height={size} viewBox="0 0 100 100" className="drop-shadow-md">
               <filter id={`shadow-r-${color}`}><feDropShadow dx="0" dy="3.5" stdDeviation="2.5" floodOpacity="0.35"/></filter>
               <g filter={`url(#shadow-r-${color})`}>
-                <path d="M 22 80 L 78 80 L 68 65 L 32 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round"/>
-                <path d="M 35 65 L 65 65 L 65 40 L 75 40 L 75 20 L 61 20 L 61 30 L 54 30 L 54 20 L 46 20 L 46 30 L 39 30 L 39 20 L 25 20 L 25 40 L 35 40 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round"/>
+                <path d="M 22 80 L 78 80 L 68 65 L 32 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4" strokeLinejoin="round"/>
+                <path d="M 35 65 L 65 65 L 65 40 L 75 40 L 75 20 L 61 20 L 61 30 L 54 30 L 54 20 L 46 20 L 46 30 L 39 30 L 39 20 L 25 20 L 25 40 L 35 40 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4" strokeLinejoin="round"/>
               </g>
             </svg>
           );
@@ -804,9 +804,9 @@
             <svg width={size} height={size} viewBox="0 0 100 100" className="drop-shadow-md">
               <filter id={`shadow-n-${color}`}><feDropShadow dx="0" dy="3.5" stdDeviation="2.5" floodOpacity="0.35"/></filter>
               <g filter={`url(#shadow-n-${color})`}>
-                <path d="M 22 80 L 78 80 L 68 65 L 32 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round"/>
-                <path d="M 68 65 C 68 40, 55 20, 55 20 L 40 30 L 48 38 L 22 50 L 22 60 L 35 60 C 35 60, 35 65, 45 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round"/>
-                <path d="M 55 20 L 62 30 L 58 35 L 65 45 L 61 50 L 68 65" fill="none" stroke={strokeColor} strokeWidth="4" strokeLinejoin="round"/>
+                <path d="M 22 80 L 78 80 L 68 65 L 32 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4" strokeLinejoin="round"/>
+                <path d="M 68 65 C 68 40, 55 20, 55 20 L 40 30 L 48 38 L 22 50 L 22 60 L 35 60 C 35 60, 35 65, 45 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4" strokeLinejoin="round"/>
+                <path d="M 55 20 L 62 30 L 58 35 L 65 45 L 61 50 L 68 65" fill="none" stroke={strokeColor} strokeWidth="3" strokeLinejoin="round"/>
                 <circle cx="45" cy="35" r="2.5" fill={strokeColor}/>
               </g>
             </svg>
@@ -816,10 +816,10 @@
             <svg width={size} height={size} viewBox="0 0 100 100" className="drop-shadow-md">
               <filter id={`shadow-b-${color}`}><feDropShadow dx="0" dy="3.5" stdDeviation="2.5" floodOpacity="0.35"/></filter>
               <g filter={`url(#shadow-b-${color})`}>
-                <path d="M 22 80 L 78 80 L 65 65 L 35 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round" />
-                <path d="M 38 65 C 30 40, 50 25, 50 25 C 50 25, 70 40, 62 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round" />
-                <circle cx="50" cy="18" r="5" fill={mainFill} stroke={strokeColor} strokeWidth="5" />
-                <path d="M 43 38 L 57 52" stroke={strokeColor} strokeWidth="5" strokeLinecap="round" />
+                <path d="M 22 80 L 78 80 L 65 65 L 35 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4" strokeLinejoin="round" />
+                <path d="M 38 65 C 30 40, 50 25, 50 25 C 50 25, 70 40, 62 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4" strokeLinejoin="round" />
+                <circle cx="50" cy="18" r="5" fill={mainFill} stroke={strokeColor} strokeWidth="4" />
+                <path d="M 43 38 L 57 52" stroke={strokeColor} strokeWidth="4" strokeLinecap="round" />
               </g>
             </svg>
           );
@@ -829,9 +829,9 @@
             <svg width={size} height={size} viewBox="0 0 100 100" className="drop-shadow-md">
               <filter id={`shadow-p-${color}`}><feDropShadow dx="0" dy="3.5" stdDeviation="2.5" floodOpacity="0.35"/></filter>
               <g filter={`url(#shadow-p-${color})`}>
-                <path d="M 25 80 L 75 80 L 65 65 L 35 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round" />
-                <path d="M 38 65 L 62 65 L 55 45 L 45 45 Z" fill={mainFill} stroke={strokeColor} strokeWidth="5" strokeLinejoin="round" />
-                <circle cx="50" cy="32" r="14" fill={mainFill} stroke={strokeColor} strokeWidth="5" />
+                <path d="M 25 80 L 75 80 L 65 65 L 35 65 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4" strokeLinejoin="round" />
+                <path d="M 38 65 L 62 65 L 55 45 L 45 45 Z" fill={mainFill} stroke={strokeColor} strokeWidth="4" strokeLinejoin="round" />
+                <circle cx="50" cy="32" r="14" fill={mainFill} stroke={strokeColor} strokeWidth="4" />
               </g>
             </svg>
           );
