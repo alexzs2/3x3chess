@@ -71,11 +71,11 @@
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- React & Babel (Versões Travadas e Seguras) -->
-<script crossorigin="anonymous" src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
-<script crossorigin="anonymous" src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
-<script crossorigin="anonymous" src="https://unpkg.com/@babel/standalone@7.23.0/babel.min.js"></script>
+<script defer crossorigin="anonymous" src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script defer crossorigin="anonymous" src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script defer crossorigin="anonymous" src="https://unpkg.com/@babel/standalone@7.23.0/babel.min.js"></script>
 <!-- Canvas Confetti -->
-<script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+<script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -1669,7 +1669,9 @@
     }
 
     ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-  <!-- Bloqueio do Menu de Contexto (Botão Direito) para melhorar a UX do jogo -->
-  <script>document.addEventListener('contextmenu', event => event.preventDefault());</script>
+</script>
+
+<!-- Bloqueio do Menu de Contexto (Botão Direito) para melhorar a UX do jogo -->
+<script>document.addEventListener('contextmenu', event => event.preventDefault());</script>
 </body>
 </html>
