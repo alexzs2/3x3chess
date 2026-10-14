@@ -27,6 +27,42 @@
   gtag('config', 'G-DWQNJMQVRY');
 </script>
 
+<!-- SEO Tradicional -->
+<meta name="description" content="Play 3x3 Mini Chess Puzzles. Solve tactical checkmates on a beautiful minimalist wooden board. A fast-paced chess challenge.">
+<meta name="keywords" content="3x3 chess, mini chess, chess puzzles, tactical chess, mate in 1, browser game, board game">
+<meta name="author" content="3x3Chess Studio">
+
+<!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://3x3chess.com/">
+<meta property="og:title" content="3x3Chess - Tactical Mini Chess Studio">
+<meta property="og:description" content="Master your tactics! Solve fast-paced checkmate puzzles on a minimalist 3x3 wooden board.">
+<!-- IMPORTANTE: Você precisará subir uma imagem chamada preview.jpg (1200x630px) na raiz do servidor depois -->
+<meta property="og:image" content="https://3x3chess.com/preview.jpg">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Schema.org / Estrutura de Software de Jogo -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "3x3Chess Studio",
+  "url": "https://3x3chess.com",
+  "description": "Tactical mini chess puzzles on a 3x3 board. Solve mate in 1, 2, and 3 challenges.",
+  "genre": ["Puzzle", "Board Game", "Strategy"],
+  "playMode": "SinglePlayer",
+  "applicationCategory": "Game",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+
 <!-- Google AdSense Verification Script -->
 
 <!-- Google AdSense Verification Script -->
@@ -1633,6 +1669,7 @@
     }
 
     ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-  </script>
+  <!-- Bloqueio do Menu de Contexto (Botão Direito) para melhorar a UX do jogo -->
+  <script>document.addEventListener('contextmenu', event => event.preventDefault());</script>
 </body>
 </html>
