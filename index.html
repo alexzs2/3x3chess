@@ -1109,14 +1109,21 @@
             const res = await fetch(`./puzzles/matein${levelStr}.json`);
             if(res.ok) {
               const data = await res.json();
-              const whiteOnlyPuzzles = Array.isArray(data) ? data.filter(fen => typeof fen === 'string' && fen.trim().length === 10 && fen.trim().startsWith('w')).map(f => f.trim()) : [];
-              if (whiteOnlyPuzzles.length > 0) {
-                setPuzzleDatabase(whiteOnlyPuzzles);
-                loadRandomPuzzle(whiteOnlyPuzzles);
-              } else throw new Error("No valid 'w' puzzles");
-            } else throw new Error(`File not found`);
+              
+              // NOVO FILTRO INTELIGENTE: Aceita tanto os textos antigos quanto os objetos novos do solver.js!
+              const validPuzzles = Array.isArray(data) ? data.filter(item => {
+                const fenStr = typeof item === 'string' ? item : item.fen;
+                return typeof fenStr === 'string' && fenStr.trim().length === 10 && fenStr.trim().startsWith('w');
+              }) : [];
+
+              if (validPuzzles.length > 0) {
+                setPuzzleDatabase(validPuzzles);
+                loadRandomPuzzle(validPuzzles);
+              } else throw new Error("Nenhum puzzle válido encontrado");
+            } else throw new Error(`Arquivo não encontrado`);
           } catch (e) {
-            const demoDB = ["wK.k..NqRn", "w..k.r.K..", "w..r.K..q."];
+            // Se tudo falhar, carrega os jogos de emergência (agora corrigidos, com os reis pretos 'k' e reis brancos 'K')
+            const demoDB = ["wK.k..NqRn", "w..k.r.K.q", "w.rk.K..q."];
             setPuzzleDatabase(demoDB);
             loadRandomPuzzle(demoDB);
           }
