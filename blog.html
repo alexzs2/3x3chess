@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta name="theme-color" content="#1e1107"/>
+    <meta name="description" content="3x3Chess Blog - Articles, mathematics, and endgame theory for mini-chess variants."/>
+    <title>Blog & Theory - 3x3Chess Studio</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWQNJMQVRY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DWQNJMQVRY');
+    </script>
+
+    <!-- Google AdSense Verification Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8849235958249535" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Outfit:wght@400;600&display=swap" rel="stylesheet"/>
+    <style>
+        body { font-family: 'Outfit', sans-serif; background: radial-gradient(circle at 50% 15%, #351c0a 0%, #170b04 100%); min-height: 100vh; color: #FEFAE0; }
+        h1, h2, h3 { font-family: 'Fredoka', sans-serif; }
+    </style>
+</head>
+<body class="antialiased">
+    
+    <header class="w-full bg-[#180a03] border-b-2 border-amber-950 py-4 px-4 shadow-lg text-center">
+        <h1 class="text-3xl font-black text-amber-100 drop-shadow-md"><a href="/" class="hover:text-amber-400 transition-colors">👑 3x3<span class="text-amber-400">Chess</span> Studio</a></h1>
+        <p class="text-amber-500/80 text-sm font-bold tracking-widest uppercase mt-1">Official Knowledge Base & Endgame Theory</p>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-10 space-y-12">
+        
+        <!-- Artigo 1 -->
+        <article class="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-6 md:p-8 shadow-xl">
+            <h2 class="text-2xl md:text-3xl font-bold text-amber-300 mb-4">The Mathematics of Mini-Chess: Strongly Solving the 3x3 Grid</h2>
+            <div class="text-amber-100/90 space-y-4 leading-relaxed text-sm md:text-base">
+                <p>When discussing computational game theory, traditional chess represents an astronomical challenge with a Shannon number estimated at 10^120 possible games. However, when we condense the board to a 3x3 grid (9 squares), the complexity becomes computationally manageable, allowing researchers to fully map and strongly solve the game space.</p>
+                <p>Computer chess researchers, most notably Kirill Kryukov, have extensively mapped the 3x3 environment. The findings are staggering for such a small grid: there are exactly 54,687,564 unique, legal positions. By computing endgame tablebases for every single one of these nodes, algorithms have determined the absolute truth of any given 3x3 configuration.</p>
+                <p>One of the most fascinating discoveries from this exhaustive mapping is the limit of forced checkmates. In standard chess, tablebases have found mates in over 500 moves. In 3x3 chess, the longest possible forced checkmate sequence requires exactly 16 moves. This implies that no matter how complex a 3x3 puzzle appears, perfect play from both sides will result in a definitive conclusion in 16 moves or fewer, making it an ultimate training ground for human calculation precision.</p>
+            </div>
+        </article>
+
+        <!-- Artigo 2 -->
+        <article class="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-6 md:p-8 shadow-xl">
+            <h2 class="text-2xl md:text-3xl font-bold text-amber-300 mb-4">Why Grandmasters Practice Endgame Puzzles</h2>
+            <div class="text-amber-100/90 space-y-4 leading-relaxed text-sm md:text-base">
+                <p>Chess mastery is rarely about memorizing infinite opening variations; it is heavily reliant on pattern recognition and tactical vision. Endgame practice, particularly in constrained environments like a 3x3 board, strips away the noise of undeveloped pieces and forces the player to focus purely on piece coordination and king safety.</p>
+                <p>Practicing "Mate in 1" to "Mate in 5" puzzles enhances what grandmasters call "board geometry." On a 3x3 board, there are no long-range sniper attacks from a bishop seven squares away. Every threat is immediate. Every square is a critical combat zone. This high-density tactical environment forces the brain to calculate forcing moves—checks, captures, and threats—with zero margin for error.</p>
+                <p>Furthermore, endgame puzzles teach the vital concept of "zugzwang" and stalemates. Because the 3x3 grid is so tight, a careless attacking move can easily result in the enemy king having no legal moves while not being in check, leading to a draw. Learning to navigate these tight corners drastically reduces blunder rates in classical chess endgames.</p>
+            </div>
+        </article>
+
+        <!-- Artigo 3 -->
+        <article class="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-6 md:p-8 shadow-xl">
+            <h2 class="text-2xl md:text-3xl font-bold text-amber-300 mb-4">Translating FIDE Rules to a Micro Board</h2>
+            <div class="text-amber-100/90 space-y-4 leading-relaxed text-sm md:text-base">
+                <p>A common misconception about mini-chess variants is that they require altered rulesets. 3x3Chess maintains rigorous adherence to official FIDE movement rules, providing a realistic simulation of late-game scenarios.</p>
+                <p>Kings move one square in any direction, Rooks control orthogonal lines, Bishops sweep diagonals, and Knights execute their unique L-shaped jumps. The Queen retains her status as the most powerful piece, combining Rook and Bishop vectors. However, the constraints of the board create unique behavioral quirks. For instance, a Knight placed on the center square (b2) controls only 4 squares instead of its usual 8, yet it becomes an absolute dominant force in restricting the enemy king's movement.</p>
+                <p>Pawn mechanics are perhaps the most aggressive feature. White pawns advance upwards towards rank 3. Because the board is only 3 ranks deep, a pawn move is an immediate threat of promotion. Sub-promotion (promoting to a Knight, Rook, or Bishop instead of a Queen) becomes a highly frequent tactical necessity in 3x3 chess to avoid immediate stalemate traps, highlighting an advanced tactical theme rarely seen in beginner play.</p>
+            </div>
+        </article>
+
+    </main>
+
+    <footer class="w-full bg-[#140802] border-t border-amber-950 py-6 text-center text-amber-400/60 text-sm mt-8">
+        <p>© 2026 3x3Chess Studio Edition • Educational Endgame Platform</p>
+        <a href="/" class="text-amber-500 hover:text-white mt-2 inline-block font-bold">⬅ Return to Game Studio</a>
+    </footer>
+
+</body>
+</html>
