@@ -1359,7 +1359,7 @@
       return (
         <div className="flex flex-col min-h-screen text-amber-50">
           
-          <header className="w-full bg-[#180a03] border-b-2 border-amber-950 py-1.5 sm:py-2 px-3 sm:px-4 z-20">
+          <header className="hidden w-full bg-[#180a03] border-b-2 border-amber-950 py-1.5 sm:py-2 px-3 sm:px-4 z-20">
             <div className="max-w-7xl mx-auto">
               <AdSlot slotKey="topBanner" format="horizontal">
                 <div className="ad-pattern border border-dashed border-amber-500/70 bg-gradient-to-r from-amber-950/60 via-[#2f1606]/80 to-amber-950/60 rounded-xl flex items-center justify-center text-center opacity-60 min-h-[60px] md:min-h-[90px]">
@@ -1415,7 +1415,7 @@
           </nav>
 
           <div className="flex-1 max-w-[1500px] w-full mx-auto px-2 sm:px-6 py-2 sm:py-4 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            <main className="lg:col-span-8 xl:col-span-9 flex flex-col items-center">
+            <main className="lg:col-span-12 flex flex-col items-center">
               
               <div className="w-full max-w-xl flex items-center justify-center bg-black/40 border border-amber-900/40 backdrop-blur-sm rounded-xl px-3 py-1.5 mb-2 shadow-sm">
                 <span className="text-[11px] sm:text-xs font-fredoka font-bold uppercase tracking-widest text-amber-100 flex items-center justify-center flex-wrap gap-1.5">
@@ -1506,7 +1506,7 @@
 
             </main>
 
-            <aside className="lg:col-span-4 xl:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:flex lg:flex-col gap-4 w-full">
+            <aside className="hidden lg:col-span-4 xl:col-span-3 gap-4 w-full">
               <AdSlot slotKey="rightSquare1" format="rectangle">
                 <div className="bg-[#1a0c03]/80 border-2 border-dashed border-amber-900/60 rounded-2xl p-3.5 shadow-xl relative overflow-hidden flex flex-col items-center justify-center min-h-[250px] opacity-60">
                   <span className="text-xs font-bold text-amber-400/50 uppercase tracking-widest text-center">Google AdSense<br/>Square 1</span>
