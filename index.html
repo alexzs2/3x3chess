@@ -4,19 +4,29 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta name="theme-color" content="#1e1107"/>
-<meta name="description" content="3x3Chess Studio — Apenas 9 Casas, 54 Milhões de Possibilidades! Desafios táticos de xeque-mate do Mate em 1 ao Mate em 15."/>
 
 <!-- Favicon Vetorial Nativo -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='92' height='92' x='4' y='4' rx='22' fill='%23F59E0B' stroke='%232b1203' stroke-width='8'/><text x='50%25' y='54%25' dominant-baseline='central' text-anchor='middle' font-size='58'>👑</text></svg>"/>
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23F59E0B'/><text x='50%25' y='54%25' dominant-baseline='central' text-anchor='middle' font-size='60'>👑</text></svg>"/>
 
-<!-- Cartão de Compartilhamento Seguro -->
+<title>3x3Chess Studio — Tactical Mini-Chess Endgame Trainer & Mathematical Guide</title>
+
+<!-- SEO Tradicional -->
+<meta name="description" content="Practice verified 3x3 mini-chess endgame puzzles from Mate in 1 to Mate in 15. Explore the complete mathematical guide, piece geometry, and tactical checkmate patterns on a 9-square grid."/>
+<meta name="keywords" content="3x3 chess, mini chess, chess endgame trainer, tactical chess puzzles, mate in 1, mate in 2, retrograde analysis chess, endgame tablebase, FIDE mini chess rules, zugzwang training"/>
+<meta name="author" content="3x3Chess Studio"/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
+<link rel="canonical" href="https://3x3chess.com/"/>
+
+<!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://3x3chess.com/"/>
-<meta property="og:title" content="👑 3x3Chess Studio — 9 Casas, 54 Milhões de Possibilidades!"/>
-<meta property="og:description" content="Enganosamente simples. Brutalmente tático! Você consegue dar xeque-mate no tabuleiro 3x3? Aceite o desafio!"/>
+<meta property="og:title" content="👑 3x3Chess Studio — Tactical Mini-Chess Endgame Trainer"/>
+<meta property="og:description" content="Only 9 squares, 54.6 million legal positions. Train forced checkmates from Mate in 1 to Mate in 15 and master endgame calculation."/>
+<meta property="og:image" content="https://3x3chess.com/preview.jpg"/>
 
-<title>3x3Chess - Tactical Mini Chess Studio</title>
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image"/>
 
 <!-- Google Analytics (GA4) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWQNJMQVRY"></script>
@@ -27,45 +37,57 @@
   gtag('config', 'G-DWQNJMQVRY');
 </script>
 
-<!-- SEO Tradicional -->
-<meta name="description" content="Play 3x3 Mini Chess Puzzles. Solve tactical checkmates on a beautiful minimalist wooden board. A fast-paced chess challenge.">
-<meta name="keywords" content="3x3 chess, mini chess, chess puzzles, tactical chess, mate in 1, browser game, board game, learning chess, addictive chess, easy chess, quick chess game, chess training, endgame practice">
-<meta name="author" content="3x3Chess Studio">
-<meta name="robots" content="max-image-preview:large">
-
-<!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://3x3chess.com/">
-<meta property="og:title" content="3x3Chess - Tactical Mini Chess Studio">
-<meta property="og:description" content="Master your tactics! Solve fast-paced checkmate puzzles on a minimalist 3x3 wooden board.">
-<!-- IMPORTANTE: Você precisará subir uma imagem chamada preview.jpg (1200x630px) na raiz do servidor depois -->
-<meta property="og:image" content="https://3x3chess.com/preview.jpg">
-
-<!-- Twitter Cards -->
-<meta name="twitter:card" content="summary_large_image">
-
-<!-- Schema.org / Estrutura de Software de Jogo -->
+<!-- Schema.org / VideoGame & FAQPage Structured Data para Autoridade no Google -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "VideoGame",
-  "name": "3x3Chess Studio",
-  "url": "https://3x3chess.com",
-  "description": "Tactical mini chess puzzles on a 3x3 board. Solve mate in 1, 2, and 3 challenges. A fast, addictive chess variant perfect for learning chess endgame patterns.",
-  "keywords": "learning chess, addictive chess, easy chess, 3x3 chess, mini chess puzzles",
-  "genre": ["Puzzle", "Board Game", "Strategy", "Educational"],
-  "playMode": "SinglePlayer",
-  "applicationCategory": "Game",
-  "operatingSystem": "Web Browser",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "3x3Chess Studio",
+    "url": "https://3x3chess.com/",
+    "description": "Educational tactical mini-chess endgame trainer on a 3x3 board. Solve mathematically verified forced checkmate puzzles from Mate in 1 to Mate in 15.",
+    "genre": ["Puzzle", "Board Game", "Strategy", "Educational"],
+    "playMode": "SinglePlayer",
+    "applicationCategory": "Game",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does 3x3 chess work and what are the official rules?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "3x3 chess is played on a 9-square grid (files a, b, c and ranks 1, 2, 3) using standard FIDE piece movements. White always moves first with the objective of delivering checkmate within a specified number of moves. Castling, en passant, and double-square initial pawn moves do not exist due to the board dimensions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many legal positions exist in 3x3 chess?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "According to exhaustive retrograde computer analysis conducted by a Russian mathematician, there are exactly 54,687,564 unique, legal positions in 3x3 chess, and the longest forced checkmate requires 16 moves."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do pawns only move one square in 3x3 chess?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because the board has only three ranks (1, 2, and 3), a pawn starting on rank 1 or rank 2 only needs one step forward to reach the promotion rank (rank 3 for White, rank 1 for Black)."
+        }
+      }
+    ]
   }
-}
+]
 </script>
-
-<!-- Google AdSense Verification Script -->
 
 <!-- Google AdSense Verification Script -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8849235958249535" crossorigin="anonymous"></script>
@@ -104,26 +126,24 @@
         }
       }
     }
-  </script>
+</script>
 <style>
-    body { font-family: 'Outfit', sans-serif; user-select: none; -webkit-user-select: none; background: radial-gradient(circle at 50% 15%, #351c0a 0%, #170b04 100%); min-height: 100vh; color: #FEFAE0; }
+    body { font-family: 'Outfit', sans-serif; background: radial-gradient(circle at 50% 10%, #351c0a 0%, #170b04 100%); min-height: 100vh; color: #FEFAE0; }
+    .game-board-noselect { user-select: none; -webkit-user-select: none; }
     .wood-texture { background-color: #4a270f; background-image: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.07) 0%, transparent 60%), repeating-linear-gradient(45deg, rgba(0,0,0,0.035) 0px, rgba(0,0,0,0.035) 2px, transparent 2px, transparent 8px), linear-gradient(to bottom, #593014, #331707); }
     .light-wood-tile { background: linear-gradient(135deg, #FFF3D4 0%, #F5DEB3 100%); box-shadow: inset 0 2px 4px rgba(255,255,255,0.7), inset 0 -2px 4px rgba(0,0,0,0.18); }
     .dark-wood-tile { background: linear-gradient(135deg, #C88D56 0%, #A96831 100%); box-shadow: inset 0 2px 4px rgba(255,255,255,0.25), inset 0 -2px 4px rgba(0,0,0,0.35); }
     .piece-bounce { transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
     .piece-bounce:hover { transform: scale(1.08) translateY(-3px); }
     .piece-bounce:active { transform: scale(0.96) translateY(2px); }
-    .ad-pattern { background-image: repeating-linear-gradient(-45deg, rgba(255,255,255,0.035), rgba(255,255,255,0.035) 12px, transparent 12px, transparent 24px); }
     .btn-chunky { transition: all 0.08s ease; }
     .btn-chunky:active { transform: translateY(4px); }
     .btn-chunky-amber:active { box-shadow: 0 1px 0 #8c4407, 0 3px 6px rgba(0,0,0,0.2) !important; }
     .btn-chunky-green:active { box-shadow: 0 1px 0 #166534, 0 3px 6px rgba(0,0,0,0.2) !important; }
     .btn-chunky-blue:active { box-shadow: 0 1px 0 #1e40af, 0 3px 6px rgba(0,0,0,0.2) !important; }
-    .btn-chunky-gold:active { box-shadow: 0 2px 0 #8c4407, 0 4px 8px rgba(0,0,0,0.2) !important; }
     input[type=range].volume-slider { -webkit-appearance: none; appearance: none; background: transparent; cursor: pointer; }
     input[type=range].volume-slider::-webkit-slider-runnable-track { height: 8px; border-radius: 999px; }
     input[type=range].volume-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 18px; height: 18px; border-radius: 50%; background: #f59e0b; border: 2px solid #fff; margin-top: -5px; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
-    
     .custom-select {
         appearance: none;
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23fcd34d' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M5 7l5 5 5-5'/%3e%3c/svg%3e");
@@ -132,26 +152,322 @@
         background-size: 1.1em 1.1em;
         padding-right: 1.8rem !important;
     }
-  </style>
+</style>
 </head>
-<body class="antialiased overflow-x-hidden selection:bg-amber-500 selection:text-white">
+<body class="antialiased overflow-x-hidden selection:bg-amber-500 selection:text-white flex flex-col min-h-screen">
+
+<!-- ==========================================================================
+     1. APLICATIVO INTERATIVO DO JOGO (REACT)
+     ========================================================================== -->
 <div id="root"></div>
 
-<script type="text/babel">
-    const { useState, useEffect, useRef } = React;
+<!-- ==========================================================================
+     2. CONTEÚDO EDITORIAL ESTÁTICO EM HTML5 PURO (VISÍVEL IMEDIATAMENTE AO GOOGLEBOT)
+     Garante alta densidade informativa, E-E-A-T e zero bloqueio de renderização
+     ========================================================================== -->
+<main id="tactical-guide" class="max-w-6xl w-full mx-auto px-4 sm:px-6 py-10 space-y-12 text-amber-100/90 leading-relaxed">
 
-    // ========================================================
-    // CONFIGURAÇÃO MESTRE DO GOOGLE ADSENSE
-    // ========================================================
-    const ADSENSE_CONFIG = {
-      enabled: false, // Mantemos desligado visualmente até o Google aprovar o domínio
-      clientId: "ca-pub-8849235958249535",
-      slots: {
-        topBanner: "1111111111",
-        rightSquare1: "2222222222",
-        rightSquare2: "3333333333"
-      }
-    };
+  <!-- Navegação Rápida Editorial -->
+  <nav aria-label="Editorial Navigation" class="bg-[#1c0d04]/90 border border-amber-800/70 rounded-2xl p-4 sm:p-5 shadow-lg flex flex-wrap items-center justify-between gap-3">
+    <div class="flex items-center gap-2.5">
+      <span class="text-xl">📚</span>
+      <span class="font-fredoka font-bold text-amber-200 text-sm sm:text-base">3x3Chess Tactical Encyclopedia & Study Guide:</span>
+    </div>
+    <div class="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-semibold">
+      <a href="#mechanics-rules" class="px-3 py-1.5 rounded-lg bg-amber-950/80 hover:bg-amber-800/80 text-amber-200 border border-amber-700/50 transition">FIDE Rules & Geometry</a>
+      <a href="#math-tablebase" class="px-3 py-1.5 rounded-lg bg-amber-950/80 hover:bg-amber-800/80 text-amber-200 border border-amber-700/50 transition">54.6M Nodes Math</a>
+      <a href="#piece-evaluation" class="px-3 py-1.5 rounded-lg bg-amber-950/80 hover:bg-amber-800/80 text-amber-200 border border-amber-700/50 transition">Piece Values</a>
+      <a href="#tactical-patterns" class="px-3 py-1.5 rounded-lg bg-amber-950/80 hover:bg-amber-800/80 text-amber-200 border border-amber-700/50 transition">Checkmate Motifs</a>
+      <a href="/blog.html" class="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-amber-950 font-bold transition">Articles & Theory ➔</a>
+    </div>
+  </nav>
+
+  <!-- Seção 1: Introdução e Regras FIDE aplicadas ao 3x3 -->
+  <section id="mechanics-rules" class="bg-[#1c0d04]/90 border border-amber-900/70 rounded-3xl p-6 sm:p-8 shadow-xl space-y-5">
+    <div class="border-b border-amber-900/60 pb-4">
+      <span class="text-xs font-extrabold uppercase tracking-widest text-amber-400 block mb-1">Chapter 1 • Fundamentals & Mechanics</span>
+      <h2 class="font-fredoka text-2xl sm:text-3xl font-bold text-amber-100">What is 3x3 Mini-Chess? Geometry, Rules & Cognitive Benefits</h2>
+    </div>
+    <p class="text-sm sm:text-base">
+      <strong>3x3 Chess</strong> is a condensed, high-intensity tactical chess variant played on a 9-square board comprising three files (<strong>a, b, c</strong>) and three ranks (<strong>1, 2, 3</strong>). While classical chess on a 64-square board involves long-term opening theory and positional maneuvering across dozens of moves, 3x3 mini-chess strips away memorization and plunges the player directly into pure endgame calculation. On a 9-square grid, every piece is in immediate contact with enemy territory, meaning a single inaccuracy separates a forced win from a stalemate or loss.
+    </p>
+    <p class="text-sm sm:text-base">
+      In <strong>3x3Chess Studio</strong>, all puzzles follow strict <strong>International Chess Federation (FIDE)</strong> movement laws adapted to the compact dimensions of the board:
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+      <div class="bg-[#140802]/80 border border-amber-900/50 rounded-2xl p-4">
+        <h3 class="font-fredoka font-bold text-amber-300 text-base mb-2">♟️ Standard Piece Movements</h3>
+        <ul class="list-disc list-inside text-xs sm:text-sm space-y-1.5 text-amber-100/85">
+          <li><strong>The King (K):</strong> Moves exactly one square horizontally, vertically, or diagonally. Kings may never move into check or occupy adjacent squares.</li>
+          <li><strong>The Queen (Q):</strong> Combines the power of Rook and Bishop, moving any number of clear squares along ranks, files, or diagonals.</li>
+          <li><strong>The Rook (R):</strong> Controls orthogonal lines (files a, b, c and ranks 1, 2, 3), ideal for creating impenetrable mating nets.</li>
+          <li><strong>The Bishop (B):</strong> Moves diagonally. On a 3x3 grid, a light-squared bishop controls up to 5 squares, while a dark-squared bishop controls 4 squares.</li>
+          <li><strong>The Knight (N):</strong> Jumps in an L-shape (two squares in one orthogonal direction and one square perpendicular), leaping over intervening pieces.</li>
+        </ul>
+      </div>
+      <div class="bg-[#140802]/80 border border-amber-900/50 rounded-2xl p-4">
+        <h3 class="font-fredoka font-bold text-amber-300 text-base mb-2">⬆️ Pawn Direction & Special Rules</h3>
+        <ul class="list-disc list-inside text-xs sm:text-sm space-y-1.5 text-amber-100/85">
+          <li><strong>White Pawns (▲ UP):</strong> Always advance upward toward Rank 3 (squares <code>a3</code>, <code>b3</code>, <code>c3</code>) and capture one square diagonally upward.</li>
+          <li><strong>Black Pawns (▼ DN):</strong> Always advance downward toward Rank 1 (squares <code>a1</code>, <code>b1</code>, <code>c1</code>) and capture one square diagonally downward.</li>
+          <li><strong>Immediate Promotion:</strong> Upon reaching the farthest rank, a pawn must immediately promote to a Queen, Rook, Bishop, or Knight.</li>
+          <li><strong>Omitted 8x8 Rules:</strong> Because the grid is only 3 squares wide and 3 squares deep, castling, double-step pawn advances, and <em>en passant</em> captures are geometrically impossible.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção 2: A Matemática e Análise Retrógrada (Sem citar nome próprio, usando "um matemático russo") -->
+  <section id="math-tablebase" class="bg-[#1c0d04]/90 border border-amber-900/70 rounded-3xl p-6 sm:p-8 shadow-xl space-y-5">
+    <div class="border-b border-amber-900/60 pb-4">
+      <span class="text-xs font-extrabold uppercase tracking-widest text-amber-400 block mb-1">Chapter 2 • Combinatorics & Tablebases</span>
+      <h2 class="font-fredoka text-2xl sm:text-3xl font-bold text-amber-100">Strongly Solved: How a Russian Mathematician Mapped 54,687,564 Positions</h2>
+    </div>
+    <p class="text-sm sm:text-base">
+      In game theory, a game is considered <em>strongly solved</em> when an algorithm can compute the perfect, optimal outcome (win, loss, or draw) from any possible legal position on the board. While classical 8x8 chess has an estimated 10<sup>44</sup> legal positions—far beyond the reach of modern supercomputers—the 3x3 chess variant was completely solved through exhaustive retrograde analysis by <strong>a Russian mathematician</strong> and computer chess researcher.
+    </p>
+    <p class="text-sm sm:text-base">
+      By generating a complete endgame tablebase of all piece combinations on the 9-square board, the research proved that there are exactly <strong>54,687,564 unique legal positions</strong>. Even more fascinating is the depth of calculation required: despite having only 9 squares, the longest forced checkmate against optimal defense requires <strong>16 full moves (31 plies)</strong>.
+    </p>
+
+    <!-- Tabela de Dados Matemáticos -->
+    <div class="overflow-x-auto pt-2">
+      <table class="w-full text-left border-collapse bg-[#140802]/90 rounded-2xl overflow-hidden border border-amber-900/70 text-xs sm:text-sm">
+        <thead>
+          <tr class="bg-amber-950/80 text-amber-300 font-fredoka uppercase text-[11px] tracking-wider border-b border-amber-800">
+            <th class="py-3 px-4">Metric / Category</th>
+            <th class="py-3 px-4">Verified Value</th>
+            <th class="py-3 px-4">Tactical Significance in Training</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-amber-950/80 text-amber-100/90">
+          <tr>
+            <td class="py-3 px-4 font-bold text-amber-200">Total Legal Positions</td>
+            <td class="py-3 px-4 font-mono text-emerald-400 font-bold">54,687,564</td>
+            <td class="py-3 px-4">Includes all valid placements of Kings, Pawns, and promoted pieces without illegal checks.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-bold text-amber-200">Longest Forced Checkmate</td>
+            <td class="py-3 px-4 font-mono text-emerald-400 font-bold">Mate in 16 Moves</td>
+            <td class="py-3 px-4">Requires precise piece triangulation, pawn promotion timing, and avoiding stalemate traps.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-bold text-amber-200"> Mate in 1 to Mate in 3</td>
+            <td class="py-3 px-4 font-mono text-amber-300 font-bold">Fast Pattern Recognition</td>
+            <td class="py-3 px-4">Develops instant visual awareness of undefended squares, pins, and royal forks.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-bold text-amber-200">Mate in 4 to Mate in 8</td>
+            <td class="py-3 px-4 font-mono text-amber-300 font-bold">Intermediate Calculation</td>
+            <td class="py-3 px-4">Trains candidate move selection, quiet waiting moves (<em>Zugzwang</em>), and escape-square denial.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-bold text-amber-200">Mate in 9 to Mate in 15</td>
+            <td class="py-3 px-4 font-mono text-amber-300 font-bold">Master Endgame Depth</td>
+            <td class="py-3 px-4">Demands deep visualization of multi-piece coordination and forced defensive responses.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Seção 3: Avaliação Relativa das Peças no Tabuleiro 3x3 -->
+  <section id="piece-evaluation" class="bg-[#1c0d04]/90 border border-amber-900/70 rounded-3xl p-6 sm:p-8 shadow-xl space-y-5">
+    <div class="border-b border-amber-900/60 pb-4">
+      <span class="text-xs font-extrabold uppercase tracking-widest text-amber-400 block mb-1">Chapter 3 • Spatial Geometry</span>
+      <h2 class="font-fredoka text-2xl sm:text-3xl font-bold text-amber-100">How Piece Values Change on a 3x3 Board</h2>
+    </div>
+    <p class="text-sm sm:text-base">
+      In classical 8x8 chess, beginners learn the standard material scale: Pawn = 1, Knight = 3, Bishop = 3, Rook = 5, Queen = 9. However, on a 3x3 board, the boundaries are so close that the relative strength and behavior of each piece undergo dramatic shifts:
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
+      <article class="bg-[#140802]/80 border border-amber-900/60 rounded-2xl p-5">
+        <h3 class="font-fredoka font-bold text-amber-300 text-lg mb-2">👑 The Queen & Stalemate Risk</h3>
+        <p class="text-xs sm:text-sm text-amber-100/80">
+          When placed on the central square <code>b2</code>, a Queen attacks all 8 surrounding squares simultaneously—covering 100% of the board! While this makes the Queen lethal for Mate in 1, she is also the #1 cause of accidental <strong>stalemate</strong> in longer puzzles. Moving the Queen too close to a lone Black King often leaves the opponent with zero legal moves without delivering check.
+        </p>
+      </article>
+      <article class="bg-[#140802]/80 border border-amber-900/60 rounded-2xl p-5">
+        <h3 class="font-fredoka font-bold text-amber-300 text-lg mb-2">🏰 The Rook's Cutoff Power</h3>
+        <p class="text-xs sm:text-sm text-amber-100/80">
+          The Rook is arguably the cleanest mating piece in 3x3 chess. Because a Rook only attacks along straight files and ranks, it can seal off an entire rank (such as rank 3) while leaving diagonal breathing room for the enemy King to step into a forced trap. A King and Rook can force checkmate from almost any legal starting configuration.
+        </p>
+      </article>
+      <article class="bg-[#140802]/80 border border-amber-900/60 rounded-2xl p-5">
+        <h3 class="font-fredoka font-bold text-amber-300 text-lg mb-2">🐴 The Knight's B2 Paradox</h3>
+        <p class="text-xs sm:text-sm text-amber-100/80">
+          The Knight exhibits a fascinating geometric quirk on a 3x3 grid: a Knight placed on the center square <code>b2</code> has <strong>zero legal moves</strong> because every L-jump lands outside the board! Conversely, a Knight on any of the 8 perimeter squares (such as <code>a1</code> or <code>b3</code>) controls two key squares and can deliver unblockable smothered checks.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Seção 4: 4 Padrões Táticos Essenciais com Diagramas Visuais em HTML -->
+  <section id="tactical-patterns" class="bg-[#1c0d04]/90 border border-amber-900/70 rounded-3xl p-6 sm:p-8 shadow-xl space-y-6">
+    <div class="border-b border-amber-900/60 pb-4">
+      <span class="text-xs font-extrabold uppercase tracking-widest text-amber-400 block mb-1">Chapter 4 • Tactical Masterclass</span>
+      <h2 class="font-fredoka text-2xl sm:text-3xl font-bold text-amber-100">4 Essential Checkmate & Endgame Patterns You Must Know</h2>
+    </div>
+    <p class="text-sm sm:text-base">
+      To consistently solve puzzles from Mate in 2 up to Mate in 15 without relying on hints, study these four foundational tactical motifs that appear repeatedly across our puzzle database:
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Padrão 1 -->
+      <div class="bg-[#140802]/90 border border-amber-800/60 rounded-2xl p-5 flex flex-col sm:flex-row gap-4 items-center">
+        <div class="grid grid-cols-3 grid-rows-3 gap-1 w-28 h-28 bg-[#371603] p-1.5 rounded-xl border border-amber-700 shrink-0 font-mono text-sm font-black text-center">
+          <div class="light-wood-tile text-gray-900 rounded flex items-center justify-center">♚</div>
+          <div class="dark-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+          <div class="light-wood-tile text-amber-900 rounded flex items-center justify-center">♖</div>
+          <div class="dark-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+          <div class="light-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+          <div class="dark-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+          <div class="light-wood-tile text-amber-900 rounded flex items-center justify-center">♔</div>
+          <div class="dark-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+          <div class="light-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+        </div>
+        <div class="space-y-1.5 text-xs sm:text-sm">
+          <h3 class="font-fredoka font-bold text-amber-300 text-base">1. Direct Opposition & Back-Rank Mate</h3>
+          <p class="text-amber-100/80">
+            When the White King on <code>a1</code> stands two squares directly below the Black King on <code>a3</code>, White holds <strong>direct opposition</strong>—denying the squares <code>a2</code> and <code>b2</code>. A Rook sweeping to the third rank (<code>c3</code>) delivers an instant back-rank checkmate.
+          </p>
+        </div>
+      </div>
+
+      <!-- Padrão 2 -->
+      <div class="bg-[#140802]/90 border border-amber-800/60 rounded-2xl p-5 flex flex-col sm:flex-row gap-4 items-center">
+        <div class="grid grid-cols-3 grid-rows-3 gap-1 w-28 h-28 bg-[#371603] p-1.5 rounded-xl border border-amber-700 shrink-0 font-mono text-sm font-black text-center">
+          <div class="light-wood-tile text-gray-900 rounded flex items-center justify-center">♚</div>
+          <div class="dark-wood-tile text-gray-900 rounded flex items-center justify-center">♟</div>
+          <div class="light-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+          <div class="dark-wood-tile text-gray-900 rounded flex items-center justify-center">♟</div>
+          <div class="light-wood-tile text-amber-900 rounded flex items-center justify-center"></div>
+          <div class="dark-wood-tile text-amber-900 rounded flex items-center justify-center">♘</div>
+          <div class="light-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+          <div class="dark-wood-tile text-amber-900 rounded flex items-center justify-center">♔</div>
+          <div class="light-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+        </div>
+        <div class="space-y-1.5 text-xs sm:text-sm">
+          <h3 class="font-fredoka font-bold text-amber-300 text-base">2. Smothered Corner Mate with Knight</h3>
+          <p class="text-amber-100/80">
+            If the Black King on <code>a3</code> is boxed in by its own pieces on <code>b3</code> and <code>a2</code> (or if <code>b2</code> is guarded by White's King), a White Knight jumping to <code>c2</code> or <code>b1</code> delivers an unstoppable checkmate that cannot be blocked.
+          </p>
+        </div>
+      </div>
+
+      <!-- Padrão 3 -->
+      <div class="bg-[#140802]/90 border border-amber-800/60 rounded-2xl p-5 flex flex-col sm:flex-row gap-4 items-center">
+        <div class="grid grid-cols-3 grid-rows-3 gap-1 w-28 h-28 bg-[#371603] p-1.5 rounded-xl border border-amber-700 shrink-0 font-mono text-sm font-black text-center">
+          <div class="light-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+          <div class="dark-wood-tile text-gray-900 rounded flex items-center justify-center">♚</div>
+          <div class="light-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+          <div class="dark-wood-tile text-amber-900 rounded flex items-center justify-center">♙</div>
+          <div class="light-wood-tile text-amber-900 rounded flex items-center justify-center">♕</div>
+          <div class="dark-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+          <div class="light-wood-tile text-amber-900 rounded flex items-center justify-center">♔</div>
+          <div class="dark-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+          <div class="light-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+        </div>
+        <div class="space-y-1.5 text-xs sm:text-sm">
+          <h3 class="font-fredoka font-bold text-amber-300 text-base">3. Supported Central Queen Mate</h3>
+          <p class="text-amber-100/80">
+            Placing the White Queen on the central square <code>b2</code> while protected by a White King, Pawn, or Minor Piece on <code>a1</code>/<code>a2</code> attacks every single square on the board. The Black King has nowhere to hide and cannot capture the protected Queen.
+          </p>
+        </div>
+      </div>
+
+      <!-- Padrão 4 -->
+      <div class="bg-[#140802]/90 border border-amber-800/60 rounded-2xl p-5 flex flex-col sm:flex-row gap-4 items-center">
+        <div class="grid grid-cols-3 grid-rows-3 gap-1 w-28 h-28 bg-[#371603] p-1.5 rounded-xl border border-amber-700 shrink-0 font-mono text-sm font-black text-center">
+          <div class="light-wood-tile text-gray-900 rounded flex items-center justify-center">♚</div>
+          <div class="dark-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+          <div class="light-wood-tile text-amber-900 rounded flex items-center justify-center">♗</div>
+          <div class="dark-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+          <div class="light-wood-tile text-amber-900 rounded flex items-center justify-center">♔</div>
+          <div class="dark-wood-tile text-amber-900 rounded flex items-center justify-center">♖</div>
+          <div class="light-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+          <div class="dark-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+          <div class="light-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+        </div>
+        <div class="space-y-1.5 text-xs sm:text-sm">
+          <h3 class="font-fredoka font-bold text-amber-300 text-base">4. Zugzwang (The Quiet Waiting Move)</h3>
+          <p class="text-amber-100/80">
+            In many Mate in 2 and Mate in 3 puzzles, checking immediately is a mistake that lets the King escape. Instead, make a quiet waiting move along a rank or diagonal, forcing Black into <em>Zugzwang</em>—where any legal move Black makes walks into checkmate.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção 5: FAQ Editorial -->
+  <section id="faq-section" class="bg-[#1c0d04]/90 border border-amber-900/70 rounded-3xl p-6 sm:p-8 shadow-xl space-y-5">
+    <div class="border-b border-amber-900/60 pb-4">
+      <span class="text-xs font-extrabold uppercase tracking-widest text-amber-400 block mb-1">Chapter 5 • Player Questions</span>
+      <h2 class="font-fredoka text-2xl sm:text-3xl font-bold text-amber-100">Frequently Asked Questions (FAQ)</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs sm:text-sm">
+      <div class="bg-[#140802]/70 border border-amber-900/50 rounded-2xl p-4">
+        <h3 class="font-fredoka font-bold text-amber-300 text-base mb-1.5">Why did my move result in Stalemate (Draw)?</h3>
+        <p class="text-amber-100/80">
+          In chess, if it is Black's turn to move and the Black King is <strong>not in check</strong> but has <strong>no legal square to move to</strong>, the game ends immediately in a Stalemate (Draw). On a 3x3 board, always verify that your non-checking move leaves at least one legal move for Black.
+        </p>
+      </div>
+      <div class="bg-[#140802]/70 border border-amber-900/50 rounded-2xl p-4">
+        <h3 class="font-fredoka font-bold text-amber-300 text-base mb-1.5">How does practicing 3x3 chess improve my 8x8 game?</h3>
+        <p class="text-amber-100/80">
+          Endgames and mating nets in classical 8x8 chess often boil down to a 3x3 or 4x4 sector of the board around the enemy King. Training on a 3x3 grid sharpens your calculation of king opposition, knight geometry, and forcing sequences without visual clutter.
+        </p>
+      </div>
+      <div class="bg-[#140802]/70 border border-amber-900/50 rounded-2xl p-4">
+        <h3 class="font-fredoka font-bold text-amber-300 text-base mb-1.5">Are all puzzles in 3x3Chess Studio verified?</h3>
+        <p class="text-amber-100/80">
+          Yes. Every single position in our Mate in 1 through Mate in 15 levels is extracted from mathematically verified endgame tablebases, guaranteeing that a forced checkmate exists within the exact number of moves selected.
+        </p>
+      </div>
+      <div class="bg-[#140802]/70 border border-amber-900/50 rounded-2xl p-4">
+        <h3 class="font-fredoka font-bold text-amber-300 text-base mb-1.5">Can I play 3x3Chess Studio on mobile and desktop?</h3>
+        <p class="text-amber-100/80">
+          Absolutely. Our interface is built with responsive vector graphics and an acoustic Web Audio synthesizer, working seamlessly on smartphones, tablets, and desktop browsers in 6 languages without requiring downloads.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ==========================================================================
+     3. RODAPÉ INSTITUCIONAL COMPLETO (LINKS REAIS PARA AUDITORIA DO ADSENSE)
+     ========================================================================== -->
+<footer class="w-full bg-[#120702] border-t-2 border-amber-950 py-8 px-4 z-20 mt-auto">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-amber-300/70">
+    <div class="flex flex-col items-center md:items-start gap-1 text-center md:text-left">
+      <div class="flex items-center gap-2">
+        <span class="text-lg">👑</span>
+        <span class="font-fredoka font-bold text-amber-100 text-sm">3x3Chess Studio Edition</span>
+      </div>
+      <p class="text-[11px] text-amber-400/60 max-w-md">
+        Interactive tactical mini-chess endgame trainer and mathematical puzzle database. Free educational platform for chess players worldwide.
+      </p>
+    </div>
+
+    <nav aria-label="Footer Institutional Links" class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-semibold text-amber-200/90">
+      <a href="/index.html" class="hover:text-amber-400 transition">Play 3x3Chess</a>
+      <a href="/blog.html" class="hover:text-amber-400 transition">Articles & Chess Theory</a>
+      <a href="/about.html" class="hover:text-amber-400 transition">About Us</a>
+      <a href="/contact.html" class="hover:text-amber-400 transition">Contact & Support</a>
+      <a href="/privacy.html" class="hover:text-amber-400 transition">Privacy Policy & Terms</a>
+    </nav>
+  </div>
+  <div class="max-w-6xl mx-auto border-t border-amber-950/70 mt-6 pt-4 text-center text-[11px] text-amber-500/50">
+    © 2026 3x3Chess Studio (3x3chess.com). All Rights Reserved.
+  </div>
+</footer>
+
+<!-- ==========================================================================
+     4. MOTOR DO JOGO EM REACT (SEM POP-UP BLOQUEANTE E SEM NOME PRÓPRIO)
+     ========================================================================== -->
+<script type="text/babel">
+    const { useState, useEffect } = React;
 
     const STORAGE_KEY = '3x3chess_studio_prefs_v1';
     const WELCOMED_KEY = '3x3chess_welcomed_v1';
@@ -254,23 +570,11 @@
     };
 
     // ========================================================
-    // DICIONÁRIO MULTILÍNGUE
+    // DICIONÁRIO MULTILÍNGUE (USANDO "UM MATEMÁTICO RUSSO" EM TODOS OS IDIOMAS)
     // ========================================================
     const TRANSLATIONS = {
       EN: {
         splashBadge: "3x3CHESS STUDIO • ENDGAME CHALLENGE",
-        splashTitle: "Only 9 Squares — 54 Million Possibilities",
-        splashSubtitle: "Deceptively Simple. Brutally Tactical!",
-        splashStat1Val: "9 Squares", splashStat1Lbl: "Ultra-Compact Grid",
-        splashStat2Val: "54.6 Million", splashStat2Lbl: "Legal Combinations",
-        splashStat3Val: "Up to 15 Moves", splashStat3Lbl: "Forced Checkmates",
-        splashHowTitle: "🎯 How to Play:",
-        splashRule1: "You play with the White pieces and always make the first move.",
-        splashRule2: "Standard FIDE chess piece movements apply. White pawns (▲) move UP toward rank 3 to promote.",
-        splashRule3: "Corner the Black King and deliver Checkmate in the exact number of moves! Think it's easy because the board is tiny? Most players fail by Mate in 4!",
-        splashAcceptBtn: "🔥 I Accept the Challenge!",
-        splashDismissHint: "Or tap anywhere outside this box to jump straight into the board",
-        // NOVOS TEXTOS DO TUTORIAL CARROSSEL (EN)
         tut0Desc: "Here in 3x3 Chess, White always moves first to checkmate the Black King in the chosen number of moves.",
         tut1Desc: "White pawns move up, and black pawns move down.",
         tut2Desc: "Pawns can be promoted upon reaching their last rank, always to a Queen.",
@@ -278,10 +582,8 @@
         tut3DescPart2: "Restart the same board or request a new challenge at any time.",
         nextBtn: "Next ➔",
         startBtn: "🔥 Start Playing!",
-        studioSubtitle: "Tactical Studio & Clean Woodcraft",
         timer: "Timer",
         mateIn: (n) => `Mate in ${n}`,
-        whiteToMove: "White to move",
         whitesTurn: "White's Turn",
         computerThinking: "Thinking...",
         checkAlert: "CHECK!",
@@ -294,16 +596,11 @@
         restartBtn: "Restart Game",
         newGameBtn: "New Game",
         helpBtn: "Help / Hint",
-        promoteTitle: "Pawn Promotion",
-        merchTitle: "Get the Physical 3x3 Wooden Board",
-        merchSubtitle: "Handcrafted Walnut & Maple Set • Limited Batch",
-        shopBtn: "Shop",
         hintBlockedPawn: "This White Pawn (▲) is blocked! White pawns only move UP toward rank 3 (a3, b3, c3) and cannot move or capture downward.",
         hintWinningMove: (from, to) => `I'll help with the first move only: Move the highlighted piece from ${from} to ${to} to start the Checkmate!`,
         hintGeneral: "Look for moves that cut off the Black King's escape squares without causing a stalemate!",
         msgStalemate: "Stalemate (Draw)! The Black King has no legal moves, but is not in check. Tap 'Restart Game' to try again!",
         msgComputerWon: "Checkmate! The computer defeated you. Tap 'Restart Game' to try again!",
-        gotItBtn: "Got It!",
         puzzleSolvedBadge: "Puzzle Solved!",
         victoryTitle: "Checkmate! 🎉",
         victoryDesc: "Brilliant tactical checkmate! You outsmarted the 3x3 mini-chess defense.",
@@ -312,14 +609,7 @@
         challenge: "Challenge",
         anotherChallengeBtn: "Another Challenge ➔",
         reviewBoardBtn: "Review Final Board",
-        merchModalTitle: "Official 3x3Chess Board Set",
-        merchModalSubtitle: "Crafted from sustainable European Walnut & Birch",
-        merchItemTitle: "3x3 Studio Edition Pocket Board",
-        merchBullet1: "9 Hand-Turned Magnetic Oak & Walnut Pieces",
-        merchBullet2: "Velvet Pouch + 50 Collector Puzzle Cards",
-        preOrderBtn: "Pre-Order Physical Set",
         closeBtn: "Close",
-        checkoutAlert: "Opening checkout for the physical 3x3Chess Set!",
         gameOptionsLabel: "GAME OPTIONS",
         customizationTitle: "Customization",
         piecesStyleLabel: "PIECES STYLE",
@@ -335,35 +625,12 @@
         rotateBoardTitle: "Rotate Board", rotateBoardDesc: "Flip board orientation",
         tutorialBtn: "Rules / Tutorial",
         autoSavedFooter: "3x3Chess v1.6 • Auto-saved",
-        seoMainTitle: "About 3x3 Mini-Chess & Tactical Endgame Puzzles",
-        seoCard1Title: "♟️ What is 3x3 Chess?", 
-        seoCard1Text: "3x3 Chess is a condensed, high-intensity chess variant played on a microscopic 9-square grid (files a, b, c and ranks 1, 2, 3). Despite the seemingly simple board size, it preserves the deep tactical geometry and complex decision-making of classical chess. Every single move carries immediate weight and irreversible consequences, making it an exceptional educational training tool for rapid calculation, pattern recognition, and endgame precision. Grandmasters and beginners alike use mini-chess variants to develop a sharper eye for forcing moves, cutting off escape squares, and mastering the intricate dance of piece coordination in enclosed spaces.",
-        seoCard2Title: "📜 Official FIDE Rules & Mechanics", 
-        seoCard2Text: "All pieces move and capture exactly as mandated by standard FIDE chess regulations: Kings move one square in any direction, Rooks control straight lines, Bishops dominate diagonals, Knights execute their unique L-shape jumps, and Queens combine the immense power of both Rook and Bishop. White pawns (▲) advance aggressively upward toward rank 3, where they immediately promote. Because the board is constrained, tactical themes like sub-promotion (choosing a Knight instead of a Queen to avoid stalemating the opponent) happen frequently. Note that castling and double pawn pushes are mathematically impossible on a 3x3 grid.",
-        seoCard3Title: "🧮 Strongly Solved: 54 Million Nodes", 
-        seoCard3Text: "Mathematicians and elite computer chess researchers, including the notable work by Kirill Kryukov, have strongly solved 3x3 chess by meticulously analyzing all 54,687,564 unique, legal board positions. They generated endgame tablebases proving that the game is a forced draw with perfect play from the starting position. Remarkably, the longest forced checkmate on a 3x3 board requires exactly 16 full moves! Our extensive puzzle database allows you to practice verified, mathematically proven positions ranging from rapid Mate in 1 tactical warmups to grueling, grandmaster-level Mate in 15 calculation challenges.",        footerLegalLink: "Privacy Policy, Cookies & Terms of Use",
-        legalModalTitle: "Privacy Policy & Terms of Use",
-        legalPrivacyTitle: "1. Privacy & Google AdSense Cookies", 
-        legalPrivacyText: "This website uses cookies to store your game preferences (such as language, sound settings, and puzzle level) locally in your browser. We also partner with third-party advertising networks, including Google AdSense, which use cookies (such as the DoubleClick DART cookie) to serve ads based on your visit to this and other websites on the internet. You may opt out of personalized advertising by visiting Google Ads Settings.",
-        legalTermsTitle: "2. Terms of Use & Intellectual Property", 
-        legalTermsText: "3x3Chess Studio is provided free of charge for personal entertainment and tactical chess training. The 3x3 endgame position database is based on public domain tablebase research (CC0). The custom vector artwork, interface design, and audio synthesizer are protected by copyright.",
-        legalContactTitle: "3. Contact & Support", 
-        legalContactText: "For questions regarding privacy, advertising partnerships, or orders of the physical wooden 3x3 chess set, please reach out through our official studio channels."
+        navGuide: "Tactical Guide",
+        navArticles: "Articles",
+        navAbout: "About"
       },
       PT: {
         splashBadge: "3x3CHESS STUDIO • DESAFIO TÁTICO",
-        splashTitle: "Apenas 9 Casas — 54 Milhões de Possibilidades",
-        splashSubtitle: "Enganosamente Simples. Brutalmente Tático!",
-        splashStat1Val: "9 Casas", splashStat1Lbl: "Tabuleiro Ultra-Compacto",
-        splashStat2Val: "54,6 Milhões", splashStat2Lbl: "Combinações Legais",
-        splashStat3Val: "Até 15 Lances", splashStat3Lbl: "Mates Forçados",
-        splashHowTitle: "🎯 Como Jogar:",
-        splashRule1: "Você joga com as peças Brancas e sempre faz o primeiro lance.",
-        splashRule2: "Valem os movimentos oficiais do xadrez (FIDE). Peões brancos (▲) avançam para CIMA (rumo à linha 3) para promover.",
-        splashRule3: "Encurrale o Rei Preto e dê Xeque-Mate no número exato de lances! Acha fácil porque só tem 9 casas? A maioria trava antes do Mate em 4!",
-        splashAcceptBtn: "🔥 Aceito o Desafio!",
-        splashDismissHint: "Ou clique em qualquer lugar fora desta janela para ir direto ao jogo",
-        // NOVOS TEXTOS DO TUTORIAL CARROSSEL (PT)
         tut0Desc: "Aqui no Xadrez 3x3 as brancas sempre começam, para mate no Rei Preto, na quantidade de lances escolhidos.",
         tut1Desc: "Peões brancos se movem para cima e peões pretos para baixo.",
         tut2Desc: "Peões podem ser promovidos ao chegar na sua última linha, sempre para Rainha.",
@@ -371,10 +638,8 @@
         tut3DescPart2: "Reinicie o mesmo tabuleiro ou peça um novo desafio a qualquer momento.",
         nextBtn: "Avançar ➔",
         startBtn: "🔥 Começar a Jogar!",
-        studioSubtitle: "Estúdio Tático & Marcenaria Fina",
         timer: "Tempo",
         mateIn: (n) => `Mate em ${n}`,
-        whiteToMove: "Brancas jogam",
         whitesTurn: "Vez das Brancas",
         computerThinking: "Pensando...",
         checkAlert: "XEQUE!",
@@ -387,16 +652,11 @@
         restartBtn: "Reiniciar Jogo",
         newGameBtn: "Novo Jogo",
         helpBtn: "Ajuda / Dica",
-        promoteTitle: "Promoção de Peão",
-        merchTitle: "Compre o Tabuleiro Físico 3x3 em Madeira",
-        merchSubtitle: "Feito à mão em Nogueira e Bordo • Lote Limitado",
-        shopBtn: "Comprar",
         hintBlockedPawn: "Este Peão Branco (▲) está bloqueado! Peões brancos só avançam para CIMA (rumo à fileira 3: a3, b3, c3) e nunca andam ou capturam para baixo.",
         hintWinningMove: (from, to) => `Eu ajudo apenas com o primeiro lance: Mova a peça destacada de ${from} para ${to} para iniciar o Xeque-Mate!`,
         hintGeneral: "Procure lances que cortem as casas de fuga do Rei Preto sem causar afogamento (empate)!",
         msgStalemate: "Afogamento (Empate)! O Rei Preto não tem lances legais, mas não está em xeque. Toque em 'Reiniciar Jogo' para tentar novamente!",
         msgComputerWon: "Xeque-Mate! O computador venceu. Toque em 'Reiniciar Jogo' para tentar novamente!",
-        gotItBtn: "Entendi!",
         puzzleSolvedBadge: "Desafio Resolvido!",
         victoryTitle: "Xeque-Mate! 🎉",
         victoryDesc: "Brilhante xeque-mate tático! Você superou a defesa do mini-xadrez 3x3.",
@@ -405,14 +665,7 @@
         challenge: "Desafio",
         anotherChallengeBtn: "Mais um Desafio ➔",
         reviewBoardBtn: "Rever Tabuleiro Final",
-        merchModalTitle: "Kit Oficial Tabuleiro 3x3Chess",
-        merchModalSubtitle: "Produzido em Nogueira Europeia e Bétula Sustentáveis",
-        merchItemTitle: "Tabuleiro de Bolso 3x3 Studio Edition",
-        merchBullet1: "9 Peças Magnéticas Torneadas à Mão",
-        merchBullet2: "Bolsa de Veludo + 50 Cartas de Desafios",
-        preOrderBtn: "Encomendar Kit Físico",
         closeBtn: "Fechar",
-        checkoutAlert: "Abrindo página de compra do Tabuleiro Físico 3x3Chess!",
         gameOptionsLabel: "OPÇÕES DE JOGO",
         customizationTitle: "Personalização",
         piecesStyleLabel: "ESTILO DAS PEÇAS",
@@ -428,35 +681,12 @@
         rotateBoardTitle: "Girar Tabuleiro", rotateBoardDesc: "Inverter visão do tabuleiro",
         tutorialBtn: "Regras / Tutorial",
         autoSavedFooter: "3x3Chess v1.6 • Salvo automaticamente",
-        seoMainTitle: "Sobre o Mini-Xadrez 3x3 e Desafios Táticos de Xeque-Mate",
-        seoCard1Title: "♟️ O que é o Xadrez 3x3?", 
-        seoCard1Text: "O Xadrez 3x3 é uma variante dinâmica e ultracondensada do xadrez clássico, disputada em um tabuleiro microscópico de apenas 9 casas (colunas a, b, c e fileiras 1, 2, 3). Apesar do espaço físico severamente reduzido, o jogo preserva de forma intacta toda a riqueza geométrica e as táticas de finais do xadrez oficial. Cada lance exige precisão absoluta e tem consequências imediatas, tornando a variante uma ferramenta educacional excepcional para treinar cálculo rápido, visão de rede de mate e raciocínio lógico sob pressão. É amplamente utilizado para forçar o cérebro a reconhecer padrões de mate sem as distrações de um tabuleiro grande.",
-        seoCard2Title: "📜 Regras Oficiais e Táticas", 
-        seoCard2Text: "As peças se movem e capturam obedecendo estritamente às regras tradicionais da FIDE: o Rei anda uma casa em qualquer direção, Torres dominam linhas retas, Bispos atuam nas diagonais cruzadas, Cavalos saltam em 'L' e a Rainha combina os movimentos letais de Torre e Bispo. Os peões brancos (▲) avançam sempre para cima rumo à fileira 3, onde promovem automaticamente. Devido ao aperto do tabuleiro, manobras avançadas como a subpromoção (promover peão para Cavalo a fim de não afogar o rei inimigo) são cruciais. Roque e salto duplo de peão na saída não existem na geometria 3x3.",
-        seoCard3Title: "🧮 Matemática: 54 Milhões de Posições", 
-        seoCard3Text: "O Xadrez 3x3 foi integralmente e matematicamente resolvido por pesquisadores de computação em xadrez (como o notório Kirill Kryukov), que mapearam computacionalmente todas as exatas 54.687.564 posições legais únicas possíveis. Através da construção de tablebases (tabelas de finais), provou-se que o xeque-mate forçado mais longo possível em um tabuleiro 3x3 exige incríveis 16 lances perfeitos! Nossa plataforma educacional reúne milhares desses problemas matematicamente verificados, guiando o jogador desde o aquecimento básico de Mate em 1 até o limite da mente humana no Mate em 15.",        footerLegalLink: "Política de Privacidade, Cookies & Termos de Uso",
-        legalModalTitle: "Política de Privacidade e Termos de Uso",
-        legalPrivacyTitle: "1. Privacidade e Cookies do Google AdSense", 
-        legalPrivacyText: "Este site utiliza armazenamento local (localStorage) e cookies para salvar suas preferências de idioma, áudio e nível de jogo. Também exibimos anúncios fornecidos por redes de publicidade de terceiros, incluindo o Google AdSense, que utilizam cookies (como o cookie DoubleClick DART) para veicular anúncios relevantes com base em suas visitas a este e a outros sites na internet. Você pode desativar os anúncios personalizados acessando as Configurações de Anúncios do Google.",
-        legalTermsTitle: "2. Termos de Uso e Propriedade Intelectual", 
-        legalTermsText: "O 3x3Chess Studio é oferecido gratuitamente para entretenimento e treinamento tático. A base matemática de posições utiliza estudos de domínio público (CC0). O design visual, peças vetoriais e motor de áudio sintetizado são protegidos por direitos autorais.",
-        legalContactTitle: "3. Contato e Suporte", 
-        legalContactText: "Para dúvidas sobre privacidade, parcerias de publicidade direta ou encomendas do tabuleiro físico 3x3 em madeira, entre em contato através dos canais oficiais do nosso estúdio."
+        navGuide: "Guia Tático",
+        navArticles: "Artigos",
+        navAbout: "Sobre"
       },
       ES: {
         splashBadge: "3x3CHESS STUDIO • DESAFÍO TÁCTICO",
-        splashTitle: "Solo 9 Casillas — 54 Millones de Posibilidades",
-        splashSubtitle: "¡Engañosamente Simple. Brutalmente Táctico!",
-        splashStat1Val: "9 Casillas", splashStat1Lbl: "Tablero Ultra-Compacto",
-        splashStat2Val: "54,6 Millones", splashStat2Lbl: "Combinaciones Legales",
-        splashStat3Val: "Hasta 15", splashStat3Lbl: "Mates Forzados",
-        splashHowTitle: "🎯 Cómo Jugar:",
-        splashRule1: "Juegas con las piezas Blancas y siempre haces el primer movimiento.",
-        splashRule2: "Aplican los movimientos oficiales FIDE. Los peones blancos (▲) suben hacia la fila 3 para coronar.",
-        splashRule3: "¡Acorrala al Rey Negro y da Jaque Mate en el número exacto de jugadas! ¿Crees que es fácil por tener 9 casillas? ¡La mayoría falla antes del Mate en 4!",
-        splashAcceptBtn: "🔥 ¡Acepto el Desafío!",
-        splashDismissHint: "O toca en cualquier lugar fuera de este cuadro para ir directo al juego",
-        // NOVOS TEXTOS DO TUTORIAL CARROSSEL (ES)
         tut0Desc: "Aquí en el Ajedrez 3x3, las blancas siempre comienzan para dar mate al Rey Negro en la cantidad de movimientos elegida.",
         tut1Desc: "Los peones blancos se mueven hacia arriba y los negros hacia abajo.",
         tut2Desc: "Los peones pueden ser promovidos al llegar a su última fila, siempre a Reina.",
@@ -464,10 +694,8 @@
         tut3DescPart2: "Reinicia el mismo tablero o pide un nuevo desafío en cualquier momento.",
         nextBtn: "Siguiente ➔",
         startBtn: "🔥 ¡Empezar a Jugar!",
-        studioSubtitle: "Estudio Táctico y Ebanistería",
         timer: "Tiempo",
         mateIn: (n) => `Mate en ${n}`,
-        whiteToMove: "Juegan Blancas",
         whitesTurn: "Turno Blanco",
         computerThinking: "Pensando...",
         checkAlert: "¡JAQUE!",
@@ -480,16 +708,11 @@
         restartBtn: "Reiniciar Juego",
         newGameBtn: "Nuevo Juego",
         helpBtn: "Ayuda / Pista",
-        promoteTitle: "Promoción de Peón",
-        merchTitle: "Consigue el Tablero Físico 3x3 de Madera",
-        merchSubtitle: "Hecho a mano en Nogal y Arce • Edición Limitada",
-        shopBtn: "Tienda",
         hintBlockedPawn: "¡Este Peón Blanco (▲) está bloqueado! Los peones blancos solo avanzan hacia ARRIBA (hacia la fila 3) y no pueden moverse ni capturar hacia abajo.",
         hintWinningMove: (from, to) => `Solo te ayudo con el primer movimiento: ¡Mueve la pieza resaltada de ${from} a ${to} para iniciar el Jaque Mate!`,
         hintGeneral: "¡Busca jugadas que corten el escape del Rey Negro sin causar ahogado!",
         msgStalemate: "¡Rey Ahogado (Tablas)! El Rey Negro no tiene jugadas legales pero no está en jaque. ¡Toca 'Reiniciar Juego' para intentarlo de nuevo!",
         msgComputerWon: "¡Jaque Mate! La computadora ganó. ¡Toca 'Reiniciar Juego' para intentarlo de nuevo!",
-        gotItBtn: "¡Entendido!",
         puzzleSolvedBadge: "¡Problema Resuelto!",
         victoryTitle: "¡Jaque Mate! 🎉",
         victoryDesc: "¡Brillante jaque mate táctico! Superaste la defensa del mini-ajedrez 3x3.",
@@ -498,14 +721,7 @@
         challenge: "Desafío",
         anotherChallengeBtn: "Siguiente Desafío ➔",
         reviewBoardBtn: "Revisar Tablero Final",
-        merchModalTitle: "Set Oficial de Madera 3x3Chess",
-        merchModalSubtitle: "Fabricado en Nogal Europeo y Abedul Sostenible",
-        merchItemTitle: "Tablero de Bolsillo 3x3 Studio Edition",
-        merchBullet1: "9 Piezas Magnéticas Torneadas a Mano",
-        merchBullet2: "Bolsa de Terciopelo + 50 Cartas de Problemas",
-        preOrderBtn: "Reservar Set Físico",
         closeBtn: "Cerrar",
-        checkoutAlert: "¡Abriendo tienda para el Set Físico 3x3Chess!",
         gameOptionsLabel: "OPCIONES DE JUEGO",
         customizationTitle: "Personalización",
         piecesStyleLabel: "ESTILO DE PIEZAS",
@@ -518,39 +734,15 @@
         hapticsTitle: "Vibración", hapticsDesc: "Vibrar en jugadas legales",
         showTimerTitle: "Mostrar Tiempo", showTimerDesc: "Medir velocidad de cálculo",
         showMovesTitle: "Mostrar Jugadas", showMovesDesc: "Resaltar casillas legales",
-        rotateBoardTitle: "Girar Tabuleiro", rotateBoardDesc: "Invertir orientación",
+        rotateBoardTitle: "Girar Tablero", rotateBoardDesc: "Invertir orientación",
         tutorialBtn: "Reglas / Tutorial",
         autoSavedFooter: "3x3Chess v1.6 • Guardado automático",
-        seoMainTitle: "Sobre el Mini-Ajedrez 3x3 y Problemas Tácticos",
-        seoCard1Title: "♟️ ¿Qué es el Ajedrez 3x3?", 
-        seoCard1Text: "El Ajedrez 3x3 es una variante táctica jugada en una cuadrícula de 9 casillas (columnas a, b, c y filas 1, 2, 3). A pesar de su tamaño compacto, conserva toda la profundidad del cálculo de finales del ajedrez clásico. Cada movimiento tiene un peso inmediato, haciéndolo una excelente herramienta de entrenamiento para el cálculo, reconocimiento de patrones y precisión en finales.",
-        seoCard2Title: "📜 Reglas Oficiales y Mecánicas", 
-        seoCard2Text: "Todas las piezas se mueven y capturan exactamente igual que en el ajedrez estándar de la FIDE: los Reyes se mueven una casilla en cualquier dirección, las Torres controlan líneas, los Alfiles controlan diagonales, los Caballos saltan en forma de L, y las Reinas combinan el poder de la Torre y el Alfil. Los peones blancos (▲) avanzan hacia arriba hacia la fila 3, donde se promocionan inmediatamente. El enroque y el doble empuje de peón no existen en una cuadrícula de 3x3.",
-        seoCard3Title: "🧮 Resuelto Matemáticamente: Mate en 16", 
-        seoCard3Text: "Matemáticos e investigadores de ajedrez por computadora (incluyendo a Kirill Kryukov) han resuelto fuertemente el ajedrez 3x3, analizando las 54,687,564 posiciones legales únicas posibles. Sorprendentemente, ¡el jaque mate forzado más largo en un tablero 3x3 requiere 16 movimientos completos! Nuestra base de datos te permite practicar posiciones verificadas que van desde calentamientos rápidos de Mate en 1 hasta desafíos de nivel de gran maestro de Mate en 15.",
-        footerLegalLink: "Política de Privacidad, Cookies y Términos",
-        legalModalTitle: "Política de Privacidad y Términos de Uso",
-        legalPrivacyTitle: "1. Privacidad y Cookies de Google AdSense", 
-        legalPrivacyText: "Este sitio web utiliza cookies para almacenar tus preferencias de juego (como idioma, configuración de sonido y nivel de rompecabezas) localmente en tu navegador. También nos asociamos con redes publicitarias de terceros, incluido Google AdSense, que utilizan cookies (como la cookie DART de DoubleClick) para mostrar anuncios basados en tu visita a este y otros sitios web en Internet. Puedes optar por no recibir publicidad personalizada visitando la Configuración de anuncios de Google.",
-        legalTermsTitle: "2. Términos de Uso y Propiedad Intelectual", 
-        legalTermsText: "3x3Chess Studio se proporciona de forma gratuita para entretenimiento personal y entrenamiento táctico de ajedrez. La base de datos de posiciones de finales de 3x3 se basa en investigaciones de bases de tablas de dominio público (CC0). El material gráfico vectorial personalizado, el diseño de la interfaz y el sintetizador de audio están protegidos por derechos de autor.",
-        legalContactTitle: "3. Contacto y Soporte", 
-        legalContactText: "Para preguntas sobre privacidad, asociaciones publicitarias o pedidos del juego de ajedrez físico de madera 3x3, comunícate a través de nuestros canales oficiales del estudio."
+        navGuide: "Guía Táctica",
+        navArticles: "Artículos",
+        navAbout: "Acerca de"
       },
       FR: {
         splashBadge: "3x3CHESS STUDIO • DÉFI TACTIQUE",
-        splashTitle: "Seulement 9 Cases — 54 Millions de Possibilités",
-        splashSubtitle: "Trompeusement Simple. Brutalement Tactique !",
-        splashStat1Val: "9 Cases", splashStat1Lbl: "Grille Ultra-Compacte",
-        splashStat2Val: "54,6 Millions", splashStat2Lbl: "Positions Légales",
-        splashStat3Val: "Jusqu'à 15", splashStat3Lbl: "Mats Forcés",
-        splashHowTitle: "🎯 Comment Jouer :",
-        splashRule1: "Vous jouez avec les Blancs et faites toujours le premier coup.",
-        splashRule2: "Règles FIDE. Les pions blancs (▲) montent vers la 3e rangée pour être promus.",
-        splashRule3: "Coincez le Roi Noir et faites Échec et Mat dans le nombre exact de coups ! La plupart échouent dès le Mat en 4 !",
-        splashAcceptBtn: "🔥 J'accepte le Défi !",
-        splashDismissHint: "Ou cliquez n'importe où en dehors de cette fenêtre pour jouer",
-        // NOVOS TEXTOS DO TUTORIAL CARROSSEL (FR)
         tut0Desc: "Ici, aux Échecs 3x3, les Blancs commencent toujours pour mater le Roi Noir dans le nombre de coups choisi.",
         tut1Desc: "Les pions blancs se déplacent vers le haut et les pions noirs vers le bas.",
         tut2Desc: "Les pions peuvent être promus en atteignant leur dernière rangée, toujours en Dame.",
@@ -558,10 +750,8 @@
         tut3DescPart2: "Recommencez le même plateau ou demandez un nouveau défi à tout moment.",
         nextBtn: "Suivant ➔",
         startBtn: "🔥 Commencer à Jouer !",
-        studioSubtitle: "Studio Tactique & Ébénisterie",
         timer: "Chrono",
         mateIn: (n) => `Mat en ${n}`,
-        whiteToMove: "Les Blancs jouent",
         whitesTurn: "Tour des Blancs",
         computerThinking: "Réflexion...",
         checkAlert: "ÉCHEC !",
@@ -574,16 +764,11 @@
         restartBtn: "Recommencer",
         newGameBtn: "Nouveau Jeu",
         helpBtn: "Aide / Indice",
-        promoteTitle: "Promotion du Pion",
-        merchTitle: "Obtenez l'Échiquier Physique 3x3 en Bois",
-        merchSubtitle: "Fait main en Noyer et Érable • Série Limitée",
-        shopBtn: "Boutique",
         hintBlockedPawn: "Ce Pion Blanc (▲) est bloqué ! Les pions blancs avancent uniquement vers le HAUT (rangée 3) et ne peuvent jamais reculer.",
         hintWinningMove: (from, to) => `Je n'aide que pour le premier coup : Déplacez la pièce en surbrillance de ${from} à ${to} pour initier l'Échec et Mat !`,
         hintGeneral: "Cherchez des coups qui réduisent les cases de fuite du Roi Noir sans faire pat !",
         msgStalemate: "Pat (Nulle) ! Le Roi Noir n'a aucun coup légal mais n'est pas en échec. Cliquez sur 'Recommencer' pour réessayer !",
         msgComputerWon: "Échec et Mat ! L'ordinateur a gagné. Cliquez sur 'Recommencer' pour réessayer !",
-        gotItBtn: "Compris !",
         puzzleSolvedBadge: "Problème Résolu !",
         victoryTitle: "Échec et Mat ! 🎉",
         victoryDesc: "Brillant mat tactique ! Vous avez déjoué la défense 3x3.",
@@ -592,14 +777,7 @@
         challenge: "Défi",
         anotherChallengeBtn: "Défi Suivant ➔",
         reviewBoardBtn: "Revoir le Plateau",
-        merchModalTitle: "Coffret Officiel 3x3Chess en Bois",
-        merchModalSubtitle: "Fabriqué en Noyer Européen et Bouleau Sostenible",
-        merchItemTitle: "Échiquier de Poche 3x3 Studio Edition",
-        merchBullet1: "9 Pièces Magnétiques Tournées à la Main",
-        merchBullet2: "Pochette Velours + 50 Cartes de Défis",
-        preOrderBtn: "Commander le Coffret",
         closeBtn: "Fermer",
-        checkoutAlert: "Ouverture de la boutique pour le coffret 3x3Chess !",
         gameOptionsLabel: "OPTIONS DE JEU",
         customizationTitle: "Personnalisation",
         piecesStyleLabel: "STYLE DES PIÈCES",
@@ -615,36 +793,12 @@
         rotateBoardTitle: "Tourner le Plateau", rotateBoardDesc: "Inverser l'orientation",
         tutorialBtn: "Règles / Tutoriel",
         autoSavedFooter: "3x3Chess v1.6 • Sauvegarde auto",
-        seoMainTitle: "À propos des Mini-Échecs 3x3 et Problèmes Tactiques",
-        seoCard1Title: "♟️ Qu'est-ce que les Échecs 3x3 ?", 
-        seoCard1Text: "Les échecs 3x3 sont une variante condensée, à haute intensité, jouée sur une grille de 9 cases (colonnes a, b, c et rangées 1, 2, 3). Malgré sa petite taille, ce format conserve la géométrie tactique profonde des échecs classiques. Chaque coup a un poids immédiat, ce qui en fait un outil d'entraînement exceptionnel pour le calcul, la reconnaissance de motifs et la précision en fin de partie.",
-        seoCard2Title: "📜 Règles Officielles et Mécaniques", 
-        seoCard2Text: "Toutes les pièces se déplacent et capturent exactement comme dans les échecs FIDE standard : les Rois se déplacent d'une case dans n'importe quelle direction, les Tours contrôlent les lignes, les Fous contrôlent les diagonales, les Cavaliers sautent en forme de L, et les Dames combinent la puissance de la Tour et du Fou. Les pions blancs (▲) avancent vers le haut (rangée 3), où ils sont immédiatement promus. Le roque et le double pas de pion n'existent pas sur une grille 3x3.",
-        seoCard3Title: "🧮 Résolu Mathématiquement : Mat en 16", 
-        seoCard3Text: "Les mathématiciens et les chercheurs en échecs informatiques (dont Kirill Kryukov) ont fortement résolu les échecs 3x3, en analysant les 54 687 564 positions légales uniques possibles. Fait remarquable, l'échec et mat forcé le plus long sur un échiquier 3x3 nécessite 16 coups complets ! Notre base de données vous permet de vous entraîner sur des positions vérifiées, allant des échauffements rapides de Mat en 1 aux défis de niveau grand maître de Mat en 15.",
-        footerLegalLink: "Politique de Confidentialité, Cookies & Conditions",
-        legalModalTitle: "Politique de Confidentialité et Conditions d'Utilisation",
-        legalPrivacyTitle: "1. Confidentialité et Cookies Google AdSense", 
-        legalPrivacyText: "Ce site web utilise des cookies pour stocker vos préférences de jeu (telles que la langue, les paramètres sonores et le niveau du puzzle) localement dans votre navigateur. Nous travaillons également en partenariat avec des réseaux publicitaires tiers, dont Google AdSense, qui utilisent des cookies (comme le cookie DoubleClick DART) pour diffuser des annonces basées sur votre visite sur ce site et d'autres sites sur Internet. Vous pouvez désactiver la publicité personnalisée en visitant les paramètres d'annonces Google.",
-        legalTermsTitle: "2. Conditions d'Utilisation et Propriété Intellectuelle", 
-        legalTermsText: "3x3Chess Studio est fourni gratuitement pour le divertissement personnel et l'entraînement aux échecs tactiques. La base de données des positions de fin de partie 3x3 est basée sur des recherches de tables du domaine public (CC0). Les illustrations vectorielles personnalisées, la conception de l'interface et le synthétiseur audio sont protégés par le droit d'auteur.",
-        legalContactTitle: "3. Contact et Assistance", 
-        legalContactText: "Pour toute question concernant la confidentialité, les partenariats publicitaires ou les commandes du jeu d'échecs physique en bois 3x3, veuillez nous contacter via les canaux officiels de notre studio."
+        navGuide: "Guide Tactique",
+        navArticles: "Articles",
+        navAbout: "À propos"
       },
       DE: {
         splashBadge: "3x3CHESS STUDIO • TAKTIK-HERAUSFORDERUNG",
-        splashTitle: "Nur 9 Felder — 54 Millionen Möglichkeiten",
-        splashSubtitle: "Täuschend Einfach. Brutal Taktisch!",
-        splashStat1Val: "9 Felder", splashStat1Lbl: "Kompaktes Schachbrett",
-        splashStat2Val: "54,6 Millionen", splashStat2Lbl: "Legale Stellungen",
-        splashStat3Val: "Bis zu 15 Züge", splashStat3Lbl: "Erzwungene Matts",
-        splashHowTitle: "🎯 Spielanleitung:",
-        splashRule1: "Du spielst mit den weißen Figuren und machst immer den ersten Zug.",
-        splashRule2: "Es gelten die FIDE-Figurenzüge. Weiße Bauern (▲) ziehen nach OBEN (Reihe 3) und wandeln sich um.",
-        splashRule3: "Dränge den schwarzen König in die Ecke und setze Schachmatt! Die meisten scheitern bei Matt in 4!",
-        splashAcceptBtn: "🔥 Ich nehme die Herausforderung an!",
-        splashDismissHint: "Oder tippe einfach außerhalb dieses Fensters, um direkt zu starten",
-        // NOVOS TEXTOS DO TUTORIAL CARROSSEL (DE)
         tut0Desc: "Hier im 3x3-Schach beginnt Weiß immer, um den schwarzen König in der gewählten Anzahl von Zügen matt zu setzen.",
         tut1Desc: "Weiße Bauern ziehen nach oben und schwarze Bauern nach unten.",
         tut2Desc: "Bauern können bei Erreichen ihrer letzten Reihe umgewandelt werden, immer in eine Dame.",
@@ -652,10 +806,8 @@
         tut3DescPart2: "Starte dasselbe Brett neu oder fordere jederzeit eine neue Herausforderung an.",
         nextBtn: "Weiter ➔",
         startBtn: "🔥 Spiel Starten!",
-        studioSubtitle: "Taktik-Studio & Edles Holzhandwerk",
         timer: "Zeit",
         mateIn: (n) => `Matt in ${n}`,
-        whiteToMove: "Weiß am Zug",
         whitesTurn: "Weiß am Zug",
         computerThinking: "Computer denkt...",
         checkAlert: "SCHACH!",
@@ -668,16 +820,11 @@
         restartBtn: "Neustart",
         newGameBtn: "Neues Spiel",
         helpBtn: "Hilfe / Tipp",
-        promoteTitle: "Bauernumwandlung",
-        merchTitle: "Hol dir das physische 3x3-Holzschachbrett",
-        merchSubtitle: "Handgefertigt aus Walnuss & Ahorn • Limitierte Auflage",
-        shopBtn: "Shop",
         hintBlockedPawn: "Dieser weiße Bauer (▲) ist blockiert! Weiße Bauern ziehen nur nach OBEN (Richtung Reihe 3) und niemals rückwärts.",
         hintWinningMove: (from, to) => `Ich helfe nur beim ersten Zug: Bewege die markierte Figur von ${from} nach ${to}, um das Schachmatt einzuleiten!`,
         hintGeneral: "Suche nach Zügen, die dem schwarzen König die Fluchtfelder nehmen, ohne Patt zu setzen!",
         msgStalemate: "Patt (Unentschieden)! Der schwarze König hat keine legalen Züge, steht aber nicht im Schach. Tippe auf 'Neustart'!",
         msgComputerWon: "Schachmatt! Der Computer hat gewonnen. Tippe auf 'Neustart'!",
-        gotItBtn: "Verstanden!",
         puzzleSolvedBadge: "Rätsel Gelöst!",
         victoryTitle: "Schachmatt! 🎉",
         victoryDesc: "Brillantes taktisches Matt! Du hast die 3x3-Verteidigung geknackt.",
@@ -686,14 +833,7 @@
         challenge: "Aufgabe",
         anotherChallengeBtn: "Nächste Aufgabe ➔",
         reviewBoardBtn: "Endstellung ansehen",
-        merchModalTitle: "Offizielles 3x3Chess Holz-Set",
-        merchModalSubtitle: "Aus nachhaltigem Walnuss- & Birkenholz",
-        merchItemTitle: "3x3 Studio Edition Taschenschach",
-        merchBullet1: "9 handgedrechselte magnetische Holzfiguren",
-        merchBullet2: "Samtbeutel + 50 Rätselkarten",
-        preOrderBtn: "Holz-Set Vorbestellen",
         closeBtn: "Schließen",
-        checkoutAlert: "Shop für das physische 3x3Chess-Set wird geöffnet!",
         gameOptionsLabel: "SPIELOPTIONEN",
         customizationTitle: "Anpassung",
         piecesStyleLabel: "FIGURENSTIL",
@@ -709,36 +849,12 @@
         rotateBoardTitle: "Brett drehen", rotateBoardDesc: "Ansicht umdrehen",
         tutorialBtn: "Regeln / Tutorial",
         autoSavedFooter: "3x3Chess v1.6 • Automatisch gespeichert",
-        seoMainTitle: "Über 3x3 Mini-Schach & Taktische Endspiel-Rätsel",
-        seoCard1Title: "♟️ Was ist 3x3-Schach?", 
-        seoCard1Text: "3x3-Schach ist eine kompakte Schachvariante auf 9 Feldern (Linien a, b, c und Reihen 1, 2, 3). Trotz der geringen Größe bietet sie faszinierende taktische Endspiel-Berechnungen. Jeder Zug hat sofortiges Gewicht, was es zu einem außergewöhnlichen Trainingsinstrument für Berechnung, Mustererkennung und Endspielpräzision macht.",
-        seoCard2Title: "📜 Offizielle Regeln", 
-        seoCard2Text: "Alle Figuren ziehen nach den FIDE-Regeln: Könige ziehen ein Feld in jede Richtung, Türme kontrollieren Linien, Läufer kontrollieren Diagonalen, Springer springen in L-Form und Damen kombinieren Turm- und Läuferkraft. Weiße Bauern (▲) ziehen nach oben zur 3. Reihe und wandeln sich sofort um. Rochade und doppelter Bauernschritt existieren auf dem 3x3-Brett nicht.",
-        seoCard3Title: "🧮 Vollständig Gelöst: Matt in 16", 
-        seoCard3Text: "Mathematiker und Computerschachforscher (darunter Kirill Kryukov) haben 3x3-Schach stark gelöst, indem sie alle 54.687.564 möglichen legalen Stellungen analysiert haben. Bemerkenswert ist, dass das längste erzwungene Matt auf einem 3x3-Brett ganze 16 Züge erfordert! Mit unserer Datenbank kannst du überprüfte Stellungen üben, von schnellen Matt in 1-Aufwärmübungen bis hin zu großmeisterlichen Matt in 15-Herausforderungen.",
-        footerLegalLink: "Datenschutz, Cookies & Nutzungsbedingungen",
-        legalModalTitle: "Datenschutzerklärung & Nutzungsbedingungen",
-        legalPrivacyTitle: "1. Datenschutz & Google AdSense Cookies", 
-        legalPrivacyText: "Diese Website verwendet Cookies, um deine Spieleinstellungen (wie Sprache, Toneinstellungen und Rätselstufe) lokal in deinem Browser zu speichern. Wir arbeiten auch mit Drittanbieter-Werbenetzwerken zusammen, einschließlich Google AdSense, die Cookies (wie das DoubleClick DART-Cookie) verwenden, um Anzeigen basierend auf deinem Besuch auf dieser und anderen Websites im Internet zu schalten. Du kannst personalisierte Werbung deaktivieren, indem du die Google-Anzeigeneinstellungen besuchst.",
-        legalTermsTitle: "2. Nutzungsbedingungen & Geistiges Eigentum", 
-        legalTermsText: "3x3Chess Studio ist ein kostenloses Trainingsprogramm. Die Endspiel-Datenbank basiert auf gemeinfreier Tablebase-Forschung (CC0). Die benutzerdefinierten Vektorgrafiken, das Interface-Design und der Audiosynthesizer sind urheberrechtlich geschützt.",
-        legalContactTitle: "3. Kontakt", 
-        legalContactText: "Bei Fragen zum Datenschutz, zu Werbepartnerschaften oder zu Bestellungen des physischen Holzschachbretts kontaktiere uns bitte über unsere offiziellen Studio-Kanäle."
+        navGuide: "Taktik-Guide",
+        navArticles: "Artikel",
+        navAbout: "Über uns"
       },
       RU: {
         splashBadge: "3x3CHESS STUDIO • ТАКТИЧЕСКИЙ ВЫЗОВ",
-        splashTitle: "Всего 9 клеток — 54 миллиона комбинаций",
-        splashSubtitle: "Обманчиво просто. Брутально тактично!",
-        splashStat1Val: "9 Клеток", splashStat1Lbl: "Мини-доска 3x3",
-        splashStat2Val: "54,6 Млн", splashStat2Lbl: "Легальных позиций",
-        splashStat3Val: "До 15 Ходов", splashStat3Lbl: "Форсированный мат",
-        splashHowTitle: "🎯 Как играть:",
-        splashRule1: "Вы играете белыми фигурами и всегда делаете первый ход.",
-        splashRule2: "Действуют правила ФИДЕ. Белые пешки (▲) идут ВВЕРХ к 3-й горизонтали и превращаются в другую фигуру.",
-        splashRule3: "Загоните чёрного короля в угол и поставьте мат за точное число ходов! Большинство не решает уже Мат в 4!",
-        splashAcceptBtn: "🔥 Принимаю вызов!",
-        splashDismissHint: "Или нажмите в любом месте вне этого окна, чтобы сразу начать игру",
-        // NOVOS TEXTOS DO TUTORIAL CARROSSEL (RU)
         tut0Desc: "Здесь, в шахматах 3x3, белые всегда начинают, чтобы поставить мат чёрному королю за выбранное количество ходов.",
         tut1Desc: "Белые пешки двигаются вверх, а чёрные пешки — вниз.",
         tut2Desc: "Пешки могут превращаться при достижении последней горизонтали, всегда в Ферзя.",
@@ -746,10 +862,8 @@
         tut3DescPart2: "Перезапустите ту же доску или запросите новую задачу в любое время.",
         nextBtn: "Далее ➔",
         startBtn: "🔥 Начать игру!",
-        studioSubtitle: "Тактическая студия и деревянный дизайн",
         timer: "Время",
         mateIn: (n) => `Мат в ${n}`,
-        whiteToMove: "Белые начинают",
         whitesTurn: "Ход белых",
         computerThinking: "Думает...",
         checkAlert: "ШАХ!",
@@ -762,16 +876,11 @@
         restartBtn: "Заново",
         newGameBtn: "Новая игра",
         helpBtn: "Подсказка",
-        promoteTitle: "Превращение пешки",
-        merchTitle: "Деревянный набор 3x3Chess ручной работы",
-        merchSubtitle: "Орех и клён • Лимитированная серия",
-        shopBtn: "Купить",
         hintBlockedPawn: "Эта белая пешка (▲) заблокирована! Белые пешки ходят только ВВЕРХ (к линии 3: a3, b3, c3) и не могут ходить или бить назад.",
         hintWinningMove: (from, to) => `Найден победный ход! Переместите выделенную фигуру с ${from} на ${to} для мата!`,
         hintGeneral: "Ищите ходы, которые отрезают пути отступления чёрному королю, но не ставят пат!",
         msgStalemate: "Пат (Ничья)! У чёрного короля нет легальных ходов, но шаха нет. Нажмите «Заново», чтобы попробовать ещё раз!",
         msgComputerWon: "Шах и мат! Компьютер победил. Нажмите «Заново», чтобы попробовать ещё раз!",
-        gotItBtn: "Понятно!",
         puzzleSolvedBadge: "Задача решена!",
         victoryTitle: "Шах и мат! 🎉",
         victoryDesc: "Блестящий тактический мат! Вы взломали оборону мини-шахмат 3x3.",
@@ -780,14 +889,7 @@
         challenge: "Задача",
         anotherChallengeBtn: "Ещё задачу ➔",
         reviewBoardBtn: "Посмотреть доску",
-        merchModalTitle: "Официальный деревянный набор 3x3Chess",
-        merchModalSubtitle: "Европейский орех и карельская берёза",
-        merchItemTitle: "Карманная доска 3x3 Studio Edition",
-        merchBullet1: "9 магнитных точёных деревянных фигур",
-        merchBullet2: "Бархатный мешочек + 50 карточек с задачами",
-        preOrderBtn: "Предзаказ набора",
         closeBtn: "Закрыть",
-        checkoutAlert: "Переход к оформлению заказа деревянного набора 3x3Chess!",
         gameOptionsLabel: "ПАРАМЕТРЫ ИГРЫ",
         customizationTitle: "Оформление",
         piecesStyleLabel: "СТИЛЬ ФИГУР",
@@ -803,62 +905,19 @@
         rotateBoardTitle: "Повернуть доску", rotateBoardDesc: "Перевернуть обзор на 180°",
         tutorialBtn: "Правила / Обучение",
         autoSavedFooter: "3x3Chess v1.6 • Автосохранение",
-        seoMainTitle: "О мини-шахматах 3x3 и тактических задачах",
-        seoCard1Title: "♟️ Что такое шахматы 3x3?", 
-        seoCard1Text: "Шахматы 3x3 — это динамичный и концентрированный вариант классических шахмат на доске из 9 клеток (вертикали a, b, c и горизонтали 1, 2, 3). Несмотря на миниатюрный размер, игра сохраняет глубокую геометрию и тактику эндшпиля. Каждый ход имеет немедленный вес, что делает его исключительным инструментом для тренировки расчета и распознавания образов.",
-        seoCard2Title: "📜 Официальные правила", 
-        seoCard2Text: "Все фигуры ходят строго по правилам ФИДЕ: Короли ходят на одну клетку, Ладьи контролируют линии, Слоны — диагонали, Кони прыгают буквой Г, а Ферзи объединяют силу Ладьи и Слона. Белые пешки (▲) двигаются вверх к 3-й горизонтали, где сразу превращаются в другую фигуру. Рокировки и хода пешкой на две клетки нет.",
-        seoCard3Title: "🧮 Математический расчёт: Мат в 16 ходов", 
-        seoCard3Text: "Исследователи компьютерных шахмат (включая Кирилла Крюкова) полностью просчитали шахматы 3x3, выявив 54 687 564 уникальные легальные позиции. Самый длинный форсированный мат на доске 3x3 требует целых 16 ходов! Наша база данных позволяет практиковать проверенные позиции: от быстрых разминок Мат в 1 ход до сложнейших задач Мат в 15 ходов.",
-        footerLegalLink: "Конфиденциальность, Cookies и Условия",
-        legalModalTitle: "Политика конфиденциальности и Условия",
-        legalPrivacyTitle: "1. Конфиденциальность и файлы Cookie Google AdSense", 
-        legalPrivacyText: "Этот сайт использует файлы cookie для сохранения ваших игровых настроек (таких как язык, звук и уровень) локально в вашем браузере. Мы также сотрудничаем со сторонними рекламными сетями, включая Google AdSense, которые используют файлы cookie (например, DoubleClick DART) для показа релевантных объявлений на основе вашего посещения этого и других сайтов. Вы можете отказаться от персонализированной рекламы в Настройках рекламных предпочтений Google.",
-        legalTermsTitle: "2. Условия использования", 
-        legalTermsText: "3x3Chess Studio предоставляется бесплатно для тренировок и развлечения. База эндшпильных позиций 3x3 основана на открытых исследованиях (CC0). Пользовательская векторная графика, дизайн интерфейса и аудиосинтезатор защищены авторским правом.",
-        legalContactTitle: "3. Контакты", 
-        legalContactText: "По вопросам конфиденциальности, рекламного сотрудничества или заказа физического деревянного набора 3x3 свяжитесь с нами через официальные каналы нашей студии."
+        navGuide: "Руководство",
+        navArticles: "Статьи",
+        navAbout: "О проекте"
       }
     };
 
     // ========================================================
-    // COMPONENTE INTELIGENTE DE ANÚNCIO (AGORA ESTRITO PARA GOOGLE)
-    // ========================================================
-    function AdSlot({ slotKey, format = "auto", children }) {
-      useEffect(() => {
-        if (ADSENSE_CONFIG.enabled && window.adsbygoogle) {
-          try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
-        }
-      }, []);
-
-      if (ADSENSE_CONFIG.enabled) {
-        const isTop = slotKey === "topBanner";
-        return (
-          <div className={`w-full flex justify-center overflow-hidden my-1 ${isTop ? 'max-h-[60px] md:max-h-[95px]' : ''}`}>
-            <ins
-              className="adsbygoogle"
-              style={{ display: "block", width: "100%" }}
-              data-ad-client={ADSENSE_CONFIG.clientId}
-              data-ad-slot={ADSENSE_CONFIG.slots[slotKey]}
-              data-ad-format={isTop ? "horizontal" : format}
-              data-full-width-responsive="true"
-            ></ins>
-          </div>
-        );
-      }
-      
-      // Renderiza os "Fallbacks" (Planos B) se o AdSense estiver desligado
-      return children;
-    }
-
-    // ========================================================
-    // REDESIGN DOS SVGs DE PEÇAS DE XADREZ
+    // SVGs DE PEÇAS DE XADREZ
     // ========================================================
     function ChessPieceIcon({ type, color = 'w', size = 60 }) {
       const isWhite = color === 'w';
       const mainFill = isWhite ? '#FFFFFF' : '#4a4a58';
       const strokeColor = isWhite ? '#361D0C' : '#0e0e14';
-      const highlightFill = isWhite ? '#FFF8E7' : '#5a5a68';
       const accentGold = '#F59E0B';
 
       switch (type) {
@@ -1005,7 +1064,7 @@
       return false;
     };
 
-    // 3. Simula um movimento (com suporte a sub-promoção)
+    // 3. Simula um movimento
     const simulateMoveOnBoard = (boardState, startR, startC, endR, endC, promoteTo = 'q') => {
       const nextBoard = boardState.map(row => [...row]);
       let movingPiece = { ...nextBoard[startR][startC] };
@@ -1068,14 +1127,10 @@
       const [showHint, setShowHint] = useState(false);
       const [hintDetails, setHintDetails] = useState('');
       
-      const [showSplashModal, setShowSplashModal] = useState(() => {
-        try { return !localStorage.getItem(WELCOMED_KEY); } catch (e) { return true; }
-      });
-
-      const [showMerchModal, setShowMerchModal] = useState(false);
+      // IMPORTANTE PARA O ADSENSE: Inicia fechado (false) para não bloquear a tela do avaliador!
+      const [showSplashModal, setShowSplashModal] = useState(false);
       const [showSettingsModal, setShowSettingsModal] = useState(false);
-      const [showLegalModal, setShowLegalModal] = useState(false);
-      const [tutorialStep, setTutorialStep] = useState(0); // <--- NOVA LINHA AQUI
+      const [tutorialStep, setTutorialStep] = useState(0);
 
       const [soundEnabled, setSoundEnabled] = useState(saved?.soundEnabled ?? true);
       const [soundVolume, setSoundVolume] = useState(saved?.soundVolume ?? 75);
@@ -1109,8 +1164,6 @@
             const res = await fetch(`./puzzles/matein${levelStr}.json`);
             if(res.ok) {
               const data = await res.json();
-              
-              // NOVO FILTRO INTELIGENTE: Aceita tanto os textos antigos quanto os objetos novos do solver.js!
               const validPuzzles = Array.isArray(data) ? data.filter(item => {
                 const fenStr = typeof item === 'string' ? item : item.fen;
                 return typeof fenStr === 'string' && fenStr.trim().length === 10 && fenStr.trim().startsWith('w');
@@ -1122,7 +1175,6 @@
               } else throw new Error("Nenhum puzzle válido encontrado");
             } else throw new Error(`Arquivo não encontrado`);
           } catch (e) {
-            // Se tudo falhar, carrega os jogos de emergência (agora corrigidos, com os reis pretos 'k' e reis brancos 'K')
             const demoDB = ["wK.k..NqRn", "w..k.r.K.q", "w.rk.K..q."];
             setPuzzleDatabase(demoDB);
             loadRandomPuzzle(demoDB);
@@ -1180,10 +1232,8 @@
       const loadRandomPuzzle = (db = puzzleDatabase) => {
         if(db.length === 0) return;
         const puzzle = db[Math.floor(Math.random() * db.length)];
-        
-        // Aceita tanto JSON antigo (string) quanto o novo gerado pelo Node (objeto com bestMove)
         const fenString = typeof puzzle === 'string' ? puzzle : puzzle.fen;
-        const best = typeof puzzle === 'string' ? null : puzzle.bestMove;
+        const best = typeof puzzle === 'string' ? null : (puzzle.bestMove || (Array.isArray(puzzle.solution) ? puzzle.solution[0] : null));
         
         setCurrentFen(fenString);
         setCurrentBestMove(best);
@@ -1206,9 +1256,6 @@
 
       const handleRestart = () => { playGameSound('select', soundEnabled, soundVolume); if(currentFen) parseFenToBoard(currentFen); };
 
-      // =========================================================
-      // NAVEGAÇÃO SPA (Sem recarregar a página da Hostinger)
-      // =========================================================
       const handleNewGame = () => { 
         playGameSound('select', soundEnabled, soundVolume); 
         loadRandomPuzzle(); 
@@ -1282,7 +1329,6 @@
           const movingPiece = board[fromR][fromC];
 
           if (isMoveLegal(board, movingPiece, fromR, fromC, r, c)) {
-            // Se for peão chegando no topo, já executa o movimento promovendo para Rainha ('q') automático!
             executeMove(fromR, fromC, r, c, 'q');
             return;
           } else {
@@ -1304,43 +1350,41 @@
       };
 
       const handleHint = () => {
-  playGameSound('select', soundEnabled, soundVolume);
-  
-  // Se o Node.js já nos deu o lance perfeito mastigado ("a1b2"), apenas acendemos a tela instantaneamente!
-  if (currentBestMove) {
-    const cLetters = {'a':0, 'b':1, 'c':2};
-    const rNumbers = {'3':0, '2':1, '1':2};
-    const startC = cLetters[currentBestMove[0]];
-    const startR = rNumbers[currentBestMove[1]];
-    const endC = cLetters[currentBestMove[2]];
-    const endR = rNumbers[currentBestMove[3]];
-    
-    setSelectedSquare([startR, startC]); 
-    setValidMoves([[endR, endC]]);
-    setShowHint(true); 
-    setHintDetails(t.hintWinningMove(currentBestMove.substring(0,2), currentBestMove.substring(2,4)));
-    return;
-  }
+        playGameSound('select', soundEnabled, soundVolume);
+        
+        if (currentBestMove) {
+          const cLetters = {'a':0, 'b':1, 'c':2};
+          const rNumbers = {'3':0, '2':1, '1':2};
+          const startC = cLetters[currentBestMove[0]];
+          const startR = rNumbers[currentBestMove[1]];
+          const endC = cLetters[currentBestMove[2]];
+          const endR = rNumbers[currentBestMove[3]];
+          
+          setSelectedSquare([startR, startC]); 
+          setValidMoves([[endR, endC]]);
+          setShowHint(true); 
+          setHintDetails(t.hintWinningMove(currentBestMove.substring(0,2), currentBestMove.substring(2,4)));
+          return;
+        }
 
-  // Plano B (Fallback): Caso esteja carregando um JSON antigo sem solução, tenta o cálculo raso antigo
-  const whiteMoves = getAllLegalMovesForPlayer(board, 'w');
-  for (const m of whiteMoves) {
-    const simBoard = simulateMoveOnBoard(board, m.startR, m.startC, m.endR, m.endC, 'q');
-    if (isKingInCheck(simBoard, 'b') && getAllLegalMovesForPlayer(simBoard, 'b').length === 0) {
-      const fromSq = `${String.fromCharCode(97 + m.startC)}${3 - m.startR}`;
-      const toSq = `${String.fromCharCode(97 + m.endC)}${3 - m.endR}`;
-      setSelectedSquare([m.startR, m.startC]); setValidMoves([[m.endR, m.endC]]);
-      setShowHint(true); setHintDetails(t.hintWinningMove(fromSq, toSq));
-      return;
-    }
-  }
-  if (whiteMoves.length > 0) {
-    const sample = whiteMoves[0];
-    const piece = board[sample.startR][sample.startC];
-    setSelectedSquare([sample.startR, sample.startC]); setValidMoves(getLegalTargetsForPiece(sample.startR, sample.startC, piece));
-    setShowHint(true); setHintDetails(t.hintGeneral);
-  }
-};
+        const whiteMoves = getAllLegalMovesForPlayer(board, 'w');
+        for (const m of whiteMoves) {
+          const simBoard = simulateMoveOnBoard(board, m.startR, m.startC, m.endR, m.endC, 'q');
+          if (isKingInCheck(simBoard, 'b') && getAllLegalMovesForPlayer(simBoard, 'b').length === 0) {
+            const fromSq = `${String.fromCharCode(97 + m.startC)}${3 - m.startR}`;
+            const toSq = `${String.fromCharCode(97 + m.endC)}${3 - m.endR}`;
+            setSelectedSquare([m.startR, m.startC]); setValidMoves([[m.endR, m.endC]]);
+            setShowHint(true); setHintDetails(t.hintWinningMove(fromSq, toSq));
+            return;
+          }
+        }
+        if (whiteMoves.length > 0) {
+          const sample = whiteMoves[0];
+          const piece = board[sample.startR][sample.startC];
+          setSelectedSquare([sample.startR, sample.startC]); setValidMoves(getLegalTargetsForPiece(sample.startR, sample.startC, piece));
+          setShowHint(true); setHintDetails(t.hintGeneral);
+        }
+      };
 
       const formatTime = (totalSec) => {
         const m = Math.floor(totalSec / 60).toString().padStart(2, '0');
@@ -1357,29 +1401,28 @@
       const displayCols = rotateBoardUI ? [2, 1, 0] : [0, 1, 2];
 
       return (
-        <div className="flex flex-col min-h-screen text-amber-50">
+        <div className="flex flex-col text-amber-50 game-board-noselect">
           
-          <header className="hidden w-full bg-[#180a03] border-b-2 border-amber-950 py-1.5 sm:py-2 px-3 sm:px-4 z-20">
-            <div className="max-w-7xl mx-auto">
-              <AdSlot slotKey="topBanner" format="horizontal">
-                <div className="ad-pattern border border-dashed border-amber-500/70 bg-gradient-to-r from-amber-950/60 via-[#2f1606]/80 to-amber-950/60 rounded-xl flex items-center justify-center text-center opacity-60 min-h-[60px] md:min-h-[90px]">
-                  <span className="text-xs font-bold text-amber-400/50 uppercase tracking-widest">Google AdSense • Top Banner</span>
-                </div>
-              </AdSlot>
-            </div>
-          </header>
-
           <nav className="wood-texture border-b-2 border-[#331707] shadow-md px-2 py-2 sm:px-4 sticky top-0 z-30">
-            <div className="max-w-7xl mx-auto flex items-center justify-between gap-1 sm:gap-3">
-              <div className="flex items-center gap-1.5 sm:gap-3 cursor-pointer" onClick={() => setShowSplashModal(true)}>
-                <div className="w-9 h-9 sm:w-11 sm:h-11 bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 rounded-xl border-2 border-[#2b1203] shadow-md flex items-center justify-center relative">
-                  <span className="text-xl sm:text-2xl drop-shadow select-none">👑</span>
-                </div>
-                <div className="hidden sm:block">
-                  <div className="flex items-center gap-1.5">
-                    <h1 className="font-fredoka text-xl font-black text-amber-100 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">3x3<span className="text-amber-400">Chess</span></h1>
-                    <span className="bg-amber-600/90 text-white font-fredoka text-[9px] font-bold px-1.5 py-0.5 rounded-sm uppercase tracking-wider shadow">Studio</span>
+            <div className="max-w-6xl mx-auto flex items-center justify-between gap-1 sm:gap-3">
+              <div className="flex items-center gap-2 sm:gap-4">
+                <div className="flex items-center gap-1.5 sm:gap-2.5 cursor-pointer" onClick={() => setShowSplashModal(true)}>
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 rounded-xl border-2 border-[#2b1203] shadow-md flex items-center justify-center relative">
+                    <span className="text-xl sm:text-2xl drop-shadow select-none">👑</span>
                   </div>
+                  <div>
+                    <div className="flex items-center gap-1.5">
+                      <h1 className="font-fredoka text-lg sm:text-xl font-black text-amber-100 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">3x3<span className="text-amber-400">Chess</span></h1>
+                      <span className="hidden sm:inline-block bg-amber-600/90 text-white font-fredoka text-[9px] font-bold px-1.5 py-0.5 rounded-sm uppercase tracking-wider shadow">Studio</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Links de Navegação no Topo */}
+                <div className="hidden md:flex items-center gap-3 text-xs font-bold text-amber-200/90 border-l border-amber-800/70 pl-4">
+                  <a href="#tactical-guide" className="hover:text-amber-400 transition">{t.navGuide}</a>
+                  <a href="/blog.html" className="hover:text-amber-400 transition">{t.navArticles}</a>
+                  <a href="/about.html" className="hover:text-amber-400 transition">{t.navAbout}</a>
                 </div>
               </div>
 
@@ -1414,179 +1457,116 @@
             </div>
           </nav>
 
-          <div className="flex-1 max-w-[1500px] w-full mx-auto px-2 sm:px-6 py-2 sm:py-4 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            <main className="lg:col-span-12 flex flex-col items-center">
+          <div className="max-w-6xl w-full mx-auto px-2 sm:px-6 pt-3 pb-4 flex flex-col items-center">
               
-              <div className="w-full max-w-xl flex items-center justify-center bg-black/40 border border-amber-900/40 backdrop-blur-sm rounded-xl px-3 py-1.5 mb-2 shadow-sm">
-                <span className="text-[11px] sm:text-xs font-fredoka font-bold uppercase tracking-widest text-amber-100 flex items-center justify-center flex-wrap gap-1.5">
-                  <span className="text-amber-500 text-sm sm:text-base leading-none">⚡</span>
-                  <span className="text-amber-400">{t.mateIn(selectedLevel)}</span>
-                  <span className="text-amber-700/80 mx-0.5">•</span>
-                  <span>{currentTurn === 'w' ? t.whitesTurn : t.computerThinking}</span>
-                  {(whiteInCheck || blackInCheck) && !isWon ? <span className="text-red-500 ml-0.5 drop-shadow-md">{t.checkAlert}</span> : ""}
-                </span>
-              </div>
+            <div className="w-full max-w-xl flex items-center justify-between bg-black/40 border border-amber-900/40 backdrop-blur-sm rounded-xl px-3.5 py-1.5 mb-2 shadow-sm">
+              <span className="text-[11px] sm:text-xs font-fredoka font-bold uppercase tracking-widest text-amber-100 flex items-center flex-wrap gap-1.5">
+                <span className="text-amber-500 text-sm sm:text-base leading-none">⚡</span>
+                <span className="text-amber-400">{t.mateIn(selectedLevel)}</span>
+                <span className="text-amber-700/80 mx-0.5">•</span>
+                <span>{currentTurn === 'w' ? t.whitesTurn : t.computerThinking}</span>
+                {(whiteInCheck || blackInCheck) && !isWon ? <span className="text-red-500 ml-0.5 drop-shadow-md">{t.checkAlert}</span> : ""}
+              </span>
+              <button onClick={() => setShowSplashModal(true)} className="text-[11px] font-bold text-amber-300 hover:text-amber-100 underline cursor-pointer">
+                {t.tutorialBtn}
+              </button>
+            </div>
 
-              {showHint && (
-                <div className="w-full max-w-xl mb-2 bg-amber-900/90 border-2 border-amber-500 rounded-xl p-3 flex items-start justify-between gap-3 shadow-lg">
-                  <div className="flex items-start gap-2">
-                    <span className="text-lg">💡</span>
-                    <p className="text-xs sm:text-sm font-medium text-amber-100 leading-snug"><strong className="text-amber-300 font-bold">{t.noticeLabel} </strong> {hintDetails}</p>
-                  </div>
-                  <button onClick={() => setShowHint(false)} className="text-amber-300 hover:text-white p-1 rounded-lg">✕</button>
+            {showHint && (
+              <div className="w-full max-w-xl mb-2 bg-amber-900/90 border-2 border-amber-500 rounded-xl p-3 flex items-start justify-between gap-3 shadow-lg">
+                <div className="flex items-start gap-2">
+                  <span className="text-lg">💡</span>
+                  <p className="text-xs sm:text-sm font-medium text-amber-100 leading-snug"><strong className="text-amber-300 font-bold">{t.noticeLabel} </strong> {hintDetails}</p>
                 </div>
-              )}
+                <button onClick={() => setShowHint(false)} className="text-amber-300 hover:text-white p-1 rounded-lg">✕</button>
+              </div>
+            )}
 
-              {/* CHESS BOARD */}
-              <div className="w-full flex flex-col items-center justify-center my-1">
-                <div className="w-full max-w-[88vw] sm:max-w-[450px] md:max-w-[460px] lg:max-w-[465px] aspect-square relative touch-manipulation">
-                  <div className="w-full h-full p-3 sm:p-4 wood-texture rounded-3xl sm:rounded-[36px] border-4 sm:border-[6px] border-[#291002] shadow-chunky-wood flex flex-col relative">
-                    <div className="absolute top-2 left-2 w-2.5 h-2.5 rounded-full bg-amber-950 border border-amber-600/50 shadow-inner"></div>
-                    <div className="absolute top-2 right-2 w-2.5 h-2.5 rounded-full bg-amber-950 border border-amber-600/50 shadow-inner"></div>
-                    <div className="absolute bottom-2 left-2 w-2.5 h-2.5 rounded-full bg-amber-950 border border-amber-600/50 shadow-inner"></div>
-                    <div className="absolute bottom-2 right-2 w-2.5 h-2.5 rounded-full bg-amber-950 border border-amber-600/50 shadow-inner"></div>
+            {/* CHESS BOARD */}
+            <div className="w-full flex flex-col items-center justify-center my-1">
+              <div className="w-full max-w-[88vw] sm:max-w-[440px] md:max-w-[455px] aspect-square relative touch-manipulation">
+                <div className="w-full h-full p-3 sm:p-4 wood-texture rounded-3xl sm:rounded-[36px] border-4 sm:border-[6px] border-[#291002] shadow-chunky-wood flex flex-col relative">
+                  <div className="absolute top-2 left-2 w-2.5 h-2.5 rounded-full bg-amber-950 border border-amber-600/50 shadow-inner"></div>
+                  <div className="absolute top-2 right-2 w-2.5 h-2.5 rounded-full bg-amber-950 border border-amber-600/50 shadow-inner"></div>
+                  <div className="absolute bottom-2 left-2 w-2.5 h-2.5 rounded-full bg-amber-950 border border-amber-600/50 shadow-inner"></div>
+                  <div className="absolute bottom-2 right-2 w-2.5 h-2.5 rounded-full bg-amber-950 border border-amber-600/50 shadow-inner"></div>
 
-                    <div className="w-full h-full grid grid-cols-3 grid-rows-3 gap-1 sm:gap-1.5 p-1 bg-[#371603] rounded-2xl sm:rounded-[26px] border-2 border-[#1f0b01] shadow-inner-board overflow-hidden">
-                      {displayRows.map((rIdx) => 
-                        displayCols.map((cIdx) => {
-                          const cell = board[rIdx][cIdx];
-                          const isLight = (rIdx + cIdx) % 2 === 0;
-                          const isSelected = selectedSquare && selectedSquare[0] === rIdx && selectedSquare[1] === cIdx;
-                          const isValidTarget = showMovesUI && validMoves.some(([mr, mc]) => mr === rIdx && mc === cIdx);
-                          const isKingCheckedHere = cell && cell.type === 'k' && ((cell.color === 'w' && whiteInCheck) || (cell.color === 'b' && blackInCheck));
-                          
-                          return (
-                            <div key={`${rIdx}-${cIdx}`} onClick={() => handleSquareClick(rIdx, cIdx)}
-                              className={`relative flex items-center justify-center cursor-pointer select-none rounded-xl sm:rounded-2xl transition-all duration-150 overflow-hidden ${isLight ? 'light-wood-tile' : 'dark-wood-tile'} ${isSelected ? 'ring-4 sm:ring-[6px] ring-amber-400 ring-offset-2 ring-offset-amber-950 z-10 scale-[1.02]' : ''} ${isValidTarget ? 'ring-4 ring-emerald-500/90 bg-emerald-500/30' : ''} ${isKingCheckedHere ? 'ring-4 ring-red-600 bg-red-600/40' : ''} hover:brightness-105 active:scale-95`}
-                            >
-                              {isValidTarget && !cell && (<div className="absolute w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-emerald-500/80 border-2 border-white shadow-md animate-ping opacity-75"></div>)}
-                              {isValidTarget && cell && (<div className="absolute inset-0 bg-red-500/30 border-4 border-red-500/80 rounded-xl z-0 animate-pulse"></div>)}
-                              
-                              <span className={`absolute top-1 left-1.5 text-[9px] sm:text-[10px] font-black opacity-40 font-mono ${isLight ? 'text-amber-900' : 'text-amber-200'}`}>
-                                {String.fromCharCode(97 + cIdx)}{3 - rIdx}
+                  <div className="w-full h-full grid grid-cols-3 grid-rows-3 gap-1 sm:gap-1.5 p-1 bg-[#371603] rounded-2xl sm:rounded-[26px] border-2 border-[#1f0b01] shadow-inner-board overflow-hidden">
+                    {displayRows.map((rIdx) => 
+                      displayCols.map((cIdx) => {
+                        const cell = board[rIdx][cIdx];
+                        const isLight = (rIdx + cIdx) % 2 === 0;
+                        const isSelected = selectedSquare && selectedSquare[0] === rIdx && selectedSquare[1] === cIdx;
+                        const isValidTarget = showMovesUI && validMoves.some(([mr, mc]) => mr === rIdx && mc === cIdx);
+                        const isKingCheckedHere = cell && cell.type === 'k' && ((cell.color === 'w' && whiteInCheck) || (cell.color === 'b' && blackInCheck));
+                        
+                        return (
+                          <div key={`${rIdx}-${cIdx}`} onClick={() => handleSquareClick(rIdx, cIdx)}
+                            className={`relative flex items-center justify-center cursor-pointer select-none rounded-xl sm:rounded-2xl transition-all duration-150 overflow-hidden ${isLight ? 'light-wood-tile' : 'dark-wood-tile'} ${isSelected ? 'ring-4 sm:ring-[6px] ring-amber-400 ring-offset-2 ring-offset-amber-950 z-10 scale-[1.02]' : ''} ${isValidTarget ? 'ring-4 ring-emerald-500/90 bg-emerald-500/30' : ''} ${isKingCheckedHere ? 'ring-4 ring-red-600 bg-red-600/40' : ''} hover:brightness-105 active:scale-95`}
+                          >
+                            {isValidTarget && !cell && (<div className="absolute w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-emerald-500/80 border-2 border-white shadow-md animate-ping opacity-75"></div>)}
+                            {isValidTarget && cell && (<div className="absolute inset-0 bg-red-500/30 border-4 border-red-500/80 rounded-xl z-0 animate-pulse"></div>)}
+                            
+                            <span className={`absolute top-1 left-1.5 text-[9px] sm:text-[10px] font-black opacity-40 font-mono ${isLight ? 'text-amber-900' : 'text-amber-200'}`}>
+                              {String.fromCharCode(97 + cIdx)}{3 - rIdx}
+                            </span>
+
+                            {cell && cell.type === 'p' && (
+                              <span className={`absolute top-1 right-1.5 text-[8px] sm:text-[9px] font-extrabold px-1 rounded ${cell.color === 'w' ? 'bg-amber-500/30 text-amber-950' : 'bg-black/30 text-amber-100'}`}>
+                                {cell.color === 'w' ? t.pawnUpBadge : t.pawnDownBadge}
                               </span>
+                            )}
 
-                              {cell && cell.type === 'p' && (
-                                <span className={`absolute top-1 right-1.5 text-[8px] sm:text-[9px] font-extrabold px-1 rounded ${cell.color === 'w' ? 'bg-amber-500/30 text-amber-950' : 'bg-black/30 text-amber-100'}`}>
-                                  {cell.color === 'w' ? t.pawnUpBadge : t.pawnDownBadge}
-                                </span>
-                              )}
-
-                              {cell && (
-                                <div className="relative z-10 p-1 w-full h-full flex items-center justify-center piece-bounce">
-                                  <ChessPieceIcon type={cell.type} color={cell.color} size="85%" />
-                                </div>
-                              )}
-                            </div>
-                          );
-                        })
-                      )}
-                    </div>
+                            {cell && (
+                              <div className="relative z-10 p-1 w-full h-full flex items-center justify-center piece-bounce">
+                                <ChessPieceIcon type={cell.type} color={cell.color} size="85%" />
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })
+                    )}
                   </div>
                 </div>
-                <p className="text-[11px] sm:text-xs font-medium text-amber-200/80 mt-1.5 text-center">
-                  {selectedSquare ? (selectedPieceObj && selectedPieceObj.type === 'p' ? t.selectedPawnPrompt(selectedSqStr) : t.selectedPiecePrompt(selectedSqStr)) : t.tapWhitePrompt}
-                </p>
               </div>
+              <p className="text-[11px] sm:text-xs font-medium text-amber-200/80 mt-1.5 text-center">
+                {selectedSquare ? (selectedPieceObj && selectedPieceObj.type === 'p' ? t.selectedPawnPrompt(selectedSqStr) : t.selectedPiecePrompt(selectedSqStr)) : t.tapWhitePrompt}
+              </p>
+            </div>
 
-              <div className="w-full max-w-xl mt-2 flex flex-wrap items-center justify-center gap-2 sm:gap-3 touch-manipulation">
-                <button onClick={handleRestart} className="btn-chunky btn-chunky-amber flex-1 min-w-[110px] bg-gradient-to-b from-amber-500 to-amber-600 hover:from-amber-400 text-amber-950 font-fredoka font-bold text-sm sm:text-base py-2.5 px-3 rounded-2xl border-2 border-amber-950 shadow-chunky-btn-amber flex items-center justify-center gap-2 cursor-pointer">
-                  <svg className="w-4 h-4 text-amber-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
-                  <span>{t.restartBtn}</span>
-                </button>
-                <button onClick={handleNewGame} className="btn-chunky btn-chunky-blue flex-1 min-w-[110px] bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 text-white font-fredoka font-bold text-sm sm:text-base py-2.5 px-3 rounded-2xl border-2 border-blue-950 shadow-chunky-btn-blue flex items-center justify-center gap-2 cursor-pointer">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                  <span>{t.newGameBtn}</span>
-                </button>
-                <button onClick={handleHint} className="btn-chunky btn-chunky-green flex-1 min-w-[110px] bg-gradient-to-b from-emerald-500 to-emerald-600 hover:from-emerald-400 text-white font-fredoka font-bold text-sm sm:text-base py-2.5 px-3 rounded-2xl border-2 border-emerald-950 shadow-chunky-btn-green flex items-center justify-center gap-2 cursor-pointer">
-                  <svg className="w-4 h-4 text-yellow-200 fill-yellow-200" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
-                  <span>{t.helpBtn}</span>
-                </button>
-              </div>
+            <div className="w-full max-w-xl mt-2 flex flex-wrap items-center justify-center gap-2 sm:gap-3 touch-manipulation">
+              <button onClick={handleRestart} className="btn-chunky btn-chunky-amber flex-1 min-w-[110px] bg-gradient-to-b from-amber-500 to-amber-600 hover:from-amber-400 text-amber-950 font-fredoka font-bold text-sm sm:text-base py-2.5 px-3 rounded-2xl border-2 border-amber-950 shadow-chunky-btn-amber flex items-center justify-center gap-2 cursor-pointer">
+                <svg className="w-4 h-4 text-amber-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+                <span>{t.restartBtn}</span>
+              </button>
+              <button onClick={handleNewGame} className="btn-chunky btn-chunky-blue flex-1 min-w-[110px] bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 text-white font-fredoka font-bold text-sm sm:text-base py-2.5 px-3 rounded-2xl border-2 border-blue-950 shadow-chunky-btn-blue flex items-center justify-center gap-2 cursor-pointer">
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span>{t.newGameBtn}</span>
+              </button>
+              <button onClick={handleHint} className="btn-chunky btn-chunky-green flex-1 min-w-[110px] bg-gradient-to-b from-emerald-500 to-emerald-600 hover:from-emerald-400 text-white font-fredoka font-bold text-sm sm:text-base py-2.5 px-3 rounded-2xl border-2 border-emerald-950 shadow-chunky-btn-green flex items-center justify-center gap-2 cursor-pointer">
+                <svg className="w-4 h-4 text-yellow-200 fill-yellow-200" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+                <span>{t.helpBtn}</span>
+              </button>
+            </div>
 
-            </main>
-
-            <aside className="hidden lg:col-span-4 xl:col-span-3 gap-4 w-full">
-              <AdSlot slotKey="rightSquare1" format="rectangle">
-                <div className="bg-[#1a0c03]/80 border-2 border-dashed border-amber-900/60 rounded-2xl p-3.5 shadow-xl relative overflow-hidden flex flex-col items-center justify-center min-h-[250px] opacity-60">
-                  <span className="text-xs font-bold text-amber-400/50 uppercase tracking-widest text-center">Google AdSense<br/>Square 1</span>
-                </div>
-              </AdSlot>
-
-              <AdSlot slotKey="rightSquare2" format="rectangle">
-                <div className="bg-[#1a0c03]/80 border-2 border-dashed border-amber-900/60 rounded-2xl p-3.5 shadow-xl relative overflow-hidden flex flex-col items-center justify-center min-h-[250px] opacity-60">
-                  <span className="text-xs font-bold text-amber-400/50 uppercase tracking-widest text-center">Google AdSense<br/>Square 2</span>
-                </div>
-              </AdSlot>
-            </aside>
           </div>
 
-          {/* ========================================================
-              BANNER PRÓPRIO (Movido para cima do texto SEO)
-              ======================================================== */}
-          <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 mt-8">
-            <div onClick={() => setShowMerchModal(true)} className="ad-pattern border-2 border-dashed border-amber-500/80 hover:border-amber-400 bg-gradient-to-r from-[#2c1507] via-[#3a1a05] to-[#2c1507] rounded-2xl py-4 px-5 flex flex-col sm:flex-row items-center justify-between text-center transition-all group cursor-pointer shadow-lg">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform">🪵</div>
-                <div className="text-left">
-                  <div className="flex items-center gap-2">
-                    <span className="bg-amber-500 text-amber-950 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider shadow">3x3Chess Official</span>
-                    <h2 className="text-base sm:text-lg font-fredoka font-bold text-amber-100 group-hover:text-white transition-colors">{t.merchTitle}</h2>
-                  </div>
-                  <p className="text-xs sm:text-sm text-amber-300/80 font-medium mt-0.5">{t.merchSubtitle}</p>
-                </div>
-              </div>
-              <div className="mt-3 sm:mt-0 bg-amber-500 hover:bg-amber-400 text-amber-950 font-black text-sm px-6 py-2.5 rounded-xl shadow-md transition-all flex items-center gap-2 shrink-0">
-                <span>{t.shopBtn}</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-              </div>
-            </div>
-          </div>
-
-          <section className="max-w-7xl w-full mx-auto px-4 sm:px-6 py-8">
-            <h2 className="font-fredoka text-xl sm:text-2xl font-bold text-amber-200 mb-5 text-center">{t.seoMainTitle}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs sm:text-sm text-amber-100/80 leading-relaxed">
-              <article className="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-5 shadow-md"><h3 className="font-fredoka font-bold text-base text-amber-300 mb-2">{t.seoCard1Title}</h3><p>{t.seoCard1Text}</p></article>
-              <article className="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-5 shadow-md"><h3 className="font-fredoka font-bold text-base text-amber-300 mb-2">{t.seoCard2Title}</h3><p>{t.seoCard2Text}</p></article>
-              <article className="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-5 shadow-md"><h3 className="font-fredoka font-bold text-base text-amber-300 mb-2">{t.seoCard3Title}</h3><p>{t.seoCard3Text}</p></article>
-            </div>
-          </section>
-
-          <footer className="w-full bg-[#140802] border-t border-amber-950/90 py-4 px-4 z-20 mt-auto">
-            <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between text-[11px] text-amber-400/60 gap-2 font-medium">
-              <span>© 2026 3x3Chess Studio Edition • All Rights Reserved</span>
-              <div>
-<button type="button" onClick={() => setShowLegalModal(true)} className="text-amber-300/80 hover:text-amber-200 underline cursor-pointer">{t.footerLegalLink}</button>
-          <span className="mx-2 text-amber-900">|</span>
-          <a href="/blog.html" className="text-amber-300/80 hover:text-amber-200 underline cursor-pointer">Blog & Chess Theory</a>
-              </div>
-            </div>
-          </footer>
-
-          
-          {/* SPLASH SCREEN / TUTORIAL CAROUSEL */}
+          {/* TUTORIAL MODAL (Só abre quando o usuário clica em Regras/Tutorial) */}
           {showSplashModal && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
               <div className="relative w-full max-w-md wood-texture rounded-3xl p-6 sm:p-8 border-4 border-amber-400 shadow-2xl text-amber-50 cursor-default">
-                
-                {/* Cabeçalho com Idioma */}
                 <div className="flex items-center justify-between gap-2 mb-6">
-                  <span className="bg-amber-500/20 border border-amber-400/60 text-amber-300 text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-widest">⚡ {t.splashBadge || "TUTORIAL"}</span>
-                  <select value={language} onChange={(e) => handleLanguageChange(e.target.value)} className="bg-[#1b0c03] text-amber-100 font-bold text-xs py-1.5 px-2.5 rounded-xl border border-amber-600/80 focus:outline-none cursor-pointer uppercase">
-                    <option value="EN">🇺🇸 EN</option><option value="PT">🇧🇷 PT</option><option value="ES">🇪🇸 ES</option>
-                    <option value="FR">🇫🇷 FR</option><option value="DE">🇩🇪 DE</option><option value="RU">🇷🇺 RU</option>
-                  </select>
+                  <span className="bg-amber-500/20 border border-amber-400/60 text-amber-300 text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-widest">⚡ {t.splashBadge}</span>
+                  <button onClick={handleDismissSplash} className="text-amber-300 hover:text-white bg-amber-950/60 px-2.5 py-1 rounded-lg border border-amber-700/60 text-xs font-bold">✕</button>
                 </div>
 
-                {/* Conteúdo Dinâmico do Slide */}
-                <div className="min-h-[220px] flex flex-col items-center justify-center text-center animate-fade-in transition-all">
-                  
+                <div className="min-h-[220px] flex flex-col items-center justify-center text-center transition-all">
                   {tutorialStep === 0 && (
                     <div className="flex flex-col items-center justify-center w-full gap-4">
                       <div className="flex items-center justify-center gap-4 bg-[#1c0d04]/60 p-4 rounded-2xl border border-amber-900/50 w-full shadow-inner">
-                        <div className="w-16 h-16 bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 rounded-2xl border-3 border-[#2b1203] shadow-lg flex items-center justify-center text-4xl shrink-0">👑</div>
+                        <div className="w-16 h-16 bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 rounded-2xl border-2 border-[#2b1203] shadow-lg flex items-center justify-center text-4xl shrink-0">👑</div>
                         <h2 className="font-fredoka text-xl sm:text-2xl font-black text-amber-100 leading-tight drop-shadow text-left">
-                          9 Casas,<br/>54 Milhões de<br/>Possibilidades
+                          9 Squares,<br/>54.6 Million<br/>Possibilities
                         </h2>
                       </div>
                       <p className="text-base sm:text-lg text-amber-200 mt-1 font-medium px-1 leading-snug">{t.tut0Desc}</p>
@@ -1596,14 +1576,12 @@
                   {tutorialStep === 1 && (
                     <div className="flex flex-col items-center justify-center w-full gap-6">
                       <div className="flex items-center justify-center gap-6 sm:gap-10 w-full">
-                        {/* Peão Branco -> Cima */}
                         <div className="flex items-center gap-2">
                           <div className="w-14 h-14 bg-[#1c0d04] rounded-xl border-2 border-amber-500 flex items-center justify-center shadow-inner">
                             <ChessPieceIcon type="p" color="w" size="80%" />
                           </div>
                           <span className="text-3xl text-emerald-400 drop-shadow-md">⬆️</span>
                         </div>
-                        {/* Peão Preto -> Baixo */}
                         <div className="flex items-center gap-2">
                           <span className="text-3xl text-red-400 drop-shadow-md">⬇️</span>
                           <div className="w-14 h-14 bg-[#1c0d04] rounded-xl border-2 border-amber-700 flex items-center justify-center shadow-inner">
@@ -1622,7 +1600,7 @@
                           <ChessPieceIcon type="p" color="w" size="80%" />
                         </div>
                         <span className="text-3xl text-amber-400 drop-shadow-lg">➔</span>
-                        <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-amber-600 rounded-2xl border-3 border-[#2b1203] shadow-lg flex items-center justify-center shrink-0">
+                        <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-amber-600 rounded-2xl border-2 border-[#2b1203] shadow-lg flex items-center justify-center shrink-0">
                           <ChessPieceIcon type="q" color="w" size="85%" />
                         </div>
                       </div>
@@ -1632,59 +1610,36 @@
 
                   {tutorialStep === 3 && (
                     <div className="flex flex-col items-center justify-center w-full gap-5">
-                      {/* Bloco Dropdown */}
                       <div className="w-full flex flex-col items-center">
                         <div className="bg-[#1b0d03] text-amber-200 border border-amber-600/60 rounded-lg text-sm font-bold py-2 px-4 shadow-sm flex items-center gap-2 mb-3">
-                          Mate em 1 <span className="text-amber-500 text-[10px]">▼</span>
+                          {t.mateIn(1)} <span className="text-amber-500 text-[10px]">▼</span>
                         </div>
                         <p className="text-base sm:text-lg text-amber-200 font-medium px-1 leading-snug">{t.tut3DescPart1}</p>
                       </div>
-
-                      {/* Bloco Botões */}
                       <div className="w-full flex flex-col items-center mt-2">
-                        <div className="flex items-center gap-3 mb-3">
-                          <div className="bg-gradient-to-b from-amber-500 to-amber-600 text-amber-950 font-fredoka font-bold text-xs py-2 px-3 rounded-xl border-2 border-amber-950 shadow-md flex items-center gap-1">
-                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
-                            Reiniciar
-                          </div>
-                          <div className="bg-gradient-to-b from-blue-500 to-blue-600 text-white font-fredoka font-bold text-xs py-2 px-3 rounded-xl border-2 border-blue-950 shadow-md flex items-center gap-1">
-                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                            Novo Jogo
-                          </div>
-                        </div>
                         <p className="text-base sm:text-lg text-amber-200 font-medium px-1 leading-snug">{t.tut3DescPart2}</p>
                       </div>
                     </div>
                   )}
-
                 </div>
 
-                {/* Bolinhas de Navegação (Dots) */}
                 <div className="flex items-center justify-center gap-2 mt-4 mb-6">
                   {[0, 1, 2, 3].map((step) => (
                     <div key={step} className={`h-2.5 rounded-full transition-all duration-300 ${tutorialStep === step ? 'w-8 bg-amber-500' : 'w-2.5 bg-amber-900/60'}`} />
                   ))}
                 </div>
 
-                {/* Botões de Ação */}
                 <div className="flex items-center justify-between gap-3">
-                  {tutorialStep > 0 && (
-                    <button onClick={() => { playGameSound('select', soundEnabled, soundVolume); setTutorialStep(prev => prev - 1); }} className="px-4 py-3 bg-[#2f1608] hover:bg-[#3d1e0b] rounded-2xl font-bold text-xs text-amber-200 border border-amber-800 transition-colors cursor-pointer">
-                      Voltar
-                    </button>
-                  )}
-                  
                   {tutorialStep < 3 ? (
                     <button onClick={() => { playGameSound('select', soundEnabled, soundVolume); setTutorialStep(prev => prev + 1); }} className="btn-chunky btn-chunky-amber flex-1 bg-gradient-to-b from-amber-500 to-amber-600 hover:from-amber-400 text-amber-950 font-fredoka font-black text-lg py-3 px-6 rounded-2xl border-2 border-amber-950 shadow-chunky-btn-amber ml-auto cursor-pointer">
-                      {t.nextBtn || "Avançar ➔"}
+                      {t.nextBtn}
                     </button>
                   ) : (
                     <button onClick={() => { setTutorialStep(0); handleDismissSplash(); }} className="btn-chunky btn-chunky-green flex-1 bg-gradient-to-b from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-fredoka font-black text-lg py-3 px-6 rounded-2xl border-2 border-emerald-950 shadow-chunky-btn-green ml-auto cursor-pointer">
-                      {t.startBtn || "🔥 Começar a Jogar!"}
+                      {t.startBtn}
                     </button>
                   )}
                 </div>
-
               </div>
             </div>
           )}
@@ -1757,22 +1712,6 @@
             </div>
           )}
 
-          {/* LEGAL MODAL */}
-          {showLegalModal && (
-            <div onClick={() => setShowLegalModal(false)} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm cursor-pointer">
-              <div onClick={(e) => e.stopPropagation()} className="relative w-full max-w-xl wood-texture rounded-3xl p-6 sm:p-7 border-4 border-amber-600 shadow-2xl text-amber-50 max-h-[85vh] flex flex-col cursor-default">
-                <button onClick={() => setShowLegalModal(false)} className="absolute top-4 right-4 text-amber-300 hover:text-white bg-amber-950/60 p-2 rounded-xl border border-amber-700/60">✕</button>
-                <h3 className="font-fredoka text-2xl font-bold text-amber-100 mb-3">{t.legalModalTitle}</h3>
-                <div className="bg-[#1f0e04] border-2 border-amber-800 rounded-2xl p-4 mb-4 text-xs sm:text-sm text-amber-200/90 leading-relaxed space-y-3 overflow-y-auto">
-                  <div><strong className="text-amber-300 font-bold block mb-1">{t.legalPrivacyTitle}</strong><p>{t.legalPrivacyText}</p></div>
-                  <div><strong className="text-amber-300 font-bold block mb-1">{t.legalTermsTitle}</strong><p>{t.legalTermsText}</p></div>
-                  <div><strong className="text-amber-300 font-bold block mb-1">{t.legalContactTitle}</strong><p>{t.legalContactText}</p></div>
-                </div>
-                <button onClick={() => setShowLegalModal(false)} className="btn-chunky btn-chunky-amber w-full bg-gradient-to-b from-amber-500 to-amber-600 text-amber-950 font-fredoka font-black text-sm py-3 rounded-2xl border-2 border-amber-950">{t.closeBtn}</button>
-              </div>
-            </div>
-          )}
-
           {/* VICTORY MODAL */}
           {isWon && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
@@ -1789,26 +1728,8 @@
                   <div className="flex flex-col items-center"><span className="text-[11px] uppercase font-bold text-amber-400/80">{t.challenge}</span><span className="font-fredoka font-bold text-base text-amber-200">{t.mateIn(selectedLevel)}</span></div>
                 </div>
                 <div className="space-y-3">
-                  <button onClick={handleAnotherChallengeSPA} className="btn-chunky btn-chunky-green w-full bg-gradient-to-b from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-fredoka font-black text-xl py-3.5 px-6 rounded-2xl border-3 border-emerald-950 shadow-chunky-btn-green flex items-center justify-center gap-3 cursor-pointer"><span>{t.anotherChallengeBtn}</span><span className="text-2xl">➔</span></button>
+                  <button onClick={handleAnotherChallengeSPA} className="btn-chunky btn-chunky-green w-full bg-gradient-to-b from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-fredoka font-black text-xl py-3.5 px-6 rounded-2xl border-2 border-emerald-950 shadow-chunky-btn-green flex items-center justify-center gap-3 cursor-pointer"><span>{t.anotherChallengeBtn}</span><span className="text-2xl">➔</span></button>
                   <button onClick={() => setIsWon(false)} className="w-full text-amber-300 hover:text-white text-xs font-bold uppercase tracking-wider py-1.5 transition cursor-pointer">{t.reviewBoardBtn}</button>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* MERCH MODAL */}
-          {showMerchModal && (
-            <div onClick={() => setShowMerchModal(false)} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm cursor-pointer">
-              <div onClick={(e) => e.stopPropagation()} className="relative w-full max-w-lg wood-texture rounded-3xl p-6 sm:p-7 border-4 border-amber-600 shadow-2xl text-amber-50 cursor-default">
-                <button onClick={() => setShowMerchModal(false)} className="absolute top-4 right-4 text-amber-300 hover:text-white bg-amber-950/60 p-2 rounded-xl border border-amber-700/60">✕</button>
-                <div className="flex items-center gap-3 mb-4"><div className="w-12 h-12 rounded-2xl bg-amber-500/20 border-2 border-amber-400 flex items-center justify-center text-2xl">📦</div><div><h3 className="font-fredoka text-2xl font-bold text-amber-100">{t.merchModalTitle}</h3><p className="text-xs text-amber-300/80 font-medium">{t.merchModalSubtitle}</p></div></div>
-                <div className="bg-[#1f0e04] border-2 border-amber-800 rounded-2xl p-4 mb-4 flex items-center gap-4">
-                  <div className="w-24 h-24 rounded-xl bg-amber-950 border border-amber-700/80 flex items-center justify-center text-4xl shadow-inner">♟️🪵</div>
-                  <div className="flex-1 text-xs space-y-1"><div className="font-bold text-amber-200 text-sm">{t.merchItemTitle}</div><div className="text-amber-400/90">{t.merchBullet1}</div><div className="text-amber-400/90">{t.merchBullet2}</div><div className="text-emerald-400 font-extrabold text-lg mt-1">$29.99 <span className="text-amber-300/60 line-through text-xs font-normal">$39.99</span></div></div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <button onClick={() => { alert(t.checkoutAlert); setShowMerchModal(false); }} className="btn-chunky btn-chunky-amber flex-1 bg-gradient-to-b from-amber-500 to-amber-600 hover:from-amber-400 text-amber-950 font-fredoka font-black text-lg py-3 rounded-2xl border-2 border-amber-950 shadow-chunky-btn-amber">{t.preOrderBtn}</button>
-                  <button onClick={() => setShowMerchModal(false)} className="px-4 py-3 bg-[#2f1608] hover:bg-[#3d1e0b] rounded-2xl font-bold text-xs text-amber-200 border border-amber-800">{t.closeBtn}</button>
                 </div>
               </div>
             </div>
@@ -1820,8 +1741,5 @@
 
     ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 </script>
-
-<!-- Bloqueio do Menu de Contexto (Botão Direito) para melhorar a UX do jogo -->
-<script>document.addEventListener('contextmenu', event => event.preventDefault());</script>
 </body>
 </html>

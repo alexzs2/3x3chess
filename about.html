@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="theme-color" content="#1e1107"/>
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='92' height='92' x='4' y='4' rx='22' fill='%23F59E0B' stroke='%232b1203' stroke-width='8'/><text x='50%25' y='54%25' dominant-baseline='central' text-anchor='middle' font-size='58'>👑</text></svg>"/>
+<title>About 3x3Chess Studio — Our Mission, Endgame Research & Engineering</title>
+
+<meta name="description" content="Learn about 3x3Chess Studio, our educational mission in tactical chess endgame calculation, and the mathematical tablebase research behind our 9-square puzzles."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://3x3chess.com/about.html"/>
+
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DWQNJMQVRY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DWQNJMQVRY');
+</script>
+
+<!-- Google AdSense Verification Script -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8849235958249535" crossorigin="anonymous"></script>
+
+<!-- Schema.org AboutPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About 3x3Chess Studio",
+  "url": "https://3x3chess.com/about.html",
+  "description": "Educational initiative dedicated to tactical chess endgame training using mathematically verified 3x3 mini-chess tablebases.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "3x3Chess Studio",
+    "url": "https://3x3chess.com/"
+  }
+}
+</script>
+
+<!-- Tailwind CSS & Google Fonts -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          fredoka: ['Fredoka', 'sans-serif'],
+          outfit: ['Outfit', 'sans-serif'],
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Outfit', sans-serif; background: radial-gradient(circle at 50% 10%, #351c0a 0%, #170b04 100%); min-height: 100vh; color: #FEFAE0; }
+  .wood-texture { background-color: #4a270f; background-image: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.07) 0%, transparent 60%), repeating-linear-gradient(45deg, rgba(0,0,0,0.035) 0px, rgba(0,0,0,0.035) 2px, transparent 2px, transparent 8px), linear-gradient(to bottom, #593014, #331707); }
+</style>
+</head>
+<body class="antialiased flex flex-col min-h-screen selection:bg-amber-500 selection:text-white">
+
+<!-- Barra de Navegação Superior -->
+<header class="wood-texture border-b-2 border-[#331707] shadow-md px-4 py-3 sticky top-0 z-30">
+  <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3">
+    <a href="/index.html" class="flex items-center gap-2.5 group">
+      <div class="w-10 h-10 bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 rounded-xl border-2 border-[#2b1203] shadow-md flex items-center justify-center">
+        <span class="text-2xl drop-shadow">👑</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="font-fredoka text-xl font-black text-amber-100 group-hover:text-white transition">3x3<span class="text-amber-400">Chess</span></span>
+        <span class="bg-amber-600/90 text-white font-fredoka text-[9px] font-bold px-1.5 py-0.5 rounded-sm uppercase tracking-wider shadow">Studio</span>
+      </div>
+    </a>
+
+    <nav aria-label="Main Navigation" class="flex flex-wrap items-center gap-4 sm:gap-6 text-xs sm:text-sm font-bold text-amber-200">
+      <a href="/index.html" class="hover:text-amber-400 transition">Play Game</a>
+      <a href="/blog.html" class="hover:text-amber-400 transition">Articles & Theory</a>
+      <a href="/about.html" class="text-amber-400 underline underline-offset-4">About Us</a>
+      <a href="/contact.html" class="hover:text-amber-400 transition">Contact</a>
+      <a href="/privacy.html" class="hover:text-amber-400 transition">Privacy & Terms</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Conteúdo Principal -->
+<main class="max-w-4xl w-full mx-auto px-4 sm:px-6 py-10 space-y-8 flex-1 leading-relaxed text-amber-100/90">
+
+  <section class="bg-[#1c0d04]/90 border border-amber-900/70 rounded-3xl p-6 sm:p-10 shadow-xl space-y-5">
+    <span class="inline-block bg-amber-500/20 text-amber-300 border border-amber-400/40 text-xs font-extrabold uppercase px-3 py-1 rounded-full tracking-widest">
+      About Our Platform
+    </span>
+    <h1 class="font-fredoka text-3xl sm:text-4xl font-black text-amber-100 leading-tight">
+      Bridging Classical Chess Endgame Theory and Micro-Grid Calculation
+    </h1>
+    <p class="text-sm sm:text-base">
+      Welcome to <strong>3x3Chess Studio</strong> (<code>3x3chess.com</code>), an independent educational web application and tactical study portal dedicated to the art of chess endgame calculation. Our platform was created with a clear pedagogical objective: to help chess players of all skill levels—from absolute beginners to tournament competitors—develop razor-sharp visualization, candidate move discipline, and mating net recognition without the overwhelming complexity of a 64-square board.
+    </p>
+    <p class="text-sm sm:text-base">
+      In standard 8x8 chess, players often spend hundreds of hours memorizing opening variations only to lose won games in the final phase due to a missed king opposition, an unexpected knight fork, or an accidental stalemate. By isolating tactical combat onto a 9-square grid (files <strong>a, b, c</strong> and ranks <strong>1, 2, 3</strong>), 3x3Chess Studio forces the human brain to calculate concrete variations to the very end.
+    </p>
+  </section>
+
+  <section class="bg-[#1c0d04]/90 border border-amber-900/70 rounded-3xl p-6 sm:p-10 shadow-xl space-y-5">
+    <h2 class="font-fredoka text-2xl sm:text-3xl font-bold text-amber-200 border-b border-amber-900/60 pb-3">
+      🔬 The Mathematical Inspiration: 54,687,564 Verified Nodes
+    </h2>
+    <p class="text-sm sm:text-base">
+      Unlike casual puzzle games that rely on random or unverified board setups, every challenge hosted on 3x3Chess Studio is rooted in rigorous combinatorial game theory. In computer science research, the 3x3 chess variant was completely and strongly solved through exhaustive retrograde analysis conducted by <strong>a Russian mathematician</strong> and computer chess specialist.
+    </p>
+    <p class="text-sm sm:text-base">
+      By evaluating all legal placements of the White and Black Kings alongside pawns and promoted pieces under official FIDE movement rules, the mathematical analysis established several landmark findings that guide our training curriculum:
+    </p>
+    <ul class="list-disc list-inside space-y-2 text-sm sm:text-base text-amber-100/85 bg-[#140802]/80 p-5 rounded-2xl border border-amber-900/50">
+      <li><strong>Exact State Space:</strong> There are precisely <strong>54,687,564 unique legal positions</strong> on a 3x3 chessboard.</li>
+      <li><strong>Maximum Depth of 16 Moves:</strong> The longest forced checkmate on a 9-square board against optimal computer defense requires <strong>16 full moves</strong> (31 half-moves).</li>
+      <li><strong>High Stalemate Density:</strong> Because every piece controls a large percentage of the 9-square grid, quiet waiting moves (<em>Zugzwang</em>) and sub-promotions (promoting a pawn to a Knight or Rook instead of a Queen) are essential to avoid stalemating the defending King.</li>
+    </ul>
+  </section>
+
+  <section class="bg-[#1c0d04]/90 border border-amber-900/70 rounded-3xl p-6 sm:p-10 shadow-xl space-y-5">
+    <h2 class="font-fredoka text-2xl sm:text-3xl font-bold text-amber-200 border-b border-amber-900/60 pb-3">
+      ⚙️ How We Built the 3x3Chess Studio Engine
+    </h2>
+    <p class="text-sm sm:text-base">
+      3x3Chess Studio was engineered from the ground up as a fast, accessible, and distraction-free browser studio. Rather than relying on heavy external game engines or bloated downloads, our software architecture combines three custom-built technologies:
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+      <div class="bg-[#140802]/80 border border-amber-900/50 rounded-2xl p-4">
+        <h3 class="font-fredoka font-bold text-amber-300 text-base mb-1.5">1. Compact FEN Parser</h3>
+        <p class="text-xs sm:text-sm text-amber-100/80">
+          Each puzzle is encoded in a 10-character micro-FEN string representing the active turn and the 9 squares from <code>a3</code> to <code>c1</code>, allowing instant loading across 15 difficulty tiers.
+        </p>
+      </div>
+      <div class="bg-[#140802]/80 border border-amber-900/50 rounded-2xl p-4">
+        <h3 class="font-fredoka font-bold text-amber-300 text-base mb-1.5">2. Minimax Verification</h3>
+        <p class="text-xs sm:text-sm text-amber-100/80">
+          Our internal move validator enforces FIDE pin rules, king safety, and line-of-sight geometry in real time while calculating stubborn defensive responses for the Black pieces.
+        </p>
+      </div>
+      <div class="bg-[#140802]/80 border border-amber-900/50 rounded-2xl p-4">
+        <h3 class="font-fredoka font-bold text-amber-300 text-base mb-1.5">3. Web Audio Synthesizer</h3>
+        <p class="text-xs sm:text-sm text-amber-100/80">
+          Instead of loading heavy audio files, our acoustic engine synthesizes wooden piece clacks, captures, and check alerts mathematically using the browser's native Web Audio API.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#1c0d04]/90 border border-amber-900/70 rounded-3xl p-6 sm:p-10 shadow-xl space-y-5">
+    <h2 class="font-fredoka text-2xl sm:text-3xl font-bold text-amber-200 border-b border-amber-900/60 pb-3">
+      🌍 Multilingual Accessibility & Editorial Commitment
+    </h2>
+    <p class="text-sm sm:text-base">
+      Chess is a universal language. To support students, coaches, and tactical enthusiasts around the globe, the 3x3Chess Studio interface is natively localized into six languages: <strong>English, Portuguese, Spanish, French, German, and Russian</strong>. Alongside our interactive endgame trainer, we publish in-depth tactical articles, geometric breakdowns, and annotated puzzle walkthroughs in our <a href="/blog.html" class="text-amber-400 underline hover:text-amber-300">Articles & Chess Theory</a> section.
+    </p>
+    <div class="pt-3 flex flex-wrap gap-4">
+      <a href="/index.html" class="bg-amber-500 hover:bg-amber-400 text-amber-950 font-fredoka font-black text-sm px-6 py-3 rounded-xl shadow-md transition">
+        👑 Launch Endgame Trainer
+      </a>
+      <a href="/blog.html" class="bg-[#2f1608] hover:bg-[#3d1e0b] text-amber-200 border border-amber-700 font-fredoka font-bold text-sm px-6 py-3 rounded-xl transition">
+        📖 Read Tactical Articles
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- Rodapé Institucional -->
+<footer class="w-full bg-[#120702] border-t-2 border-amber-950 py-8 px-4 mt-auto">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-amber-300/70">
+    <div class="flex items-center gap-2">
+      <span class="text-lg">👑</span>
+      <span class="font-fredoka font-bold text-amber-100 text-sm">3x3Chess Studio Edition</span>
+    </div>
+    <nav aria-label="Footer Navigation" class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-semibold text-amber-200/90">
+      <a href="/index.html" class="hover:text-amber-400 transition">Play 3x3Chess</a>
+      <a href="/blog.html" class="hover:text-amber-400 transition">Articles & Chess Theory</a>
+      <a href="/about.html" class="text-amber-400">About Us</a>
+      <a href="/contact.html" class="hover:text-amber-400 transition">Contact & Support</a>
+      <a href="/privacy.html" class="hover:text-amber-400 transition">Privacy Policy & Terms</a>
+    </nav>
+  </div>
+  <div class="max-w-6xl mx-auto border-t border-amber-950/70 mt-6 pt-4 text-center text-[11px] text-amber-500/50">
+    © 2026 3x3Chess Studio (3x3chess.com). All Rights Reserved.
+  </div>
+</footer>
+
+</body>
+</html>

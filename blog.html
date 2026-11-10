@@ -1,292 +1,478 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <meta name="theme-color" content="#1e1107"/>
-    <meta name="robots" content="index, follow, max-image-preview:large"/>
-    <meta name="description" content="3x3Chess Academy & Blog - Complete chess rules for beginners, endgame theory, computational mathematics, tactical training guides, and the history of mini-chess variants."/>
-    <title>Chess Academy, Rules & Endgame Theory - 3x3Chess Studio</title>
-    
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWQNJMQVRY"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-DWQNJMQVRY');
-    </script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="theme-color" content="#1e1107"/>
 
-    <!-- Google AdSense Verification Script -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8849235958249535" crossorigin="anonymous"></script>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='92' height='92' x='4' y='4' rx='22' fill='%23F59E0B' stroke='%232b1203' stroke-width='8'/><text x='50%25' y='54%25' dominant-baseline='central' text-anchor='middle' font-size='58'>👑</text></svg>"/>
+<title>3x3Chess Academy & Theory Blog — Endgame Mathematics, Zugzwang & Mating Patterns</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-    <style>
-        body { font-family: 'Outfit', sans-serif; background: radial-gradient(circle at 50% 15%, #351c0a 0%, #170b04 100%); min-height: 100vh; color: #FEFAE0; }
-        h1, h2, h3, h4 { font-family: 'Fredoka', sans-serif; }
-    </style>
+<meta name="description" content="In-depth articles on 3x3 mini-chess endgame theory: retrograde analysis of 54.6 million positions, the Hamiltonian Knight cycle, Zugzwang mechanics, and stalemate avoidance."/>
+<meta name="keywords" content="3x3 chess theory, mini chess strategy, retrograde analysis chess, knight hamiltonian cycle 3x3, zugzwang puzzles, stalemate avoidance, chess endgame calculation"/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
+<link rel="canonical" href="https://3x3chess.com/blog.html"/>
+
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DWQNJMQVRY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DWQNJMQVRY');
+</script>
+
+<!-- Google AdSense Verification Script -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8849235958249535" crossorigin="anonymous"></script>
+
+<!-- Schema.org Blog & Technical Articles -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "3x3Chess Studio — Endgame Academy & Mathematical Theory",
+  "url": "https://3x3chess.com/blog.html",
+  "description": "Technical articles and tactical guides on 3x3 mini-chess endgames, combinatorial game theory, and calculation training.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "3x3Chess Studio",
+    "url": "https://3x3chess.com/"
+  },
+  "blogPost": [
+    {
+      "@type": "BlogPosting",
+      "headline": "The Combinatorics of 9 Squares: How Retrograde Analysis Solved All 54,687,564 Positions",
+      "url": "https://3x3chess.com/blog.html#article-retrograde-math",
+      "datePublished": "2026-10-15",
+      "author": { "@type": "Organization", "name": "3x3Chess Studio" }
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "The Geometry of the 3x3 Knight: Perimeter Control vs. The B2 Dead Zone",
+      "url": "https://3x3chess.com/blog.html#article-knight-geometry",
+      "datePublished": "2026-10-22",
+      "author": { "@type": "Organization", "name": "3x3Chess Studio" }
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Mastering King Opposition and Zugzwang in Confined Endgame Grids",
+      "url": "https://3x3chess.com/blog.html#article-opposition-zugzwang",
+      "datePublished": "2026-10-29",
+      "author": { "@type": "Organization", "name": "3x3Chess Studio" }
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "The Stalemate Trap: Controlling Escape Squares in Queen and Rook Endgames",
+      "url": "https://3x3chess.com/blog.html#article-stalemate-control",
+      "datePublished": "2026-11-03",
+      "author": { "@type": "Organization", "name": "3x3Chess Studio" }
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Breaking Defensive Fortresses: How to Solve Mate in 6 to Mate in 15 Challenges",
+      "url": "https://3x3chess.com/blog.html#article-deep-calculation",
+      "datePublished": "2026-11-07",
+      "author": { "@type": "Organization", "name": "3x3Chess Studio" }
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Cognitive Transfer: How Micro-Board Training Accelerates Classical 8x8 Calculation",
+      "url": "https://3x3chess.com/blog.html#article-cognitive-transfer",
+      "datePublished": "2026-11-10",
+      "author": { "@type": "Organization", "name": "3x3Chess Studio" }
+    }
+  ]
+}
+</script>
+
+<!-- Tailwind CSS & Google Fonts -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          fredoka: ['Fredoka', 'sans-serif'],
+          outfit: ['Outfit', 'sans-serif'],
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Outfit', sans-serif; background: radial-gradient(circle at 50% 10%, #351c0a 0%, #170b04 100%); min-height: 100vh; color: #FEFAE0; }
+  .wood-texture { background-color: #4a270f; background-image: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.07) 0%, transparent 60%), repeating-linear-gradient(45deg, rgba(0,0,0,0.035) 0px, rgba(0,0,0,0.035) 2px, transparent 2px, transparent 8px), linear-gradient(to bottom, #593014, #331707); }
+  .light-wood-tile { background: linear-gradient(135deg, #FFF3D4 0%, #F5DEB3 100%); box-shadow: inset 0 2px 4px rgba(255,255,255,0.7), inset 0 -2px 4px rgba(0,0,0,0.18); }
+  .dark-wood-tile { background: linear-gradient(135deg, #C88D56 0%, #A96831 100%); box-shadow: inset 0 2px 4px rgba(255,255,255,0.25), inset 0 -2px 4px rgba(0,0,0,0.35); }
+</style>
 </head>
-<body class="antialiased selection:bg-amber-500 selection:text-black">
-    
-    <!-- Top Navigation Header -->
-    <header class="w-full bg-[#180a03] border-b-2 border-amber-950 py-5 px-4 shadow-lg sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="text-center sm:text-left">
-                <h1 class="text-2xl md:text-3xl font-black text-amber-100 drop-shadow-md">
-                    <a href="/" class="hover:text-amber-400 transition-colors">👑 3x3<span class="text-amber-400">Chess</span> Academy</a>
-                </h1>
-                <p class="text-amber-500/80 text-xs font-bold tracking-widest uppercase mt-0.5">Official Knowledge Base, Rules & Tactical Training</p>
-            </div>
-            <div class="flex items-center gap-3">
-                <a href="#toc" class="text-xs md:text-sm font-bold text-amber-200 hover:text-white px-3 py-2 rounded-lg bg-amber-950/60 border border-amber-800/50 transition-colors">📚 Articles Index</a>
-                <a href="#privacy" class="text-xs md:text-sm font-bold text-amber-200 hover:text-white px-3 py-2 rounded-lg bg-amber-950/60 border border-amber-800/50 transition-colors">⚖️ Privacy & About</a>
-                <a href="/" class="text-xs md:text-sm font-bold text-amber-950 bg-amber-400 hover:bg-amber-300 px-4 py-2 rounded-lg shadow-md transition-colors">🎮 Play Now</a>
-            </div>
+<body class="antialiased flex flex-col min-h-screen selection:bg-amber-500 selection:text-white">
+
+<!-- Barra de Navegação Superior -->
+<header class="wood-texture border-b-2 border-[#331707] shadow-md px-4 py-3 sticky top-0 z-30">
+  <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3">
+    <a href="/index.html" class="flex items-center gap-2.5 group">
+      <div class="w-10 h-10 bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 rounded-xl border-2 border-[#2b1203] shadow-md flex items-center justify-center">
+        <span class="text-2xl drop-shadow">👑</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="font-fredoka text-xl font-black text-amber-100 group-hover:text-white transition">3x3<span class="text-amber-400">Chess</span></span>
+        <span class="bg-amber-600/90 text-white font-fredoka text-[9px] font-bold px-1.5 py-0.5 rounded-sm uppercase tracking-wider shadow">Studio</span>
+      </div>
+    </a>
+
+    <nav aria-label="Main Navigation" class="flex flex-wrap items-center gap-4 sm:gap-6 text-xs sm:text-sm font-bold text-amber-200">
+      <a href="/index.html" class="hover:text-amber-400 transition">Play Game</a>
+      <a href="/blog.html" class="text-amber-400 underline underline-offset-4">Articles & Theory</a>
+      <a href="/about.html" class="hover:text-amber-400 transition">About Us</a>
+      <a href="/contact.html" class="hover:text-amber-400 transition">Contact</a>
+      <a href="/privacy.html" class="hover:text-amber-400 transition">Privacy & Terms</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Cabeçalho da Academia e Índice de Artigos -->
+<main class="max-w-5xl w-full mx-auto px-4 sm:px-6 py-10 space-y-12 flex-1 leading-relaxed text-amber-100/90">
+
+  <section class="bg-[#1c0d04]/90 border-2 border-amber-700/70 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-6">
+    <div class="space-y-3">
+      <span class="inline-block bg-amber-500/20 text-amber-300 border border-amber-400/40 text-xs font-extrabold uppercase px-3 py-1 rounded-full tracking-widest">
+        3x3Chess Endgame Academy • Technical Library
+      </span>
+      <h1 class="font-fredoka text-3xl sm:text-4xl font-black text-amber-100 leading-tight">
+        Chess Theory, Combinatorial Mathematics & Tactical Endgame Guides
+      </h1>
+      <p class="text-sm sm:text-base text-amber-200/85">
+        Explore our collection of original technical articles covering the mathematical resolution of 3x3 mini-chess, piece geometry on a 9-square grid, retrograde tablebase mechanics, and practical calculation methods to master forced checkmates from Mate in 1 to Mate in 15.
+      </p>
+    </div>
+
+    <!-- Índice de Navegação Rápida dos 6 Artigos -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2 text-xs sm:text-sm">
+      <a href="#article-retrograde-math" class="bg-[#140802]/90 hover:bg-amber-950/70 border border-amber-800/70 rounded-2xl p-4 transition flex items-start gap-3">
+        <span class="text-amber-400 font-mono font-black text-base">01.</span>
+        <div>
+          <strong class="font-fredoka text-amber-100 block">The Combinatorics of 9 Squares</strong>
+          <span class="text-amber-300/70 text-xs">How retrograde analysis solved all 54,687,564 legal positions.</span>
         </div>
+      </a>
+      <a href="#article-knight-geometry" class="bg-[#140802]/90 hover:bg-amber-950/70 border border-amber-800/70 rounded-2xl p-4 transition flex items-start gap-3">
+        <span class="text-amber-400 font-mono font-black text-base">02.</span>
+        <div>
+          <strong class="font-fredoka text-amber-100 block">The Geometry of the 3x3 Knight</strong>
+          <span class="text-amber-300/70 text-xs">The Hamiltonian 8-square perimeter loop vs. the b2 dead zone.</span>
+        </div>
+      </a>
+      <a href="#article-opposition-zugzwang" class="bg-[#140802]/90 hover:bg-amber-950/70 border border-amber-800/70 rounded-2xl p-4 transition flex items-start gap-3">
+        <span class="text-amber-400 font-mono font-black text-base">03.</span>
+        <div>
+          <strong class="font-fredoka text-amber-100 block">Mastering King Opposition & Zugzwang</strong>
+          <span class="text-amber-300/70 text-xs">Why quiet waiting moves outperform immediate checks.</span>
+        </div>
+      </a>
+      <a href="#article-stalemate-control" class="bg-[#140802]/90 hover:bg-amber-950/70 border border-amber-800/70 rounded-2xl p-4 transition flex items-start gap-3">
+        <span class="text-amber-400 font-mono font-black text-base">04.</span>
+        <div>
+          <strong class="font-fredoka text-amber-100 block">Overcoming the Stalemate Trap</strong>
+          <span class="text-amber-300/70 text-xs">Controlling escape squares in Queen and Rook endgames.</span>
+        </div>
+      </a>
+      <a href="#article-deep-calculation" class="bg-[#140802]/90 hover:bg-amber-950/70 border border-amber-800/70 rounded-2xl p-4 transition flex items-start gap-3">
+        <span class="text-amber-400 font-mono font-black text-base">05.</span>
+        <div>
+          <strong class="font-fredoka text-amber-100 block">Breaking Defensive Fortresses (Mate in 6–15)</strong>
+          <span class="text-amber-300/70 text-xs">Step-by-step methodology for deep multi-move calculation.</span>
+        </div>
+      </a>
+      <a href="#article-cognitive-transfer" class="bg-[#140802]/90 hover:bg-amber-950/70 border border-amber-800/70 rounded-2xl p-4 transition flex items-start gap-3">
+        <span class="text-amber-400 font-mono font-black text-base">06.</span>
+        <div>
+          <strong class="font-fredoka text-amber-100 block">Cognitive Transfer to 8x8 Classical Chess</strong>
+          <span class="text-amber-300/70 text-xs">How micro-grid training improves tournament endgame accuracy.</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       ARTIGO 1: A MATEMÁTICA E ANÁLISE RETRÓGRADA (54.687.564 POSIÇÕES)
+       ======================================================================== -->
+  <article id="article-retrograde-math" class="bg-[#1c0d04]/90 border border-amber-900/70 rounded-3xl p-6 sm:p-10 shadow-xl space-y-5">
+    <header class="border-b border-amber-900/60 pb-4">
+      <div class="flex items-center justify-between text-xs text-amber-400 font-bold uppercase tracking-wider mb-1">
+        <span>Article 01 • Combinatorial Game Theory</span>
+        <span>Reading Time: 6 min</span>
+      </div>
+      <h2 class="font-fredoka text-2xl sm:text-3xl font-bold text-amber-100">
+        The Combinatorics of 9 Squares: How Retrograde Analysis Solved All 54,687,564 Positions
+      </h2>
     </header>
 
-    <main class="max-w-5xl mx-auto px-4 py-10 space-y-12">
+    <p class="text-sm sm:text-base">
+      When chess players first look at a 3x3 board—consisting of just nine squares from <code>a1</code> to <code>c3</code>—their initial intuition is that the game must be trivial. After all, a standard tic-tac-toe grid also uses nine squares and has only 765 essentially different positions. Why, then, does 3x3 chess contain an astonishing <strong>54,687,564 unique legal positions</strong>, and how can a board so small harbor forced checkmates requiring 16 full moves?
+    </p>
 
-        <!-- Hero Introduction -->
-        <section class="bg-[#211005] border-2 border-amber-800/60 rounded-3xl p-6 md:p-10 shadow-2xl text-center space-y-4">
-            <span class="bg-amber-500/20 border border-amber-400/50 text-amber-300 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Comprehensive Educational Guide</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-amber-100">Master the Geometry of Chess: From Basic Rules to Grandmaster Endgames</h2>
-            <p class="text-amber-200/80 max-w-3xl mx-auto text-sm md:text-base leading-relaxed">
-                Welcome to the <strong>3x3Chess Studio Academy</strong>. Whether you are a complete beginner learning how the pieces move for the first time, or an experienced club player sharpening your endgame calculation through reduced-board puzzles, this encyclopedia of 13 in-depth articles covers the rules, history, mathematics, and tactical psychology of chess.
-            </p>
-        </section>
+    <h3 class="font-fredoka text-xl font-bold text-amber-300 pt-2">Why Forward Search Fails and Retrograde Analysis Succeeds</h3>
+    <p class="text-sm sm:text-base">
+      In computer chess, standard engines calculate forward from a starting position using alpha-beta pruning. However, to prove the absolute mathematical truth of an entire chess variant (a process known in game theory as <em>strongly solving</em> a game), forward search is insufficient. Instead, <strong>a Russian mathematician</strong> and computer chess researcher applied <strong>exhaustive retrograde analysis</strong>—the same algorithmic technique used to build 7-piece Syzygy and Lomonosov endgame tablebases for 8x8 chess.
+    </p>
+    <p class="text-sm sm:text-base">
+      Retrograde analysis works backward from the end of the game:
+    </p>
+    <ol class="list-decimal list-inside space-y-2 text-sm sm:text-base bg-[#140802]/80 p-5 rounded-2xl border border-amber-900/50 text-amber-100/85">
+      <li><strong>Step 1 (Enumeration of Legal States):</strong> The algorithm generates every possible combination of pieces on the 9 squares, immediately discarding illegal states (such as positions where both Kings are adjacent, where the player not on turn is already in check, or where unpromoted pawns sit on the first or third rank).</li>
+      <li><strong>Step 2 (Terminal Mate-in-0 Identification):</strong> The solver identifies all positions where it is Black's turn, the Black King is in check, and Black has zero legal moves. These are marked as <em>Mate in 0</em>.</li>
+      <li><strong>Step 3 (Backward Propagation):</strong> Working backward one half-move (ply) at a time, any White-to-move position that has at least one legal move leading to a <em>Mate in 0</em> is labeled <em>Mate in 1</em>. Next, any Black-to-move position where <em>all</em> legal defensive responses lead to a White <em>Mate in 1</em> is labeled as losing in 1 move.</li>
+      <li><strong>Step 4 (Iterative Convergence to Mate in 16):</strong> This backward loop repeats until no new forced wins can be found. On the 3x3 grid, the algorithm terminates after 31 plies (<strong>Mate in 16</strong>). Every remaining position that does not lead to a forced mate is proven to be a theoretical draw under perfect play.</li>
+    </ol>
 
-        <!-- Table of Contents -->
-        <nav id="toc" class="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-6 md:p-8 shadow-xl">
-            <h3 class="text-xl md:text-2xl font-bold text-amber-400 mb-4 border-b border-amber-900/60 pb-2">📖 Table of Contents (13 Educational Guides)</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm md:text-base text-amber-200/90">
-                <a href="#article-1" class="hover:text-amber-400 transition-colors">1. Basic Chess Instructions: A Complete Guide to the Pieces</a>
-                <a href="#article-2" class="hover:text-amber-400 transition-colors">2. Understanding Check, Checkmate, and Stalemate</a>
-                <a href="#article-3" class="hover:text-amber-400 transition-colors">3. Translating Official FIDE Rules to a 3x3 Micro Board</a>
-                <a href="#article-4" class="hover:text-amber-400 transition-colors">4. The Mathematics of Mini-Chess: Solving 54 Million Nodes</a>
-                <a href="#article-5" class="hover:text-amber-400 transition-colors">5. Why Alternative & Reduced Boards Accelerate Chess Mastery</a>
-                <a href="#article-6" class="hover:text-amber-400 transition-colors">6. The Fascinating History of Minichess Variants</a>
-                <a href="#article-7" class="hover:text-amber-400 transition-colors">7. Why Grandmasters Practice Endgame Puzzles Daily</a>
-                <a href="#article-8" class="hover:text-amber-400 transition-colors">8. Mastering the Opposition: King & Pawn Fundamentals</a>
-                <a href="#article-9" class="hover:text-amber-400 transition-colors">9. The Art of Sub-Promotion: When a Knight Beats a Queen</a>
-                <a href="#article-10" class="hover:text-amber-400 transition-colors">10. Zugzwang Explained: The Ultimate Weapon in Tight Spaces</a>
-                <a href="#article-11" class="hover:text-amber-400 transition-colors">11. Avoiding Blunders: A 3-Step Calculation Checklist</a>
-                <a href="#article-12" class="hover:text-amber-400 transition-colors">12. Cognitive Benefits: How Tactical Puzzles Rewire Your Brain</a>
-                <a href="#article-13" class="hover:text-amber-400 transition-colors">13. From 3x3 to 8x8: Transferring Micro-Tactics to Classical Chess</a>
-            </div>
-        </nav>
+    <h3 class="font-fredoka text-xl font-bold text-amber-300 pt-2">What Makes a 3x3 Position Legal?</h3>
+    <p class="text-sm sm:text-base">
+      To appreciate why there are over 54.6 million legal positions, consider the combinatorial variety of chess pieces. Each of the 9 squares can be empty or occupied by a White or Black King, Queen, Rook, Bishop, Knight, or Pawn (on rank 2). Even after filtering out illegal king adjacencies and impossible double-checks, the interplay between long-range sliders (Queens, Rooks, Bishops) and leapers (Knights) creates millions of non-trivial tactical webs.
+    </p>
+  </article>
 
-        <!-- ARTICLE 1: Basic Chess Instructions -->
-        <article id="article-1" class="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
-            <div class="text-xs font-bold text-amber-500 uppercase tracking-widest">Module 01 • Beginner Fundamentals</div>
-            <h2 class="text-2xl md:text-3xl font-bold text-amber-300">1. Basic Chess Instructions: A Complete Guide to the Pieces and Board</h2>
-            <div class="text-amber-100/90 space-y-4 leading-relaxed text-sm md:text-base">
-                <p>Chess is a two-player strategy board game played on a checkered grid. At its core, it is a game of complete information—meaning there is no element of luck, dice, or hidden cards. Victory is achieved purely through tactical foresight, spatial control, and piece coordination. Before diving into complex puzzles, every player must master how each of the six unique chess pieces moves and captures.</p>
-                
-                <h3 class="text-xl font-bold text-amber-200 pt-2">Understanding Board Coordinates</h3>
-                <p>Chessboards use an algebraic coordinate system to record moves. Vertical columns are called <strong>files</strong> and are labeled with letters (in 3x3 chess: <strong>a, b, c</strong> from left to right). Horizontal rows are called <strong>ranks</strong> and are numbered from bottom to top (<strong>1, 2, 3</strong>). Every square has a unique name formed by combining its file letter and rank number, such as <strong>b2</strong> (the exact center square of a 3x3 board) or <strong>c3</strong> (the top-right corner).</p>
+  <!-- ========================================================================
+       ARTIGO 2: A GEOMETRIA DO CAVALO NO 3x3 (CICLO HAMILTONIANO VS CASA B2)
+       ======================================================================== -->
+  <article id="article-knight-geometry" class="bg-[#1c0d04]/90 border border-amber-900/70 rounded-3xl p-6 sm:p-10 shadow-xl space-y-5">
+    <header class="border-b border-amber-900/60 pb-4">
+      <div class="flex items-center justify-between text-xs text-amber-400 font-bold uppercase tracking-wider mb-1">
+        <span>Article 02 • Graph Theory & Piece Mechanics</span>
+        <span>Reading Time: 5 min</span>
+      </div>
+      <h2 class="font-fredoka text-2xl sm:text-3xl font-bold text-amber-100">
+        The Geometry of the 3x3 Knight: Perimeter Control vs. The B2 Dead Zone
+      </h2>
+    </header>
 
-                <h3 class="text-xl font-bold text-amber-200 pt-2">How the 6 Chess Pieces Move</h3>
-                <ul class="list-disc pl-6 space-y-3">
-                    <li><strong>The King (♔ / K):</strong> The most important piece on the board. The King can move exactly one square in any direction—horizontally, vertically, or diagonally. However, the King can never move onto a square that is currently attacked by an enemy piece. Losing your King means losing the game.</li>
-                    <li><strong>The Queen (♕ / Q):</strong> The most powerful piece in chess. She combines the movement powers of both the Rook and the Bishop. The Queen can move any number of vacant squares in a straight line—vertically, horizontally, or diagonally.</li>
-                    <li><strong>The Rook (♖ / R):</strong> A major piece that dominates straight lines. The Rook moves any number of vacant squares horizontally (along ranks) or vertically (along files). Rooks are exceptionally deadly when working together to cut off an enemy King's escape routes.</li>
-                    <li><strong>The Bishop (♗ / B):</strong> A minor piece that specializes in diagonal warfare. A Bishop moves any number of vacant squares diagonally. Because it moves only on diagonals, a Bishop always remains on squares of the same color it started on (light-squared or dark-squared).</li>
-                    <li><strong>The Knight (♘ / N):</strong> The most agile and unpredictable piece. The Knight moves in an "L" shape: two squares in one cardinal direction (horizontally or vertically) and then one square perpendicular to that direction. It is the <strong>only piece capable of jumping over other pieces</strong> (both friendly and enemy) in its path. Furthermore, a Knight alternates the color of the square it lands on with every single move.</li>
-                    <li><strong>The Pawn (♙ / P):</strong> The foot soldiers of chess. Unlike other pieces, Pawns move differently than they capture. A Pawn moves straight forward one square onto an empty square, but it <strong>captures diagonally forward</strong> one square. Pawns can never move or capture backward. When a White pawn reaches the furthest rank (Rank 3 in 3x3 chess, or Rank 8 in classical chess), it undergoes <strong>Promotion</strong>—immediately transforming into a Queen, Rook, Bishop, or Knight.</li>
-                </ul>
-            </div>
-        </article>
+    <p class="text-sm sm:text-base">
+      In classical 8x8 chess, players are taught the golden maxim: <em>"A Knight on the rim is dim."</em> Knights are centralized on squares like <code>d4</code>, <code>e4</code>, <code>d5</code>, and <code>e5</code> where they control up to 8 squares. When players transition to <strong>3x3 mini-chess</strong>, this rule is completely inverted. On a 9-square board, the center square <code>b2</code> is a total dead zone for the Knight, while the 8 outer rim squares form a continuous mathematical circuit!
+    </p>
 
-        <!-- ARTICLE 2: Check, Checkmate, and Stalemate -->
-        <article id="article-2" class="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
-            <div class="text-xs font-bold text-amber-500 uppercase tracking-widest">Module 02 • Core Rules</div>
-            <h2 class="text-2xl md:text-3xl font-bold text-amber-300">2. Understanding Check, Checkmate, and Stalemate (The Golden Rules)</h2>
-            <div class="text-amber-100/90 space-y-4 leading-relaxed text-sm md:text-base">
-                <p>Many beginners confuse the concepts of Check, Checkmate, and Stalemate. Because 3x3Chess takes place in a highly compressed 9-square arena, these three states occur every few seconds. Understanding the exact legal distinction between them is essential for solving tactical puzzles.</p>
-                
-                <h3 class="text-xl font-bold text-amber-200 pt-2">What is "Check"?</h3>
-                <p>A King is in <strong>Check</strong> when it is under immediate attack by one or more enemy pieces. By official rules, a player is never allowed to ignore a check, nor can a player make a move that leaves or places their own King in check. When your King is placed in check, you are legally forced to respond using one of the <strong>C-P-R methods</strong>:</p>
-                <ul class="list-disc pl-6 space-y-2">
-                    <li><strong>C - Capture</strong> the attacking piece (using your King or another friendly piece, provided doing so does not expose the King to another attack).</li>
-                    <li><strong>P - Protect (Block)</strong> the attack by interposing one of your own pieces between the attacker and your King (note: checks from a Knight or an adjacent piece cannot be blocked).</li>
-                    <li><strong>R - Run</strong> with the King to an adjacent safe square that is not controlled by any enemy piece.</li>
-                </ul>
-
-                <h3 class="text-xl font-bold text-amber-200 pt-2">What is "Checkmate"?</h3>
-                <p><strong>Checkmate</strong> occurs when a player's King is in check, and none of the three defenses (Capture, Protect, or Run) are legally possible. The game ends immediately, and the player delivering the checkmate wins. In our puzzle challenges (such as "Mate in 3"), your objective with the White pieces is to find the exact sequence of forcing moves that leaves the Black King in checkmate within the specified number of turns.</p>
-
-                <h3 class="text-xl font-bold text-amber-200 pt-2">What is "Stalemate" (The Ultimate Trap)?</h3>
-                <p><strong>Stalemate</strong> is a special type of draw. It happens when the player whose turn it is to move is <strong>NOT in check</strong>, but has <strong>zero legal moves available</strong> with any of their pieces. On a 3x3 board, stalemate is a constant danger for the attacking player. If you corner the enemy King with your Queen and take away all its movement squares without actually attacking the King itself, the game ends in a draw (0.5 - 0.5), failing the puzzle! Always verify that the opponent has a legal move unless you are delivering the final checkmate.</p>
-            </div>
-        </article>
-
-        <!-- ARTICLE 3: FIDE Rules on a 3x3 Micro Board -->
-        <article id="article-3" class="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
-            <div class="text-xs font-bold text-amber-500 uppercase tracking-widest">Module 03 • Variant Mechanics</div>
-            <h2 class="text-2xl md:text-3xl font-bold text-amber-300">3. Translating Official FIDE Rules to a 3x3 Micro Board</h2>
-            <div class="text-amber-100/90 space-y-4 leading-relaxed text-sm md:text-base">
-                <p>A common misconception about mini-chess variants is that they require altered or simplified movement rulesets. <strong>3x3Chess</strong> maintains strict adherence to official FIDE (International Chess Federation) movement regulations, providing an authentic simulation of late-game tactical scenarios.</p>
-                <p>Kings move one square in any direction, Rooks control orthogonal files and ranks, Bishops sweep diagonals, and Knights execute their signature L-shaped jumps. However, the geometric boundaries of a 9-square grid introduce fascinating spatial dynamics:</p>
-                <ul class="list-disc pl-6 space-y-2">
-                    <li><strong>The Central Square (b2) Paradox:</strong> A King, Queen, or Rook placed on b2 commands almost the entire board. Conversely, a Knight placed on the dead center square (b2) has zero legal moves because every L-jump would land outside the 3x3 boundary! Knights must operate from the outer rim (squares a1, b1, c1, a2, c2, a3, b3, c3), from which they control exactly 2 squares each.</li>
-                    <li><strong>Instant Pawn Promotion:</strong> White pawns advance upward toward Rank 3, while Black pawns advance downward toward Rank 1. Because the board is only three ranks deep, any pawn on Rank 2 is just one step away from promotion.</li>
-                    <li><strong>Excluded Classical Rules:</strong> Castling (which requires a King and Rook on an 8-square rank) and the initial double-square pawn advance (and consequently <em>en passant</em> captures) do not exist on a 3x3 grid due to the board dimensions.</li>
-                </ul>
-            </div>
-        </article>
-
-        <!-- ARTICLE 4: Mathematics of Mini-Chess -->
-        <article id="article-4" class="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
-            <div class="text-xs font-bold text-amber-500 uppercase tracking-widest">Module 04 • Computer Science & Game Theory</div>
-            <h2 class="text-2xl md:text-3xl font-bold text-amber-300">4. The Mathematics of Mini-Chess: Strongly Solving 54 Million Nodes</h2>
-            <div class="text-amber-100/90 space-y-4 leading-relaxed text-sm md:text-base">
-                <p>In computational game theory, games are classified by their complexity. Traditional 8x8 chess has a game-tree complexity (the Shannon Number) estimated at 10<sup>120</sup> possible game variations—far exceeding the number of atoms in the observable universe. Because of this, standard chess remains mathematically "unsolved."</p>
-                <p>When we condense the board to a 3x3 grid, however, the state space becomes finite enough for modern algorithms to conquer completely. Computer chess researchers, most notably <strong>Kirill Kryukov</strong>, have exhaustively mapped the 3x3 chess environment. Using retrograde analysis and endgame tablebase generation, researchers calculated that there are exactly <strong>54,687,564 legal positions</strong> in 3x3 chess (including all possible piece combinations and promotions).</p>
-                <p>What does it mean that 3x3 chess is "strongly solved"? It means that for every single one of those 54.6 million positions, a computer knows with 100% mathematical certainty whether the position is a forced win for White, a forced win for Black, or a theoretical draw, assuming perfect play from both sides. Furthermore, research proved that the <strong>longest possible forced checkmate on a 3x3 board takes exactly 16 moves</strong>. Every puzzle in our database is extracted from these verified mathematical proofs, ensuring that every challenge you face has a pure, deterministic solution.</p>
-            </div>
-        </article>
-
-        <!-- ARTICLE 5: Why Alternative Boards Help Improve Your Game -->
-        <article id="article-5" class="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
-            <div class="text-xs font-bold text-amber-500 uppercase tracking-widest">Module 05 • Training Methodology</div>
-            <h2 class="text-2xl md:text-3xl font-bold text-amber-300">5. Why Alternative & Reduced Boards Accelerate Chess Mastery</h2>
-            <div class="text-amber-100/90 space-y-4 leading-relaxed text-sm md:text-base">
-                <p>In sports science, athletes constantly use constrained environments to isolate specific skills. Soccer players train in small-sided "rondo" boxes to speed up passing reflexes; boxers spar in smaller rings to practice close-quarters footwork. In chess, practicing on a reduced 3x3 board serves the exact same pedagogical purpose.</p>
-                <p>When an amateur plays on a full 64-square board, their working memory is overwhelmed by long-range distractions—undeveloped pieces, opening memorization, pawn structure theory, and attacks coming from seven squares away. A 3x3 board strips away all strategic "noise" and isolates <strong>pure tactical calculation</strong>:</p>
-                <ul class="list-disc pl-6 space-y-2">
-                    <li><strong>Micro-Geometry Recognition:</strong> Every grandmaster visualizes an 8x8 board as a collection of smaller 3x3 and 4x4 zones around the enemy King. Mastering 3x3 puzzles trains your eye to instantly see mating nets in the corner of a regular board.</li>
-                    <li><strong>Piece Coordination:</strong> With no open space to retreat, your pieces must protect each other harmoniously. You learn how a Knight and a Rook, or two Bishops and a King, weave an inescapable web of control.</li>
-                    <li><strong>Eliminating Tunnel Vision:</strong> Because every square on a 3x3 grid is adjacent to the action, a single move changes the entire defense of the position. Players rapidly learn to evaluate the opponent's counter-threats after every move.</li>
-                </ul>
-            </div>
-        </article>
-
-        <!-- ARTICLE 6: History of Minichess -->
-        <article id="article-6" class="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
-            <div class="text-xs font-bold text-amber-500 uppercase tracking-widest">Module 06 • Chess History</div>
-            <h2 class="text-2xl md:text-3xl font-bold text-amber-300">6. The Fascinating History of Minichess: From Courtiers to Supercomputers</h2>
-            <div class="text-amber-100/90 space-y-4 leading-relaxed text-sm md:text-base">
-                <p>Playing chess on smaller boards is not a modern invention; it is a tradition that spans centuries of human history and computer science pioneers.</p>
-                <p>Historically, medieval manuscripts such as the 13th-century <em>Libro de los Juegos</em> (Book of Games) commissioned by King Alfonso X of Castile documented numerous chess variants and reduced-board problems designed to teach nobles the art of war in shorter timeframes. However, the modern explosion of minichess began in <strong>1956 at the Los Alamos National Laboratory</strong>.</p>
-                <p>At the dawn of the computer age, scientists led by Paul Stein and Mark Wells wanted to program the MANIAC I vacuum-tube supercomputer to play chess. Because the computer had less memory than a modern digital watch, an 8x8 board was impossible to compute. They invented <strong>Los Alamos Chess</strong> on a 6x6 board (removing the Bishops). It became the first computer in history to play a chess-like game.</p>
-                <p>Later, in 1962, Martin Gardner popularized <strong>5x5 Mini-Chess</strong> and pawn-only games like <em>Hexapawn</em> on a 3x3 grid to demonstrate early machine learning and artificial intelligence. Today, full-piece 3x3 chess stands as the ultimate distillation of this legacy: a minimalist battlefield where human intuition meets complete computational perfection.</p>
-            </div>
-        </article>
-
-        <!-- ARTICLE 7: Why Grandmasters Practice Endgame Puzzles -->
-        <article id="article-7" class="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
-            <div class="text-xs font-bold text-amber-500 uppercase tracking-widest">Module 07 • Grandmaster Secrets</div>
-            <h2 class="text-2xl md:text-3xl font-bold text-amber-300">7. Why Grandmasters Practice Endgame Puzzles Daily</h2>
-            <div class="text-amber-100/90 space-y-4 leading-relaxed text-sm md:text-base">
-                <p>World Chess Champion José Raúl Capablanca famously advised: <em>"In order to improve your game, you must study the endgame before everything else."</em> While casual players spend 90% of their study time memorizing opening traps that they rarely get to play, titled players focus heavily on endgame studies and forced mate puzzles.</p>
-                <p>Why? Because in the endgame, every piece operates at its maximum theoretical efficiency—or fails completely. Practicing forced checkmates (from Mate in 2 up to Mate in 15) builds what psychologists call <strong>chunking</strong>: the ability of the human brain to group individual pieces into a single recognizable tactical pattern. When a Grandmaster looks at a complex endgame, they do not calculate every random move; they instantly recognize the mating net pattern they practiced in miniature puzzles and calculate only the forcing path to reach it.</p>
-            </div>
-        </article>
-
-        <!-- ARTICLE 8: Mastering the Opposition -->
-        <article id="article-8" class="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
-            <div class="text-xs font-bold text-amber-500 uppercase tracking-widest">Module 08 • Tactical Concepts</div>
-            <h2 class="text-2xl md:text-3xl font-bold text-amber-300">8. Mastering the Opposition: King and Pawn Endgame Fundamentals</h2>
-            <div class="text-amber-100/90 space-y-4 leading-relaxed text-sm md:text-base">
-                <p>One of the most important concepts in all of chess is <strong>The Opposition</strong>, and there is no better place to master it than on a 3x3 grid. Because Kings can never move adjacent to one another, two Kings standing on the same file or rank with exactly one empty square between them (for example, White King on <strong>a1</strong> and Black King on <strong>a3</strong>) are said to be in <em>direct opposition</em>.</p>
-                <p>The three squares between them (a2, b2) form an invisible barrier that neither King can cross. In this standoff, <strong>the player who does NOT have to move holds the opposition</strong>. Because it is the opponent's turn, their King is forced to step aside, surrendering control of the critical squares and allowing your King or Rook to deliver a deadly checkmate along the edge of the board. In dozens of our Mate in 3 and Mate in 4 puzzles, the winning first move is a quiet King step that seizes the opposition!</p>
-            </div>
-        </article>
-
-        <!-- ARTICLE 9: The Art of Sub-Promotion -->
-        <article id="article-9" class="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
-            <div class="text-xs font-bold text-amber-500 uppercase tracking-widest">Module 09 • Advanced Tactics</div>
-            <h2 class="text-2xl md:text-3xl font-bold text-amber-300">9. The Art of Sub-Promotion: When a Knight or Rook is Stronger Than a Queen</h2>
-            <div class="text-amber-100/90 space-y-4 leading-relaxed text-sm md:text-base">
-                <p>In 99% of casual chess games, when a pawn reaches the final rank, the player automatically promotes it to a Queen. However, in high-level tactical puzzles and especially in 3x3 chess, automatic Queen promotion is often a game-throwing blunder. Choosing a Rook, Bishop, or Knight instead is known as <strong>Underpromotion (or Sub-Promotion)</strong>.</p>
-                <p>There are two primary reasons why sub-promotion is vital on a 3x3 board:</p>
-                <ol class="list-decimal pl-6 space-y-2">
-                    <li><strong>The Knight Check:</strong> Because the Queen cannot replicate the Knight's L-shaped jump, promoting a pawn to a Knight on Rank 3 can deliver an immediate, unavoidable checkmate (smothered mate) to a King hiding on the edge of the board, whereas promoting to a Queen would give the enemy time to counter-attack.</li>
-                    <li><strong>Avoiding Stalemate:</strong> A newly promoted Queen on a 9-square board controls so many diagonals and files simultaneously that she frequently paralyzes the lone enemy King without checking it, resulting in an accidental stalemate draw. Promoting to a Rook or Bishop restricts the control to just one vector (orthogonal or diagonal), leaving the enemy King a single forced move into your mating trap.</li>
-                </ol>
-            </div>
-        </article>
-
-        <!-- ARTICLE 10: Zugzwang Explained -->
-        <article id="article-10" class="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
-            <div class="text-xs font-bold text-amber-500 uppercase tracking-widest">Module 10 • Endgame Mastery</div>
-            <h2 class="text-2xl md:text-3xl font-bold text-amber-300">10. Zugzwang Explained: The Ultimate Weapon in Tight Spaces</h2>
-            <div class="text-amber-100/90 space-y-4 leading-relaxed text-sm md:text-base">
-                <p><em>Zugzwang</em> is a German chess term that translates literally to "compulsion to move." It describes a situation where a player's position is completely safe as long as it is not their turn, but because the rules of chess forbid passing a turn, <strong>any legal move they are forced to make will fatally weaken their defense</strong>.</p>
-                <p>In 3x3Chess, Zugzwang is the secret key to solving the hardest puzzles (Mate in 5 through Mate in 15). Often, beginners look only for immediate checks. When a check doesn't work, they get stuck. The master-level approach is to make a "waiting move" (like sliding a Rook one square along a rank or triangulation with a Queen). This passes the turn to Black, forcing their defending Knight or Bishop to abandon the protection of a critical square, allowing checkmate on the very next turn.</p>
-            </div>
-        </article>
-
-        <!-- ARTICLE 11: Avoiding Blunders Checklist -->
-        <article id="article-11" class="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
-            <div class="text-xs font-bold text-amber-500 uppercase tracking-widest">Module 11 • Practical Improvement</div>
-            <h2 class="text-2xl md:text-3xl font-bold text-amber-300">11. Avoiding Blunders: A 3-Step Calculation Checklist for Fast Games</h2>
-            <div class="text-amber-100/90 space-y-4 leading-relaxed text-sm md:text-base">
-                <p>Whether you are solving a Mate in 4 on 3x3Chess or playing a tense 3-minute blitz game online, blunders happen when intuition overrides structured calculation. Grandmaster coaches recommend running through a strict 3-step mental checklist before touching a piece:</p>
-                <ul class="list-disc pl-6 space-y-2">
-                    <li><strong>Step 1: Scan All Forcing Moves (Checks, Captures, Threats).</strong> Always calculate in order of how much the move restricts your opponent. A check forces a response; a capture removes a defender. Calculate every legal check first—even the ones that look like sacrifices!</li>
-                    <li><strong>Step 2: Identify the Opponent's Escape Squares.</strong> Look at the enemy King. Which of the 8 surrounding squares can it currently step onto? Which of your pieces are guarding those squares? If you move a piece to attack, make sure you aren't accidentally unguarding an escape door.</li>
-                    <li><strong>Step 3: Check for Stalemate and Counter-Checks.</strong> Before executing your move, ask: <em>"Does my opponent have at least one legal move if this isn't check?"</em> and <em>"Can the opponent capture my attacking piece or put my own King in check?"</em></li>
-                </ul>
-            </div>
-        </article>
-
-        <!-- ARTICLE 12: Cognitive Benefits -->
-        <article id="article-12" class="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
-            <div class="text-xs font-bold text-amber-500 uppercase tracking-widest">Module 12 • Neuroscience & Logic</div>
-            <h2 class="text-2xl md:text-3xl font-bold text-amber-300">12. Cognitive Benefits: How Daily Tactical Puzzles Rewire Your Brain</h2>
-            <div class="text-amber-100/90 space-y-4 leading-relaxed text-sm md:text-base">
-                <p>Modern cognitive neuroscience has extensively studied chess players using fMRI brain scans. Solving chess puzzles is one of the most complete workouts available for the human prefrontal cortex. Even 10 minutes a day of focused 3x3 tactical calculation stimulates three critical cognitive functions:</p>
-                <p>First, it strengthens <strong>Visuospatial Working Memory</strong>—the mental "scratchpad" that allows you to hold a board position in your mind's eye, move a piece virtually, and visualize the resulting geometry three or four steps ahead without physically touching the screen. Second, it trains <strong>Impulse Control and Executive Function</strong>, teaching the brain to suppress the first superficial idea in favor of deeper verification. Finally, it provides high-intensity mental stimulation in short bursts, making micro-chess the ideal daily brain-training habit for busy professionals and students.</p>
-            </div>
-        </article>
-
-        <!-- ARTICLE 13: From 3x3 to 8x8 -->
-        <article id="article-13" class="bg-[#1c0d04]/90 border border-amber-900/60 rounded-2xl p-6 md:p-8 shadow-xl space-y-4">
-            <div class="text-xs font-bold text-amber-500 uppercase tracking-widest">Module 13 • Classical Application</div>
-            <h2 class="text-2xl md:text-3xl font-bold text-amber-300">13. From 3x3 to 8x8: Transferring Micro-Tactics to Classical Chess</h2>
-            <div class="text-amber-100/90 space-y-4 leading-relaxed text-sm md:text-base">
-                <p>How does solving puzzles on a 9-square board make you a stronger player on a traditional 64-square board? The secret lies in <strong>quadrant isolation</strong>.</p>
-                <p>In any classical chess game, once the Kings castle (for example, onto the kingside squares g1, f1, h1 and g2, f2, h2), the final checkmating attack almost always takes place inside a <strong>3x3 quadrant</strong> (files f, g, h and ranks 6, 7, 8). Whether it is a back-rank mate, an Arabian Mate with Rook and Knight, a Epaulette Mate, or a Queen-and-Bishop battery, the geometry of the final blow is identical to a 3x3 board.</p>
-                <p>Players who train on <strong>3x3Chess Studio</strong> develop an uncanny ability to spot sacrifices and quiet mating nets inside the opponent's castled fortress. When a full 8x8 game reaches a time-scramble with seconds left on the clock, your trained muscle memory for tight-space piece coordination takes over automatically.</p>
-            </div>
-        </article>
-
-        <!-- E-E-A-T, About Us, Contact & Privacy Policy Section for Google AdSense Compliance -->
-        <section id="privacy" class="bg-[#140802] border-2 border-amber-900/80 rounded-2xl p-6 md:p-8 shadow-xl space-y-6 text-xs md:text-sm text-amber-200/80 leading-relaxed">
-            <h2 class="text-xl md:text-2xl font-bold text-amber-400 border-b border-amber-900/60 pb-2">⚖️ About 3x3Chess Studio, Privacy Policy & Terms of Service</h2>
-            
-            <div class="space-y-2">
-                <h3 class="text-base font-bold text-amber-200">About Our Educational Mission</h3>
-                <p><strong>3x3Chess Studio</strong> (accessible at <em>https://3x3chess.com</em>) is an independent educational web application created to promote chess literacy, mathematical game theory, and tactical endgame training. Our platform combines a custom-built JavaScript retrograde chess solver with thousands of verified tablebase puzzles, offering free, accessible logic training in 6 languages for players worldwide.</p>
-            </div>
-
-            <div class="space-y-2">
-                <h3 class="text-base font-bold text-amber-200">Privacy Policy, Cookies & Google AdSense Disclosure</h3>
-                <p>At 3x3Chess Studio, the privacy of our visitors is of extreme importance to us. We do not require user registration or collect personal identity data to play our puzzles. Game preferences (such as language selection and sound settings) are stored locally on your device via standard browser <code>localStorage</code>.</p>
-                <p><strong>Third-Party Advertising & Cookies:</strong> We use Google Analytics to understand anonymous traffic patterns and Google AdSense to serve advertisements when you visit our website. Google, as a third-party vendor, uses cookies (including the DoubleClick DART cookie) to serve ads to users based on their visit to 3x3chess.com and other sites on the Internet. Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" class="text-amber-400 underline">Google Ads Settings</a> or <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer" class="text-amber-400 underline">www.aboutads.info</a>.</p>
-            </div>
-
-            <div class="space-y-2">
-                <h3 class="text-base font-bold text-amber-200">Terms of Use & Contact Information</h3>
-                <p>All puzzles, custom algorithms, articles, and visual designs on 3x3chess.com are provided free of charge for personal, non-commercial educational use. For technical support, feedback, or inquiries regarding privacy and partnerships, you can reach our development studio directly via our official domain administrator channels at <strong>3x3chess.com</strong>.</p>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="w-full bg-[#120601] border-t border-amber-950 py-8 text-center text-amber-400/60 text-sm mt-8 space-y-3">
-        <p class="font-semibold">© 2026 3x3Chess Studio Edition • Educational Endgame & Tactical Chess Platform</p>
-        <div class="flex justify-center gap-4 text-xs">
-            <a href="/" class="text-amber-400 hover:text-white font-bold underline">🎮 Play 3x3Chess</a>
-            <span>|</span>
-            <a href="#toc" class="text-amber-400 hover:text-white underline">📚 Articles Index</a>
-            <span>|</span>
-            <a href="#privacy" class="text-amber-400 hover:text-white underline">⚖️ Privacy Policy & Terms</a>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center bg-[#140802]/90 border border-amber-800/60 rounded-2xl p-5">
+      <div class="space-y-3 text-xs sm:text-sm">
+        <h3 class="font-fredoka text-lg font-bold text-amber-300">The 8-Square Hamiltonian Cycle</h3>
+        <p class="text-amber-100/85">
+          Because a Knight moves two squares in one orthogonal direction and one square perpendicular, a Knight standing on any of the 8 perimeter squares has <strong>exactly 2 legal moves</strong>. Remarkably, if you follow those jumps continuously around the board, the Knight visits all 8 outer squares in a single closed loop:
+        </p>
+        <div class="bg-amber-950/60 border border-amber-700/60 rounded-xl p-3 font-mono text-amber-300 font-bold text-center text-xs sm:text-sm">
+          a1 ➔ b3 ➔ c1 ➔ a2 ➔ c3 ➔ b1 ➔ a3 ➔ c2 ➔ a1
         </div>
-    </footer>
+        <p class="text-amber-100/80">
+          Meanwhile, a Knight placed on <code>b2</code> cannot move at all, because jumping 2 squares in any direction lands off the board.
+        </p>
+      </div>
+
+      <!-- Tabela de Mobilidade do Cavalo -->
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse border border-amber-900/70 text-xs">
+          <thead>
+            <tr class="bg-amber-950/80 text-amber-300 font-fredoka uppercase">
+              <th class="py-2 px-3">Knight Square</th>
+              <th class="py-2 px-3">Legal Destinations</th>
+              <th class="py-2 px-3">Square Color</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-amber-950/70 font-mono">
+            <tr><td class="py-1.5 px-3 font-bold text-amber-200">a1 (Corner)</td><td class="py-1.5 px-3 text-emerald-400">b3, c2</td><td class="py-1.5 px-3">Light ➔ Dark</td></tr>
+            <tr><td class="py-1.5 px-3 font-bold text-amber-200">b3 (Edge)</td><td class="py-1.5 px-3 text-emerald-400">a1, c1</td><td class="py-1.5 px-3">Dark ➔ Light</td></tr>
+            <tr><td class="py-1.5 px-3 font-bold text-amber-200">c1 (Corner)</td><td class="py-1.5 px-3 text-emerald-400">b3, a2</td><td class="py-1.5 px-3">Light ➔ Dark</td></tr>
+            <tr><td class="py-1.5 px-3 font-bold text-amber-200">a2 (Edge)</td><td class="py-1.5 px-3 text-emerald-400">c1, c3</td><td class="py-1.5 px-3">Dark ➔ Light</td></tr>
+            <tr><td class="py-1.5 px-3 font-bold text-amber-200">c3 (Corner)</td><td class="py-1.5 px-3 text-emerald-400">a2, b1</td><td class="py-1.5 px-3">Light ➔ Dark</td></tr>
+            <tr><td class="py-1.5 px-3 font-bold text-amber-200">b1 (Edge)</td><td class="py-1.5 px-3 text-emerald-400">c3, a3</td><td class="py-1.5 px-3">Dark ➔ Light</td></tr>
+            <tr><td class="py-1.5 px-3 font-bold text-amber-200">a3 (Corner)</td><td class="py-1.5 px-3 text-emerald-400">b1, c2</td><td class="py-1.5 px-3">Light ➔ Dark</td></tr>
+            <tr><td class="py-1.5 px-3 font-bold text-amber-200">c2 (Edge)</td><td class="py-1.5 px-3 text-emerald-400">a3, a1</td><td class="py-1.5 px-3">Dark ➔ Light</td></tr>
+            <tr class="bg-red-950/40"><td class="py-1.5 px-3 font-bold text-red-300">b2 (Center)</td><td class="py-1.5 px-3 text-red-400">None (0 Moves)</td><td class="py-1.5 px-3">Trapped</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p class="text-sm sm:text-base">
+      <strong>Practical Takeaway for Puzzles:</strong> Because a Knight alternates between light corner squares (<code>a1, c1, c3, a3</code>) and dark edge squares (<code>b3, a2, b1, c2</code>) on every move, a Knight can never attack the center square <code>b2</code>! Therefore, a lone Knight and King can only deliver checkmate when the enemy King is forced onto one of the 8 perimeter squares.
+    </p>
+  </article>
+
+  <!-- ========================================================================
+       ARTIGO 3: OPOSIÇÃO DE REIS E ZUGZWANG
+       ======================================================================== -->
+  <article id="article-opposition-zugzwang" class="bg-[#1c0d04]/90 border border-amber-900/70 rounded-3xl p-6 sm:p-10 shadow-xl space-y-5">
+    <header class="border-b border-amber-900/60 pb-4">
+      <div class="flex items-center justify-between text-xs text-amber-400 font-bold uppercase tracking-wider mb-1">
+        <span>Article 03 • Endgame Strategy</span>
+        <span>Reading Time: 6 min</span>
+      </div>
+      <h2 class="font-fredoka text-2xl sm:text-3xl font-bold text-amber-100">
+        Mastering King Opposition and Zugzwang in Confined Endgame Grids
+      </h2>
+    </header>
+
+    <p class="text-sm sm:text-base">
+      In chess theory, <strong>Zugzwang</strong> (a German term meaning "compulsion to move") describes a situation where a player's position is Currently safe, but any legal move they are forced to make weakens their defense and leads directly to defeat. On a 3x3 board, <em>Zugzwang</em> is not an occasional curiosity—it is the primary weapon required to solve over 70% of puzzles from Mate in 2 through Mate in 15.
+    </p>
+
+    <div class="bg-[#140802]/90 border border-amber-800/60 rounded-2xl p-5 flex flex-col sm:flex-row gap-6 items-center">
+      <div class="grid grid-cols-3 grid-rows-3 gap-1 w-32 h-32 bg-[#371603] p-1.5 rounded-xl border border-amber-700 shrink-0 font-mono text-base font-black text-center">
+        <div class="light-wood-tile text-gray-900 rounded flex items-center justify-center">♚</div>
+        <div class="dark-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+        <div class="light-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+        <div class="dark-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+        <div class="light-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+        <div class="dark-wood-tile text-amber-900 rounded flex items-center justify-center">♔</div>
+        <div class="light-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+        <div class="dark-wood-tile text-amber-900 rounded flex items-center justify-center">♖</div>
+        <div class="light-wood-tile text-gray-900 rounded flex items-center justify-center"></div>
+      </div>
+      <div class="space-y-2 text-xs sm:text-sm">
+        <h3 class="font-fredoka font-bold text-amber-300 text-base">Case Study: Why Checking Immediately Fails</h3>
+        <p class="text-amber-100/85">
+          Consider the diagrammed position: Black King on <code>a3</code>, White King on <code>c2</code>, White Rook on <code>b1</code>. White wants to mate in 2 moves.
+        </p>
+        <p class="text-amber-100/80">
+          If White plays the hasty check <code>1. Rb3+?</code>, Black simply captures the undefended Rook with <code>1... Kxb3!</code>. If White plays <code>1. Ra1+?</code>, the Black King escapes to <code>b2</code>. Instead, White plays the quiet waiting move <strong><code>1. Kc1!</code></strong> or <strong><code>1. Rb2!</code></strong>, seizing key squares and forcing Black's King to step into a fatal back-rank or corner mate on move 2.
+        </p>
+      </div>
+    </div>
+
+    <h3 class="font-fredoka text-xl font-bold text-amber-300 pt-2">Three Types of Opposition on a 3x3 Grid</h3>
+    <ul class="list-disc list-inside space-y-2 text-sm sm:text-base text-amber-100/85">
+      <li><strong>Vertical Direct Opposition (e.g., White King on <code>a1</code>, Black King on <code>a3</code>):</strong> The kings face each other along a file with one rank between them. Neither king can advance into the second rank along that file, creating a three-square barrier when combined with the edge of the board.</li>
+      <li><strong>Horizontal Direct Opposition (e.g., White King on <code>a2</code>, Black King on <code>c2</code>):</strong> The kings face each other across the central square <code>b2</code>, sealing off the entire b-file from the enemy monarch.</li>
+      <li><strong>Diagonal Opposition (e.g., White King on <code>a1</code>, Black King on <code>c3</code>):</strong> The two kings occupy opposite corners, mutually contesting the central square <code>b2</code>.</li>
+    </ul>
+  </article>
+
+  <!-- ========================================================================
+       ARTIGO 4: COMO EVITAR O AFOGAMENTO (STALEMATE)
+       ======================================================================== -->
+  <article id="article-stalemate-control" class="bg-[#1c0d04]/90 border border-amber-900/70 rounded-3xl p-6 sm:p-10 shadow-xl space-y-5">
+    <header class="border-b border-amber-900/60 pb-4">
+      <div class="flex items-center justify-between text-xs text-amber-400 font-bold uppercase tracking-wider mb-1">
+        <span>Article 04 • Endgame Precision</span>
+        <span>Reading Time: 5 min</span>
+      </div>
+      <h2 class="font-fredoka text-2xl sm:text-3xl font-bold text-amber-100">
+        The Stalemate Trap: Controlling Escape Squares in Queen and Rook Endgames
+      </h2>
+    </header>
+
+    <p class="text-sm sm:text-base">
+      Ask any player who has attempted our Mate in 3 or Mate in 4 challenges what their biggest obstacle is, and the answer is almost universally <strong>Stalemate</strong>. Because a 3x3 board has only 9 squares, a single White Queen and White King can easily control 7 or 8 squares simultaneously. If you make a preparatory move that does not place the Black King in check, you must leave at least <strong>one legal flight square</strong> (or a legal move for another Black piece) open.
+    </p>
+
+    <h3 class="font-fredoka text-xl font-bold text-amber-300 pt-2">The Golden Rule of the "Breathing Square"</h3>
+    <p class="text-sm sm:text-base">
+      Before executing any non-checking move with a Queen or Rook, mentally highlight the squares adjacent to the Black King:
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+      <div class="bg-[#140802]/80 border border-amber-900/50 rounded-2xl p-4">
+        <strong class="font-fredoka text-amber-300 text-base block mb-1">✓ Safe Preparatory Moves</strong>
+        <p class="text-amber-100/80">
+          Position your Queen on the edge or corner (such as <code>a1</code> or <code>c1</code>) rather than <code>b2</code> during setup turns. From the corner, a Queen controls 5 squares instead of 8, leaving controlled flight paths for the Black King to step onto the mating square.
+        </p>
+      </div>
+      <div class="bg-[#140802]/80 border border-amber-900/50 rounded-2xl p-4">
+        <strong class="font-fredoka text-amber-300 text-base block mb-1">✓ Using Black's Spare Pieces</strong>
+        <p class="text-amber-100/80">
+          If the Black King is completely immobilized in a corner, check whether Black has a secondary piece (such as a Knight, Bishop, or Pawn) that still has a legal move. As long as Black has <em>any</em> legal move on the board, it is not stalemate!
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ========================================================================
+       ARTIGO 5: COMO CALCULAR MATES LONGOS (MATE EM 6 ATÉ MATE EM 15)
+       ======================================================================== -->
+  <article id="article-deep-calculation" class="bg-[#1c0d04]/90 border border-amber-900/70 rounded-3xl p-6 sm:p-10 shadow-xl space-y-5">
+    <header class="border-b border-amber-900/60 pb-4">
+      <div class="flex items-center justify-between text-xs text-amber-400 font-bold uppercase tracking-wider mb-1">
+        <span>Article 05 • Advanced Calculation</span>
+        <span>Reading Time: 6 min</span>
+      </div>
+      <h2 class="font-fredoka text-2xl sm:text-3xl font-bold text-amber-100">
+        Breaking Defensive Fortresses: How to Solve Mate in 6 to Mate in 15 Challenges
+      </h2>
+    </header>
+
+    <p class="text-sm sm:text-base">
+      When you advance beyond Mate in 5 into the upper echelons of 3x3Chess Studio (Mate in 6 through Mate in 15), brute-force guessing stops working. In these deep puzzles, Black usually possesses active defensive pieces—such as a Rook, Bishop, or Knight—that can interpose against checks, deliver counter-checks to the White King, or threaten stalemate sacrifices.
+    </p>
+
+    <h3 class="font-fredoka text-xl font-bold text-amber-300 pt-2">The 3-Phase Endgame Plan for Deep Puzzles</h3>
+    <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-amber-100/85">
+      <li>
+        <strong>Phase 1 — Neutralize Counter-Checks:</strong> Look at Black's active pieces first. If Black has a Rook or Queen capable of checking your King on move 1, your opening move must either capture that piece, pin it against the Black King, or move your King to a sheltered square while simultaneously creating a threat.
+      </li>
+      <li>
+        <strong>Phase 2 — Force Material Simplification or Corner Confinement:</strong> In Mate in 8+ positions, you rarely mate while all of Black's defenders remain on the board. Use double attacks (forks) and pins to force Black to surrender their defensive piece, transitioning into a clean King + Rook or King + Queen endgame.
+      </li>
+      <li>
+        <strong>Phase 3 — Execute the Final Mating Net:</strong> Once Black is reduced to a lone King (or a blocked pawn), count the remaining moves to the target depth and use King opposition to shepherd the Black King into one of the four corners (<code>a1, c1, a3, c3</code>).
+      </li>
+    </ol>
+  </article>
+
+  <!-- ========================================================================
+       ARTIGO 6: TRANSFERÊNCIA COGNITIVA PARA O XADREZ 8x8
+       ======================================================================== -->
+  <article id="article-cognitive-transfer" class="bg-[#1c0d04]/90 border border-amber-900/70 rounded-3xl p-6 sm:p-10 shadow-xl space-y-5">
+    <header class="border-b border-amber-900/60 pb-4">
+      <div class="flex items-center justify-between text-xs text-amber-400 font-bold uppercase tracking-wider mb-1">
+        <span>Article 06 • Chess Pedagogy & Training</span>
+        <span>Reading Time: 5 min</span>
+      </div>
+      <h2 class="font-fredoka text-2xl sm:text-3xl font-bold text-amber-100">
+        Cognitive Transfer: How Micro-Board Training Accelerates Classical 8x8 Calculation
+      </h2>
+    </header>
+
+    <p class="text-sm sm:text-base">
+      Soviet chess trainers and modern grandmaster coaches have long used restricted-board exercises—such as 3x3, 4x4, and pawn-endgame quadrants—to train young players. The reason lies in how the human brain processes spatial chess patterns, a cognitive mechanism known as <strong>chunking</strong>.
+    </p>
+    <p class="text-sm sm:text-base">
+      When you play a full 8x8 game, a mating attack against a castled King on <code>g8</code> or <code>h8</code> almost always takes place inside a <strong>3x3 sector of the board</strong> (squares <code>f6, g6, h6, f7, g7, h7, f8, g8, h8</code>). By solving 15 to 20 puzzles a day on a 3x3 grid, you train your visual cortex to instantly spot geometric relationships within that 3x3 sector:
+    </p>
+    <ul class="list-disc list-inside space-y-1.5 text-sm sm:text-base text-amber-100/85">
+      <li>Eliminating "blind spots" for backward diagonal Bishop and Queen moves;</li>
+      <li>Calculating Knight forks and smothered mates in cramped corners;</li>
+      <li>Developing the discipline to check for stalemate before playing automatic "natural" moves in time trouble (zeitnot).</li>
+    </ul>
+
+    <div class="pt-4 flex flex-wrap items-center justify-between gap-4 border-t border-amber-900/60">
+      <p class="text-xs sm:text-sm text-amber-300 font-semibold">
+        Ready to put these endgame principles into practice on the board?
+      </p>
+      <a href="/index.html" class="bg-gradient-to-b from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-fredoka font-black text-sm px-6 py-3 rounded-xl border-2 border-emerald-950 shadow-lg transition">
+        👑 Play 3x3Chess Endgame Trainer Now ➔
+      </a>
+    </div>
+  </article>
+
+</main>
+
+<!-- Rodapé Institucional -->
+<footer class="w-full bg-[#120702] border-t-2 border-amber-950 py-8 px-4 mt-auto">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-amber-300/70">
+    <div class="flex items-center gap-2">
+      <span class="text-lg">👑</span>
+      <span class="font-fredoka font-bold text-amber-100 text-sm">3x3Chess Studio Edition</span>
+    </div>
+    <nav aria-label="Footer Navigation" class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-semibold text-amber-200/90">
+      <a href="/index.html" class="hover:text-amber-400 transition">Play 3x3Chess</a>
+      <a href="/blog.html" class="text-amber-400">Articles & Chess Theory</a>
+      <a href="/about.html" class="hover:text-amber-400 transition">About Us</a>
+      <a href="/contact.html" class="hover:text-amber-400 transition">Contact & Support</a>
+      <a href="/privacy.html" class="hover:text-amber-400 transition">Privacy Policy & Terms</a>
+    </nav>
+  </div>
+  <div class="max-w-6xl mx-auto border-t border-amber-950/70 mt-6 pt-4 text-center text-[11px] text-amber-500/50">
+    © 2026 3x3Chess Studio (3x3chess.com). All Rights Reserved.
+  </div>
+</footer>
 
 </body>
 </html>

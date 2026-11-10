@@ -1,0 +1,14 @@
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: *
+Allow: /
+Disallow: /autocapture.html
+Disallow: /gameplaycapture.html
+Disallow: /puzzles-gameplay/
+Disallow: /ads/
+
+Sitemap: https://3x3chess.com/sitemap.xml
