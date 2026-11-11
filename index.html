@@ -464,10 +464,10 @@
 </footer>
 
 <!-- ==========================================================================
-     4. MOTOR DO JOGO EM REACT (SEM POP-UP BLOQUEANTE E SEM NOME PRÓPRIO)
+     4. MOTOR DO JOGO EM REACT (COM CRONÔMETRO MM:SS.CC +20% E TIC DE 1 EM 1 SEGUNDO)
      ========================================================================== -->
 <script type="text/babel">
-    const { useState, useEffect } = React;
+    const { useState, useEffect, useRef } = React;
 
     const STORAGE_KEY = '3x3chess_studio_prefs_v1';
     const WELCOMED_KEY = '3x3chess_welcomed_v1';
@@ -504,7 +504,7 @@
     };
 
     // ========================================================
-    // MOTOR DE SOM ACÚSTICO
+    // MOTOR DE SOM ACÚSTICO (INCLUINDO O SOM 'tick' DE 1 SEGUNDO)
     // ========================================================
     let sharedAudioCtx = null;
     const getAudioCtx = () => {
@@ -517,6 +517,11 @@
       }
       return sharedAudioCtx;
     };
+
+    // Destrava o contexto de áudio no primeiro clique do usuário
+    if (typeof window !== 'undefined') {
+      window.addEventListener('click', () => { getAudioCtx(); }, { once: false });
+    }
 
     const playGameSound = (type, enabled, volumePct) => {
       if (!enabled || volumePct <= 0) return;
@@ -560,6 +565,37 @@
           osc.connect(gain); gain.connect(ctx.destination);
           osc.start(start); osc.stop(start + 0.4);
         });
+      } else if (type === 'tick') {
+        // ====================================================================
+        // ⏱️ SOM DE "TIC" DE TENSÃO A CADA 1 SEGUNDO
+        // Discreto, seco e ligeiramente "enervante" (estilo relógio de precisão)
+        // ====================================================================
+        const osc1 = ctx.createOscillator();
+        const osc2 = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        // Pulso mecânico principal (cai rapidamente de 2400Hz para 950Hz em 25ms)
+        osc1.type = 'triangle';
+        osc1.frequency.setValueAtTime(4500, now);
+        osc1.frequency.exponentialRampToValueAtTime(3000, now + 0.025);
+
+        // Harmônico agudo sutil para dar a sensação metálica de ponteiro de precisão
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(4500, now);
+        osc2.frequency.exponentialRampToValueAtTime(3000, now + 0.018);
+
+        // Volume discreto (32% do volume normal) para manter a tensão a cada 1s
+        gain.gain.setValueAtTime(vol * 0.32, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.028);
+
+        osc1.connect(gain);
+        osc2.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc1.start(now);
+        osc2.start(now);
+        osc1.stop(now + 0.032);
+        osc2.stop(now + 0.032);
       }
     };
 
@@ -570,7 +606,7 @@
     };
 
     // ========================================================
-    // DICIONÁRIO MULTILÍNGUE (USANDO "UM MATEMÁTICO RUSSO" EM TODOS OS IDIOMAS)
+    // DICIONÁRIO MULTILÍNGUE COMPLETO (6 IDIOMAS)
     // ========================================================
     const TRANSLATIONS = {
       EN: {
@@ -619,6 +655,7 @@
         resetBtn: "Reset",
         settingsHeader: "Settings",
         soundsTitle: "Sounds", soundsDesc: "Pieces clack & alerts",
+        tickSoundTitle: "Clock Tick", tickSoundDesc: "1-second tension tick",
         hapticsTitle: "Haptics", hapticsDesc: "Vibrate on legal moves",
         showTimerTitle: "Show Timer", showTimerDesc: "Track thinking speed",
         showMovesTitle: "Show Moves", showMovesDesc: "Highlight legal tiles",
@@ -675,6 +712,7 @@
         resetBtn: "Padrão",
         settingsHeader: "Configurações",
         soundsTitle: "Sons", soundsDesc: "Toques de madeira e alertas",
+        tickSoundTitle: "Tic do Relógio", tickSoundDesc: "Pulso sonoro a cada 1 segundo",
         hapticsTitle: "Vibração", hapticsDesc: "Vibrar ao mover peças",
         showTimerTitle: "Mostrar Tempo", showTimerDesc: "Exibir cronômetro da partida",
         showMovesTitle: "Mostrar Lances", showMovesDesc: "Destacar casas válidas",
@@ -731,6 +769,7 @@
         resetBtn: "Restablecer",
         settingsHeader: "Ajustes",
         soundsTitle: "Sonidos", soundsDesc: "Toques de piezas y alertas",
+        tickSoundTitle: "Tic del Reloj", tickSoundDesc: "Pulso sonoro cada 1 segundo",
         hapticsTitle: "Vibración", hapticsDesc: "Vibrar en jugadas legales",
         showTimerTitle: "Mostrar Tiempo", showTimerDesc: "Medir velocidad de cálculo",
         showMovesTitle: "Mostrar Jugadas", showMovesDesc: "Resaltar casillas legales",
@@ -787,6 +826,7 @@
         resetBtn: "Réinitialiser",
         settingsHeader: "Paramètres",
         soundsTitle: "Sons", soundsDesc: "Bruits des pièces et alertes",
+        tickSoundTitle: "Tic-Tac Chrono", tickSoundDesc: "Bip discret chaque seconde",
         hapticsTitle: "Vibrations", hapticsDesc: "Vibrer sur les coups légaux",
         showTimerTitle: "Afficher le Chrono", showTimerDesc: "Suivre la vitesse de réflexion",
         showMovesTitle: "Afficher les Coups", showMovesDesc: "Surligner les cases légales",
@@ -843,6 +883,7 @@
         resetBtn: "Standard",
         settingsHeader: "Einstellungen",
         soundsTitle: "Töne", soundsDesc: "Figurengeräusche & Alarme",
+        tickSoundTitle: "Uhr-Ticken", tickSoundDesc: "Sekündliches Ticken",
         hapticsTitle: "Vibration", hapticsDesc: "Bei legalen Zügen vibrieren",
         showTimerTitle: "Timer anzeigen", showTimerDesc: "Denkzeit verfolgen",
         showMovesTitle: "Züge anzeigen", showMovesDesc: "Legale Felder markieren",
@@ -899,6 +940,7 @@
         resetBtn: "Сброс",
         settingsHeader: "Настройки",
         soundsTitle: "Звуки", soundsDesc: "Стук деревянных фигур и сигналы",
+        tickSoundTitle: "Тиканье часов", tickSoundDesc: "Звук каждую секунду",
         hapticsTitle: "Вибрация", hapticsDesc: "Тактильный отклик при ходе",
         showTimerTitle: "Таймер", showTimerDesc: "Показывать время решения",
         showMovesTitle: "Подсказки ходов", showMovesDesc: "Подсвечивать доступные клетки",
@@ -1121,8 +1163,14 @@
       const [validMoves, setValidMoves] = useState([]);
       const [pendingPromotion, setPendingPromotion] = useState(null);
       
-      const [seconds, setSeconds] = useState(0);
+      // ======================================================================
+      // ⏱️ ESTADOS DO CRONÔMETRO DE CENTÉSIMOS (MM:SS.CC) E TIC DE 1 SEGUNDO
+      // ======================================================================
+      const [elapsedMs, setElapsedMs] = useState(0);
       const [timerRunning, setTimerRunning] = useState(false);
+      const [secPulse, setSecPulse] = useState(false);
+      const lastTickSecondRef = useRef(0);
+
       const [isWon, setIsWon] = useState(false);
       const [showHint, setShowHint] = useState(false);
       const [hintDetails, setHintDetails] = useState('');
@@ -1133,11 +1181,18 @@
       const [tutorialStep, setTutorialStep] = useState(0);
 
       const [soundEnabled, setSoundEnabled] = useState(saved?.soundEnabled ?? true);
+      const [tickSoundEnabled, setTickSoundEnabled] = useState(saved?.tickSoundEnabled ?? true);
       const [soundVolume, setSoundVolume] = useState(saved?.soundVolume ?? 75);
       const [hapticsEnabled, setHapticsEnabled] = useState(saved?.hapticsEnabled ?? false);
       const [showTimerUI, setShowTimerUI] = useState(saved?.showTimerUI ?? true);
       const [showMovesUI, setShowMovesUI] = useState(saved?.showMovesUI ?? true);
       const [rotateBoardUI, setRotateBoardUI] = useState(saved?.rotateBoardUI ?? false);
+
+      // Mantém referência atualizada do som e do tic para o loop de centésimos não reiniciar
+      const soundPrefsRef = useRef({ soundEnabled, tickSoundEnabled, soundVolume });
+      useEffect(() => {
+        soundPrefsRef.current = { soundEnabled, tickSoundEnabled, soundVolume };
+      }, [soundEnabled, tickSoundEnabled, soundVolume]);
 
       const t = TRANSLATIONS[language] || TRANSLATIONS.EN;
 
@@ -1148,11 +1203,11 @@
       };
 
       useEffect(() => {
-        savePrefsToStorage({ selectedLevel, language, soundEnabled, soundVolume, hapticsEnabled, showTimerUI, showMovesUI, rotateBoardUI });
-      }, [selectedLevel, language, soundEnabled, soundVolume, hapticsEnabled, showTimerUI, showMovesUI, rotateBoardUI]);
+        savePrefsToStorage({ selectedLevel, language, soundEnabled, tickSoundEnabled, soundVolume, hapticsEnabled, showTimerUI, showMovesUI, rotateBoardUI });
+      }, [selectedLevel, language, soundEnabled, tickSoundEnabled, soundVolume, hapticsEnabled, showTimerUI, showMovesUI, rotateBoardUI]);
 
       const handleResetSettings = () => {
-        setSoundEnabled(true); setSoundVolume(75); setHapticsEnabled(false);
+        setSoundEnabled(true); setTickSoundEnabled(true); setSoundVolume(75); setHapticsEnabled(false);
         setShowTimerUI(true); setShowMovesUI(true); setRotateBoardUI(false);
         playGameSound('select', true, 75);
       };
@@ -1183,10 +1238,35 @@
         fetchPuzzles();
       }, [selectedLevel]);
 
+      // ======================================================================
+      // ⏱️ LOOP DO CRONÔMETRO RÁPIDO (MM:SS.CC) + "TIC" DE 1 EM 1 SEGUNDO
+      // ======================================================================
       useEffect(() => {
         let interval = null;
         if (timerRunning && !isWon && !showSplashModal && !pendingPromotion) {
-          interval = setInterval(() => { setSeconds(prev => prev + 1); }, 1000);
+          let lastTime = Date.now();
+          interval = setInterval(() => {
+            const now = Date.now();
+            const delta = now - lastTime;
+            lastTime = now;
+
+            setElapsedMs(prevMs => {
+              const nextMs = prevMs + delta;
+              const currentSec = Math.floor(nextMs / 1000);
+
+              // Dispara o "tic" de 1 em 1 segundo (se o som geral e o Tic do Relógio estiverem ligados)
+              if (currentSec > 0 && currentSec !== lastTickSecondRef.current) {
+                lastTickSecondRef.current = currentSec;
+                const { soundEnabled: sEn, tickSoundEnabled: tEn, soundVolume: sVol } = soundPrefsRef.current;
+                if (sEn && tEn) {
+                  playGameSound('tick', true, sVol);
+                }
+                setSecPulse(true);
+                setTimeout(() => setSecPulse(false), 140);
+              }
+              return nextMs;
+            });
+          }, 25); // Atualiza a 40 quadros por segundo para os centésimos girarem super rápido
         } else {
           clearInterval(interval);
         }
@@ -1251,7 +1331,8 @@
           }
         }
         setBoard(newBoard); setCurrentTurn('w'); setSelectedSquare(null); setValidMoves([]);
-        setSeconds(0); setTimerRunning(true); setIsWon(false); setShowHint(false); setIsComputerThinking(false); setPendingPromotion(null);
+        setElapsedMs(0); lastTickSecondRef.current = 0; setSecPulse(false);
+        setTimerRunning(true); setIsWon(false); setShowHint(false); setIsComputerThinking(false); setPendingPromotion(null);
       };
 
       const handleRestart = () => { playGameSound('select', soundEnabled, soundVolume); if(currentFen) parseFenToBoard(currentFen); };
@@ -1263,7 +1344,7 @@
 
       const handleAnotherChallengeSPA = () => {
         try { localStorage.setItem(WELCOMED_KEY, 'true'); } catch (e) {}
-        savePrefsToStorage({ selectedLevel, language, soundEnabled, soundVolume, hapticsEnabled, showTimerUI, showMovesUI, rotateBoardUI });
+        savePrefsToStorage({ selectedLevel, language, soundEnabled, tickSoundEnabled, soundVolume, hapticsEnabled, showTimerUI, showMovesUI, rotateBoardUI });
         setIsWon(false);
         loadRandomPuzzle();
       };
@@ -1386,10 +1467,16 @@
         }
       };
 
-      const formatTime = (totalSec) => {
+      // ======================================================================
+      // ⏱️ FORMATAÇÃO MM:SS.CC (COM PONTO ANTES DOS CENTÉSIMOS)
+      // ======================================================================
+      const formatTime = (ms) => {
+        const totalCs = Math.floor(ms / 10);
+        const cs = (totalCs % 100).toString().padStart(2, '0');
+        const totalSec = Math.floor(totalCs / 100);
         const m = Math.floor(totalSec / 60).toString().padStart(2, '0');
         const s = (totalSec % 60).toString().padStart(2, '0');
-        return `${m}:${s}`;
+        return `${m}:${s}.${cs}`;
       };
 
       const whiteInCheck = isKingInCheck(board, 'w');
@@ -1427,10 +1514,13 @@
               </div>
 
               <div className="flex items-center gap-1.5 sm:gap-2 bg-[#241104]/80 border border-[#4b260c] rounded-xl p-1 sm:p-1.5 shadow-inner">
+                {/* RELÓGIO AUMENTADO EM ~20% NO FORMATO MM:SS.CC */}
                 {showTimerUI && (
-                  <div className="flex flex-col items-center justify-center px-2 py-1 bg-[#1a0b02] rounded-lg border border-amber-900/60 min-w-[48px]">
-                    <span className="text-[8px] sm:text-[9px] uppercase font-bold text-amber-400/70 leading-none mb-0.5">{t.timer}</span>
-                    <span className="font-mono font-black text-xs sm:text-sm text-emerald-300 leading-none">{formatTime(seconds)}</span>
+                  <div className={`flex flex-col items-center justify-center px-2.5 sm:px-3 py-1 sm:py-1.5 bg-[#1a0b02] rounded-lg border transition-colors min-w-[92px] sm:min-w-[108px] ${secPulse ? 'border-amber-500/80' : 'border-amber-900/60'}`}>
+                    <span className="text-[9px] sm:text-[10px] uppercase font-bold text-amber-400/75 leading-none mb-0.5">{t.timer}</span>
+                    <span className={`font-mono tabular-nums font-black text-[15px] sm:text-[17px] leading-none transition-colors ${secPulse ? 'text-amber-300' : 'text-emerald-300'}`}>
+                      {formatTime(elapsedMs)}
+                    </span>
                   </div>
                 )}
                 
@@ -1644,7 +1734,7 @@
             </div>
           )}
 
-          {/* SETTINGS MODAL */}
+          {/* SETTINGS MODAL (COM OPÇÃO DE DESLIGAR O TIC DO RELÓGIO) */}
           {showSettingsModal && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
               <div className="relative w-full max-w-2xl bg-[#22242a] rounded-2xl border-2 border-[#383b44] shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-12 text-gray-100">
@@ -1684,23 +1774,27 @@
                       <button type="button" onClick={() => setShowSettingsModal(false)} className="bg-red-600 hover:bg-red-500 text-white font-bold w-12 h-12 flex items-center justify-center text-lg transition-colors cursor-pointer self-stretch">✕</button>
                     </div>
                     <div className="px-6 py-2 divide-y divide-[#2e313a]">
-                      <div className="py-3 flex items-center justify-between gap-3">
+                      <div className="py-2.5 flex items-center justify-between gap-3">
                         <div><div className="font-bold text-sm text-white leading-tight">{t.soundsTitle}</div><div className="text-[11px] text-gray-400">{t.soundsDesc}</div></div>
                         <button type="button" onClick={() => { const next = !soundEnabled; setSoundEnabled(next); if (next) playGameSound('move', true, soundVolume); }} className={`w-11 h-6 rounded-full transition-colors p-0.5 flex items-center cursor-pointer ${soundEnabled ? 'bg-emerald-500 justify-end' : 'bg-gray-600 justify-start'}`}><span className="w-5 h-5 rounded-full bg-white shadow-md block"></span></button>
                       </div>
-                      <div className="py-3 flex items-center justify-between gap-3">
+                      <div className="py-2.5 flex items-center justify-between gap-3">
+                        <div><div className="font-bold text-sm text-white leading-tight">{t.tickSoundTitle}</div><div className="text-[11px] text-gray-400">{t.tickSoundDesc}</div></div>
+                        <button type="button" onClick={() => { const next = !tickSoundEnabled; setTickSoundEnabled(next); if (next && soundEnabled) playGameSound('tick', true, soundVolume); }} className={`w-11 h-6 rounded-full transition-colors p-0.5 flex items-center cursor-pointer ${tickSoundEnabled ? 'bg-emerald-500 justify-end' : 'bg-gray-600 justify-start'}`}><span className="w-5 h-5 rounded-full bg-white shadow-md block"></span></button>
+                      </div>
+                      <div className="py-2.5 flex items-center justify-between gap-3">
                         <div><div className="font-bold text-sm text-white leading-tight">{t.hapticsTitle}</div><div className="text-[11px] text-gray-400">{t.hapticsDesc}</div></div>
                         <button type="button" onClick={() => { const next = !hapticsEnabled; setHapticsEnabled(next); if (next) triggerHaptic(true, 30); playGameSound('select', soundEnabled, soundVolume); }} className={`w-11 h-6 rounded-full transition-colors p-0.5 flex items-center cursor-pointer ${hapticsEnabled ? 'bg-emerald-500 justify-end' : 'bg-gray-600 justify-start'}`}><span className="w-5 h-5 rounded-full bg-white shadow-md block"></span></button>
                       </div>
-                      <div className="py-3 flex items-center justify-between gap-3">
+                      <div className="py-2.5 flex items-center justify-between gap-3">
                         <div><div className="font-bold text-sm text-white leading-tight">{t.showTimerTitle}</div><div className="text-[11px] text-gray-400">{t.showTimerDesc}</div></div>
                         <button type="button" onClick={() => { setShowTimerUI(!showTimerUI); playGameSound('select', soundEnabled, soundVolume); }} className={`w-11 h-6 rounded-full transition-colors p-0.5 flex items-center cursor-pointer ${showTimerUI ? 'bg-emerald-500 justify-end' : 'bg-gray-600 justify-start'}`}><span className="w-5 h-5 rounded-full bg-white shadow-md block"></span></button>
                       </div>
-                      <div className="py-3 flex items-center justify-between gap-3">
+                      <div className="py-2.5 flex items-center justify-between gap-3">
                         <div><div className="font-bold text-sm text-white leading-tight">{t.showMovesTitle}</div><div className="text-[11px] text-gray-400">{t.showMovesDesc}</div></div>
                         <button type="button" onClick={() => { setShowMovesUI(!showMovesUI); playGameSound('select', soundEnabled, soundVolume); }} className={`w-11 h-6 rounded-full transition-colors p-0.5 flex items-center cursor-pointer ${showMovesUI ? 'bg-emerald-500 justify-end' : 'bg-gray-600 justify-start'}`}><span className="w-5 h-5 rounded-full bg-white shadow-md block"></span></button>
                       </div>
-                      <div className="py-3 flex items-center justify-between gap-3">
+                      <div className="py-2.5 flex items-center justify-between gap-3">
                         <div><div className="font-bold text-sm text-white leading-tight">{t.rotateBoardTitle}</div><div className="text-[11px] text-gray-400">{t.rotateBoardDesc}</div></div>
                         <button type="button" onClick={() => { setRotateBoardUI(!rotateBoardUI); playGameSound('select', soundEnabled, soundVolume); }} className={`w-11 h-6 rounded-full transition-colors p-0.5 flex items-center cursor-pointer ${rotateBoardUI ? 'bg-emerald-500 justify-end' : 'bg-gray-600 justify-start'}`}><span className="w-5 h-5 rounded-full bg-white shadow-md block"></span></button>
                       </div>
@@ -1721,7 +1815,7 @@
                 <h2 className="font-fredoka text-3xl sm:text-4xl font-black text-amber-100 drop-shadow-md">{t.victoryTitle}</h2>
                 <p className="text-amber-200/90 text-sm mt-1 font-medium">{t.victoryDesc}</p>
                 <div className="bg-[#241104] border-2 border-amber-800 rounded-2xl p-4 my-5 flex items-center justify-around shadow-inner">
-                  <div className="flex flex-col items-center"><span className="text-[11px] uppercase font-bold text-amber-400/80">{t.timeTaken}</span><span className="font-mono font-black text-2xl text-emerald-400">{formatTime(seconds)}</span></div>
+                  <div className="flex flex-col items-center"><span className="text-[11px] uppercase font-bold text-amber-400/80">{t.timeTaken}</span><span className="font-mono tabular-nums font-black text-xl sm:text-2xl text-emerald-400">{formatTime(elapsedMs)}</span></div>
                   <div className="w-px h-8 bg-amber-800/80"></div>
                   <div className="flex flex-col items-center"><span className="text-[11px] uppercase font-bold text-amber-400/80">{t.stars}</span><div className="flex text-amber-400 text-lg">★★★</div></div>
                   <div className="w-px h-8 bg-amber-800/80"></div>
