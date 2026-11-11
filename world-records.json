@@ -1,0 +1,17 @@
+{
+  "1": { "timeMs": 14200, "country": "BR" },
+  "2": { "timeMs": 38500, "country": "US" },
+  "3": { "timeMs": 64900, "country": "DE" },
+  "4": { "timeMs": 102400, "country": "ES" },
+  "5": { "timeMs": 148000, "country": "FR" },
+  "6": { "timeMs": 195000, "country": "RU" },
+  "7": { "timeMs": 251000, "country": "IN" },
+  "8": { "timeMs": 314000, "country": "GB" },
+  "9": { "timeMs": 389000, "country": "CA" },
+  "10": { "timeMs": 462000, "country": "PT" },
+  "11": { "timeMs": 548000, "country": "IT" },
+  "12": { "timeMs": 635000, "country": "AR" },
+  "13": { "timeMs": 741000, "country": "NL" },
+  "14": { "timeMs": 864000, "country": "PL" },
+  "15": { "timeMs": 987000, "country": "NO" }
+}

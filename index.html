@@ -464,13 +464,33 @@
 </footer>
 
 <!-- ==========================================================================
-     4. MOTOR DO JOGO EM REACT (COM CRONÔMETRO MM:SS.CC +20% E TIC DE 1 EM 1 SEGUNDO)
+     4. MOTOR DO JOGO EM REACT (CRONÔMETRO MM:SS.CCC + RECORDES PESSOAL E MUNDIAL)
      ========================================================================== -->
 <script type="text/babel">
     const { useState, useEffect, useRef } = React;
 
     const STORAGE_KEY = '3x3chess_studio_prefs_v1';
     const WELCOMED_KEY = '3x3chess_welcomed_v1';
+    const PERSONAL_RECORDS_KEY = '3x3chess_personal_records_v1';
+
+    // Recordes Mundiais iniciais de fallback (caso o arquivo world-records.json ainda não tenha carregado)
+    const DEFAULT_WORLD_RECORDS = {
+      "1": { timeMs: 14200, country: "BR" },
+      "2": { timeMs: 38500, country: "US" },
+      "3": { timeMs: 64900, country: "DE" },
+      "4": { timeMs: 102400, country: "ES" },
+      "5": { timeMs: 148000, country: "FR" },
+      "6": { timeMs: 195000, country: "RU" },
+      "7": { timeMs: 251000, country: "IN" },
+      "8": { timeMs: 314000, country: "GB" },
+      "9": { timeMs: 389000, country: "CA" },
+      "10": { timeMs: 462000, country: "PT" },
+      "11": { timeMs: 548000, country: "IT" },
+      "12": { timeMs: 635000, country: "AR" },
+      "13": { timeMs: 741000, country: "NL" },
+      "14": { timeMs: 864000, country: "PL" },
+      "15": { timeMs: 987000, country: "NO" }
+    };
 
     const loadSavedPrefs = () => {
       try {
@@ -483,6 +503,20 @@
     const savePrefsToStorage = (prefs) => {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
+      } catch (e) {}
+    };
+
+    const loadPersonalRecords = () => {
+      try {
+        const raw = localStorage.getItem(PERSONAL_RECORDS_KEY);
+        if (raw) return JSON.parse(raw);
+      } catch (e) {}
+      return {};
+    };
+
+    const savePersonalRecords = (recordsObj) => {
+      try {
+        localStorage.setItem(PERSONAL_RECORDS_KEY, JSON.stringify(recordsObj));
       } catch (e) {}
     };
 
@@ -503,8 +537,75 @@
       return 'EN';
     };
 
+    // ========================================================================
+    // 🌍 DETECTOR DE PAÍS REAL PARA A BANDEIRA DO RECORDE MUNDIAL
+    // Identifica dezenas de países via Fuso Horário + Locale do navegador
+    // ========================================================================
+    const detectPlayerCountryCode = () => {
+      try {
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+        const tzMap = {
+          'America/Sao_Paulo': 'BR', 'America/Manaus': 'BR', 'America/Bahia': 'BR', 'America/Recife': 'BR', 'America/Fortaleza': 'BR', 'America/Belem': 'BR', 'America/Cuiaba': 'BR',
+          'Europe/Lisbon': 'PT', 'Atlantic/Madeira': 'PT', 'Atlantic/Azores': 'PT',
+          'Europe/Madrid': 'ES', 'Atlantic/Canary': 'ES',
+          'America/Argentina': 'AR', 'America/Buenos_Aires': 'AR',
+          'America/Mexico_City': 'MX', 'America/Monterrey': 'MX', 'America/Cancun': 'MX',
+          'America/Bogota': 'CO', 'America/Santiago': 'CL', 'America/Lima': 'PE', 'America/Montevideo': 'UY',
+          'America/New_York': 'US', 'America/Chicago': 'US', 'America/Denver': 'US', 'America/Los_Angeles': 'US', 'America/Phoenix': 'US',
+          'America/Toronto': 'CA', 'America/Vancouver': 'CA', 'America/Montreal': 'CA',
+          'Europe/London': 'GB', 'Europe/Dublin': 'IE',
+          'Europe/Paris': 'FR', 'Europe/Brussels': 'BE', 'Europe/Zurich': 'CH',
+          'Europe/Berlin': 'DE', 'Europe/Vienna': 'AT',
+          'Europe/Rome': 'IT', 'Europe/Amsterdam': 'NL', 'Europe/Warsaw': 'PL',
+          'Europe/Oslo': 'NO', 'Europe/Stockholm': 'SE', 'Europe/Helsinki': 'FI', 'Europe/Copenhagen': 'DK',
+          'Europe/Moscow': 'RU', 'Europe/Kyiv': 'UA', 'Europe/Istanbul': 'TR', 'Europe/Athens': 'GR',
+          'Asia/Kolkata': 'IN', 'Asia/Calcutta': 'IN',
+          'Asia/Tokyo': 'JP', 'Asia/Seoul': 'KR', 'Asia/Shanghai': 'CN', 'Asia/Hong_Kong': 'HK', 'Asia/Singapore': 'SG',
+          'Asia/Manila': 'PH', 'Asia/Jakarta': 'ID', 'Asia/Bangkok': 'TH', 'Asia/Dubai': 'AE', 'Asia/Riyadh': 'SA',
+          'Australia/Sydney': 'AU', 'Australia/Melbourne': 'AU', 'Pacific/Auckland': 'NZ',
+          'Africa/Johannesburg': 'ZA', 'Africa/Cairo': 'EG', 'Africa/Lagos': 'NG', 'Africa/Casablanca': 'MA'
+        };
+
+        for (const key in tzMap) {
+          if (tz.startsWith(key)) return tzMap[key];
+        }
+
+        const langs = navigator.languages || [navigator.language || ''];
+        for (const l of langs) {
+          if (l && l.includes('-')) {
+            const parts = l.split('-');
+            const region = parts[parts.length - 1].toUpperCase();
+            if (region.length === 2 && /^[A-Z]{2}$/.test(region)) return region;
+          }
+        }
+      } catch (e) {}
+      return 'US';
+    };
+
+    // Componente visual que exibe a Bandeira Oficial em alta definição + Sigla do País
+    function CountryFlagBadge({ countryCode }) {
+      const code = (countryCode || 'UN').toUpperCase();
+      const lower = code.toLowerCase();
+      return (
+        <span className="inline-flex items-center gap-1 bg-black/40 border border-amber-700/50 px-1.5 py-0.5 rounded text-[10px] font-mono font-bold text-amber-200 shadow-sm">
+          {code !== 'UN' ? (
+            <img
+              src={`https://flagcdn.com/w20/${lower}.png`}
+              srcSet={`https://flagcdn.com/w40/${lower}.png 2x`}
+              alt={code}
+              className="w-3.5 h-2.5 object-cover rounded-[1px]"
+              onError={(e) => { e.target.style.display = 'none'; }}
+            />
+          ) : (
+            <span>🌎</span>
+          )}
+          <span>{code}</span>
+        </span>
+      );
+    }
+
     // ========================================================
-    // MOTOR DE SOM ACÚSTICO (INCLUINDO O SOM 'tick' DE 1 SEGUNDO)
+    // MOTOR DE SOM ACÚSTICO (COM TIMBRE 4500Hz -> 3000Hz NO TIC)
     // ========================================================
     let sharedAudioCtx = null;
     const getAudioCtx = () => {
@@ -518,7 +619,6 @@
       return sharedAudioCtx;
     };
 
-    // Destrava o contexto de áudio no primeiro clique do usuário
     if (typeof window !== 'undefined') {
       window.addEventListener('click', () => { getAudioCtx(); }, { once: false });
     }
@@ -567,24 +667,20 @@
         });
       } else if (type === 'tick') {
         // ====================================================================
-        // ⏱️ SOM DE "TIC" DE TENSÃO A CADA 1 SEGUNDO
-        // Discreto, seco e ligeiramente "enervante" (estilo relógio de precisão)
+        // ⏱️ SOM DE "TIC" DE TENSÃO A CADA 1 SEGUNDO (4500Hz -> 3000Hz)
         // ====================================================================
         const osc1 = ctx.createOscillator();
         const osc2 = ctx.createOscillator();
         const gain = ctx.createGain();
 
-        // Pulso mecânico principal (cai rapidamente de 2400Hz para 950Hz em 25ms)
         osc1.type = 'triangle';
         osc1.frequency.setValueAtTime(4500, now);
         osc1.frequency.exponentialRampToValueAtTime(3000, now + 0.025);
 
-        // Harmônico agudo sutil para dar a sensação metálica de ponteiro de precisão
         osc2.type = 'sine';
         osc2.frequency.setValueAtTime(4500, now);
         osc2.frequency.exponentialRampToValueAtTime(3000, now + 0.018);
 
-        // Volume discreto (32% do volume normal) para manter a tensão a cada 1s
         gain.gain.setValueAtTime(vol * 0.32, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.028);
 
@@ -641,8 +737,11 @@
         victoryTitle: "Checkmate! 🎉",
         victoryDesc: "Brilliant tactical checkmate! You outsmarted the 3x3 mini-chess defense.",
         timeTaken: "Time Taken",
-        stars: "Stars",
         challenge: "Challenge",
+        personalRecordLabel: "Your Personal Record",
+        worldRecordLabel: (n) => `World Record (Mate in ${n})`,
+        newRecordBadge: "NEW!",
+        practiceRunNote: "Practice run: Restarted or hinted games do not update records.",
         anotherChallengeBtn: "Another Challenge ➔",
         reviewBoardBtn: "Review Final Board",
         closeBtn: "Close",
@@ -661,7 +760,7 @@
         showMovesTitle: "Show Moves", showMovesDesc: "Highlight legal tiles",
         rotateBoardTitle: "Rotate Board", rotateBoardDesc: "Flip board orientation",
         tutorialBtn: "Rules / Tutorial",
-        autoSavedFooter: "3x3Chess v1.6 • Auto-saved",
+        autoSavedFooter: "3x3Chess v1.7 • Auto-saved",
         navGuide: "Tactical Guide",
         navArticles: "Articles",
         navAbout: "About"
@@ -698,8 +797,11 @@
         victoryTitle: "Xeque-Mate! 🎉",
         victoryDesc: "Brilhante xeque-mate tático! Você superou a defesa do mini-xadrez 3x3.",
         timeTaken: "Tempo",
-        stars: "Estrelas",
         challenge: "Desafio",
+        personalRecordLabel: "Seu Recorde Pessoal",
+        worldRecordLabel: (n) => `Recorde Mundial (Mate em ${n})`,
+        newRecordBadge: "NOVO!",
+        practiceRunNote: "Modo treino: Partidas reiniciadas ou com dica não contam para recorde.",
         anotherChallengeBtn: "Mais um Desafio ➔",
         reviewBoardBtn: "Rever Tabuleiro Final",
         closeBtn: "Fechar",
@@ -718,7 +820,7 @@
         showMovesTitle: "Mostrar Lances", showMovesDesc: "Destacar casas válidas",
         rotateBoardTitle: "Girar Tabuleiro", rotateBoardDesc: "Inverter visão do tabuleiro",
         tutorialBtn: "Regras / Tutorial",
-        autoSavedFooter: "3x3Chess v1.6 • Salvo automaticamente",
+        autoSavedFooter: "3x3Chess v1.7 • Salvo automaticamente",
         navGuide: "Guia Tático",
         navArticles: "Artigos",
         navAbout: "Sobre"
@@ -755,8 +857,11 @@
         victoryTitle: "¡Jaque Mate! 🎉",
         victoryDesc: "¡Brillante jaque mate táctico! Superaste la defensa del mini-ajedrez 3x3.",
         timeTaken: "Tiempo",
-        stars: "Estrellas",
         challenge: "Desafío",
+        personalRecordLabel: "Tu Récord Personal",
+        worldRecordLabel: (n) => `Récord Mundial (Mate en ${n})`,
+        newRecordBadge: "¡NUEVO!",
+        practiceRunNote: "Modo práctica: Juegos reiniciados o con pista no actualizan récords.",
         anotherChallengeBtn: "Siguiente Desafío ➔",
         reviewBoardBtn: "Revisar Tablero Final",
         closeBtn: "Cerrar",
@@ -775,7 +880,7 @@
         showMovesTitle: "Mostrar Jugadas", showMovesDesc: "Resaltar casillas legales",
         rotateBoardTitle: "Girar Tablero", rotateBoardDesc: "Invertir orientación",
         tutorialBtn: "Reglas / Tutorial",
-        autoSavedFooter: "3x3Chess v1.6 • Guardado automático",
+        autoSavedFooter: "3x3Chess v1.7 • Guardado automático",
         navGuide: "Guía Táctica",
         navArticles: "Artículos",
         navAbout: "Acerca de"
@@ -812,8 +917,11 @@
         victoryTitle: "Échec et Mat ! 🎉",
         victoryDesc: "Brillant mat tactique ! Vous avez déjoué la défense 3x3.",
         timeTaken: "Temps",
-        stars: "Étoiles",
         challenge: "Défi",
+        personalRecordLabel: "Votre Record Personnel",
+        worldRecordLabel: (n) => `Record du Monde (Mat en ${n})`,
+        newRecordBadge: "NOUVEAU !",
+        practiceRunNote: "Mode entraînement : Les parties recommencées ou avec indice ne comptent pas.",
         anotherChallengeBtn: "Défi Suivant ➔",
         reviewBoardBtn: "Revoir le Plateau",
         closeBtn: "Fermer",
@@ -832,7 +940,7 @@
         showMovesTitle: "Afficher les Coups", showMovesDesc: "Surligner les cases légales",
         rotateBoardTitle: "Tourner le Plateau", rotateBoardDesc: "Inverser l'orientation",
         tutorialBtn: "Règles / Tutoriel",
-        autoSavedFooter: "3x3Chess v1.6 • Sauvegarde auto",
+        autoSavedFooter: "3x3Chess v1.7 • Sauvegarde auto",
         navGuide: "Guide Tactique",
         navArticles: "Articles",
         navAbout: "À propos"
@@ -869,8 +977,11 @@
         victoryTitle: "Schachmatt! 🎉",
         victoryDesc: "Brillantes taktisches Matt! Du hast die 3x3-Verteidigung geknackt.",
         timeTaken: "Zeit",
-        stars: "Sterne",
         challenge: "Aufgabe",
+        personalRecordLabel: "Dein Persönlicher Rekord",
+        worldRecordLabel: (n) => `Weltrekord (Matt in ${n})`,
+        newRecordBadge: "NEU!",
+        practiceRunNote: "Übungsmodus: Neustarts oder Tipps zählen nicht für Rekorde.",
         anotherChallengeBtn: "Nächste Aufgabe ➔",
         reviewBoardBtn: "Endstellung ansehen",
         closeBtn: "Schließen",
@@ -889,7 +1000,7 @@
         showMovesTitle: "Züge anzeigen", showMovesDesc: "Legale Felder markieren",
         rotateBoardTitle: "Brett drehen", rotateBoardDesc: "Ansicht umdrehen",
         tutorialBtn: "Regeln / Tutorial",
-        autoSavedFooter: "3x3Chess v1.6 • Automatisch gespeichert",
+        autoSavedFooter: "3x3Chess v1.7 • Automatisch gespeichert",
         navGuide: "Taktik-Guide",
         navArticles: "Artikel",
         navAbout: "Über uns"
@@ -926,8 +1037,11 @@
         victoryTitle: "Шах и мат! 🎉",
         victoryDesc: "Блестящий тактический мат! Вы взломали оборону мини-шахмат 3x3.",
         timeTaken: "Время",
-        stars: "Звёзды",
         challenge: "Задача",
+        personalRecordLabel: "Ваш личный рекорд",
+        worldRecordLabel: (n) => `Мировой рекорд (Мат в ${n})`,
+        newRecordBadge: "НОВЫЙ!",
+        practiceRunNote: "Тренировка: перезапуск или подсказка не идут в зачёт рекордов.",
         anotherChallengeBtn: "Ещё задачу ➔",
         reviewBoardBtn: "Посмотреть доску",
         closeBtn: "Закрыть",
@@ -946,7 +1060,7 @@
         showMovesTitle: "Подсказки ходов", showMovesDesc: "Подсвечивать доступные клетки",
         rotateBoardTitle: "Повернуть доску", rotateBoardDesc: "Перевернуть обзор на 180°",
         tutorialBtn: "Правила / Обучение",
-        autoSavedFooter: "3x3Chess v1.6 • Автосохранение",
+        autoSavedFooter: "3x3Chess v1.7 • Автосохранение",
         navGuide: "Руководство",
         navArticles: "Статьи",
         navAbout: "О проекте"
@@ -1164,12 +1278,21 @@
       const [pendingPromotion, setPendingPromotion] = useState(null);
       
       // ======================================================================
-      // ⏱️ ESTADOS DO CRONÔMETRO DE CENTÉSIMOS (MM:SS.CC) E TIC DE 1 SEGUNDO
+      // ⏱️ CRONÔMETRO DE MILISSEGUNDOS (MM:SS.CCC) E SISTEMA DE RECORDES
       // ======================================================================
       const [elapsedMs, setElapsedMs] = useState(0);
       const [timerRunning, setTimerRunning] = useState(false);
       const [secPulse, setSecPulse] = useState(false);
+      const elapsedMsRef = useRef(0);
       const lastTickSecondRef = useRef(0);
+
+      // Estados dos Recordes Pessoais (localStorage) e Mundiais (Hostinger)
+      const [personalRecords, setPersonalRecords] = useState(() => loadPersonalRecords());
+      const [worldRecords, setWorldRecords] = useState(DEFAULT_WORLD_RECORDS);
+      const [playerCountry] = useState(() => detectPlayerCountryCode());
+      const [isRecordEligible, setIsRecordEligible] = useState(true); // false se usar Reiniciar ou Dica
+      const [isNewPersonalRecord, setIsNewPersonalRecord] = useState(false);
+      const [isNewWorldRecord, setIsNewWorldRecord] = useState(false);
 
       const [isWon, setIsWon] = useState(false);
       const [showHint, setShowHint] = useState(false);
@@ -1188,13 +1311,28 @@
       const [showMovesUI, setShowMovesUI] = useState(saved?.showMovesUI ?? true);
       const [rotateBoardUI, setRotateBoardUI] = useState(saved?.rotateBoardUI ?? false);
 
-      // Mantém referência atualizada do som e do tic para o loop de centésimos não reiniciar
       const soundPrefsRef = useRef({ soundEnabled, tickSoundEnabled, soundVolume });
       useEffect(() => {
         soundPrefsRef.current = { soundEnabled, tickSoundEnabled, soundVolume };
       }, [soundEnabled, tickSoundEnabled, soundVolume]);
 
       const t = TRANSLATIONS[language] || TRANSLATIONS.EN;
+
+      // Carrega a tabela de Recordes Mundiais ao abrir o site
+      useEffect(() => {
+        const fetchWorldRecords = async () => {
+          try {
+            const res = await fetch(`./world-records.json?t=${Date.now()}`);
+            if (res.ok) {
+              const data = await res.json();
+              if (data && typeof data === 'object') {
+                setWorldRecords(prev => ({ ...prev, ...data }));
+              }
+            }
+          } catch (e) {}
+        };
+        fetchWorldRecords();
+      }, []);
 
       const handleDismissSplash = () => {
         try { localStorage.setItem(WELCOMED_KEY, 'true'); } catch (e) {}
@@ -1239,22 +1377,23 @@
       }, [selectedLevel]);
 
       // ======================================================================
-      // ⏱️ LOOP DO CRONÔMETRO RÁPIDO (MM:SS.CC) + "TIC" DE 1 EM 1 SEGUNDO
+      // ⏱️ LOOP DO CRONÔMETRO DE ALTA PRECISÃO (MM:SS.CCC)
+      // Pausa automaticamente enquanto as Pretas (computador) estão pensando!
       // ======================================================================
       useEffect(() => {
         let interval = null;
-        if (timerRunning && !isWon && !showSplashModal && !pendingPromotion) {
-          let lastTime = Date.now();
+        if (timerRunning && !isWon && !showSplashModal && !pendingPromotion && currentTurn === 'w' && !isComputerThinking) {
+          let lastTime = performance.now();
           interval = setInterval(() => {
-            const now = Date.now();
-            const delta = now - lastTime;
+            const now = performance.now();
+            const delta = Math.max(0, Math.round(now - lastTime));
             lastTime = now;
 
             setElapsedMs(prevMs => {
               const nextMs = prevMs + delta;
+              elapsedMsRef.current = nextMs;
               const currentSec = Math.floor(nextMs / 1000);
 
-              // Dispara o "tic" de 1 em 1 segundo (se o som geral e o Tic do Relógio estiverem ligados)
               if (currentSec > 0 && currentSec !== lastTickSecondRef.current) {
                 lastTickSecondRef.current = currentSec;
                 const { soundEnabled: sEn, tickSoundEnabled: tEn, soundVolume: sVol } = soundPrefsRef.current;
@@ -1266,18 +1405,74 @@
               }
               return nextMs;
             });
-          }, 25); // Atualiza a 40 quadros por segundo para os centésimos girarem super rápido
+          }, 16); // ~60fps para exibir os milissegundos (.ccc) com fluidez real
         } else {
           clearInterval(interval);
         }
         return () => clearInterval(interval);
-      }, [timerRunning, isWon, showSplashModal, pendingPromotion]);
+      }, [timerRunning, isWon, showSplashModal, pendingPromotion, currentTurn, isComputerThinking]);
 
       useEffect(() => {
         if (isWon && window.confetti) {
           window.confetti({ particleCount: 140, spread: 90, origin: { y: 0.55 }, colors: ['#F59E0B', '#10B981', '#3B82F6', '#EF4444', '#FFF3D4'] });
         }
       }, [isWon]);
+
+      // ======================================================================
+      // 🏆 VERIFICAÇÃO E GRAVAÇÃO DE RECORDE PESSOAL E MUNDIAL NA VITÓRIA
+      // ======================================================================
+      const evaluateVictoryRecords = (finalTimeMs) => {
+        const lvlKey = String(selectedLevel);
+        // Limite fisiológico humano mínimo: 350ms no Mate em 1 + 250ms por lance adicional
+        const minHumanValidMs = 350 + ((selectedLevel - 1) * 250);
+
+        if (!isRecordEligible || finalTimeMs < minHumanValidMs) {
+          setIsNewPersonalRecord(false);
+          setIsNewWorldRecord(false);
+          return;
+        }
+
+        // 1. Verifica Recorde Pessoal (localStorage)
+        const currentPersonal = personalRecords[lvlKey];
+        if (!currentPersonal || finalTimeMs < currentPersonal) {
+          const updatedPersonal = { ...personalRecords, [lvlKey]: finalTimeMs };
+          setPersonalRecords(updatedPersonal);
+          savePersonalRecords(updatedPersonal);
+          setIsNewPersonalRecord(true);
+        } else {
+          setIsNewPersonalRecord(false);
+        }
+
+        // 2. Verifica Recorde Mundial (Global)
+        const currentWorldObj = worldRecords[lvlKey] || DEFAULT_WORLD_RECORDS[lvlKey];
+        const currentWorldMs = currentWorldObj ? currentWorldObj.timeMs : 999999999;
+
+        if (finalTimeMs < currentWorldMs) {
+          setIsNewWorldRecord(true);
+          const newWorldEntry = { timeMs: finalTimeMs, country: playerCountry };
+          setWorldRecords(prev => ({ ...prev, [lvlKey]: newWorldEntry }));
+
+          // Envia para a Hostinger apenas quando o Recorde Mundial é batido!
+          fetch('./recordes.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              level: selectedLevel,
+              timeMs: finalTimeMs,
+              country: playerCountry
+            })
+          })
+          .then(r => r.ok ? r.json() : null)
+          .then(data => {
+            if (data && data.records) {
+              setWorldRecords(prev => ({ ...prev, ...data.records }));
+            }
+          })
+          .catch(() => {});
+        } else {
+          setIsNewWorldRecord(false);
+        }
+      };
 
       useEffect(() => {
         if (currentTurn === 'b' && !isWon && timerRunning && !pendingPromotion) {
@@ -1298,7 +1493,10 @@
               executeMove(chosen.startR, chosen.startC, chosen.endR, chosen.endC, 'q');
             } else {
               if (isKingInCheck(board, 'b')) {
-                playGameSound('win', soundEnabled, soundVolume); setIsWon(true); setTimerRunning(false);
+                playGameSound('win', soundEnabled, soundVolume);
+                setTimerRunning(false);
+                evaluateVictoryRecords(elapsedMsRef.current);
+                setIsWon(true);
               } else {
                 setShowHint(true); setHintDetails(t.msgStalemate); setTimerRunning(false);
               }
@@ -1317,10 +1515,10 @@
         
         setCurrentFen(fenString);
         setCurrentBestMove(best);
-        parseFenToBoard(fenString);
+        parseFenToBoard(fenString, true); // true = 1ª tentativa válida para recorde
       };
 
-      const parseFenToBoard = (fen) => {
+      const parseFenToBoard = (fen, eligibleForRecord = true) => {
         const boardStr = fen.substring(1);
         const newBoard = [[null,null,null], [null,null,null], [null,null,null]];
         let idx = 0;
@@ -1331,11 +1529,18 @@
           }
         }
         setBoard(newBoard); setCurrentTurn('w'); setSelectedSquare(null); setValidMoves([]);
-        setElapsedMs(0); lastTickSecondRef.current = 0; setSecPulse(false);
+        setElapsedMs(0); elapsedMsRef.current = 0; lastTickSecondRef.current = 0; setSecPulse(false);
+        setIsRecordEligible(eligibleForRecord);
+        setIsNewPersonalRecord(false);
+        setIsNewWorldRecord(false);
         setTimerRunning(true); setIsWon(false); setShowHint(false); setIsComputerThinking(false); setPendingPromotion(null);
       };
 
-      const handleRestart = () => { playGameSound('select', soundEnabled, soundVolume); if(currentFen) parseFenToBoard(currentFen); };
+      // Reiniciar o mesmo tabuleiro desativa a elegibilidade de recorde nesta partida (evita decorar os lances)
+      const handleRestart = () => {
+        playGameSound('select', soundEnabled, soundVolume);
+        if (currentFen) parseFenToBoard(currentFen, false);
+      };
 
       const handleNewGame = () => { 
         playGameSound('select', soundEnabled, soundVolume); 
@@ -1380,7 +1585,11 @@
         if (opponentLegalMoves.length === 0) {
           if (opponentInCheck) {
             if (movingPiece.color === 'w') {
-              playGameSound('win', soundEnabled, soundVolume); triggerHaptic(hapticsEnabled, [40, 60, 80]); setIsWon(true); setTimerRunning(false);
+              playGameSound('win', soundEnabled, soundVolume);
+              triggerHaptic(hapticsEnabled, [40, 60, 80]);
+              setTimerRunning(false);
+              evaluateVictoryRecords(elapsedMsRef.current);
+              setIsWon(true);
             } else {
               playGameSound('check', soundEnabled, soundVolume); setShowHint(true); setHintDetails(t.msgComputerWon); setTimerRunning(false);
             }
@@ -1432,6 +1641,8 @@
 
       const handleHint = () => {
         playGameSound('select', soundEnabled, soundVolume);
+        // Usar dica desativa a elegibilidade de recorde nesta partida
+        setIsRecordEligible(false);
         
         if (currentBestMove) {
           const cLetters = {'a':0, 'b':1, 'c':2};
@@ -1468,15 +1679,16 @@
       };
 
       // ======================================================================
-      // ⏱️ FORMATAÇÃO MM:SS.CC (COM PONTO ANTES DOS CENTÉSIMOS)
+      // ⏱️ FORMATAÇÃO MM:SS.CCC (COM 3 CASAS DECIMAIS DE MILISSEGUNDOS)
       // ======================================================================
       const formatTime = (ms) => {
-        const totalCs = Math.floor(ms / 10);
-        const cs = (totalCs % 100).toString().padStart(2, '0');
-        const totalSec = Math.floor(totalCs / 100);
+        if (ms === null || ms === undefined) return "--:--.---";
+        const safeMs = Math.max(0, Math.floor(ms));
+        const msPart = (safeMs % 1000).toString().padStart(3, '0');
+        const totalSec = Math.floor(safeMs / 1000);
         const m = Math.floor(totalSec / 60).toString().padStart(2, '0');
         const s = (totalSec % 60).toString().padStart(2, '0');
-        return `${m}:${s}.${cs}`;
+        return `${m}:${s}.${msPart}`;
       };
 
       const whiteInCheck = isKingInCheck(board, 'w');
@@ -1486,6 +1698,9 @@
 
       const displayRows = rotateBoardUI ? [2, 1, 0] : [0, 1, 2];
       const displayCols = rotateBoardUI ? [2, 1, 0] : [0, 1, 2];
+
+      const currentLevelPersonalMs = personalRecords[String(selectedLevel)] || null;
+      const currentLevelWorldObj = worldRecords[String(selectedLevel)] || DEFAULT_WORLD_RECORDS[String(selectedLevel)];
 
       return (
         <div className="flex flex-col text-amber-50 game-board-noselect">
@@ -1514,9 +1729,9 @@
               </div>
 
               <div className="flex items-center gap-1.5 sm:gap-2 bg-[#241104]/80 border border-[#4b260c] rounded-xl p-1 sm:p-1.5 shadow-inner">
-                {/* RELÓGIO AUMENTADO EM ~20% NO FORMATO MM:SS.CC */}
+                {/* RELÓGIO AUMENTADO EM ~20% NO FORMATO MM:SS.CCC */}
                 {showTimerUI && (
-                  <div className={`flex flex-col items-center justify-center px-2.5 sm:px-3 py-1 sm:py-1.5 bg-[#1a0b02] rounded-lg border transition-colors min-w-[92px] sm:min-w-[108px] ${secPulse ? 'border-amber-500/80' : 'border-amber-900/60'}`}>
+                  <div className={`flex flex-col items-center justify-center px-2.5 sm:px-3 py-1 sm:py-1.5 bg-[#1a0b02] rounded-lg border transition-colors min-w-[104px] sm:min-w-[120px] ${secPulse ? 'border-amber-500/80' : 'border-amber-900/60'}`}>
                     <span className="text-[9px] sm:text-[10px] uppercase font-bold text-amber-400/75 leading-none mb-0.5">{t.timer}</span>
                     <span className={`font-mono tabular-nums font-black text-[15px] sm:text-[17px] leading-none transition-colors ${secPulse ? 'text-amber-300' : 'text-emerald-300'}`}>
                       {formatTime(elapsedMs)}
@@ -1806,7 +2021,9 @@
             </div>
           )}
 
-          {/* VICTORY MODAL */}
+          {/* ====================================================================
+              🏆 VICTORY MODAL (SEM ESTRELINHAS + 2 LINHAS DE RECORDES + REVER TABULEIRO)
+              ==================================================================== */}
           {isWon && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
               <div className="relative w-full max-w-md wood-texture rounded-3xl p-6 sm:p-8 border-4 border-amber-500 shadow-2xl text-center transform transition-all">
@@ -1814,16 +2031,78 @@
                 <span className="inline-block bg-amber-400/20 text-amber-300 border border-amber-400/40 text-xs font-extrabold uppercase px-3 py-1 rounded-full tracking-widest mb-2">{t.puzzleSolvedBadge}</span>
                 <h2 className="font-fredoka text-3xl sm:text-4xl font-black text-amber-100 drop-shadow-md">{t.victoryTitle}</h2>
                 <p className="text-amber-200/90 text-sm mt-1 font-medium">{t.victoryDesc}</p>
-                <div className="bg-[#241104] border-2 border-amber-800 rounded-2xl p-4 my-5 flex items-center justify-around shadow-inner">
-                  <div className="flex flex-col items-center"><span className="text-[11px] uppercase font-bold text-amber-400/80">{t.timeTaken}</span><span className="font-mono tabular-nums font-black text-xl sm:text-2xl text-emerald-400">{formatTime(elapsedMs)}</span></div>
+
+                {/* Bloco Superior: Tempo da Partida e Categoria (Sem as estrelinhas) */}
+                <div className="bg-[#241104] border-2 border-amber-800 rounded-2xl p-3.5 mt-4 mb-3 flex items-center justify-around shadow-inner">
+                  <div className="flex flex-col items-center">
+                    <span className="text-[10px] uppercase font-bold text-amber-400/80">{t.timeTaken}</span>
+                    <span className="font-mono tabular-nums font-black text-xl sm:text-2xl text-emerald-400">{formatTime(elapsedMs)}</span>
+                  </div>
                   <div className="w-px h-8 bg-amber-800/80"></div>
-                  <div className="flex flex-col items-center"><span className="text-[11px] uppercase font-bold text-amber-400/80">{t.stars}</span><div className="flex text-amber-400 text-lg">★★★</div></div>
-                  <div className="w-px h-8 bg-amber-800/80"></div>
-                  <div className="flex flex-col items-center"><span className="text-[11px] uppercase font-bold text-amber-400/80">{t.challenge}</span><span className="font-fredoka font-bold text-base text-amber-200">{t.mateIn(selectedLevel)}</span></div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-[10px] uppercase font-bold text-amber-400/80">{t.challenge}</span>
+                    <span className="font-fredoka font-bold text-base sm:text-lg text-amber-200">{t.mateIn(selectedLevel)}</span>
+                  </div>
                 </div>
+
+                {/* Bloco de Recordes: Linha 1 (Recorde Pessoal) e Linha 2 (Recorde Mundial com Bandeira) */}
+                <div className="bg-[#190b02]/95 border border-amber-700/70 rounded-2xl p-3.5 mb-5 space-y-2.5 text-left shadow-inner">
+                  {/* Linha 1: Your Personal Record */}
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-bold text-amber-200 flex items-center gap-1.5">
+                      <span>🏆</span>
+                      <span>{t.personalRecordLabel}:</span>
+                    </span>
+                    <div className="flex items-center gap-1.5">
+                      {isNewPersonalRecord && (
+                        <span className="bg-amber-500 text-amber-950 font-black text-[9px] px-1.5 py-0.5 rounded uppercase tracking-wider animate-pulse">
+                          {t.newRecordBadge}
+                        </span>
+                      )}
+                      <span className="font-mono tabular-nums font-black text-xs sm:text-sm text-amber-300">
+                        {formatTime(currentLevelPersonalMs)}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="h-px bg-amber-900/60 w-full"></div>
+
+                  {/* Linha 2: World Record for Mate in XX */}
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-bold text-amber-200 flex items-center gap-1.5">
+                      <span>🌎</span>
+                      <span>{t.worldRecordLabel(selectedLevel)}:</span>
+                    </span>
+                    <div className="flex items-center gap-1.5">
+                      {isNewWorldRecord && (
+                        <span className="bg-emerald-500 text-emerald-950 font-black text-[9px] px-1.5 py-0.5 rounded uppercase tracking-wider animate-bounce">
+                          {t.newRecordBadge}
+                        </span>
+                      )}
+                      <span className="font-mono tabular-nums font-black text-xs sm:text-sm text-emerald-400">
+                        {formatTime(currentLevelWorldObj?.timeMs)}
+                      </span>
+                      <CountryFlagBadge countryCode={currentLevelWorldObj?.country || 'UN'} />
+                    </div>
+                  </div>
+
+                  {/* Aviso discreto se a partida usou Reiniciar ou Dica */}
+                  {!isRecordEligible && (
+                    <div className="pt-1 text-[10px] text-amber-400/70 text-center italic border-t border-amber-950">
+                      {t.practiceRunNote}
+                    </div>
+                  )}
+                </div>
+
+                {/* Botões de Ação + Linha para Rever o Tabuleiro Final */}
                 <div className="space-y-3">
-                  <button onClick={handleAnotherChallengeSPA} className="btn-chunky btn-chunky-green w-full bg-gradient-to-b from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-fredoka font-black text-xl py-3.5 px-6 rounded-2xl border-2 border-emerald-950 shadow-chunky-btn-green flex items-center justify-center gap-3 cursor-pointer"><span>{t.anotherChallengeBtn}</span><span className="text-2xl">➔</span></button>
-                  <button onClick={() => setIsWon(false)} className="w-full text-amber-300 hover:text-white text-xs font-bold uppercase tracking-wider py-1.5 transition cursor-pointer">{t.reviewBoardBtn}</button>
+                  <button onClick={handleAnotherChallengeSPA} className="btn-chunky btn-chunky-green w-full bg-gradient-to-b from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-fredoka font-black text-xl py-3.5 px-6 rounded-2xl border-2 border-emerald-950 shadow-chunky-btn-green flex items-center justify-center gap-3 cursor-pointer">
+                    <span>{t.anotherChallengeBtn}</span>
+                    <span className="text-2xl">➔</span>
+                  </button>
+                  <button onClick={() => setIsWon(false)} className="w-full text-amber-300 hover:text-white text-xs font-bold uppercase tracking-wider py-1.5 transition cursor-pointer">
+                    {t.reviewBoardBtn}
+                  </button>
                 </div>
               </div>
             </div>
