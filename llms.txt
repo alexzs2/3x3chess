@@ -15,3 +15,4 @@
 - [About 3x3Chess Studio](https://3x3chess.com/about.html): Mission, pedagogical methodology, and technical specifications of the platform.
 - [Contact & Player Support](https://3x3chess.com/contact.html): Direct support channel (mailto:3x3chess@gmail.com) for bug reports, chess educators, and inquiries.
 - [Privacy Policy & Terms of Service](https://3x3chess.com/privacy.html): Data privacy, cookie policies, and terms of use.
+- Official Social Profiles: [https://www.tiktok.com/@3x3.chess](https://www.tiktok.com/@3x3.chess) | [https://www.instagram.com/3x3chess/](https://www.instagram.com/3x3chess/)
