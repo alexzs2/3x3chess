@@ -37,9 +37,29 @@
   gtag('config', 'G-DWQNJMQVRY');
 </script>
 
-<!-- Schema.org / VideoGame & FAQPage Structured Data para Autoridade no Google -->
+<!-- Schema.org / Organization, VideoGame, TechArticle & FAQPage Structured Data -->
 <script type="application/ld+json">
 [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://3x3chess.com/#organization",
+    "name": "3x3Chess Studio",
+    "url": "https://3x3chess.com/",
+    "logo": "https://3x3chess.com/preview.jpg",
+    "email": "contact@3x3chess.com",
+    "description": "Educational chess technology studio specializing in 3x3 mini-chess endgame tablebases, retrograde analysis guides, and tactical calculation training.",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "contact@3x3chess.com",
+      "contactType": "customer support",
+      "availableLanguage": ["English", "Portuguese", "Spanish", "French", "German", "Russian"]
+    },
+    "sameAs": [
+      "https://3x3chess.com/about.html",
+      "https://3x3chess.com/blog.html"
+    ]
+  },
   {
     "@context": "https://schema.org",
     "@type": "VideoGame",
@@ -50,11 +70,30 @@
     "playMode": "SinglePlayer",
     "applicationCategory": "Game",
     "operatingSystem": "Web Browser",
+    "author": {
+      "@id": "https://3x3chess.com/#organization"
+    },
+    "publisher": {
+      "@id": "https://3x3chess.com/#organization"
+    },
     "offers": {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD"
     }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "3x3 Mini-Chess Tactical Encyclopedia: FIDE Rules, 54.6M Retrograde Tablebase & Checkmate Motifs",
+    "url": "https://3x3chess.com/#tactical-guide",
+    "author": {
+      "@id": "https://3x3chess.com/#organization"
+    },
+    "publisher": {
+      "@id": "https://3x3chess.com/#organization"
+    },
+    "description": "Complete mathematical and tactical guide to 3x3 mini-chess endgames, piece geometry, Zugzwang, and stalemate avoidance."
   },
   {
     "@context": "https://schema.org",
@@ -186,7 +225,7 @@
   <section id="mechanics-rules" class="bg-[#1c0d04]/90 border border-amber-900/70 rounded-3xl p-6 sm:p-8 shadow-xl space-y-5">
     <div class="border-b border-amber-900/60 pb-4">
       <span class="text-xs font-extrabold uppercase tracking-widest text-amber-400 block mb-1">Chapter 1 • Fundamentals & Mechanics</span>
-      <h2 class="font-fredoka text-2xl sm:text-3xl font-bold text-amber-100">What is 3x3 Mini-Chess? Geometry, Rules & Cognitive Benefits</h2>
+      <h1 class="font-fredoka text-2xl sm:text-3xl font-bold text-amber-100">3x3Chess Studio — What is 3x3 Mini-Chess? Geometry, Rules & Tactical Trainer</h1>
     </div>
     <p class="text-sm sm:text-base">
       <strong>3x3 Chess</strong> is a condensed, high-intensity tactical chess variant played on a 9-square board comprising three files (<strong>a, b, c</strong>) and three ranks (<strong>1, 2, 3</strong>). While classical chess on a 64-square board involves long-term opening theory and positional maneuvering across dozens of moves, 3x3 mini-chess strips away memorization and plunges the player directly into pure endgame calculation. On a 9-square grid, every piece is in immediate contact with enemy territory, meaning a single inaccuracy separates a forced win from a stalemate or loss.
@@ -458,8 +497,9 @@
       <a href="/privacy.html" class="hover:text-amber-400 transition">Privacy Policy & Terms</a>
     </nav>
   </div>
-  <div class="max-w-6xl mx-auto border-t border-amber-950/70 mt-6 pt-4 text-center text-[11px] text-amber-500/50">
-    © 2026 3x3Chess Studio (3x3chess.com). All Rights Reserved.
+  <div class="max-w-6xl mx-auto border-t border-amber-950/70 mt-6 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-center text-[11px] text-amber-500/60">
+    <span>© 2026 3x3Chess Studio (3x3chess.com). All Rights Reserved.</span>
+    <span>Official Support: <a href="mailto:3x3chess@gmail.com" class="text-amber-300/80 hover:text-amber-400 underline">3x3chess@gmail.com</a></span>
   </div>
 </footer>
 
@@ -1714,7 +1754,7 @@
                   </div>
                   <div>
                     <div className="flex items-center gap-1.5">
-                      <h1 className="font-fredoka text-lg sm:text-xl font-black text-amber-100 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">3x3<span className="text-amber-400">Chess</span></h1>
+                      <div className="font-fredoka text-lg sm:text-xl font-black text-amber-100 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">3x3<span className="text-amber-400">Chess</span></div>
                       <span className="hidden sm:inline-block bg-amber-600/90 text-white font-fredoka text-[9px] font-bold px-1.5 py-0.5 rounded-sm uppercase tracking-wider shadow">Studio</span>
                     </div>
                   </div>

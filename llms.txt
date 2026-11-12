@@ -1,0 +1,17 @@
+# 3x3Chess Studio
+
+> 3x3Chess Studio (https://3x3chess.com) is an interactive tactical mini-chess endgame trainer and mathematical chess theory encyclopedia. Players solve verified forced checkmate puzzles (from Mate in 1 to Mate in 15) on a 9-square grid (files a, b, c and ranks 1, 2, 3) governed by standard FIDE piece movement rules.
+
+## Key Mathematical Facts & Game Rules
+- **Board Geometry:** 3x3 grid (9 squares: a1, b1, c1, a2, b2, c2, a3, b3, c3).
+- **Total Legal Positions:** 54,687,564 unique legal positions verified via exhaustive retrograde analysis conducted by a Russian mathematician.
+- **Maximum Forced Checkmate Depth:** Mate in 16 moves (31 plies) against optimal minimax defense.
+- **FIDE Rules Adaptation:** White moves first. White pawns advance upward toward Rank 3; Black pawns advance downward toward Rank 1. Castling, double-step initial pawn moves, and en passant do not exist due to board dimensions.
+- **Global & Personal Leaderboards:** Millisecond-precision (`mm:ss.ccc`) speedrun timer tracking personal bests and country-flagged world records across all 15 checkmate categories.
+
+## Core Pages & Documentation
+- [Interactive 3x3Chess Endgame Trainer & Tactical Guide](https://3x3chess.com/index.html): Play all 15 checkmate levels (Mate in 1 to Mate in 15) and read the 5-chapter foundational study guide.
+- [3x3Chess Academy & 12-Chapter Theory Blog](https://3x3chess.com/blog.html): Comprehensive technical monographs covering retrograde analysis, the 8-square Hamiltonian Knight loop, King opposition, Zugzwang, stalemate control, underpromotion, Bishop color complexes, and cognitive transfer to 8x8 classical chess.
+- [About 3x3Chess Studio](https://3x3chess.com/about.html): Mission, pedagogical methodology, and technical specifications of the platform.
+- [Contact & Player Support](https://3x3chess.com/contact.html): Direct support channel (mailto:contact@3x3chess.com) for bug reports, chess educators, and inquiries.
+- [Privacy Policy & Terms of Service](https://3x3chess.com/privacy.html): Data privacy, cookie policies, and terms of use.
